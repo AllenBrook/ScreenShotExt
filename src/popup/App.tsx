@@ -708,7 +708,7 @@ export function App() {
           </button>
           <button
             class="link-btn"
-            onClick={() => void openPage('https://openscreenshot.app/support')}
+            onClick={() => void openPage('https://openscreenshot.app/support/')}
           >
             {t('restrictedHelp')}
           </button>
