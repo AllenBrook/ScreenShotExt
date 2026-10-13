@@ -29,26 +29,42 @@ export function getWindowViewport() {
  * dashboards like Gmail, Claude, Notion — the body is pinned, or only a footer
  * overflows it), find that element, tag it `data-oss-scroller`, and report ITS
  * geometry + viewport rect so the capture loop scrolls it and crops each tile to it.
+ *
+ * Smaller scroll boxes inside the captured region (code blocks, tables, panel
+ * widgets) are expanded to their full content height and tagged
+ * `data-oss-expanded`, so the capture holds them whole. {@link restoreCapture}
+ * puts them back.
  */
 export function getMetrics(excludeScrollbars = false): Metrics {
   const de = document.documentElement;
   const dpr = window.devicePixelRatio || 1;
   // client dimensions exclude classic scrollbar gutters without reflowing
   // the page. Overlay scrollbars are made transparent during preparation.
-  const viewport = document.compatMode === 'BackCompat' ? document.body : de;
-  const vw = excludeScrollbars
-    ? Math.min(window.innerWidth, viewport?.clientWidth || window.innerWidth)
-    : window.innerWidth;
-  const vh = excludeScrollbars
-    ? Math.min(window.innerHeight, viewport?.clientHeight || window.innerHeight)
-    : window.innerHeight;
-  const vl = excludeScrollbars ? (viewport?.clientLeft ?? 0) : 0;
+  const measureViewport = () => {
+    const viewport = document.compatMode === 'BackCompat' ? document.body : de;
+    return {
+      vw: excludeScrollbars
+        ? Math.min(window.innerWidth, viewport?.clientWidth || window.innerWidth)
+        : window.innerWidth,
+      vh: excludeScrollbars
+        ? Math.min(window.innerHeight, viewport?.clientHeight || window.innerHeight)
+        : window.innerHeight,
+      vl: excludeScrollbars ? (viewport?.clientLeft ?? 0) : 0,
+    };
+  };
+  let { vw, vh, vl } = measureViewport();
+  // A pinned body (overflow hidden) cannot scroll, so expanded boxes would fall off-screen.
+  const documentScrolls = ![de, document.body].some(
+    (el) => el && /^(hidden|clip)$/.test(getComputedStyle(el).overflowY),
+  );
 
   // Pick the element with the most vertical overflow that also covers most of
   // the viewport — the dominant scroll region. It must outscroll the document.
+  // When the document can grow, a panel that overflows by less than half a
+  // viewport is expanded in place instead, which keeps the page around it.
   // ponytail: linear DOM scan, fine for a one-shot capture; index by overflow if it ever matters.
   let scroller: HTMLElement | null = null;
-  let bestOverflow = Math.max(vh * 0.5, de.scrollHeight - vh); // at least half a viewport
+  let bestOverflow = Math.max(documentScrolls ? vh * 0.5 : 4, de.scrollHeight - vh);
   for (const el of document.querySelectorAll<HTMLElement>('*')) {
     const cs = getComputedStyle(el);
     if (cs.overflowY !== 'auto' && cs.overflowY !== 'scroll') continue;
@@ -60,6 +76,60 @@ export function getMetrics(excludeScrollbars = false): Metrics {
     if (r.left < vl - 1 || r.top < -1 || r.right > vl + vw + 1 || r.bottom > vh + 1) continue;
     bestOverflow = overflow;
     scroller = el;
+  }
+
+  const root = scroller ?? de;
+  if (scroller || documentScrolls) {
+    for (const el of root.querySelectorAll<HTMLElement>('*')) {
+      if (el === document.body || el.dataset.ossExpanded !== undefined) continue;
+      if (el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') continue;
+      const cs = getComputedStyle(el);
+      if (cs.overflowY !== 'auto' && cs.overflowY !== 'scroll') continue;
+      if (el.clientHeight === 0 || el.scrollHeight - el.clientHeight <= 4) continue;
+      // A fixed or sticky panel, such as a docs sidebar, would add blank space below the page.
+      const ancestors: HTMLElement[] = [];
+      let pinned = false;
+      for (let a: HTMLElement | null = el; a && a !== root; a = a.parentElement) {
+        if (/^(fixed|sticky)$/.test(getComputedStyle(a).position)) pinned = true;
+        if (a !== el) ancestors.push(a);
+      }
+      if (pinned) continue;
+      // A virtual list renders only the rows in view; expanded, it shows blank rows.
+      if (el.childElementCount) {
+        const top = el.getBoundingClientRect().top + el.clientTop - el.scrollTop;
+        let contentBottom = 0;
+        for (const leaf of el.querySelectorAll('*')) {
+          if (leaf.childElementCount) continue;
+          const r = leaf.getBoundingClientRect();
+          if (r.width && r.height) contentBottom = Math.max(contentBottom, r.bottom - top);
+        }
+        if (el.scrollHeight - contentBottom > el.clientHeight / 2) continue;
+      }
+
+      const before = ancestors.map((a) => ({ height: a.clientHeight, overflow: a.scrollHeight }));
+      const style = el.getAttribute('style');
+      el.dataset.ossExpanded = String(el.scrollTop);
+      if (style !== null) el.dataset.ossStyle = style;
+      el.style.setProperty('height', 'auto', 'important');
+      el.style.setProperty('max-height', 'none', 'important');
+      // Flex or grid sizing can keep the box short. A parent that does not grow
+      // with it clips the box, or lets it spill over the content below.
+      let fits = el.scrollHeight - el.clientHeight <= 4;
+      for (let i = 0; fits && i < ancestors.length; i++) {
+        const a = ancestors[i];
+        if (a.clientHeight > before[i].height || a.scrollHeight <= before[i].overflow) continue;
+        if (getComputedStyle(a).overflowY !== 'visible') fits = false;
+        for (let s = a.nextElementSibling; fits && s; s = s.nextElementSibling)
+          if (s.getBoundingClientRect().height > 0) fits = false;
+      }
+      if (!fits) {
+        if (style === null) el.removeAttribute('style');
+        else el.setAttribute('style', style);
+        el.scrollTop = Number(el.dataset.ossExpanded);
+        delete el.dataset.ossExpanded;
+        delete el.dataset.ossStyle;
+      }
+    }
   }
 
   if (scroller) {
@@ -79,6 +149,8 @@ export function getMetrics(excludeScrollbars = false): Metrics {
     };
   }
 
+  // Expansion can add a document scrollbar, which narrows the viewport.
+  ({ vw, vh, vl } = measureViewport());
   return {
     viewportLeft: vl,
     scrollHeight: de.scrollHeight,
@@ -202,6 +274,14 @@ export function scrollToPosition(y: number): { scrollY: number; atBottom: boolea
 
 /** Restore the page to its pre-capture state. */
 export function restoreCapture(): void {
+  // Shrink expanded boxes first, so the scroll positions below land where they were.
+  for (const el of document.querySelectorAll<HTMLElement>('[data-oss-expanded]')) {
+    if (el.dataset.ossStyle === undefined) el.removeAttribute('style');
+    else el.setAttribute('style', el.dataset.ossStyle);
+    el.scrollTop = Number(el.dataset.ossExpanded);
+    delete el.dataset.ossExpanded;
+    delete el.dataset.ossStyle;
+  }
   const hidden = document.querySelectorAll('[data-oss-hidden="1"]');
   for (const el of hidden) {
     const node = el as HTMLElement;

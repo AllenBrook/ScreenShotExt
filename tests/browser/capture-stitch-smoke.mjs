@@ -165,6 +165,49 @@ try {
   });
   assert.equal(outer.id, 'main', 'an off-screen nested scroller is skipped');
   assert.deepEqual(outer.metrics.container, { x: 0, y: 0, width: 800, height: 600 });
+
+  // Inner scroll boxes in the captured region grow to their content, then shrink back.
+  await page.setContent(
+    '<!doctype html><style>body{margin:0}.box{overflow:auto}</style><div style="height:600px"></div><div id="table" class="box" style="height:300px"><div style="height:2000px"></div></div><aside id="sticky" class="box" style="position:sticky;top:0;height:400px"><div style="height:3000px"></div></aside><div id="virtual" class="box" style="height:300px"><div style="height:20000px;position:relative"><span style="position:absolute;top:0">row</span></div></div><div style="height:300px;overflow:hidden"><div id="card" class="box" style="height:100%"><div style="height:900px"></div></div></div><div style="height:1500px"></div><script>document.querySelector("#table").scrollTop=120</script>',
+  );
+  await page.addScriptTag({ content: script.code });
+  const expansion = await page.evaluate(() => {
+    const before = document.documentElement.outerHTML;
+    const metrics = window.captureModule.getMetrics(true);
+    const expanded = [...document.querySelectorAll('[data-oss-expanded]')].map((el) => el.id);
+    const tableHeight = document.querySelector('#table').clientHeight;
+    window.captureModule.restoreCapture();
+    return {
+      metrics,
+      expanded,
+      tableHeight,
+      restored: document.documentElement.outerHTML === before,
+      scrollTop: document.querySelector('#table').scrollTop,
+    };
+  });
+  assert.deepEqual(
+    expansion.expanded,
+    ['table'],
+    'sticky boxes, virtual lists and clipped boxes stay as they are',
+  );
+  assert.equal(expansion.tableHeight, 2000);
+  assert.equal(expansion.metrics.container, null);
+  assert.equal(expansion.metrics.scrollHeight, 600 + 2000 + 400 + 300 + 300 + 1500);
+  assert(expansion.restored, 'restore puts back the inline style');
+  assert.equal(expansion.scrollTop, 120, 'restore puts back the inner scroll position');
+
+  // A pinned shell cannot grow, so a panel that overflows by a little is scrolled instead.
+  await page.setContent(
+    '<!doctype html><style>body{margin:0;height:100vh;overflow:hidden;display:flex;flex-direction:column}header{height:80px;flex:none}main{flex:1;min-height:0;overflow:auto}</style><header></header><main id="main"><div style="height:770px"></div></main>',
+  );
+  await page.addScriptTag({ content: script.code });
+  const pinned = await page.evaluate(() => {
+    const metrics = window.captureModule.getMetrics(true);
+    return { metrics, id: document.querySelector('[data-oss-scroller="1"]')?.id };
+  });
+  assert.equal(pinned.id, 'main', 'a small overflow in a pinned shell still wins');
+  assert.equal(pinned.metrics.scrollHeight, 770);
+
   for (const direction of ['ltr', 'rtl']) {
     await page.setContent(
       `<!doctype html><html dir="${direction}"><style>html{scrollbar-gutter:stable;scrollbar-color:rgb(255,0,255) rgb(0,255,0)}body{margin:0;height:1800px;background:#112233}</style></html>`,
@@ -191,7 +234,7 @@ try {
     );
   }
   console.log(
-    'Capture stitching: hidden scrollbars, native 2× pixels, exact seams, nested borders and restoration passed.',
+    'Capture stitching: hidden scrollbars, native 2× pixels, exact seams, nested borders, expanded inner boxes and restoration passed.',
   );
 } finally {
   await browser.close();

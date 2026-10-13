@@ -634,6 +634,7 @@ async function captureFullPage(tab: chrome.tabs.Tab): Promise<void> {
   const tabId = tab.id as number;
   const metrics = await execInTab(tabId, getMetrics, [true]);
   if (metrics.viewportHeight <= 0 || metrics.scrollHeight <= 0) {
+    await runInTab(tabId, restoreCapture, []);
     broadcast({
       type: 'CAPTURE_ERROR',
       code: 'blank-page',
@@ -646,6 +647,7 @@ async function captureFullPage(tab: chrome.tabs.Tab): Promise<void> {
   // One canvas cannot pass MAX_CANVAS_HEIGHT_PX, so a taller page becomes several images.
   const parts = splitHeight(canvasHeight, MAX_CANVAS_HEIGHT_PX);
   if (parts.length > MAX_CAPTURE_PARTS) {
+    await runInTab(tabId, restoreCapture, []);
     broadcast({
       type: 'CAPTURE_ERROR',
       code: 'too-large',
