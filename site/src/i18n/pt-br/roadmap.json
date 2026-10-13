@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "O que já foi lançado, o que está em estudo e o que fica fora do escopo."
   },
-  "callout": "<strong>A promessa:</strong> tudo nesta página continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.4.0</strong>.",
+  "callout": "<strong>A promessa:</strong> tudo nesta página continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.4.1</strong>.",
   "legend": {
     "srLabel": "Legenda de status:",
     "exploring": "Em estudo",
@@ -139,8 +139,14 @@
     "currentTag": "versão atual",
     "releases": [
       {
-        "version": "v2.4.0",
+        "version": "v2.4.1",
         "current": true,
+        "items": [
+          "Correção: a captura de página inteira agora inclui, na altura completa, as áreas com rolagem dentro da página, como tabelas, blocos de código e widgets de painéis. Um painel que rola só um pouco agora também sai inteiro."
+        ]
+      },
+      {
+        "version": "v2.4.0",
         "items": [
           "<strong>Páginas muito longas divididas em várias imagens</strong> — uma captura de página inteira mais alta que uma imagem agora é salva em até seis imagens, em vez de falhar. O download nomeia cada parte, e o editor abre cada parte em sua própria aba.",
           "Ao capturar um arquivo local sem acesso a arquivos, a mensagem agora indica o que ativar: \"Permitir acesso aos URLs de arquivo\" nos detalhes da extensão."

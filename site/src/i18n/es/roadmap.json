@@ -8,7 +8,7 @@
     "heading": "Hoja de ruta",
     "lead": "Qué se ha publicado, qué está en estudio y qué queda fuera del alcance."
   },
-  "callout": "<strong>La promesa:</strong> todo lo de esta página sigue 100 % local. Sin servidores, sin cuentas, sin nueva recopilación de datos, nunca. Los elementos de la hoja de ruta no llevan fechas. Los comentarios y los pull requests deciden qué se publica. Versión actual: <strong>v2.4.0</strong>.",
+  "callout": "<strong>La promesa:</strong> todo lo de esta página sigue 100 % local. Sin servidores, sin cuentas, sin nueva recopilación de datos, nunca. Los elementos de la hoja de ruta no llevan fechas. Los comentarios y los pull requests deciden qué se publica. Versión actual: <strong>v2.4.1</strong>.",
   "legend": {
     "srLabel": "Leyenda de estados:",
     "exploring": "En estudio",
@@ -139,8 +139,14 @@
     "currentTag": "versión actual",
     "releases": [
       {
-        "version": "v2.4.0",
+        "version": "v2.4.1",
         "current": true,
+        "items": [
+          "Corrección: la captura de página completa ahora incluye a toda su altura las áreas con desplazamiento dentro de la página, como tablas, bloques de código y widgets de paneles. Un panel que solo se desplaza un poco ahora también sale completo."
+        ]
+      },
+      {
+        "version": "v2.4.0",
         "items": [
           "<strong>Las páginas muy largas se dividen en varias imágenes</strong> — una captura de página completa más alta que una imagen ahora se guarda como hasta seis imágenes en lugar de fallar. La descarga nombra cada parte y el editor abre cada parte en su propia pestaña.",
           "Al capturar un archivo local sin acceso a archivos, el mensaje ahora indica qué activar: «Permitir el acceso a las URL de archivo» en los detalles de la extensión."

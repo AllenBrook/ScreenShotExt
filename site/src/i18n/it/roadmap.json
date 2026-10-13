@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "Cosa è stato rilasciato, cosa è in valutazione e cosa resta fuori dagli obiettivi."
   },
-  "callout": "<strong>La promessa:</strong> tutto su questa pagina resta 100% locale. Nessun server, nessun account, nessuna nuova raccolta di dati, mai. Le voci della roadmap non hanno date. Feedback e pull request decidono cosa viene rilasciato. Versione corrente: <strong>v2.4.0</strong>.",
+  "callout": "<strong>La promessa:</strong> tutto su questa pagina resta 100% locale. Nessun server, nessun account, nessuna nuova raccolta di dati, mai. Le voci della roadmap non hanno date. Feedback e pull request decidono cosa viene rilasciato. Versione corrente: <strong>v2.4.1</strong>.",
   "legend": {
     "srLabel": "Legenda degli stati:",
     "exploring": "In valutazione",
@@ -139,8 +139,14 @@
     "currentTag": "versione corrente",
     "releases": [
       {
-        "version": "v2.4.0",
+        "version": "v2.4.1",
         "current": true,
+        "items": [
+          "Correzione: la cattura della pagina intera ora include a piena altezza le aree scorrevoli dentro la pagina, come tabelle, blocchi di codice e widget delle dashboard. Anche un pannello che scorre solo di poco ora viene catturato per intero."
+        ]
+      },
+      {
+        "version": "v2.4.0",
         "items": [
           "<strong>Pagine molto lunghe divise in più immagini</strong> — una cattura della pagina intera più alta di un’immagine ora si salva in un massimo di sei immagini invece di fallire. Il download dà un nome a ogni parte e l’editor apre ogni parte in una scheda propria.",
           "Catturando un file locale senza accesso ai file, il messaggio ora indica l’opzione da attivare: «Consenti l’accesso agli URL dei file» nei dettagli dell’estensione."
