@@ -8,6 +8,8 @@
   "build": {
     "command": "pnpm run site:build",
   },
+  // OpenScreenShot Cloud behind /capture/. Its source is proprietary, in the
+  // private PGHQdev/openscreenshot-cloud repository.
   "services": [{ "binding": "CAPTURE", "service": "openscreenshot-capture-pilot" }],
   "assets": {
     "directory": "./site-dist",

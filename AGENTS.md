@@ -2,6 +2,13 @@
 
 Rules for coding agents that work in this repository. `CONTRIBUTING.md` has the general workflow.
 
+## Open core and OpenScreenShot Cloud
+
+This repository is MIT: the extension, the site, and the MCP server. OpenScreenShot Cloud, the
+hosted capture service behind `/capture/`, is proprietary and lives in the private
+`PGHQdev/openscreenshot-cloud` repository. Code here reaches Cloud only through its public HTTP
+API. Do not copy Cloud source into this repository.
+
 ## Site deploy is automatic
 
 Cloudflare Workers Builds is connected to this GitHub repository. Each push to `main` deploys
