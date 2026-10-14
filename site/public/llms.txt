@@ -6,7 +6,7 @@
 - Firefox Add-ons: https://addons.mozilla.org/firefox/addon/openscreenshot/
 - Source: https://github.com/pghqdev/OpenScreenShot
 - npm: https://www.npmjs.com/package/openscreenshot
-- OpenScreenShot Teams: https://teams.openscreenshot.app/ — a separate, hosted product that renders full-page website screenshots on servers (free beta; API docs at https://teams.openscreenshot.app/docs)
+- OpenScreenShot Cloud: https://cloud.openscreenshot.app/ — a separate, hosted product that renders full-page website screenshots on servers (free beta; API docs at https://cloud.openscreenshot.app/docs)
 
 Every page on this site has a Markdown copy at `<page URL>index.md`, linked from the page head; the homepage also answers `Accept: text/markdown`. The site is in English, Deutsch, Español, Français, Italiano, 日本語, 한국어, Português (Brasil), Русский, 简体中文, and 繁體中文 (prefix `/de/`, `/es/`, ...).
 

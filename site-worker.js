@@ -302,10 +302,10 @@ async function submitCaptureError(request, env) {
 }
 
 async function route(url, request, env) {
-  // The capture beta moved to OpenScreenShot Teams. 308 keeps the method for API calls.
+  // The capture beta moved to OpenScreenShot Cloud. 308 keeps the method for API calls.
   if (url.pathname === '/capture' || url.pathname.startsWith('/capture/')) {
     const path = url.pathname.slice('/capture'.length) || '/';
-    return Response.redirect(`https://teams.openscreenshot.app${path}${url.search}`, 308);
+    return Response.redirect(`https://cloud.openscreenshot.app${path}${url.search}`, 308);
   }
   const accept = request.headers.get('Accept') ?? '';
 

@@ -7,7 +7,7 @@
     "support": "Support",
     "roadmap": "Feuille de route",
     "github": "GitHub",
-    "teams": "Teams",
+    "cloud": "Cloud",
     "addToFirefox": "Ajouter à Firefox",
     "installForFirefox": "Ajouter à Firefox",
     "installForChrome": "Ajouter à Chrome"
@@ -21,7 +21,7 @@
     "roadmap": "Feuille de route",
     "supportFaq": "Support & FAQ",
     "github": "GitHub",
-    "teams": "OpenScreenShot Teams",
+    "cloud": "OpenScreenShot Cloud",
     "mitLicense": "Licence MIT",
     "privacy": "Confidentialité",
     "supportOpenSource": "Soutenir l’open source",
