@@ -7,6 +7,7 @@
     "support": "サポート",
     "roadmap": "ロードマップ",
     "github": "GitHub",
+    "teams": "Teams",
     "addToFirefox": "Firefox に追加",
     "installForFirefox": "Firefox に追加",
     "installForChrome": "Chrome に追加"
@@ -20,6 +21,7 @@
     "roadmap": "ロードマップ",
     "supportFaq": "サポート & FAQ",
     "github": "GitHub",
+    "teams": "OpenScreenShot Teams",
     "mitLicense": "MIT ライセンス",
     "privacy": "プライバシー",
     "supportOpenSource": "オープンソースを支援",

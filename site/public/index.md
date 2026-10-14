@@ -9,6 +9,7 @@ Free, open-source full page screenshot tool for Chrome and Firefox — full-page
 - Support: https://openscreenshot.app/support/
 - Privacy: https://openscreenshot.app/privacy/
 - License: MIT
+- OpenScreenShot Teams (separate hosted product, renders screenshots on servers): https://teams.openscreenshot.app/
 
 ## Features
 

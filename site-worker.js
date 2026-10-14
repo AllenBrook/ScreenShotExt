@@ -302,8 +302,11 @@ async function submitCaptureError(request, env) {
 }
 
 async function route(url, request, env) {
-  if (url.pathname === '/capture') return Response.redirect(new URL('/capture/', url), 308);
-  if (url.pathname.startsWith('/capture/')) return env.CAPTURE.fetch(request);
+  // The capture beta moved to OpenScreenShot Teams. 308 keeps the method for API calls.
+  if (url.pathname === '/capture' || url.pathname.startsWith('/capture/')) {
+    const path = url.pathname.slice('/capture'.length) || '/';
+    return Response.redirect(`https://teams.openscreenshot.app${path}${url.search}`, 308);
+  }
   const accept = request.headers.get('Accept') ?? '';
 
   if (url.pathname === '/api/feedback') return submitFeedback(request, env);

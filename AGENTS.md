@@ -2,12 +2,13 @@
 
 Rules for coding agents that work in this repository. `CONTRIBUTING.md` has the general workflow.
 
-## Open core and OpenScreenShot Cloud
+## Open core and OpenScreenShot Teams
 
-This repository is MIT: the extension, the site, and the MCP server. OpenScreenShot Cloud, the
-hosted capture service behind `/capture/`, is proprietary and lives in the private
-`PGHQdev/openscreenshot-cloud` repository. Code here reaches Cloud only through its public HTTP
-API. Do not copy Cloud source into this repository.
+This repository is MIT: the extension, the site, and the MCP server. OpenScreenShot Teams, the
+hosted capture product at `https://teams.openscreenshot.app/`, is proprietary and lives in the
+private `PGHQdev/openscreenshot-teams` repository. Code here reaches Teams only through its public
+HTTP API. Do not copy Teams source into this repository. `/capture/*` on this site redirects to
+the Teams host.
 
 ## Site deploy is automatic
 

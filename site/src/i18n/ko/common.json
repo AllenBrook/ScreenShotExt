@@ -7,6 +7,7 @@
     "support": "지원",
     "roadmap": "로드맵",
     "github": "GitHub",
+    "teams": "Teams",
     "addToFirefox": "Firefox에 추가",
     "installForFirefox": "Firefox에 추가",
     "installForChrome": "Chrome에 추가"
@@ -20,6 +21,7 @@
     "roadmap": "로드맵",
     "supportFaq": "지원 및 FAQ",
     "github": "GitHub",
+    "teams": "OpenScreenShot Teams",
     "mitLicense": "MIT 라이선스",
     "privacy": "개인정보 처리방침",
     "supportOpenSource": "오픈 소스 후원",

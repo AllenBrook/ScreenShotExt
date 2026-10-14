@@ -50,6 +50,7 @@ export interface Props {
 }
 
 const REPO_URL = 'https://github.com/pghqdev/OpenScreenShot';
+const TEAMS_URL = 'https://teams.openscreenshot.app/';
 
 const {
   title,
@@ -167,6 +168,7 @@ const alternates = availableLocales.map((l) => ({
               </li>
             ))
           }
+          <li><a href={TEAMS_URL}>{c.nav.teams}</a></li>
           <li>
             <slot name="header-action">
               <InstallButtons locale={locale} size="compact" />
@@ -203,6 +205,7 @@ const alternates = availableLocales.map((l) => ({
           <a href={localizePath(locale, '/roadmap/')}>{c.footer.roadmap}</a>
           <a href={localizePath(locale, '/support/')}>{c.footer.supportFaq}</a>
           <a href={localizePath(locale, '/compare/')}>{c.footer.compare}</a>
+          <a href={TEAMS_URL}>{c.footer.teams}</a>
         </nav>
         <nav class="foot-col" aria-label={c.footer.projectHead}>
           <p class="foot-head">{c.footer.projectHead}</p>

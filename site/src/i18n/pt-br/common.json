@@ -7,6 +7,7 @@
     "support": "Suporte",
     "roadmap": "Roadmap",
     "github": "GitHub",
+    "teams": "Teams",
     "addToFirefox": "Adicionar ao Firefox",
     "installForFirefox": "Adicionar ao Firefox",
     "installForChrome": "Adicionar ao Chrome"
@@ -20,6 +21,7 @@
     "roadmap": "Roadmap",
     "supportFaq": "Suporte e FAQ",
     "github": "GitHub",
+    "teams": "OpenScreenShot Teams",
     "mitLicense": "Licença MIT",
     "privacy": "Privacidade",
     "supportOpenSource": "Apoie o código aberto",
