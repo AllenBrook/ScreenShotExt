@@ -7,19 +7,19 @@ order: 9
 
 Для PNG публичной страницы из shell-скрипта или задачи CI достаточно инструмента командной строки: openscreenshot, shot-scraper, capture-website-cli или pageres-cli. Если для съёмки нужны вход в аккаунт, клики, проверки или видео, напишите её на Playwright или Puppeteer. Для ИИ-агента локальный MCP-сервер возвращает скриншоты модели: `openscreenshot serve` делает один скриншот за вызов, а Playwright MCP управляет целым сеансом браузера.
 
-Пакет `openscreenshot` — наш продукт, и на этой странице сказано, где он слабее других. Она сравнивает возможности и не составляет рейтинг инструментов. Все факты приведены по состоянию на 9 октября 2026 г. и взяты из репозитория, реестра пакетов или официальной документации каждого проекта; ссылки ниже.
+Пакет `openscreenshot` — наш продукт, и на этой странице сказано, где он слабее других. Она сравнивает возможности и не составляет рейтинг инструментов. Все факты приведены по состоянию на 17 октября 2026 г. и взяты из репозитория, реестра пакетов или официальной документации каждого проекта; ссылки ниже.
 
 ## Инструменты в кратком обзоре
 
-| Инструмент          | Язык / среда выполнения                                 | Вся страница        | CLI           | MCP                  | Видео            | Лицензия   |
-| ------------------- | ------------------------------------------------------- | ------------------- | ------------- | -------------------- | ---------------- | ---------- |
-| openscreenshot      | Node.js 22.12+, установленный Chrome, Chromium или Edge | `--full`            | Да            | Да, stdio            | Нет              | MIT        |
-| shot-scraper        | Python 3.10+, браузеры Playwright                       | По умолчанию        | Да            | Не указано           | Да, WebM или MP4 | Apache-2.0 |
-| capture-website-cli | Node.js 20+, Chrome из Puppeteer                        | `--full-page`       | Да            | Не указано           | Нет              | MIT        |
-| pageres-cli         | Node.js 20+, Chrome из Puppeteer                        | По умолчанию        | Да            | Не указано           | Нет              | MIT        |
-| Playwright          | Node.js, Python, Java, .NET                             | `fullPage: true`    | Запуск тестов | Через Playwright MCP | Да               | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                          | `fullPage: true`    | Не указано    | Не указано           | Да, MP4 в Chrome | Apache-2.0 |
-| Playwright MCP      | Node.js через `npx` или Docker                          | Параметр `fullPage` | Только сервер | Да, stdio или HTTP   | Да, по включению | Apache-2.0 |
+| Инструмент          | Язык / среда выполнения                                 | Вся страница        | CLI                             | MCP                       | Видео            | Лицензия   |
+| ------------------- | ------------------------------------------------------- | ------------------- | ------------------------------- | ------------------------- | ---------------- | ---------- |
+| openscreenshot      | Node.js 22.12+, установленный Chrome, Chromium или Edge | `--full`            | Да                              | Да, stdio                 | Нет              | MIT        |
+| shot-scraper        | Python 3.10+, браузеры Playwright                       | По умолчанию        | Да                              | Не указано                | Да, WebM или MP4 | Apache-2.0 |
+| capture-website-cli | Node.js 20+, Chrome из Puppeteer                        | `--full-page`       | Да                              | Не указано                | Нет              | MIT        |
+| pageres-cli         | Node.js 20+, Chrome из Puppeteer                        | По умолчанию        | Да                              | Не указано                | Нет              | MIT        |
+| Playwright          | Node.js, Python, Java, .NET                             | `fullPage: true`    | Запуск тестов, `playwright-cli` | Через Playwright MCP      | Да               | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                          | `fullPage: true`    | Не указано                      | Через chrome-devtools-mcp | Да, MP4 в Chrome | Apache-2.0 |
+| Playwright MCP      | Node.js через `npx` или Docker                          | Параметр `fullPage` | Только сервер                   | Да, stdio или HTTP        | Да, по включению | Apache-2.0 |
 
 «Не указано» означает, что проверенная нами документация самого проекта не описывает эту возможность.
 
@@ -85,17 +85,17 @@ pageres https://example.com 1366x768 1600x900
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf) работает только в Chromium без интерфейса. [Запись видео](https://playwright.dev/docs/videos) — параметр контекста, и средство запуска тестов может сохранять видео только для упавших тестов. Выбирайте Playwright, когда скриншот — один шаг теста, который входит в аккаунт, кликает и проверяет результат.
+[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf) создаёт PDF со стилями для печати. [Запись видео](https://playwright.dev/docs/videos) — параметр контекста, и средство запуска тестов может сохранять видео только для упавших тестов. [Playwright CLI](https://github.com/microsoft/playwright-cli) (`@playwright/cli`) — отдельный инструмент командной строки для автоматизации браузера из ИИ-агентов для программирования. Выбирайте Playwright, когда скриншот — один шаг теста, который входит в аккаунт, кликает и проверяет результат.
 
 ## Puppeteer
 
-[Puppeteer](https://github.com/puppeteer/puppeteer) — библиотека Google для Node.js для Chrome и Firefox. `npm i puppeteer` скачивает Chrome for Testing. [Параметры скриншота](https://pptr.dev/api/puppeteer.screenshotoptions) имеют ту же форму:
+[Puppeteer](https://github.com/puppeteer/puppeteer) — библиотека Google для Node.js для Chrome и Firefox. `npm i puppeteer` скачивает Chrome for Testing, когда выполняется его скрипт установки. Менеджерам пакетов, которые блокируют скрипты установки, нужна команда `npx puppeteer browsers install`. [Параметры скриншота](https://pptr.dev/api/puppeteer.screenshotoptions) имеют ту же форму:
 
 ```js
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf) создаёт PDF со стилями для печати. [`page.record()`](https://pptr.dev/api/puppeteer.page.record), добавленный в puppeteer-core 25.10.0, записывает MP4 в Chrome. Firefox работает через WebDriver BiDi, где некоторые функции не поддерживаются. openscreenshot — тонкая обёртка над `puppeteer-core`, поэтому используйте Puppeteer напрямую, когда вам нужно больше его четырёх параметров съёмки.
+[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf) создаёт PDF со стилями для печати. [`page.record()`](https://pptr.dev/api/puppeteer.page.record), добавленный в puppeteer-core 25.10.0, записывает MP4 в Chrome. Firefox работает через WebDriver BiDi, где некоторые функции не поддерживаются. Для агентов README Puppeteer указывает на [chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp), MCP-сервер на основе Puppeteer. openscreenshot — тонкая обёртка над `puppeteer-core`, поэтому используйте Puppeteer напрямую, когда вам нужно больше его параметров съёмки.
 
 ## Playwright MCP
 
