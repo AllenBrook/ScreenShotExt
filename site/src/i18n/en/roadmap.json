@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "What has shipped, what is being explored, and what stays out of scope."
   },
-  "callout": "<strong>The promise:</strong> everything on this page stays 100% local. No servers, no accounts, no new data collection — ever. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.4.1</strong>.",
+  "callout": "<strong>The promise:</strong> everything on this page stays 100% local. No servers, no accounts, no new data collection — ever. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.5.0</strong>.",
   "legend": {
     "srLabel": "Status legend:",
     "exploring": "Exploring",
@@ -139,8 +139,14 @@
     "currentTag": "current release",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>Redaction for CLI and MCP captures</strong> — the <code>openscreenshot</code> CLI and MCP server cover CSS selectors, email addresses, phone numbers, API keys, and pixel rectangles with black boxes before the screenshot. The capture fails with no image if a selector matches nothing or the page moves a target during the capture."
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "Fix: a full-page capture now includes scroll boxes inside the page, such as tables, code blocks, and dashboard widgets, at their full height. A dashboard panel that scrolls only a little now comes out whole too."
         ]

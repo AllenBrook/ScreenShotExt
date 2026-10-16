@@ -1,7 +1,7 @@
 {
   "name": "openscreenshot",
   "mcpName": "io.github.PGHQdev/openscreenshot",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "description": "Take website screenshots from the terminal, CI, or an AI agent. Local CLI and MCP server that drives your installed Chrome.",
   "keywords": [
     "screenshot",

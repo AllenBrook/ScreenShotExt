@@ -9,13 +9,13 @@
     "source": "github",
     "subfolder": "mcp"
   },
-  "version": "2.4.1",
+  "version": "2.5.0",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "openscreenshot",
-      "version": "2.4.1",
+      "version": "2.5.0",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
