@@ -155,7 +155,7 @@
     "heading": "AI 代理與 CLI",
     "intro": "<code>openscreenshot</code>（npm）是獨立、選用的本機工具，讓你從命令列或 AI 代理腳本化截圖。它驅動你機器上現有的 Chrome——不用下載瀏覽器，也沒有託管服務。如果自動找不到你的 Chrome，請設定 <code>CHROME_PATH</code>。",
     "mcpIntro": "作為 MCP 伺服器時，把這段加入你的 MCP 用戶端設定：",
-    "callOutro": "然後用 <code>{ \"url\": \"https://example.com\" }</code> 呼叫 <code>capture_screenshot</code> 工具。"
+    "callOutro": "然後用 <code>{ \"url\": \"https://example.com\" }</code> 呼叫 <code>capture_screenshot</code> 工具。選用的輸入有 <code>fullPage</code>（預設 false）、<code>width</code>（200–3840，預設 1280）、<code>height</code>（200–2160，預設 800）和 <code>redact</code>，它會在擷取前用黑色方塊遮蓋 CSS <code>selectors</code>、文字 <code>patterns</code>（<code>email</code>、<code>phone</code>、<code>secret</code>）和像素 <code>rects</code>。工具會把 PNG 圖片內容回傳給你的用戶端。使用託管模型的用戶端可能會把該圖片傳送給它的供應商；不能離開裝置的資料請使用 <code>redact</code>，並檢查用戶端的資料設定。"
   },
   "privacy": {
     "heading": "隱私",

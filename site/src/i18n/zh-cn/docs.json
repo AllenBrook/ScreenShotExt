@@ -155,7 +155,7 @@
     "heading": "智能体与 CLI",
     "intro": "<code>openscreenshot</code>（npm）是一个独立、可选、本地的工具，用于从命令行或 AI 智能体编程截图。它驱动你机器上已有的 Chrome——无需下载浏览器，没有托管服务。如果无法自动找到你的 Chrome，请设置 <code>CHROME_PATH</code>。",
     "mcpIntro": "作为 MCP 服务器使用时，把以下内容加入你的 MCP 客户端配置：",
-    "callOutro": "然后用 <code>{ \"url\": \"https://example.com\" }</code> 调用 <code>capture_screenshot</code> 工具。"
+    "callOutro": "然后用 <code>{ \"url\": \"https://example.com\" }</code> 调用 <code>capture_screenshot</code> 工具。可选输入有 <code>fullPage</code>（默认 false）、<code>width</code>（200–3840，默认 1280）、<code>height</code>（200–2160，默认 800）和 <code>redact</code>，后者会在截图前用黑色方块遮盖 CSS <code>selectors</code>、文本 <code>patterns</code>（<code>email</code>、<code>phone</code>、<code>secret</code>）和像素 <code>rects</code>。该工具会向你的客户端返回 PNG 图像内容。使用托管模型的客户端可能会把该图片发送给其提供方；对于不能离开设备的数据，请使用 <code>redact</code>，并检查客户端的数据设置。"
   },
   "privacy": {
     "heading": "隐私",

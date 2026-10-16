@@ -139,8 +139,14 @@
     "currentTag": "目前版本",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>CLI 和 MCP 擷取的遮蓋功能</strong> — <code>openscreenshot</code> CLI 和 MCP 伺服器會在擷取前用黑色方塊遮蓋 CSS 選擇器、電子郵件地址、電話號碼、API 金鑰和像素矩形。如果選擇器沒有符合任何內容，或頁面在擷取過程中移動了目標，擷取就會失敗，而且不會產生圖片。"
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "修正：整頁擷取現在會以完整高度包含頁面內的捲動區域，例如表格、程式碼區塊和儀表板小工具。只捲動一小段的儀表板面板現在也能完整擷取。"
         ]

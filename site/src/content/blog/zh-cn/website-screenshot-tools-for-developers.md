@@ -31,7 +31,7 @@ order: 9
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-参数有 `--out`（文件，或用 `-` 表示 stdout）、`--full`、`--width`（200 到 3840，默认 1280）和 `--height`（200 到 2160，默认 800）。退出码 0 表示已写入 PNG，1 表示截图失败，2 表示用法错误。`openscreenshot serve` 通过 stdio 启动一个 MCP 服务器，它只有一个工具 `capture_screenshot`，接受 `url`、`fullPage`、`width` 和 `height`，并返回 PNG 图像内容。[CLI 指南](/zh-cn/blog/screenshot-cli/)、[MCP 指南](/zh-cn/blog/screenshot-mcp-server/)和 [CI 指南](/zh-cn/blog/screenshots-for-ci/)介绍了设置方法，具体以[源代码](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)为准。
+参数有 `--out`（文件，或用 `-` 表示 stdout）、`--full`、`--width`（200 到 3840，默认 1280）、`--height`（200 到 2160，默认 800），以及三个遮盖参数：`--redact`（CSS 选择器）、`--redact-pattern`（`email`、`phone` 或 `secret`）和 `--redact-rect`（像素矩形）。遮盖会在截图前在页面中绘制黑色方块。退出码 0 表示已写入 PNG，1 表示截图失败，2 表示用法错误。`openscreenshot serve` 通过 stdio 启动一个 MCP 服务器，它只有一个工具 `capture_screenshot`，接受 `url`、`fullPage`、`width`、`height` 和 `redact`，并返回 PNG 图像内容。[CLI 指南](/zh-cn/blog/screenshot-cli/)、[MCP 指南](/zh-cn/blog/screenshot-mcp-server/)和 [CI 指南](/zh-cn/blog/screenshots-for-ci/)介绍了设置方法，具体以[源代码](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)为准。
 
 它较弱的地方：
 

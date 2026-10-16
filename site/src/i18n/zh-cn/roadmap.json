@@ -139,8 +139,14 @@
     "currentTag": "当前版本",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>CLI 和 MCP 截图的遮盖功能</strong> — <code>openscreenshot</code> CLI 和 MCP 服务器会在截图前用黑色方块遮盖 CSS 选择器、电子邮件地址、电话号码、API 密钥和像素矩形。如果选择器没有匹配任何内容，或页面在截图过程中移动了目标，截图会失败，且不生成图片。"
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "修复：整页截图现在会以完整高度包含页面内的滚动区域，例如表格、代码块和仪表板组件。只滚动一小段的仪表板面板现在也能完整截取。"
         ]

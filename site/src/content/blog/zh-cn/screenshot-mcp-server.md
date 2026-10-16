@@ -47,6 +47,23 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
 
 `width` 接受 200 到 3840 的整数，`height` 接受 200 到 2160 的整数。该工具返回 MIME 类型为 `image/png` 的 MCP 图像内容。该工具没有输出路径参数。结果是显示还是保存取决于客户端；如果你需要直接得到一个命名文件，请使用 [CLI](/zh-cn/blog/screenshot-cli/)。
 
+## 在图片离开工具之前遮盖数据
+
+添加一个 `redact` 对象，即可在截图前用黑色方块遮盖页面中的数据。客户端只会收到已遮盖的图片：
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` 遮盖每个匹配的元素及其所有子元素。`patterns` 遮盖匹配的文本和表单值：`email`、`phone`（9 到 15 位数字）和 `secret`（常见的 API 密钥和令牌格式，以及长哈希值）。`rects` 按输出图片的像素遮盖矩形，适用于 canvas、图片和跨源 iframe。如果选择器没有匹配任何内容、矩形超出图片范围，或页面在截图过程中移动了目标，该工具会返回错误，且不返回图片。模式可能漏掉分散在多个元素中或绘制在图片中的文本。
+
 ## 智能体能看到什么、不能看到什么
 
 截图在一个全新的无头浏览器中开始。它不会继承你平常 Chrome 窗口中的 Cookie 或登录会话。因此，需要身份验证的页面可能只会显示登录界面。当前工具不提供登录步骤、Cookie 注入、选择器等待或交互式点击。
@@ -55,6 +72,6 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
 
 ## 截图会发送到哪里？
 
-截图在本地生成，并返回给 MCP 客户端。如果该客户端使用托管模型，它可能会按照自身设置把返回的图片发送给模型提供方。本地截图并不意味着整个智能体对话都留在设备上。
+截图在本地生成，并返回给 MCP 客户端。如果该客户端使用托管模型，它可能会按照自身设置把返回的图片发送给模型提供方。本地截图并不意味着整个智能体对话都留在设备上。对于不能发送给模型提供方的数据，请使用 `redact`。
 
 如需尺寸可预测的自动截图，请参阅 [CI 截图](/zh-cn/blog/screenshots-for-ci/)。[智能体截图技能](/skills/capture-screenshot.md)和[服务器源代码](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供面向机器的说明和工具定义。

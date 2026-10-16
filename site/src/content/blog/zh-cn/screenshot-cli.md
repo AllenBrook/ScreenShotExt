@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 请使用二进制安全的重定向。CLI 始终输出 PNG；把输出命名为 `capture.jpg` 或 `capture.pdf` 并不会转换格式。如需带标注的图片或 PDF 输出，请使用[扩展编辑器](/zh-cn/docs/#export)。
 
+## 保存前先遮盖数据
+
+三个参数会在截图前用黑色方块遮盖页面中的数据，因此未遮盖的像素永远不会进入 PNG。每个参数都可以重复使用，以添加更多目标：
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact` 遮盖与 CSS 选择器匹配的每个元素及其所有子元素。`--redact-pattern` 遮盖与 `email`、`phone`（9 到 15 位数字）或 `secret`（常见的 API 密钥和令牌格式，以及长哈希值）匹配的文本和表单值。`--redact-rect x,y,w,h` 按输出图片的像素遮盖一个矩形；可用于 canvas、图片和跨源 iframe。
+
+如果选择器没有匹配任何内容、矩形超出图片范围，或页面在截图过程中移动了目标，截图会失败并返回退出码 1，且不写入任何文件。模式可能漏掉分散在多个元素中或绘制在图片中的文本，因此分享 PNG 之前请先检查它。
+
 ## 解决常见故障
 
 如果找不到 Chrome，请安装它，或把 `CHROME_PATH` 设为浏览器可执行文件。例如，在 Chromium 安装于以下路径的 Linux 系统上：
@@ -46,7 +59,7 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-页面导航会等待 `networkidle2`，超时时间为 30 秒。当前命令没有自定义等待、选择器、Cookie 或登录选项。截图成功也不能证明应用已正确加载：请检查 PNG 中是否有错误页面、加载状态和缺失的资源。
+页面导航会等待 `networkidle2`，超时时间为 30 秒。当前命令没有自定义等待、选择器等待、Cookie 或登录选项。截图成功也不能证明应用已正确加载：请检查 PNG 中是否有错误页面、加载状态和缺失的资源。
 
 退出码 0 表示截图命令已完成，1 表示截图失败，2 表示用法无效或参数校验失败。串联命令时请使用这些退出码，然后检查图片本身。
 

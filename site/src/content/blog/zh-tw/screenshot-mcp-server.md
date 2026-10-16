@@ -47,6 +47,23 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
 
 `width` 接受 200 到 3840 的整數，`height` 接受 200 到 2160 的整數。工具會回傳 MIME 類型為 `image/png` 的 MCP 圖片內容。這個工具沒有輸出路徑參數。結果要顯示還是儲存，取決於用戶端；如果你需要直接得到具名的檔案，請使用 [CLI](/zh-tw/blog/screenshot-cli/)。
 
+## 在圖片離開工具前遮蓋資料
+
+加入 `redact` 物件，就能在擷取前用黑色方塊遮蓋頁面中的資料。用戶端只會收到已遮蓋的圖片：
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` 會遮蓋每個符合的元素，以及它的所有子元素。`patterns` 會遮蓋符合的文字和表單值：`email`、`phone`（9 到 15 位數字）和 `secret`（常見的 API 金鑰和權杖格式，以及長雜湊值）。`rects` 會以輸出圖片的像素遮蓋矩形，適用於 canvas、圖片和跨來源 iframe。如果選擇器沒有符合任何內容、矩形超出圖片範圍，或頁面在擷取過程中移動了目標，工具會回傳錯誤，而且不會回傳圖片。模式可能會漏掉分散在多個元素中或繪製在圖片中的文字。
+
 ## AI 代理看得到與看不到什麼
 
 擷取會在全新的無頭瀏覽器中開始。它不會繼承你平常 Chrome 視窗中的 Cookie 或已登入的工作階段。因此，需要驗證的頁面可能會顯示登入畫面。目前的工具不提供登入步驟、Cookie 注入、選擇器等待或互動式點擊。
@@ -55,6 +72,6 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
 
 ## 截圖會送到哪裡？
 
-截圖在本機產生，並回傳給 MCP 用戶端。如果該用戶端使用託管模型，它可能會依自己的設定，把回傳的圖片傳送給模型供應商。在本機擷取不代表整段 AI 代理對話都留在裝置上。
+截圖在本機產生，並回傳給 MCP 用戶端。如果該用戶端使用託管模型，它可能會依自己的設定，把回傳的圖片傳送給模型供應商。在本機擷取不代表整段 AI 代理對話都留在裝置上。不能傳送給模型供應商的資料，請使用 `redact`。
 
 如需尺寸可預測的自動化擷取，請見 [CI 用的截圖](/zh-tw/blog/screenshots-for-ci/)。[代理擷取技能](/skills/capture-screenshot.md)和[伺服器原始碼](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供給機器閱讀的說明和工具定義。
