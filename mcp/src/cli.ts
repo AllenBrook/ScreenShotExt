@@ -1,17 +1,23 @@
 import { writeFileSync } from 'node:fs';
 import { capture, CaptureOptions } from './capture.js';
 
+const USAGE =
+  'usage: openscreenshot shot <url> [--out file|-] [--full] [--width n] [--height n]\n' +
+  '         [--redact selector]... [--redact-pattern email|phone|secret]... [--redact-rect x,y,w,h]...\n';
+
 function flag(argv: string[], name: string): string | undefined {
   const i = argv.indexOf(`--${name}`);
   return i >= 0 ? argv[i + 1] : undefined;
 }
 
+function flags(argv: string[], name: string): string[] {
+  return argv.flatMap((a, i) => (a === `--${name}` && i + 1 < argv.length ? [argv[i + 1]] : []));
+}
+
 export async function runCli(argv: string[]): Promise<number> {
   const [cmd, url] = argv;
   if (cmd !== 'shot' || !url) {
-    process.stderr.write(
-      'usage: openscreenshot shot <url> [--out file|-] [--full] [--width n] [--height n]\n',
-    );
+    process.stderr.write(USAGE);
     return 2;
   }
   const parsed = CaptureOptions.safeParse({
@@ -19,6 +25,14 @@ export async function runCli(argv: string[]): Promise<number> {
     fullPage: argv.includes('--full'),
     width: flag(argv, 'width') ? Number(flag(argv, 'width')) : undefined,
     height: flag(argv, 'height') ? Number(flag(argv, 'height')) : undefined,
+    redact: {
+      selectors: flags(argv, 'redact'),
+      patterns: flags(argv, 'redact-pattern').flatMap((p) => p.split(',')),
+      rects: flags(argv, 'redact-rect').map((r) => {
+        const [x, y, width, height] = r.split(',').map(Number);
+        return { x, y, width, height };
+      }),
+    },
   });
   if (!parsed.success) {
     process.stderr.write(

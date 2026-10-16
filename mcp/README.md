@@ -41,15 +41,19 @@ project instead (`npm i -D openscreenshot`), so each run uses the version in you
 
 ```
 openscreenshot shot <url> [--out <file>|-] [--full] [--width <n>] [--height <n>]
+                    [--redact <selector>]... [--redact-pattern <name>]... [--redact-rect <x,y,w,h>]...
 ```
 
-| Option         | Default          | What it does                                              |
-| -------------- | ---------------- | --------------------------------------------------------- |
-| `<url>`        | required         | The page to capture. Use a full URL with `https://`.      |
-| `--out <file>` | `screenshot.png` | Where to write the PNG. Use `-` to write bytes to stdout. |
-| `--full`       | off              | Capture the whole scrollable page, not only the viewport. |
-| `--width <n>`  | `1280`           | Viewport width in pixels, from 200 to 3840.               |
-| `--height <n>` | `800`            | Viewport height in pixels, from 200 to 2160.              |
+| Option                    | Default          | What it does                                                                        |
+| ------------------------- | ---------------- | ----------------------------------------------------------------------------------- |
+| `<url>`                   | required         | The page to capture. Use a full URL with `https://`.                                |
+| `--out <file>`            | `screenshot.png` | Where to write the PNG. Use `-` to write bytes to stdout.                           |
+| `--full`                  | off              | Capture the whole scrollable page, not only the viewport.                           |
+| `--width <n>`             | `1280`           | Viewport width in pixels, from 200 to 3840.                                         |
+| `--height <n>`            | `800`            | Viewport height in pixels, from 200 to 2160.                                        |
+| `--redact <selector>`     | none             | Cover the elements that match a CSS selector. Repeat for more.                      |
+| `--redact-pattern <name>` | none             | Cover text that matches `email`, `phone`, or `secret`. Repeat, or use a comma list. |
+| `--redact-rect <x,y,w,h>` | none             | Cover a rectangle, in pixels of the output image. Repeat for more.                  |
 
 ### Examples
 
@@ -65,7 +69,12 @@ openscreenshot shot https://example.com --out narrow.png --width 390 --height 84
 
 # Pipe the PNG to another tool
 openscreenshot shot https://example.com --out - > shot.png
+
+# Cover the account menu, every email address, and a 200x40 area at the top left
+openscreenshot shot https://example.com --out safe.png --redact "#account-menu" --redact-pattern email --redact-rect 0,0,200,40
 ```
+
+See [Redaction](#redaction) for how it works and what it can miss.
 
 The output is always PNG. A `.jpg` or `.pdf` file name does not convert it.
 
@@ -120,13 +129,57 @@ Restart or reload the client after you save the config. The client must find `np
 | `fullPage` | boolean | `false` | Capture the whole page.    |
 | `width`    | integer | `1280`  | 200 to 3840.               |
 | `height`   | integer | `800`   | 200 to 2160.               |
+| `redact`   | object  | —       | Optional. See below.       |
 
 ```json
 { "url": "https://example.com", "fullPage": true, "width": 1440, "height": 900 }
 ```
 
+`redact` has three optional lists:
+
+| Field       | Type                                     | What it covers                                |
+| ----------- | ---------------------------------------- | --------------------------------------------- |
+| `selectors` | string[]                                 | Elements that match each CSS selector.        |
+| `patterns`  | (`"email"` \| `"phone"` \| `"secret"`)[] | Matching text in the page and in form values. |
+| `rects`     | `{ x, y, width, height }`[]              | Rectangles, in pixels of the output image.    |
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
 The tool returns the PNG as MCP image content (`image/png`). It does not write a file. To
 save a named file, use the CLI.
+
+## Redaction
+
+Redaction puts black boxes over the targets in the page, and then takes the screenshot. The
+unredacted pixels never get into the PNG, so they never get to your MCP client or to a hosted
+model.
+
+- **Selectors.** The box covers the element and all of its children. If a selector matches no
+  element, or is not valid CSS, the capture fails.
+- **Patterns.** `email` finds email addresses. `phone` finds numbers with 9 to 15 digits.
+  `secret` finds common API key and token shapes (OpenAI, Anthropic, Stripe, GitHub, AWS,
+  Slack, Google, JWT). It also finds any run of 32 or more letters, digits, and underscores
+  that has both a letter and a digit, such as a hash.
+  Patterns look in text and in the values of `input`, `textarea`, and `select` fields.
+- **Rectangles.** Use these for canvas, images, and cross-origin iframes, where selectors
+  and patterns cannot look. A rectangle that is fully outside the image fails the capture.
+
+When redaction is on, the tool pauses CSS animations, places the boxes, and takes the
+screenshot. Then it finds the targets again. If a target moved out of its box, the capture
+fails. A failed capture writes no file and returns no image.
+
+Patterns can miss text. They do not find text split across elements, text drawn in a
+canvas or an image, or a format they do not know. They can also cover text that only looks
+like a match. Look at the image before you share it.
 
 ## What it can and cannot capture
 
@@ -174,7 +227,8 @@ has no extra wait option yet.
 - Everything runs on your machine. The package sends no telemetry and calls no
   OpenScreenShot server.
 - In MCP mode, your client receives the image. If the client uses a hosted model, it may
-  send the image to that model's provider.
+  send the image to that model's provider. Use `redact` to cover data before the image
+  leaves the tool.
 - The headless browser runs with `--no-sandbox` so it works in containers and CI. Capture
   only URLs you trust.
 

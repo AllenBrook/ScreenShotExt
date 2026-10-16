@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs';
 import puppeteer from 'puppeteer-core';
 import { z } from 'zod';
+import { captureRedacted, hasRedaction, Redact } from './redact.js';
 
 export const CaptureOptions = z.object({
   url: z.string().url(),
@@ -8,6 +9,7 @@ export const CaptureOptions = z.object({
   fullPage: z.boolean().optional().default(false),
   width: z.number().int().min(200).max(3840).optional().default(1280),
   height: z.number().int().min(200).max(2160).optional().default(800),
+  redact: Redact.optional(),
 });
 export type CaptureOptions = z.infer<typeof CaptureOptions>;
 
@@ -52,6 +54,8 @@ export async function capture(opts: CaptureOptions): Promise<Buffer> {
     );
     await page.setViewport({ width: opts.width, height: opts.height });
     await page.goto(opts.url, { waitUntil: 'networkidle2', timeout: 30000 });
+    if (hasRedaction(opts.redact))
+      return await captureRedacted(page, opts.redact, opts.fullPage, opts.width);
     const png = await page.screenshot({ fullPage: opts.fullPage, type: 'png' });
     return Buffer.from(png);
   } finally {
