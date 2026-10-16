@@ -139,8 +139,14 @@
     "currentTag": "versione corrente",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>Oscuramento per le catture da CLI e MCP</strong> — la CLI e il server MCP <code>openscreenshot</code> coprono con riquadri neri, prima dello screenshot, selettori CSS, indirizzi email, numeri di telefono, chiavi API e rettangoli in pixel. La cattura fallisce senza immagine se un selettore non trova corrispondenze o se la pagina sposta un target durante la cattura."
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "Correzione: la cattura della pagina intera ora include a piena altezza le aree scorrevoli dentro la pagina, come tabelle, blocchi di codice e widget delle dashboard. Anche un pannello che scorre solo di poco ora viene catturato per intero."
         ]

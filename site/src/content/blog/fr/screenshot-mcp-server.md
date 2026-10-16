@@ -47,6 +47,23 @@ Elle produit une capture de la zone d’affichage à la taille par défaut de 12
 
 `width` accepte des entiers de 200 à 3840 et `height` de 200 à 2160. L’outil renvoie un contenu image MCP de type MIME `image/png`. Cet outil n’a pas d’argument de chemin de sortie. L’affichage ou l’enregistrement du résultat dépend du client ; utilisez la [CLI](/fr/blog/screenshot-cli/) quand vous avez besoin directement d’un fichier nommé.
 
+## Masquer les données avant que l’image quitte l’outil
+
+Ajoutez un objet `redact` pour couvrir des données par des rectangles noirs dans la page avant la capture. Le client ne reçoit que l’image masquée :
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` couvre chaque élément correspondant, avec tous ses enfants. `patterns` couvre le texte et les valeurs de formulaire correspondants : `email`, `phone` (de 9 à 15 chiffres) et `secret` (formes courantes de clés d’API et de jetons, et longs hachages). `rects` couvre des rectangles en pixels de l’image de sortie, pour les canevas, les images et les iframes d’une autre origine. L’outil renvoie une erreur et aucune image si un sélecteur ne correspond à rien, si un rectangle sort de l’image ou si la page déplace une cible pendant la capture. Les motifs peuvent manquer du texte réparti sur plusieurs éléments ou dessiné dans une image.
+
 ## Ce que l’agent peut voir et ne peut pas voir
 
 La capture démarre dans un navigateur headless neuf. Elle n’hérite ni des cookies ni de la session connectée de votre fenêtre Chrome habituelle. Une page derrière une authentification peut donc produire un écran de connexion. L’outil actuel ne propose ni étapes de connexion, ni injection de cookies, ni attente de sélecteur, ni clics interactifs.
@@ -55,6 +72,6 @@ Demandez à l’agent d’identifier ce qui est réellement visible dans l’ima
 
 ## Où va la capture ?
 
-La capture est générée en local et renvoyée au client MCP. Si ce client utilise un modèle hébergé, il peut transmettre l’image renvoyée au fournisseur du modèle selon ses propres réglages. Une capture locale ne signifie pas que toute la conversation avec l’agent reste sur l’appareil.
+La capture est générée en local et renvoyée au client MCP. Si ce client utilise un modèle hébergé, il peut transmettre l’image renvoyée au fournisseur du modèle selon ses propres réglages. Une capture locale ne signifie pas que toute la conversation avec l’agent reste sur l’appareil. Utilisez `redact` pour les données qui ne doivent pas atteindre le fournisseur.
 
 Pour des captures automatisées aux dimensions prévisibles, consultez [les captures en CI](/fr/blog/screenshots-for-ci/). Le [skill de capture pour agents](/skills/capture-screenshot.md) et le [code source du serveur](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) fournissent les instructions destinées aux machines et la définition de l’outil.

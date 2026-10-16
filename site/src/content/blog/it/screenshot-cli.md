@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 Usa un reindirizzamento sicuro per i dati binari. La CLI produce sempre PNG; chiamare l’output `capture.jpg` o `capture.pdf` non lo converte. Per immagini annotate o output PDF, usa l’[editor dell’estensione](/it/docs/#export).
 
+## Oscura prima di salvare
+
+Tre flag coprono i dati con riquadri neri nella pagina prima dello screenshot, così i pixel non oscurati non arrivano mai nel PNG. Ripeti ogni flag per aggiungere altri target:
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact` copre ogni elemento che corrisponde a un selettore CSS, con tutti i suoi figli. `--redact-pattern` copre testo e valori dei moduli che corrispondono a `email`, `phone` (da 9 a 15 cifre) o `secret` (formati comuni di chiavi API e token, e hash lunghi). `--redact-rect x,y,w,h` copre un rettangolo in pixel dell’immagine di output; usalo per canvas, immagini e iframe cross-origin.
+
+La cattura fallisce con codice di uscita 1 e non scrive alcun file se un selettore non trova corrispondenze, se un rettangolo è fuori dall’immagine o se la pagina sposta un target durante la cattura. I pattern possono non rilevare testo diviso tra più elementi o disegnato in un’immagine, quindi controlla il PNG prima di condividerlo.
+
 ## Risolvi gli errori comuni
 
 Se Chrome non viene trovato, installalo o imposta `CHROME_PATH` sull’eseguibile del browser. Per esempio, su un sistema Linux dove Chromium è installato in quel percorso:
@@ -46,7 +59,7 @@ Se Chrome non viene trovato, installalo o imposta `CHROME_PATH` sull’eseguibil
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-La navigazione aspetta `networkidle2` con un timeout di 30 secondi. Il comando attuale non ha opzioni per attese personalizzate, selettori, cookie o login. Una cattura riuscita non dimostra nemmeno che l’applicazione si sia caricata correttamente: controlla nel PNG pagine di errore, stati di caricamento e risorse mancanti.
+La navigazione aspetta `networkidle2` con un timeout di 30 secondi. Il comando attuale non ha opzioni per attese personalizzate, attese su selettori, cookie o login. Una cattura riuscita non dimostra nemmeno che l’applicazione si sia caricata correttamente: controlla nel PNG pagine di errore, stati di caricamento e risorse mancanti.
 
 Il codice di uscita 0 indica che il comando di cattura è stato completato, 1 indica un errore di cattura e 2 indica un uso non valido o argomenti non validi. Usa questi codici quando concateni i comandi, poi controlla l’immagine stessa.
 

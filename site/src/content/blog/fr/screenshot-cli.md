@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 Utilisez une redirection compatible avec les données binaires. La CLI produit toujours du PNG ; nommer la sortie `capture.jpg` ou `capture.pdf` ne la convertit pas. Pour des images annotées ou une sortie PDF, utilisez l’[éditeur de l’extension](/fr/docs/#export).
 
+## Masquer avant d’enregistrer
+
+Trois options couvrent des données par des rectangles noirs dans la page avant la capture : les pixels non masqués n’atteignent donc jamais le PNG. Répétez chaque option pour ajouter des cibles :
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact` couvre chaque élément qui correspond à un sélecteur CSS, avec tous ses enfants. `--redact-pattern` couvre le texte et les valeurs de formulaire qui correspondent à `email`, `phone` (de 9 à 15 chiffres) ou `secret` (formes courantes de clés d’API et de jetons, et longs hachages). `--redact-rect x,y,w,h` couvre un rectangle en pixels de l’image de sortie ; utilisez-le pour les canevas, les images et les iframes d’une autre origine.
+
+La capture échoue avec le code de sortie 1 et n’écrit aucun fichier si un sélecteur ne correspond à rien, si un rectangle sort de l’image ou si la page déplace une cible pendant la capture. Les motifs peuvent manquer du texte réparti sur plusieurs éléments ou dessiné dans une image : examinez donc le PNG avant de le partager.
+
 ## Résoudre les échecs courants
 
 Si Chrome est introuvable, installez-le ou définissez `CHROME_PATH` sur l’exécutable du navigateur. Par exemple, sur un système Linux où Chromium est installé à cet emplacement :
@@ -46,7 +59,7 @@ Si Chrome est introuvable, installez-le ou définissez `CHROME_PATH` sur l’ex�
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-La navigation attend `networkidle2` avec un délai d’expiration de 30 secondes. La commande actuelle n’a pas d’option d’attente personnalisée, de sélecteur, de cookie ni de connexion. Une capture réussie ne prouve pas non plus que l’application s’est chargée correctement : examinez le PNG à la recherche de pages d’erreur, d’états de chargement et de ressources manquantes.
+La navigation attend `networkidle2` avec un délai d’expiration de 30 secondes. La commande actuelle n’a pas d’option d’attente personnalisée, d’attente de sélecteur, de cookie ni de connexion. Une capture réussie ne prouve pas non plus que l’application s’est chargée correctement : examinez le PNG à la recherche de pages d’erreur, d’états de chargement et de ressources manquantes.
 
 Le code de sortie 0 indique que la commande de capture s’est terminée, 1 indique un échec de capture et 2 indique un usage invalide ou des arguments refusés à la validation. Utilisez ces codes pour enchaîner des commandes, puis examinez l’image elle-même.
 

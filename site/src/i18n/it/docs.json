@@ -155,7 +155,7 @@
     "heading": "Agenti e CLI",
     "intro": "<code>openscreenshot</code> (npm) è uno strumento locale separato e opzionale per creare screenshot da script, dalla riga di comando o da un agente AI. Usa il Chrome già presente sul tuo dispositivo: nessun browser da scaricare, nessun servizio remoto. Imposta <code>CHROME_PATH</code> se il tuo Chrome non viene trovato in automatico.",
     "mcpIntro": "Come server MCP, aggiungi questo alla configurazione del tuo client MCP:",
-    "callOutro": "Poi chiama lo strumento <code>capture_screenshot</code> con <code>{ \"url\": \"https://example.com\" }</code>."
+    "callOutro": "Poi chiama lo strumento <code>capture_screenshot</code> con <code>{ \"url\": \"https://example.com\" }</code>. L’input opzionale <code>redact</code> copre con riquadri neri, prima dello screenshot, i <code>selectors</code> CSS, i <code>patterns</code> di testo (<code>email</code>, <code>phone</code>, <code>secret</code>) e i <code>rects</code> in pixel. Usalo per i dati che non devono lasciare il dispositivo."
   },
   "privacy": {
     "heading": "Privacy",

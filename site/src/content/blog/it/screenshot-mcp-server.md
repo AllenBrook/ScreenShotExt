@@ -47,6 +47,23 @@ Questo produce una cattura della viewport alla dimensione predefinita di 1280 ×
 
 `width` accetta numeri interi da 200 a 3840 e `height` da 200 a 2160. Lo strumento restituisce un contenuto immagine MCP con tipo MIME `image/png`. Questo strumento non ha un argomento per il percorso di output. Se il risultato viene mostrato o salvato dipende dal client; usa la [CLI](/it/blog/screenshot-cli/) quando ti serve direttamente un file con un nome.
 
+## Oscura i dati prima che l’immagine lasci lo strumento
+
+Aggiungi un oggetto `redact` per coprire i dati con riquadri neri nella pagina prima dello screenshot. Il client riceve solo l’immagine oscurata:
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` copre ogni elemento corrispondente, con tutti i suoi figli. `patterns` copre testo e valori dei moduli corrispondenti: `email`, `phone` (da 9 a 15 cifre) e `secret` (formati comuni di chiavi API e token, e hash lunghi). `rects` copre rettangoli in pixel dell’immagine di output, per canvas, immagini e iframe cross-origin. Lo strumento restituisce un errore e nessuna immagine se un selettore non trova corrispondenze, se un rettangolo è fuori dall’immagine o se la pagina sposta un target durante la cattura. I pattern possono non rilevare testo diviso tra più elementi o disegnato in un’immagine.
+
 ## Cosa l’agente può e non può vedere
 
 La cattura parte in un browser headless nuovo. Non eredita i cookie né la sessione con accesso della tua normale finestra di Chrome. Una pagina dietro autenticazione può quindi produrre una schermata di login. Lo strumento attuale non offre passaggi di login, iniezione di cookie, attese su selettori o clic interattivi.
@@ -55,6 +72,6 @@ Chiedi all’agente di identificare cosa è visibile davvero nell’immagine res
 
 ## Dove va a finire lo screenshot?
 
-Lo screenshot viene generato in locale e restituito al client MCP. Se quel client usa un modello ospitato, può trasmettere l’immagine restituita al fornitore del modello secondo le proprie impostazioni. La cattura locale non implica che l’intera conversazione con l’agente resti sul dispositivo.
+Lo screenshot viene generato in locale e restituito al client MCP. Se quel client usa un modello ospitato, può trasmettere l’immagine restituita al fornitore del modello secondo le proprie impostazioni. La cattura locale non implica che l’intera conversazione con l’agente resti sul dispositivo. Usa `redact` per i dati che non devono arrivare al fornitore.
 
 Per catture automatiche con dimensioni prevedibili, vedi [screenshot per la CI](/it/blog/screenshots-for-ci/). La [skill di cattura per agenti](/skills/capture-screenshot.md) e il [sorgente del server](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) forniscono le istruzioni pensate per le macchine e la definizione dello strumento.
