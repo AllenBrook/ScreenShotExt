@@ -7,19 +7,19 @@ order: 9
 
 셸 스크립트나 CI 작업에서 공개 페이지의 PNG만 필요하다면 openscreenshot, shot-scraper, capture-website-cli, pageres-cli 같은 명령줄 도구로 충분합니다. 캡처에 로그인, 클릭, 검증, 동영상이 필요하다면 Playwright나 Puppeteer로 작성하세요. AI 에이전트에는 로컬 MCP 서버가 모델에 스크린샷을 반환합니다. `openscreenshot serve`는 호출당 스크린샷 하나를 찍고, Playwright MCP는 브라우저 세션 전체를 제어합니다.
 
-`openscreenshot` 패키지는 저희 제품이며, 이 페이지는 이 패키지가 더 약한 선택인 경우를 함께 설명합니다. 기능을 비교할 뿐 도구의 순위를 매기지 않습니다. 모든 사실은 2026년 10월 9일 기준이며, 아래에 링크한 각 프로젝트의 저장소, 패키지 레지스트리, 공식 문서를 근거로 합니다.
+`openscreenshot` 패키지는 저희 제품이며, 이 페이지는 이 패키지가 더 약한 선택인 경우를 함께 설명합니다. 기능을 비교할 뿐 도구의 순위를 매기지 않습니다. 모든 사실은 2026년 10월 17일 기준이며, 아래에 링크한 각 프로젝트의 저장소, 패키지 레지스트리, 공식 문서를 근거로 합니다.
 
 ## 도구 한눈에 보기
 
-| 도구                | 언어 / 런타임                                     | 전체 페이지         | CLI           | MCP                   | 동영상             | 라이선스   |
-| ------------------- | ------------------------------------------------- | ------------------- | ------------- | --------------------- | ------------------ | ---------- |
-| openscreenshot      | Node.js 22.12+, 설치된 Chrome, Chromium 또는 Edge | `--full`            | 예            | 예, stdio             | 아니요             | MIT        |
-| shot-scraper        | Python 3.10+, Playwright 브라우저                 | 기본값              | 예            | 명시되지 않음         | 예, WebM 또는 MP4  | Apache-2.0 |
-| capture-website-cli | Node.js 20+, Puppeteer Chrome                     | `--full-page`       | 예            | 명시되지 않음         | 아니요             | MIT        |
-| pageres-cli         | Node.js 20+, Puppeteer Chrome                     | 기본값              | 예            | 명시되지 않음         | 아니요             | MIT        |
-| Playwright          | Node.js, Python, Java, .NET                       | `fullPage: true`    | 테스트 러너   | Playwright MCP를 통해 | 예                 | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                    | `fullPage: true`    | 명시되지 않음 | 명시되지 않음         | 예, Chrome에서 MP4 | Apache-2.0 |
-| Playwright MCP      | `npx`를 통한 Node.js 또는 Docker                  | `fullPage` 매개변수 | 서버만        | 예, stdio 또는 HTTP   | 예, 선택 사항      | Apache-2.0 |
+| 도구                | 언어 / 런타임                                     | 전체 페이지         | CLI                           | MCP                        | 동영상             | 라이선스   |
+| ------------------- | ------------------------------------------------- | ------------------- | ----------------------------- | -------------------------- | ------------------ | ---------- |
+| openscreenshot      | Node.js 22.12+, 설치된 Chrome, Chromium 또는 Edge | `--full`            | 예                            | 예, stdio                  | 아니요             | MIT        |
+| shot-scraper        | Python 3.10+, Playwright 브라우저                 | 기본값              | 예                            | 명시되지 않음              | 예, WebM 또는 MP4  | Apache-2.0 |
+| capture-website-cli | Node.js 20+, Puppeteer Chrome                     | `--full-page`       | 예                            | 명시되지 않음              | 아니요             | MIT        |
+| pageres-cli         | Node.js 20+, Puppeteer Chrome                     | 기본값              | 예                            | 명시되지 않음              | 아니요             | MIT        |
+| Playwright          | Node.js, Python, Java, .NET                       | `fullPage: true`    | 테스트 러너, `playwright-cli` | Playwright MCP를 통해      | 예                 | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                    | `fullPage: true`    | 명시되지 않음                 | chrome-devtools-mcp를 통해 | 예, Chrome에서 MP4 | Apache-2.0 |
+| Playwright MCP      | `npx`를 통한 Node.js 또는 Docker                  | `fullPage` 매개변수 | 서버만                        | 예, stdio 또는 HTTP        | 예, 선택 사항      | Apache-2.0 |
 
 “명시되지 않음”은 저희가 확인한 프로젝트 자체 문서에 해당 기능에 관한 설명이 없다는 뜻입니다.
 
@@ -85,17 +85,17 @@ pageres https://example.com 1366x768 1600x900
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf)는 헤드리스 Chromium에서만 동작합니다. [동영상 녹화](https://playwright.dev/docs/videos)는 컨텍스트 옵션이며, 테스트 러너는 실패한 테스트의 동영상만 남길 수 있습니다. 스크린샷이 로그인, 클릭, 검증을 하는 테스트의 한 단계라면 Playwright를 고르세요.
+[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf)는 인쇄용 CSS로 PDF를 생성합니다. [동영상 녹화](https://playwright.dev/docs/videos)는 컨텍스트 옵션이며, 테스트 러너는 실패한 테스트의 동영상만 남길 수 있습니다. [Playwright CLI](https://github.com/microsoft/playwright-cli)(`@playwright/cli`)는 코딩 에이전트에서 브라우저를 자동화하기 위한 별도의 명령줄 도구입니다. 스크린샷이 로그인, 클릭, 검증을 하는 테스트의 한 단계라면 Playwright를 고르세요.
 
 ## Puppeteer
 
-[Puppeteer](https://github.com/puppeteer/puppeteer)는 Chrome과 Firefox용 Google의 Node.js 라이브러리입니다. `npm i puppeteer`는 Chrome for Testing을 다운로드합니다. [스크린샷 옵션](https://pptr.dev/api/puppeteer.screenshotoptions)도 같은 형태를 사용합니다.
+[Puppeteer](https://github.com/puppeteer/puppeteer)는 Chrome과 Firefox용 Google의 Node.js 라이브러리입니다. `npm i puppeteer`는 설치 스크립트가 실행될 때 Chrome for Testing을 다운로드합니다. 설치 스크립트를 차단하는 패키지 관리자에서는 `npx puppeteer browsers install`이 필요합니다. [스크린샷 옵션](https://pptr.dev/api/puppeteer.screenshotoptions)도 같은 형태를 사용합니다.
 
 ```js
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf)는 인쇄용 CSS로 PDF를 생성합니다. puppeteer-core 25.10.0에서 추가된 [`page.record()`](https://pptr.dev/api/puppeteer.page.record)는 Chrome에서 MP4를 녹화합니다. Firefox는 WebDriver BiDi로 실행되며, 일부 기능은 지원되지 않습니다. openscreenshot은 `puppeteer-core`를 얇게 감싼 도구이므로, 네 가지 캡처 옵션 이상이 필요하다면 Puppeteer를 직접 사용하세요.
+[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf)는 인쇄용 CSS로 PDF를 생성합니다. puppeteer-core 25.10.0에서 추가된 [`page.record()`](https://pptr.dev/api/puppeteer.page.record)는 Chrome에서 MP4를 녹화합니다. Firefox는 WebDriver BiDi로 실행되며, 일부 기능은 지원되지 않습니다. 에이전트용으로는 Puppeteer README가 Puppeteer 기반 MCP 서버인 [chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)를 안내합니다. openscreenshot은 `puppeteer-core`를 얇게 감싼 도구이므로, 그 캡처 옵션 이상이 필요하다면 Puppeteer를 직접 사용하세요.
 
 ## Playwright MCP
 
