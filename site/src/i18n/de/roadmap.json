@@ -139,8 +139,14 @@
     "currentTag": "aktuelle Version",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>Schwärzung für CLI- und MCP-Aufnahmen</strong> — die CLI und der MCP-Server <code>openscreenshot</code> decken CSS-Selektoren, E-Mail-Adressen, Telefonnummern, API-Schlüssel und Pixel-Rechtecke vor dem Screenshot mit schwarzen Kästen ab. Die Aufnahme schlägt ohne Bild fehl, wenn ein Selektor nichts trifft oder die Seite während der Aufnahme ein Ziel verschiebt."
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "Korrektur: Eine Ganzseitenaufnahme enthält jetzt Scrollbereiche innerhalb der Seite, etwa Tabellen, Codeblöcke und Dashboard-Widgets, in voller Höhe. Ein Dashboard-Bereich, der nur ein wenig scrollt, wird jetzt ebenfalls vollständig erfasst."
         ]

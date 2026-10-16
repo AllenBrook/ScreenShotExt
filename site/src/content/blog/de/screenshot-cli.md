@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 Nutze eine binärsichere Umleitung. Die CLI erzeugt immer PNG; die Ausgabe `capture.jpg` oder `capture.pdf` zu nennen, wandelt sie nicht um. Für kommentierte Bilder oder PDF-Ausgabe nutze den [Editor der Erweiterung](/de/docs/#export).
 
+## Vor dem Speichern schwärzen
+
+Drei Flags decken Daten vor dem Screenshot mit schwarzen Kästen auf der Seite ab, sodass die ungeschwärzten Pixel nie ins PNG gelangen. Wiederhole jedes Flag für weitere Ziele:
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact` deckt jedes Element ab, das zu einem CSS-Selektor passt, mit allen seinen Kindelementen. `--redact-pattern` deckt Text und Formularwerte ab, die zu `email`, `phone` (9 bis 15 Ziffern) oder `secret` (übliche Formen von API-Schlüsseln und Tokens sowie lange Hashes) passen. `--redact-rect x,y,w,h` deckt ein Rechteck in Pixeln des Ausgabebilds ab; nutze es für Canvas, Bilder und Cross-Origin-iframes.
+
+Die Aufnahme schlägt mit Exit-Code 1 fehl und schreibt keine Datei, wenn ein Selektor nichts trifft, ein Rechteck außerhalb des Bilds liegt oder die Seite während der Aufnahme ein Ziel verschiebt. Muster können Text übersehen, der über mehrere Elemente verteilt oder in einem Bild gezeichnet ist; sieh dir das PNG also an, bevor du es teilst.
+
 ## Häufige Fehler beheben
 
 Wird Chrome nicht gefunden, installiere es oder setze `CHROME_PATH` auf die ausführbare Datei des Browsers. Zum Beispiel auf einem Linux-System, auf dem Chromium unter diesem Pfad installiert ist:
@@ -46,7 +59,7 @@ Wird Chrome nicht gefunden, installiere es oder setze `CHROME_PATH` auf die ausf
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-Die Navigation wartet auf `networkidle2` mit einem Timeout von 30 Sekunden. Der aktuelle Befehl hat keine Optionen für eigene Wartezeiten, Selektoren, Cookies oder Logins. Eine erfolgreiche Aufnahme beweist auch nicht, dass die Anwendung richtig geladen hat: Prüfe das PNG auf Fehlerseiten, Ladezustände und fehlende Assets.
+Die Navigation wartet auf `networkidle2` mit einem Timeout von 30 Sekunden. Der aktuelle Befehl hat keine Optionen für eigene Wartezeiten, das Warten auf Selektoren, Cookies oder Logins. Eine erfolgreiche Aufnahme beweist auch nicht, dass die Anwendung richtig geladen hat: Prüfe das PNG auf Fehlerseiten, Ladezustände und fehlende Assets.
 
 Exit-Code 0 bedeutet, dass der Aufnahmebefehl durchgelaufen ist, 1 bedeutet einen Aufnahmefehler und 2 eine ungültige Verwendung oder ungültige Argumente nach der Prüfung. Nutze diese Codes beim Verketten von Befehlen und prüfe danach das Bild selbst.
 

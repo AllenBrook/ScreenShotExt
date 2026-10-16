@@ -155,7 +155,7 @@
     "heading": "Agenten & CLI",
     "intro": "<code>openscreenshot</code> (npm) ist ein separates, optionales, lokales Tool, um Screenshots aus der Kommandozeile oder von einem KI-Agenten aus zu skripten. Es steuert das Chrome, das schon auf deinem Gerät ist — kein Browser-Download, kein gehosteter Dienst. Setze <code>CHROME_PATH</code>, wenn dein Chrome nicht automatisch gefunden wird.",
     "mcpIntro": "Als MCP-Server: füge das deiner MCP-Client-Konfiguration hinzu:",
-    "callOutro": "Rufe dann das Tool <code>capture_screenshot</code> mit <code>{ \"url\": \"https://example.com\" }</code> auf."
+    "callOutro": "Rufe dann das Tool <code>capture_screenshot</code> mit <code>{ \"url\": \"https://example.com\" }</code> auf. Optionale Eingaben sind <code>fullPage</code> (Standard false), <code>width</code> (200–3840, Standard 1280), <code>height</code> (200–2160, Standard 800) und <code>redact</code>, das CSS-Selektoren (<code>selectors</code>), Textmuster (<code>patterns</code>: <code>email</code>, <code>phone</code>, <code>secret</code>) und Pixel-Rechtecke (<code>rects</code>) vor dem Screenshot mit schwarzen Kästen abdeckt. Das Tool gibt PNG-Bildinhalt an deinen Client zurück. Ein Client mit einem gehosteten Modell kann dieses Bild an seinen Anbieter senden; nutze <code>redact</code> für Daten, die das Gerät nicht verlassen dürfen, und prüfe die Dateneinstellungen des Clients."
   },
   "privacy": {
     "heading": "Datenschutz",

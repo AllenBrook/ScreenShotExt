@@ -47,6 +47,23 @@ Das ergibt eine Viewport-Aufnahme in der Standardgröße 1280 × 800. Setze View
 
 `width` akzeptiert Ganzzahlen von 200 bis 3840 und `height` von 200 bis 2160. Das Tool gibt MCP-Bildinhalt mit dem MIME-Typ `image/png` zurück. Für dieses Tool gibt es kein Argument für einen Ausgabepfad. Ob das Ergebnis angezeigt oder gespeichert wird, hängt vom Client ab; nutze die [CLI](/de/blog/screenshot-cli/), wenn du direkt eine benannte Datei brauchst.
 
+## Daten schwärzen, bevor das Bild das Tool verlässt
+
+Füge ein `redact`-Objekt hinzu, um Daten vor dem Screenshot mit schwarzen Kästen auf der Seite abzudecken. Der Client bekommt nur das geschwärzte Bild:
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` deckt jedes passende Element mit allen seinen Kindelementen ab. `patterns` deckt passenden Text und passende Formularwerte ab: `email`, `phone` (9 bis 15 Ziffern) und `secret` (übliche Formen von API-Schlüsseln und Tokens sowie lange Hashes). `rects` deckt Rechtecke in Pixeln des Ausgabebilds ab, für Canvas, Bilder und Cross-Origin-iframes. Das Tool gibt einen Fehler und kein Bild zurück, wenn ein Selektor nichts trifft, ein Rechteck außerhalb des Bilds liegt oder die Seite während der Aufnahme ein Ziel verschiebt. Muster können Text übersehen, der über mehrere Elemente verteilt oder in einem Bild gezeichnet ist.
+
 ## Was der Agent sehen kann und was nicht
 
 Die Aufnahme startet in einem frischen Headless-Browser. Sie übernimmt weder die Cookies noch die angemeldete Sitzung aus deinem normalen Chrome-Fenster. Eine Seite hinter einer Anmeldung kann daher einen Login-Bildschirm ergeben. Das aktuelle Tool bietet keine Login-Schritte, kein Einschleusen von Cookies, kein Warten auf Selektoren und keine interaktiven Klicks.
@@ -55,6 +72,6 @@ Bitte den Agenten, zu benennen, was im zurückgegebenen Bild tatsächlich sichtb
 
 ## Wohin geht der Screenshot?
 
-Der Screenshot wird lokal erzeugt und an den MCP-Client zurückgegeben. Nutzt dieser Client ein gehostetes Modell, kann er das zurückgegebene Bild gemäß seinen eigenen Einstellungen an den Modellanbieter übertragen. Eine lokale Aufnahme heißt nicht, dass die ganze Unterhaltung mit dem Agenten auf dem Gerät bleibt.
+Der Screenshot wird lokal erzeugt und an den MCP-Client zurückgegeben. Nutzt dieser Client ein gehostetes Modell, kann er das zurückgegebene Bild gemäß seinen eigenen Einstellungen an den Modellanbieter übertragen. Eine lokale Aufnahme heißt nicht, dass die ganze Unterhaltung mit dem Agenten auf dem Gerät bleibt. Nutze `redact` für Daten, die den Anbieter nicht erreichen dürfen.
 
 Für automatisierte Aufnahmen mit vorhersehbaren Maßen siehe [Screenshots für CI](/de/blog/screenshots-for-ci/). Der [Agent-Skill zur Aufnahme](/skills/capture-screenshot.md) und der [Server-Quellcode](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) liefern die maschinenorientierten Anweisungen und die Tool-Definition.
