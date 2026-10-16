@@ -42,6 +42,7 @@ project instead (`npm i -D openscreenshot`), so each run uses the version in you
 ```
 openscreenshot shot <url> [--out <file>|-] [--full] [--width <n>] [--height <n>]
                     [--redact <selector>]... [--redact-pattern <name>]... [--redact-rect <x,y,w,h>]...
+openscreenshot serve
 ```
 
 | Option                    | Default          | What it does                                                                        |
@@ -94,8 +95,10 @@ correctly, so look at the PNG for error pages or loading spinners.
 
 ## MCP server
 
-`openscreenshot serve` starts a [Model Context Protocol](https://modelcontextprotocol.io)
-server over stdio. Your AI client starts it as a local process; there is no URL to enter.
+`openscreenshot` with no arguments on a piped stdin starts a
+[Model Context Protocol](https://modelcontextprotocol.io) server over stdio, which is how an MCP
+client runs it. `openscreenshot serve` does the same and stays for existing configs. Your AI
+client starts it as a local process; there is no URL to enter.
 
 ### Add it to your client
 
@@ -106,7 +109,7 @@ Clients that use an `mcpServers` object (Claude Desktop, Cursor, Windsurf, and o
   "mcpServers": {
     "openscreenshot": {
       "command": "npx",
-      "args": ["-y", "openscreenshot", "serve"]
+      "args": ["-y", "openscreenshot"]
     }
   }
 }
@@ -115,7 +118,7 @@ Clients that use an `mcpServers` object (Claude Desktop, Cursor, Windsurf, and o
 Claude Code:
 
 ```sh
-claude mcp add openscreenshot -- npx -y openscreenshot serve
+claude mcp add openscreenshot -- npx -y openscreenshot
 ```
 
 Restart or reload the client after you save the config. The client must find `npx` (or
@@ -215,6 +218,10 @@ CHROME_PATH=/usr/bin/chromium openscreenshot shot https://example.com
 On Windows, Chrome installed for one user lives under `%LOCALAPPDATA%`, and Edge is not
 probed. Set `CHROME_PATH` for both. In an MCP client, set `CHROME_PATH` in the server's
 `env` block.
+
+**A script hangs on `openscreenshot` with no arguments.** With no arguments and a piped stdin,
+the command starts the MCP server and waits for a client. It prints one line to stderr that says
+so. Run `openscreenshot shot <url>` for a capture.
 
 **Timeout.** The page did not go quiet within 30 seconds. Pages with long-polling or
 streaming connections can do this.

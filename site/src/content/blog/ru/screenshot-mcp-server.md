@@ -16,7 +16,7 @@ OpenScreenShot предоставляет локальный MCP-сервер с
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

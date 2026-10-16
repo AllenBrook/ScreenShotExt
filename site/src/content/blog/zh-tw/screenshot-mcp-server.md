@@ -16,7 +16,7 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

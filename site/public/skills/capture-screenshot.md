@@ -18,7 +18,7 @@ Capture a screenshot of a URL on your own machine. No account, no hosted service
 ## MCP (for agents)
 
 Add to your MCP client config:
-`{ "command": "npx", "args": ["openscreenshot", "serve"] }`
+`{ "command": "npx", "args": ["openscreenshot"] }`
 Then call the `capture_screenshot` tool with `{ "url": "https://example.com" }`.
 
 ## Redaction

@@ -16,7 +16,7 @@ Primeiro instale Node.js, pnpm e um navegador compatível com Chrome. Adicione u
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

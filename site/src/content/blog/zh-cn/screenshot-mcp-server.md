@@ -16,7 +16,7 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

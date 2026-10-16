@@ -16,7 +16,7 @@ OpenScreenShot은 `capture_screenshot`이라는 도구 하나를 제공하는 �
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

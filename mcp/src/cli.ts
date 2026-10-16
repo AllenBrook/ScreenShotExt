@@ -3,7 +3,14 @@ import { capture, CaptureOptions } from './capture.js';
 
 const USAGE =
   'usage: openscreenshot shot <url> [--out file|-] [--full] [--width n] [--height n]\n' +
-  '         [--redact selector]... [--redact-pattern email|phone|secret]... [--redact-rect x,y,w,h]...\n';
+  '         [--redact selector]... [--redact-pattern email|phone|secret]... [--redact-rect x,y,w,h]...\n' +
+  '       openscreenshot serve   MCP server over stdio; also the default with no arguments on a pipe\n';
+
+// MCP clients start the server over piped stdio with no arguments. A terminal with
+// no arguments gets the usage instead of a process that waits for JSON-RPC.
+export function isServerInvocation(argv: string[], stdinIsTTY: boolean | undefined): boolean {
+  return argv[0] === 'serve' || (argv.length === 0 && !stdinIsTTY);
+}
 
 function flag(argv: string[], name: string): string | undefined {
   const i = argv.indexOf(`--${name}`);

@@ -16,7 +16,7 @@ OpenScreenShot には、ツールを 1 つ持つローカル MCP サーバー `c
   "mcpServers": {
     "openscreenshot": {
       "command": "pnpm",
-      "args": ["dlx", "openscreenshot", "serve"]
+      "args": ["dlx", "openscreenshot"]
     }
   }
 }

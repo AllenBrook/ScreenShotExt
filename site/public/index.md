@@ -34,7 +34,7 @@ Free, open-source full page screenshot tool for Chrome and Firefox — full-page
 npx openscreenshot shot https://example.com --out shot.png --full
 ```
 
-MCP server: `{ "command": "npx", "args": ["openscreenshot", "serve"] }`, tool `capture_screenshot`.
+MCP server: `{ "command": "npx", "args": ["openscreenshot"] }`, tool `capture_screenshot`.
 
 Redaction: the CLI flags `--redact`, `--redact-pattern`, and `--redact-rect`, and the MCP `redact` input, cover CSS selectors, email addresses, phone numbers, API keys, and pixel rectangles with black boxes before the screenshot.
 
