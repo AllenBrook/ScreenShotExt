@@ -31,7 +31,7 @@ order: 9
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-Флаги: `--out` (файл или `-` для stdout), `--full`, `--width` (от 200 до 3840, по умолчанию 1280) и `--height` (от 200 до 2160, по умолчанию 800). Код выхода 0 означает, что PNG записан, 1 — что съёмка не удалась, 2 — неверное использование. `openscreenshot serve` запускает MCP-сервер через stdio с одним инструментом, `capture_screenshot`, который принимает `url`, `fullPage`, `width` и `height` и возвращает изображение PNG. Настройка описана в [руководстве по CLI](/ru/blog/screenshot-cli/), [руководстве по MCP](/ru/blog/screenshot-mcp-server/) и [руководстве по CI](/ru/blog/screenshots-for-ci/), а справочником служит [исходный код](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src).
+Флаги: `--out` (файл или `-` для stdout), `--full`, `--width` (от 200 до 3840, по умолчанию 1280), `--height` (от 200 до 2160, по умолчанию 800) и три флага для скрытия данных: `--redact` (CSS-селектор), `--redact-pattern` (`email`, `phone` или `secret`) и `--redact-rect` (прямоугольник в пикселях). Скрытие рисует чёрные прямоугольники на странице до съёмки. Код выхода 0 означает, что PNG записан, 1 — что съёмка не удалась, 2 — неверное использование. `openscreenshot serve` запускает MCP-сервер через stdio с одним инструментом, `capture_screenshot`, который принимает `url`, `fullPage`, `width`, `height` и `redact` и возвращает изображение PNG. Настройка описана в [руководстве по CLI](/ru/blog/screenshot-cli/), [руководстве по MCP](/ru/blog/screenshot-mcp-server/) и [руководстве по CI](/ru/blog/screenshots-for-ci/), а справочником служит [исходный код](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src).
 
 Где он слабее:
 

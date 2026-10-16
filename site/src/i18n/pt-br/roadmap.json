@@ -139,8 +139,14 @@
     "currentTag": "versão atual",
     "releases": [
       {
-        "version": "v2.4.1",
+        "version": "v2.5.0",
         "current": true,
+        "items": [
+          "<strong>Ocultação de dados nas capturas da CLI e do MCP</strong> — a CLI e o servidor MCP <code>openscreenshot</code> cobrem seletores CSS, endereços de e-mail, números de telefone, chaves de API e retângulos em pixels com tarjas pretas antes da captura. A captura falha sem gerar imagem se um seletor não corresponder a nada ou se a página mover um alvo durante a captura."
+        ]
+      },
+      {
+        "version": "v2.4.1",
         "items": [
           "Correção: a captura de página inteira agora inclui, na altura completa, as áreas com rolagem dentro da página, como tabelas, blocos de código e widgets de painéis. Um painel que rola só um pouco agora também sai inteiro."
         ]

@@ -155,7 +155,7 @@
     "heading": "Agentes e CLI",
     "intro": "<code>openscreenshot</code> (npm) é uma ferramenta local, separada e opcional para automatizar capturas pela linha de comando ou por um agente de IA. Ela usa o Chrome que já está no seu computador — sem download de navegador, sem serviço hospedado. Defina <code>CHROME_PATH</code> se o seu Chrome não for encontrado automaticamente.",
     "mcpIntro": "Como servidor MCP, adicione isto à configuração do seu cliente MCP:",
-    "callOutro": "Depois chame a ferramenta <code>capture_screenshot</code> com <code>{ \"url\": \"https://example.com\" }</code>."
+    "callOutro": "Depois chame a ferramenta <code>capture_screenshot</code> com <code>{ \"url\": \"https://example.com\" }</code>. As entradas opcionais são <code>fullPage</code> (padrão false), <code>width</code> (200–3840, padrão 1280), <code>height</code> (200–2160, padrão 800) e <code>redact</code>, que cobre com tarjas pretas, antes da captura, <code>selectors</code> CSS, <code>patterns</code> de texto (<code>email</code>, <code>phone</code>, <code>secret</code>) e <code>rects</code> em pixels. A ferramenta retorna o conteúdo de uma imagem PNG ao seu cliente. Um cliente que usa um modelo hospedado pode enviar essa imagem ao provedor dele; use <code>redact</code> para dados que não podem sair do dispositivo e revise as configurações de dados do cliente."
   },
   "privacy": {
     "heading": "Privacidade",

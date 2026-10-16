@@ -47,6 +47,23 @@ Isso gera uma captura da área de visualização no tamanho padrão de 1280 × 8
 
 `width` aceita inteiros de 200 a 3840 e `height` de 200 a 2160. A ferramenta retorna conteúdo de imagem MCP com o tipo MIME `image/png`. Esta ferramenta não tem um argumento de caminho de saída. O cliente decide se o resultado é exibido ou salvo; use a [CLI](/pt-br/blog/screenshot-cli/) quando você precisar de um arquivo com nome definido.
 
+## Oculte dados antes que a imagem saia da ferramenta
+
+Adicione um objeto `redact` para cobrir dados com tarjas pretas na página antes da captura. O cliente recebe apenas a imagem com os dados ocultos:
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` cobre cada elemento correspondente com todos os seus filhos. `patterns` cobre textos e valores de formulário correspondentes: `email`, `phone` (de 9 a 15 dígitos) e `secret` (formatos comuns de chaves de API e tokens, e hashes longos). `rects` cobre retângulos em pixels da imagem de saída, para canvas, imagens e iframes de outra origem. A ferramenta retorna um erro e nenhuma imagem se um seletor não corresponder a nada, se um retângulo ficar fora da imagem ou se a página mover um alvo durante a captura. Os padrões podem deixar passar textos divididos entre elementos ou desenhados em uma imagem.
+
 ## O que o agente vê e o que não vê
 
 A captura começa em um navegador headless novo. Ela não herda os cookies nem a sessão conectada da sua janela comum do Chrome. Por isso, uma página que exige autenticação pode gerar uma tela de login. A ferramenta atual não oferece passos de login, injeção de cookies, espera por seletores nem cliques interativos.
@@ -55,6 +72,6 @@ Peça ao agente para identificar o que está visível de fato na imagem retornad
 
 ## Para onde vai a captura de tela?
 
-A captura é gerada localmente e retornada ao cliente MCP. Se esse cliente usar um modelo hospedado, ele pode transmitir a imagem retornada ao provedor do modelo, de acordo com as configurações dele. A captura local não significa que toda a conversa com o agente fica no dispositivo.
+A captura é gerada localmente e retornada ao cliente MCP. Se esse cliente usar um modelo hospedado, ele pode transmitir a imagem retornada ao provedor do modelo, de acordo com as configurações dele. A captura local não significa que toda a conversa com o agente fica no dispositivo. Use `redact` para dados que não podem chegar ao provedor.
 
 Para capturas automatizadas com dimensões previsíveis, veja [capturas de tela para CI](/pt-br/blog/screenshots-for-ci/). A [skill de captura para agentes](/skills/capture-screenshot.md) e o [código-fonte do servidor](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) trazem as instruções para máquinas e a definição da ferramenta.
