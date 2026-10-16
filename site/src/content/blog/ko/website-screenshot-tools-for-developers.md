@@ -31,7 +31,7 @@ order: 9
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-플래그는 `--out`(파일, 또는 stdout은 `-`), `--full`, `--width`(200~~3840, 기본값 1280), `--height`(200~~2160, 기본값 800)입니다. 종료 코드 0은 PNG가 기록되었음을, 1은 캡처 실패를, 2는 잘못된 사용법을 뜻합니다. `openscreenshot serve`는 stdio로 MCP 서버를 시작하며, 도구는 `capture_screenshot` 하나입니다. 이 도구는 `url`, `fullPage`, `width`, `height`를 받아 PNG 이미지 콘텐츠를 반환합니다. 설정 방법은 [CLI 가이드](/ko/blog/screenshot-cli/), [MCP 가이드](/ko/blog/screenshot-mcp-server/), [CI 가이드](/ko/blog/screenshots-for-ci/)에서 다루며, 기준은 [소스](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)입니다.
+플래그는 `--out`(파일, 또는 stdout은 `-`), `--full`, `--width`(200~~3840, 기본값 1280), `--height`(200~~2160, 기본값 800), 그리고 세 가지 가리기 플래그인 `--redact`(CSS 선택자), `--redact-pattern`(`email`, `phone`, `secret` 중 하나), `--redact-rect`(픽셀 사각형)입니다. 가리기는 스크린샷을 찍기 전에 페이지 안에 검은 상자를 그립니다. 종료 코드 0은 PNG가 기록되었음을, 1은 캡처 실패를, 2는 잘못된 사용법을 뜻합니다. `openscreenshot serve`는 stdio로 MCP 서버를 시작하며, 도구는 `capture_screenshot` 하나입니다. 이 도구는 `url`, `fullPage`, `width`, `height`, `redact`를 받아 PNG 이미지 콘텐츠를 반환합니다. 설정 방법은 [CLI 가이드](/ko/blog/screenshot-cli/), [MCP 가이드](/ko/blog/screenshot-mcp-server/), [CI 가이드](/ko/blog/screenshots-for-ci/)에서 다루며, 기준은 [소스](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)입니다.
 
 더 약한 선택인 경우:
 

@@ -155,7 +155,7 @@
     "heading": "에이전트 & CLI",
     "intro": "<code>openscreenshot</code>(npm)은 명령줄이나 AI 에이전트에서 스크린샷을 스크립트로 찍기 위한 별도의 선택형 로컬 도구예요. 이미 기기에 설치된 Chrome을 그대로 사용해요. 브라우저 다운로드도, 호스팅 서비스도 없어요. Chrome을 자동으로 찾지 못하면 <code>CHROME_PATH</code>를 설정하세요.",
     "mcpIntro": "MCP 서버로 쓰려면 MCP 클라이언트 설정에 이렇게 추가하세요:",
-    "callOutro": "그다음 <code>capture_screenshot</code> 도구를 <code>{ \"url\": \"https://example.com\" }</code>과 함께 호출하세요."
+    "callOutro": "그다음 <code>capture_screenshot</code> 도구를 <code>{ \"url\": \"https://example.com\" }</code>과 함께 호출하세요. 선택 입력으로 <code>fullPage</code>(기본값 false), <code>width</code>(200~3840, 기본값 1280), <code>height</code>(200~2160, 기본값 800), <code>redact</code>가 있어요. <code>redact</code>는 스크린샷을 찍기 전에 CSS <code>selectors</code>, 텍스트 <code>patterns</code>(<code>email</code>, <code>phone</code>, <code>secret</code>), 픽셀 <code>rects</code>를 검은 상자로 덮어요. 도구는 PNG 이미지 콘텐츠를 클라이언트에 반환해요. 호스팅 모델을 쓰는 클라이언트는 그 이미지를 제공업체로 보낼 수 있어요. 기기 밖으로 나가면 안 되는 데이터에는 <code>redact</code>를 사용하고, 클라이언트의 데이터 설정을 확인하세요."
   },
   "privacy": {
     "heading": "프라이버시",

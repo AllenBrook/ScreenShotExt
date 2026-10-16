@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 바이너리를 안전하게 다루는 리디렉션을 사용하세요. CLI는 항상 PNG를 만듭니다. 출력 이름을 `capture.jpg`나 `capture.pdf`로 지정해도 형식이 변환되지 않습니다. 주석이 달린 이미지나 PDF 출력이 필요하다면 [확장 프로그램 편집기](/ko/docs/#export)를 사용하세요.
 
+## 저장하기 전에 가리기
+
+세 가지 플래그는 스크린샷을 찍기 전에 페이지 안의 데이터를 검은 상자로 덮습니다. 따라서 가리기 전의 픽셀은 PNG에 담기지 않습니다. 대상을 더 추가하려면 각 플래그를 반복하세요.
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact`는 CSS 선택자와 일치하는 각 요소를 모든 자식 요소와 함께 덮습니다. `--redact-pattern`은 `email`, `phone`(9자리부터 15자리까지의 숫자), `secret`(일반적인 API 키와 토큰 형태, 긴 해시)과 일치하는 텍스트와 양식 값을 덮습니다. `--redact-rect x,y,w,h`는 출력 이미지의 픽셀 단위 사각형을 덮습니다. 캔버스, 이미지, 교차 출처 iframe에는 이 플래그를 사용하세요.
+
+선택자와 일치하는 요소가 없거나, 사각형이 이미지 밖에 있거나, 캡처 중에 페이지가 대상을 움직이면 캡처는 종료 코드 1로 실패하고 파일을 기록하지 않습니다. 패턴은 여러 요소로 나뉜 텍스트나 이미지로 그려진 텍스트를 놓칠 수 있으므로, 공유하기 전에 PNG를 확인하세요.
+
 ## 자주 발생하는 실패 해결하기
 
 Chrome을 찾을 수 없다면 Chrome을 설치하거나 `CHROME_PATH`를 브라우저 실행 파일로 설정하세요. 예를 들어 Chromium이 다음 경로에 설치된 Linux 시스템에서는 이렇게 실행합니다.
@@ -46,7 +59,7 @@ Chrome을 찾을 수 없다면 Chrome을 설치하거나 `CHROME_PATH`를 브라
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-페이지 이동은 30초 제한 시간으로 `networkidle2`를 기다립니다. 현재 명령에는 사용자 지정 대기, 선택자, 쿠키, 로그인 옵션이 없습니다. 캡처에 성공했다고 해서 애플리케이션이 제대로 로드되었다는 뜻도 아닙니다. PNG에 오류 페이지, 로딩 상태, 누락된 리소스가 없는지 확인하세요.
+페이지 이동은 30초 제한 시간으로 `networkidle2`를 기다립니다. 현재 명령에는 사용자 지정 대기, 선택자 대기, 쿠키, 로그인 옵션이 없습니다. 캡처에 성공했다고 해서 애플리케이션이 제대로 로드되었다는 뜻도 아닙니다. PNG에 오류 페이지, 로딩 상태, 누락된 리소스가 없는지 확인하세요.
 
 종료 코드 0은 캡처 명령이 완료되었음을, 1은 캡처 실패를, 2는 잘못된 사용법이나 유효성 검사에 걸린 인수를 뜻합니다. 명령을 연결할 때 이 코드를 사용하고, 그다음 이미지 자체를 검토하세요.
 

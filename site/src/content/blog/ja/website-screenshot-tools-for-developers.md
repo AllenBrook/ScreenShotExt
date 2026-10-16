@@ -31,7 +31,7 @@ order: 9
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-フラグは `--out` (ファイル、または stdout を表す `-`)、`--full`、`--width` (200～3840、デフォルト 1280)、`--height` (200～2160、デフォルト 800) です。終了コード 0 は PNG が書き込まれたこと、1 はキャプチャの失敗、2 は使い方の誤りを意味します。`openscreenshot serve` は stdio で MCP サーバーを起動します。ツールは `capture_screenshot` の 1 つで、`url`、`fullPage`、`width`、`height` を受け取り、PNG の画像コンテンツを返します。セットアップは [CLI ガイド](/ja/blog/screenshot-cli/)、[MCP ガイド](/ja/blog/screenshot-mcp-server/)、[CI ガイド](/ja/blog/screenshots-for-ci/)で説明しており、[ソース](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)がリファレンスです。
+フラグは `--out` (ファイル、または stdout を表す `-`)、`--full`、`--width` (200～3840、デフォルト 1280)、`--height` (200～2160、デフォルト 800) と、3 つの墨消しフラグ `--redact` (CSS セレクター)、`--redact-pattern` (`email`、`phone`、または `secret`)、`--redact-rect` (ピクセル単位の四角形) です。墨消しは、スクリーンショットを撮る前にページ内に黒い四角を描きます。終了コード 0 は PNG が書き込まれたこと、1 はキャプチャの失敗、2 は使い方の誤りを意味します。`openscreenshot serve` は stdio で MCP サーバーを起動します。ツールは `capture_screenshot` の 1 つで、`url`、`fullPage`、`width`、`height`、`redact` を受け取り、PNG の画像コンテンツを返します。セットアップは [CLI ガイド](/ja/blog/screenshot-cli/)、[MCP ガイド](/ja/blog/screenshot-mcp-server/)、[CI ガイド](/ja/blog/screenshots-for-ci/)で説明しており、[ソース](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)がリファレンスです。
 
 不利な選択肢になる場面:
 

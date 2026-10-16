@@ -155,7 +155,7 @@
     "heading": "エージェント & CLI",
     "intro": "<code>openscreenshot</code> (npm) は、コマンド ラインや AI エージェントからスクリーンショットをスクリプト化するための、独立したオプションのローカル ツールです。手元のマシンにある Chrome をそのまま利用するため、ブラウザのダウンロードもホスト型サービスも不要です。Chrome が自動で見つからない場合は <code>CHROME_PATH</code> を設定してください。",
     "mcpIntro": "MCP サーバーとして使うには、MCP クライアントの設定に次を追加します。",
-    "callOutro": "その後、<code>capture_screenshot</code> ツールを <code>{ \"url\": \"https://example.com\" }</code> で呼び出します。"
+    "callOutro": "その後、<code>capture_screenshot</code> ツールを <code>{ \"url\": \"https://example.com\" }</code> で呼び出します。省略可能な入力は <code>fullPage</code> (デフォルト false)、<code>width</code> (200～3840、デフォルト 1280)、<code>height</code> (200～2160、デフォルト 800)、<code>redact</code> です。<code>redact</code> は、スクリーンショットを撮る前に、CSS の <code>selectors</code>、テキストの <code>patterns</code> (<code>email</code>、<code>phone</code>、<code>secret</code>)、ピクセル単位の <code>rects</code> を黒い四角で覆います。ツールは PNG の画像コンテンツをクライアントに返します。ホスト型のモデルを使うクライアントは、その画像を提供元に送信することがあります。デバイスの外に出してはならないデータには <code>redact</code> を使い、クライアントのデータ設定を確認してください。"
   },
   "privacy": {
     "heading": "プライバシー",
