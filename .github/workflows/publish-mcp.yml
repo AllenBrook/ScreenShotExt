@@ -39,7 +39,15 @@ jobs:
         run: npm run build
 
       - name: Publish to npm
-        run: npm publish
+        # A version already on npm is skipped, so a rerun or a dispatch after a
+        # registry delay reaches the MCP Registry step instead of failing here.
+        run: |
+          V="$(node -p "require('./package.json').version")"
+          if [ -n "$(npm view "openscreenshot@$V" version 2>/dev/null)" ]; then
+            echo "openscreenshot@$V is already on npm"
+          else
+            npm publish
+          fi
 
       # The official MCP Registry (registry.modelcontextprotocol.io) lists the
       # npm package under io.github.PGHQdev/openscreenshot; the case must match
@@ -62,7 +70,7 @@ jobs:
       - name: Publish to the MCP Registry
         # Retries cover the delay before the new npm version is visible.
         run: |
-          for i in 1 2 3 4 5; do
+          for i in $(seq 1 12); do
             ./mcp-publisher publish && exit 0
             sleep 30
           done
