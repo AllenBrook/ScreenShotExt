@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "Cosa è stato rilasciato, cosa è in valutazione e cosa resta fuori dagli obiettivi."
   },
-  "callout": "<strong>La promessa:</strong> tutto su questa pagina resta 100% locale. Nessun server, nessun account, nessuna nuova raccolta di dati, mai. Le voci della roadmap non hanno date. Feedback e pull request decidono cosa viene rilasciato. Versione corrente: <strong>v2.5.0</strong>.",
+  "callout": "<strong>La promessa:</strong> tutto su questa pagina resta 100% locale. Nessun server, nessun account, nessuna nuova raccolta di dati, mai. Le voci della roadmap non hanno date. Feedback e pull request decidono cosa viene rilasciato. Versione corrente: <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Legenda degli stati:",
     "exploring": "In valutazione",
@@ -139,8 +139,14 @@
     "currentTag": "versione corrente",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> avvia il server MCP</strong> — senza argomenti e con stdin collegato a una pipe, il pacchetto <code>openscreenshot</code> avvia il server MCP, come si aspettano i client e i cataloghi MCP. <code>openscreenshot serve</code> continua a funzionare, e un terminale riceve ancora le istruzioni d’uso della CLI."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Oscuramento per le catture da CLI e MCP</strong> — la CLI e il server MCP <code>openscreenshot</code> coprono con riquadri neri, prima dello screenshot, selettori CSS, indirizzi email, numeri di telefono, chiavi API e rettangoli in pixel. La cattura fallisce senza immagine se un selettore non trova corrispondenze o se la pagina sposta un target durante la cattura."
         ]

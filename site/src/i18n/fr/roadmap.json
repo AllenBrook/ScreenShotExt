@@ -8,7 +8,7 @@
     "heading": "Feuille de route",
     "lead": "Ce qui est livré, ce qui est à l’étude, et ce qui reste hors périmètre."
   },
-  "callout": "<strong>La promesse :</strong> tout ce qui figure sur cette page reste 100 % local. Ni serveurs, ni comptes, ni nouvelle collecte de données — jamais. Les éléments de la feuille de route ne portent pas de date. Les retours et les pull requests décident de ce qui sort. Version actuelle : <strong>v2.5.0</strong>.",
+  "callout": "<strong>La promesse :</strong> tout ce qui figure sur cette page reste 100 % local. Ni serveurs, ni comptes, ni nouvelle collecte de données — jamais. Les éléments de la feuille de route ne portent pas de date. Les retours et les pull requests décident de ce qui sort. Version actuelle : <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Légende des statuts :",
     "exploring": "À l’étude",
@@ -139,8 +139,14 @@
     "currentTag": "version actuelle",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> démarre le serveur MCP</strong> — sans argument et avec un stdin relié à un tube, le paquet <code>openscreenshot</code> démarre le serveur MCP, comme l’attendent les clients et catalogues MCP. <code>openscreenshot serve</code> fonctionne toujours, et un terminal reçoit toujours l’aide d’utilisation de la CLI."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Masquage pour les captures CLI et MCP</strong> — la CLI et le serveur MCP <code>openscreenshot</code> couvrent par des rectangles noirs, avant la capture, les sélecteurs CSS, les adresses e-mail, les numéros de téléphone, les clés d’API et les rectangles en pixels. La capture échoue sans image si un sélecteur ne correspond à rien ou si la page déplace une cible pendant la capture."
         ]

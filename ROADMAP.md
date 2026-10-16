@@ -114,6 +114,7 @@ remain browser-dependent.
 
 | Feature                                                    | Version |
 | ---------------------------------------------------------- | ------- |
+| `npx -y openscreenshot` starts the MCP server              | v2.5.1  |
 | Redaction for CLI and MCP captures                         | v2.5.0  |
 | Split very long pages into several images                  | v2.4.0  |
 | Clear error for local files without file access            | v2.4.0  |

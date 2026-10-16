@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "O que já foi lançado, o que está em estudo e o que fica fora do escopo."
   },
-  "callout": "<strong>A promessa:</strong> tudo nesta página continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.5.0</strong>.",
+  "callout": "<strong>A promessa:</strong> tudo nesta página continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Legenda de status:",
     "exploring": "Em estudo",
@@ -139,8 +139,14 @@
     "currentTag": "versão atual",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> inicia o servidor MCP</strong> — sem argumentos e com o stdin vindo de um pipe, o pacote <code>openscreenshot</code> inicia o servidor MCP, como clientes e catálogos MCP esperam. <code>openscreenshot serve</code> continua funcionando, e um terminal continua recebendo a ajuda de uso da CLI."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Ocultação de dados nas capturas da CLI e do MCP</strong> — a CLI e o servidor MCP <code>openscreenshot</code> cobrem seletores CSS, endereços de e-mail, números de telefone, chaves de API e retângulos em pixels com tarjas pretas antes da captura. A captura falha sem gerar imagem se um seletor não corresponder a nada ou se a página mover um alvo durante a captura."
         ]

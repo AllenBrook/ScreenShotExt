@@ -8,7 +8,7 @@
     "heading": "Hoja de ruta",
     "lead": "Qué se ha publicado, qué está en estudio y qué queda fuera del alcance."
   },
-  "callout": "<strong>La promesa:</strong> todo lo de esta página sigue 100 % local. Sin servidores, sin cuentas, sin nueva recopilación de datos, nunca. Los elementos de la hoja de ruta no llevan fechas. Los comentarios y los pull requests deciden qué se publica. Versión actual: <strong>v2.5.0</strong>.",
+  "callout": "<strong>La promesa:</strong> todo lo de esta página sigue 100 % local. Sin servidores, sin cuentas, sin nueva recopilación de datos, nunca. Los elementos de la hoja de ruta no llevan fechas. Los comentarios y los pull requests deciden qué se publica. Versión actual: <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Leyenda de estados:",
     "exploring": "En estudio",
@@ -139,8 +139,14 @@
     "currentTag": "versión actual",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> inicia el servidor MCP</strong> — sin argumentos y con stdin conectada a una tubería, el paquete <code>openscreenshot</code> inicia el servidor MCP, como esperan los clientes y catálogos MCP. <code>openscreenshot serve</code> sigue funcionando, y una terminal sigue recibiendo la ayuda de uso de la CLI."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Ocultación de datos en las capturas de la CLI y del servidor MCP</strong> — la CLI y el servidor MCP de <code>openscreenshot</code> tapan con recuadros negros selectores CSS, direcciones de correo, números de teléfono, claves de API y rectángulos en píxeles antes de la captura. La captura falla sin imagen si un selector no coincide con nada o si la página mueve un objetivo durante la captura."
         ]

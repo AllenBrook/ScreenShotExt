@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "What has shipped, what is being explored, and what stays out of scope."
   },
-  "callout": "<strong>The promise:</strong> everything on this page stays 100% local. No servers, no accounts, no new data collection — ever. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.5.0</strong>.",
+  "callout": "<strong>The promise:</strong> everything on this page stays 100% local. No servers, no accounts, no new data collection — ever. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Status legend:",
     "exploring": "Exploring",
@@ -139,8 +139,14 @@
     "currentTag": "current release",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> starts the MCP server</strong> — with no arguments on a piped stdin, the <code>openscreenshot</code> package starts the MCP server, as MCP clients and catalogs expect. <code>openscreenshot serve</code> still works, and a terminal still gets the CLI usage."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Redaction for CLI and MCP captures</strong> — the <code>openscreenshot</code> CLI and MCP server cover CSS selectors, email addresses, phone numbers, API keys, and pixel rectangles with black boxes before the screenshot. The capture fails with no image if a selector matches nothing or the page moves a target during the capture."
         ]

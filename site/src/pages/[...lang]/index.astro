@@ -65,7 +65,7 @@ const softwareLd = {
   description: d.meta.description,
   url: new URL(localizePath(locale, '/'), Astro.site).href,
   downloadUrl: CHROME_STORE_URL,
-  softwareVersion: '2.5.0',
+  softwareVersion: '2.5.1',
   license: `${REPO_URL}/blob/main/LICENSE`,
   isAccessibleForFree: true,
   inLanguage: LANG_TAGS[locale],
@@ -204,7 +204,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
                       <p class="term-out">MCP server ready · tool: capture_screenshot</p>
                       <p class="term-comment">{d.term.commentConfig}</p>
                       <p class="term-cmd">
-                        {'{ "command": "npx", "args": ["openscreenshot", "serve"] }'}
+                        {'{ "command": "npx", "args": ["openscreenshot"] }'}
                       </p>
                     </div>
                   </div>
@@ -324,7 +324,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
           <p class="cli-label">{d.cli.labelShot}</p>
           <pre class="code"><code>npx openscreenshot shot https://example.com --out shot.png --full</code></pre>
           <p class="cli-label">{d.cli.labelConfig}</p>
-          <pre class="code"><code>{'{ "command": "npx", "args": ["openscreenshot", "serve"] }'}</code></pre>
+          <pre class="code"><code>{'{ "command": "npx", "args": ["openscreenshot"] }'}</code></pre>
         </div>
       </div>
       <p class="use-cases-heading">{d.cli.useCasesHeading}</p>

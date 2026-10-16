@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "Was ausgeliefert ist, was geprüft wird und was außerhalb des Rahmens bleibt."
   },
-  "callout": "<strong>Das Versprechen:</strong> Alles auf dieser Seite bleibt 100 % lokal. Keine Server, keine Konten, keine neue Datensammlung — niemals. Roadmap-Einträge tragen keine Termine. Feedback und Pull Requests bestimmen, was ausgeliefert wird. Aktuelle Version: <strong>v2.5.0</strong>.",
+  "callout": "<strong>Das Versprechen:</strong> Alles auf dieser Seite bleibt 100 % lokal. Keine Server, keine Konten, keine neue Datensammlung — niemals. Roadmap-Einträge tragen keine Termine. Feedback und Pull Requests bestimmen, was ausgeliefert wird. Aktuelle Version: <strong>v2.5.1</strong>.",
   "legend": {
     "srLabel": "Status-Legende:",
     "exploring": "In Prüfung",
@@ -139,8 +139,14 @@
     "currentTag": "aktuelle Version",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> startet den MCP-Server</strong> — ohne Argumente und mit einem per Pipe verbundenen stdin startet das Paket <code>openscreenshot</code> den MCP-Server, wie MCP-Clients und -Kataloge es erwarten. <code>openscreenshot serve</code> funktioniert weiterhin, und ein Terminal erhält weiterhin die CLI-Hilfe."
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>Schwärzung für CLI- und MCP-Aufnahmen</strong> — die CLI und der MCP-Server <code>openscreenshot</code> decken CSS-Selektoren, E-Mail-Adressen, Telefonnummern, API-Schlüssel und Pixel-Rechtecke vor dem Screenshot mit schwarzen Kästen ab. Die Aufnahme schlägt ohne Bild fehl, wenn ein Selektor nichts trifft oder die Seite während der Aufnahme ein Ziel verschiebt."
         ]

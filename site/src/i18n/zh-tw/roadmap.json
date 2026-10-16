@@ -8,7 +8,7 @@
     "heading": "路線圖",
     "lead": "已經推出什麼、正在探索什麼，以及什麼不在範圍內。"
   },
-  "callout": "<strong>我們的承諾：</strong>本頁的一切都保持 100% 本機。沒有伺服器、沒有帳號、沒有新的資料收集——永遠如此。路線圖項目不標日期。回饋和 pull request 決定什麼會推出。目前版本：<strong>v2.5.0</strong>。",
+  "callout": "<strong>我們的承諾：</strong>本頁的一切都保持 100% 本機。沒有伺服器、沒有帳號、沒有新的資料收集——永遠如此。路線圖項目不標日期。回饋和 pull request 決定什麼會推出。目前版本：<strong>v2.5.1</strong>。",
   "legend": {
     "srLabel": "狀態圖例：",
     "exploring": "探索中",
@@ -139,8 +139,14 @@
     "currentTag": "目前版本",
     "releases": [
       {
-        "version": "v2.5.0",
+        "version": "v2.5.1",
         "current": true,
+        "items": [
+          "<strong><code>npx -y openscreenshot</code> 啟動 MCP 伺服器</strong> — 在不帶參數且標準輸入（stdin）來自管線時，<code>openscreenshot</code> 套件會依 MCP 用戶端和伺服器目錄的預期啟動 MCP 伺服器。<code>openscreenshot serve</code> 仍然可用，終端機也仍然會顯示 CLI 用法。"
+        ]
+      },
+      {
+        "version": "v2.5.0",
         "items": [
           "<strong>CLI 和 MCP 擷取的遮蓋功能</strong> — <code>openscreenshot</code> CLI 和 MCP 伺服器會在擷取前用黑色方塊遮蓋 CSS 選擇器、電子郵件地址、電話號碼、API 金鑰和像素矩形。如果選擇器沒有符合任何內容，或頁面在擷取過程中移動了目標，擷取就會失敗，而且不會產生圖片。"
         ]
