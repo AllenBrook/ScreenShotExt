@@ -7,19 +7,19 @@ order: 9
 
 如果只是要從 shell 腳本或 CI 工作取得公開頁面的 PNG，命令列工具就夠了：openscreenshot、shot-scraper、capture-website-cli 或 pageres-cli。當擷取需要登入、點擊、斷言或影片時，請用 Playwright 或 Puppeteer 撰寫。對 AI 代理來說，本機 MCP 伺服器可以把截圖回傳給模型：`openscreenshot serve` 每次呼叫擷取一張截圖，而 Playwright MCP 會驅動整個瀏覽器工作階段。
 
-`openscreenshot` 套件是我們的產品，本頁會說明它在哪些情況下是較弱的選擇。本頁比較的是功能，不替這些工具排名。所有資訊截至 2026 年 10 月 9 日，來自各專案的儲存庫、套件登錄庫或官方文件，連結附在下方。
+`openscreenshot` 套件是我們的產品，本頁會說明它在哪些情況下是較弱的選擇。本頁比較的是功能，不替這些工具排名。所有資訊截至 2026 年 10 月 17 日，來自各專案的儲存庫、套件登錄庫或官方文件，連結附在下方。
 
 ## 工具一覽
 
-| 工具                | 語言／執行環境                                    | 整頁             | CLI        | MCP                 | 影片                | 授權       |
-| ------------------- | ------------------------------------------------- | ---------------- | ---------- | ------------------- | ------------------- | ---------- |
-| openscreenshot      | Node.js 22.12+，已安裝的 Chrome、Chromium 或 Edge | `--full`         | 是         | 是，stdio           | 否                  | MIT        |
-| shot-scraper        | Python 3.10+，Playwright 瀏覽器                   | 預設             | 是         | 未列出              | 是，WebM 或 MP4     | Apache-2.0 |
-| capture-website-cli | Node.js 20+，Puppeteer Chrome                     | `--full-page`    | 是         | 未列出              | 否                  | MIT        |
-| pageres-cli         | Node.js 20+，Puppeteer Chrome                     | 預設             | 是         | 未列出              | 否                  | MIT        |
-| Playwright          | Node.js、Python、Java、.NET                       | `fullPage: true` | 測試執行器 | 透過 Playwright MCP | 是                  | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                    | `fullPage: true` | 未列出     | 未列出              | 是，Chrome 中為 MP4 | Apache-2.0 |
-| Playwright MCP      | 透過 `npx` 的 Node.js，或 Docker                  | `fullPage` 參數  | 僅伺服器   | 是，stdio 或 HTTP   | 是，需選擇啟用      | Apache-2.0 |
+| 工具                | 語言／執行環境                                    | 整頁             | CLI                          | MCP                      | 影片                | 授權       |
+| ------------------- | ------------------------------------------------- | ---------------- | ---------------------------- | ------------------------ | ------------------- | ---------- |
+| openscreenshot      | Node.js 22.12+，已安裝的 Chrome、Chromium 或 Edge | `--full`         | 是                           | 是，stdio                | 否                  | MIT        |
+| shot-scraper        | Python 3.10+，Playwright 瀏覽器                   | 預設             | 是                           | 未列出                   | 是，WebM 或 MP4     | Apache-2.0 |
+| capture-website-cli | Node.js 20+，Puppeteer Chrome                     | `--full-page`    | 是                           | 未列出                   | 否                  | MIT        |
+| pageres-cli         | Node.js 20+，Puppeteer Chrome                     | 預設             | 是                           | 未列出                   | 否                  | MIT        |
+| Playwright          | Node.js、Python、Java、.NET                       | `fullPage: true` | 測試執行器、`playwright-cli` | 透過 Playwright MCP      | 是                  | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                    | `fullPage: true` | 未列出                       | 透過 chrome-devtools-mcp | 是，Chrome 中為 MP4 | Apache-2.0 |
+| Playwright MCP      | 透過 `npx` 的 Node.js，或 Docker                  | `fullPage` 參數  | 僅伺服器                     | 是，stdio 或 HTTP        | 是，需選擇啟用      | Apache-2.0 |
 
 「未列出」表示我們查閱的專案自身文件沒有描述該功能。
 
@@ -85,17 +85,17 @@ pageres https://example.com 1366x768 1600x900
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf) 只能在無頭 Chromium 中使用。[影片錄製](https://playwright.dev/docs/videos)是一個 context 選項，測試執行器可以只保留失敗測試的影片。當截圖是測試中的一個步驟，而該測試需要登入、點擊和斷言時，就選 Playwright。
+[`page.pdf()`](https://playwright.dev/docs/api/class-page#page-pdf) 會套用列印 CSS 產生 PDF。[影片錄製](https://playwright.dev/docs/videos)是一個 context 選項，測試執行器可以只保留失敗測試的影片。[Playwright CLI](https://github.com/microsoft/playwright-cli)（`@playwright/cli`）是另一個獨立的命令列工具，讓程式設計 AI 代理進行瀏覽器自動化。當截圖是測試中的一個步驟，而該測試需要登入、點擊和斷言時，就選 Playwright。
 
 ## Puppeteer
 
-[Puppeteer](https://github.com/puppeteer/puppeteer) 是 Google 的 Node.js 程式庫，支援 Chrome 和 Firefox。`npm i puppeteer` 會下載 Chrome for Testing。它的[截圖選項](https://pptr.dev/api/puppeteer.screenshotoptions)使用相同的形式：
+[Puppeteer](https://github.com/puppeteer/puppeteer) 是 Google 的 Node.js 程式庫，支援 Chrome 和 Firefox。`npm i puppeteer` 會在它的安裝腳本執行時下載 Chrome for Testing。會封鎖安裝腳本的套件管理工具需要執行 `npx puppeteer browsers install`。它的[截圖選項](https://pptr.dev/api/puppeteer.screenshotoptions)使用相同的形式：
 
 ```js
 await page.screenshot({ path: 'page.png', fullPage: true });
 ```
 
-[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf) 會套用列印 CSS 產生 PDF。在 puppeteer-core 25.10.0 加入的 [`page.record()`](https://pptr.dev/api/puppeteer.page.record) 可以在 Chrome 中錄製 MP4。Firefox 透過 WebDriver BiDi 執行，部分功能在那裡不受支援。openscreenshot 是 `puppeteer-core` 的輕量包裝，所以當你需要它四個擷取選項以外的功能時，請直接使用 Puppeteer。
+[`page.pdf()`](https://pptr.dev/api/puppeteer.page.pdf) 會套用列印 CSS 產生 PDF。在 puppeteer-core 25.10.0 加入的 [`page.record()`](https://pptr.dev/api/puppeteer.page.record) 可以在 Chrome 中錄製 MP4。Firefox 透過 WebDriver BiDi 執行，部分功能在那裡不受支援。對於 AI 代理，Puppeteer README 指向 [chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)，這是以 Puppeteer 為基礎的 MCP 伺服器。openscreenshot 是 `puppeteer-core` 的輕量包裝，所以當你需要它擷取選項以外的功能時，請直接使用 Puppeteer。
 
 ## Playwright MCP
 
