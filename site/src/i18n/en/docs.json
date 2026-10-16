@@ -155,7 +155,7 @@
     "heading": "Agents & CLI",
     "intro": "<code>openscreenshot</code> is a separate, optional CLI and MCP server. It launches a fresh headless Chrome-compatible browser on your machine; it does not reuse your open tabs, cookies, or signed-in browser profile. Install Node.js, pnpm, and Chrome first. Set <code>CHROME_PATH</code> if the browser cannot be found automatically.",
     "mcpIntro": "As an MCP server, add this to your MCP client config:",
-    "callOutro": "Then call <code>capture_screenshot</code> with <code>{ \"url\": \"https://example.com\" }</code>. Optional inputs are <code>fullPage</code> (default false), <code>width</code> (200–3840, default 1280), and <code>height</code> (200–2160, default 800). The tool returns PNG image content to your client. A client using a hosted model may send that image to its provider; review the client’s data settings."
+    "callOutro": "Then call <code>capture_screenshot</code> with <code>{ \"url\": \"https://example.com\" }</code>. Optional inputs are <code>fullPage</code> (default false), <code>width</code> (200–3840, default 1280), <code>height</code> (200–2160, default 800), and <code>redact</code>, which covers CSS <code>selectors</code>, text <code>patterns</code> (<code>email</code>, <code>phone</code>, <code>secret</code>), and pixel <code>rects</code> with black boxes before the screenshot. The tool returns PNG image content to your client. A client using a hosted model may send that image to its provider; use <code>redact</code> for data that must not leave the device, and review the client’s data settings."
   },
   "privacy": {
     "heading": "Privacy",

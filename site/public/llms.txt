@@ -1,6 +1,6 @@
 # OpenScreenShot
 
-> Free, open-source (MIT) full page screenshot extension for Chrome and Firefox: full-page (scroll-and-stitch), visible-area, region, and element capture, an annotation editor, and export to PNG, JPEG, WebP, or PDF. The Chrome build also records the current tab, with auto zoom at clicks, a webcam bubble, and MP4 or WebM export. 100% local: screenshots and recordings never leave the device. A separate npm CLI and MCP server, `openscreenshot`, takes website screenshots from a terminal, CI, or an AI agent.
+> Free, open-source (MIT) full page screenshot extension for Chrome and Firefox: full-page (scroll-and-stitch), visible-area, region, and element capture, an annotation editor, and export to PNG, JPEG, WebP, or PDF. The Chrome build also records the current tab, with auto zoom at clicks, a webcam bubble, and MP4 or WebM export. 100% local: screenshots and recordings never leave the device. A separate npm CLI and MCP server, `openscreenshot`, takes website screenshots from a terminal, CI, or an AI agent, and can redact selectors, text patterns, and rectangles before the image is written.
 
 - Chrome Web Store: https://chromewebstore.google.com/detail/hdabbojjccojlapnfjpdppcpfcnhgmdp
 - Firefox Add-ons: https://addons.mozilla.org/firefox/addon/openscreenshot/

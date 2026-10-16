@@ -47,6 +47,23 @@ This produces a viewport capture at the default 1280 × 800 size. Set the viewpo
 
 `width` accepts integers from 200 to 3840 and `height` from 200 to 2160. The tool returns MCP image content with MIME type `image/png`. There is no output-path argument for this tool. Whether the result is displayed or saved depends on the client; use the [CLI](/blog/screenshot-cli/) when you need a named file directly.
 
+## Redact data before the image leaves the tool
+
+Add a `redact` object to cover data with black boxes in the page before the screenshot. The client receives only the redacted image:
+
+```json
+{
+  "url": "https://example.com",
+  "redact": {
+    "selectors": ["#account-menu"],
+    "patterns": ["email", "phone", "secret"],
+    "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }]
+  }
+}
+```
+
+`selectors` covers each matching element with all of its children. `patterns` covers matching text and form values: `email`, `phone` (9 to 15 digits), and `secret` (common API key and token shapes, and long hashes). `rects` covers rectangles in pixels of the output image, for canvas, images, and cross-origin iframes. The tool returns an error and no image if a selector matches nothing, a rectangle is outside the image, or the page moves a target during the capture. Patterns can miss text that is split across elements or drawn in an image.
+
 ## What the agent can and cannot see
 
 The capture starts in a fresh headless browser. It does not inherit the cookies or signed-in session from your ordinary Chrome window. A page behind authentication may therefore produce a login screen. The current tool does not expose login steps, cookie injection, selector waits, or interactive clicks.
@@ -55,6 +72,6 @@ Ask the agent to identify what is actually visible in the returned image before 
 
 ## Where does the screenshot go?
 
-The screenshot is generated locally and returned to the MCP client. If that client uses a hosted model, it may transmit the returned image to the model provider according to its own settings. Local capture does not imply that the whole agent conversation stays on the device.
+The screenshot is generated locally and returned to the MCP client. If that client uses a hosted model, it may transmit the returned image to the model provider according to its own settings. Local capture does not imply that the whole agent conversation stays on the device. Use `redact` for data that must not reach the provider.
 
 For automated captures with predictable dimensions, see [screenshots for CI](/blog/screenshots-for-ci/). The [agent capture skill](/skills/capture-screenshot.md) and [server source](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) provide the machine-oriented instructions and tool definition.

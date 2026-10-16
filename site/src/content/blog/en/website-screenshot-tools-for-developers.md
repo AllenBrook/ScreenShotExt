@@ -31,7 +31,7 @@ The `openscreenshot` package is our product, and this page says where it is the 
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-The flags are `--out` (a file, or `-` for stdout), `--full`, `--width` (200 to 3840, default 1280), and `--height` (200 to 2160, default 800). Exit code 0 means a PNG was written, 1 means the capture failed, and 2 means bad usage. `openscreenshot serve` starts an MCP server over stdio with one tool, `capture_screenshot`, which takes `url`, `fullPage`, `width`, and `height` and returns PNG image content. The [CLI guide](/blog/screenshot-cli/), [MCP guide](/blog/screenshot-mcp-server/), and [CI guide](/blog/screenshots-for-ci/) cover setup, and the [source](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) is the reference.
+The flags are `--out` (a file, or `-` for stdout), `--full`, `--width` (200 to 3840, default 1280), `--height` (200 to 2160, default 800), and three redaction flags: `--redact` (a CSS selector), `--redact-pattern` (`email`, `phone`, or `secret`), and `--redact-rect` (a pixel rectangle). Redaction draws black boxes in the page before the screenshot. Exit code 0 means a PNG was written, 1 means the capture failed, and 2 means bad usage. `openscreenshot serve` starts an MCP server over stdio with one tool, `capture_screenshot`, which takes `url`, `fullPage`, `width`, `height`, and `redact` and returns PNG image content. The [CLI guide](/blog/screenshot-cli/), [MCP guide](/blog/screenshot-mcp-server/), and [CI guide](/blog/screenshots-for-ci/) cover setup, and the [source](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) is the reference.
 
 Where it is the weaker choice:
 

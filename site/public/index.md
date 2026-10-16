@@ -36,10 +36,12 @@ npx openscreenshot shot https://example.com --out shot.png --full
 
 MCP server: `{ "command": "npx", "args": ["openscreenshot", "serve"] }`, tool `capture_screenshot`.
 
+Redaction: the CLI flags `--redact`, `--redact-pattern`, and `--redact-rect`, and the MCP `redact` input, cover CSS selectors, email addresses, phone numbers, API keys, and pixel rectangles with black boxes before the screenshot.
+
 Skill: https://openscreenshot.app/skills/capture-screenshot.md
 
 ## Learn by task
 
 Read the [blog and guides](https://openscreenshot.app/blog/) for full-page capture, PDF export, redaction, tool comparisons, CLI screenshots, MCP setup, and CI artifacts. See also [use cases](https://openscreenshot.app/use-cases/), [full-page screenshots by browser](https://openscreenshot.app/full-page-screenshot/), and [alternatives](https://openscreenshot.app/alternatives/). Every page has a Markdown copy at `<page URL>index.md`.
 
-The optional CLI/MCP package starts a fresh headless browser, without your ordinary browser login session. MCP returns image content to the client, which may transmit it to a hosted model provider according to its settings.
+The optional CLI/MCP package starts a fresh headless browser, without your ordinary browser login session. MCP returns image content to the client, which may transmit it to a hosted model provider according to its settings. Use `redact` for data that must not leave the device.

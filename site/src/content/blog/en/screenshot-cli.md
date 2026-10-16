@@ -38,6 +38,19 @@ pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 
 Use binary-safe redirection. The CLI always produces PNG; naming the output `capture.jpg` or `capture.pdf` does not convert it. For annotated images or PDF output, use the [extension editor](/docs/#export).
 
+## Redact before you save
+
+Three flags cover data with black boxes in the page before the screenshot, so the unredacted pixels never reach the PNG. Repeat each flag for more targets:
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out safe.png \
+  --redact "#account-menu" --redact-pattern email,secret --redact-rect 0,0,200,40
+```
+
+`--redact` covers each element that matches a CSS selector, with all of its children. `--redact-pattern` covers text and form values that match `email`, `phone` (9 to 15 digits), or `secret` (common API key and token shapes, and long hashes). `--redact-rect x,y,w,h` covers a rectangle in pixels of the output image; use it for canvas, images, and cross-origin iframes.
+
+The capture fails with exit code 1 and writes no file if a selector matches nothing, a rectangle is outside the image, or the page moves a target during the capture. Patterns can miss text that is split across elements or drawn in an image, so look at the PNG before you share it.
+
 ## Resolve common failures
 
 If Chrome is not found, install it or set `CHROME_PATH` to the browser executable. For example, on a Linux system where Chromium is installed at that path:
@@ -46,7 +59,7 @@ If Chrome is not found, install it or set `CHROME_PATH` to the browser executabl
 CHROME_PATH=/usr/bin/chromium pnpm dlx openscreenshot shot https://example.com --out screenshot.png
 ```
 
-Navigation waits for `networkidle2` with a 30-second timeout. The current command has no custom wait, selector, cookie, or login options. A successful capture also does not prove that the application loaded correctly: inspect the PNG for error pages, loading states, and missing assets.
+Navigation waits for `networkidle2` with a 30-second timeout. The current command has no custom wait, selector wait, cookie, or login options. A successful capture also does not prove that the application loaded correctly: inspect the PNG for error pages, loading states, and missing assets.
 
 Exit code 0 indicates the capture command completed, 1 indicates a capture failure, and 2 indicates invalid usage or validated arguments. Use those codes when chaining commands, then review the image itself.
 

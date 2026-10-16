@@ -21,4 +21,13 @@ Add to your MCP client config:
 `{ "command": "npx", "args": ["openscreenshot", "serve"] }`
 Then call the `capture_screenshot` tool with `{ "url": "https://example.com" }`.
 
+## Redaction
+
+Cover data with black boxes before the screenshot, so the image never contains it:
+
+- CLI: `--redact "#account-menu" --redact-pattern email,phone,secret --redact-rect 0,0,200,40`
+- MCP: `{ "url": "https://example.com", "redact": { "selectors": ["#account-menu"], "patterns": ["email", "phone", "secret"], "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }] } }`
+
+The capture fails with no image if a selector matches nothing or the page moves a target during the capture. Patterns can miss text; check the image.
+
 Source: https://github.com/pghqdev/OpenScreenShot
