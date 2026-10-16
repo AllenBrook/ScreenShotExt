@@ -101,6 +101,11 @@ jobs:
         # mcp/node_modules to find it rather than adding a second copy.
         run: npm ci --prefix mcp
 
+      - name: MCP server tests
+        # Runs before the smokes, so a flaky smoke cannot skip it. The tag's
+        # publish job runs the same tests, and a failure there blocks npm only.
+        run: npm test --prefix mcp
+
       - name: Generate icons
         run: pnpm run icons
 

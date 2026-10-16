@@ -89,12 +89,9 @@ describe('capture with redact', () => {
 
   test('patterns cover page text and form values, and leave other text', async () => {
     const png = await shot('/', { redact: { patterns: ['email', 'phone', 'secret'] } });
-    for (const y of [102, 112, 122]) {
-      expect(png.pixel(12, y)).toEqual(BLACK);
-      expect(png.pixel(150, y)).toEqual(BLACK);
-      expect(png.pixel(100, y + 50)).toEqual(BLACK);
-    }
-    expect(png.pixel(100, 206)).toEqual(BLACK);
+    // Line centers and the first 100px, so font metrics on other systems do not matter.
+    for (const y of [112, 162, 206])
+      for (const x of [14, 60, 100]) expect(png.pixel(x, y)).toEqual(BLACK);
     expect(png.pixel(275, 25)).toEqual(BLACK);
     for (let x = 12; x < 140; x += 4) expect(png.pixel(x, 262)).not.toEqual(BLACK);
   });
