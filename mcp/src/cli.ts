@@ -1,4 +1,6 @@
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, unlinkSync, existsSync, mkdirSync } from 'node:fs';
+import { homedir } from 'node:os';
+import { join } from 'node:path';
 import { capture, CaptureOptions } from './capture.js';
 
 const USAGE =
@@ -6,12 +8,71 @@ const USAGE =
   '         [--redact selector]... [--redact-pattern email|phone|secret]... [--redact-rect x,y,w,h]...\n' +
   '         [--cloud [base-url]] [--key osc_live_…] [--format png|jpeg|webp|pdf|html|markdown]\n' +
   '         --cloud renders through OpenScreenShot Cloud instead of local Chrome.\n' +
-  '         Auth: --key or OPENSCREENSHOT_API_KEY. Base URL: --cloud <url> or\n' +
-  '         OPENSCREENSHOT_CLOUD_URL (default https://cloud.openscreenshot.app).\n' +
+  '         Auth order: --key, OPENSCREENSHOT_API_KEY, key stored by `auth login`.\n' +
+  '         Base URL: --cloud <url> or OPENSCREENSHOT_CLOUD_URL\n' +
+  '         (default https://cloud.openscreenshot.app).\n' +
+  '       openscreenshot auth login --email you@x.com [--code 123456] [--cloud <url>]\n' +
+  '         Sends an email code, then mints an API key stored at ~/.openscreenshot.json.\n' +
+  '       openscreenshot auth logout   removes the stored key.\n' +
   '       openscreenshot serve   MCP server over stdio; also the default with no arguments on a pipe\n';
 
+const CONFIG = join(homedir(), '.openscreenshot.json');
+
+function storedKey(): string | undefined {
+  try {
+    return (JSON.parse(readFileSync(CONFIG, 'utf8')) as { key?: string }).key;
+  } catch {
+    return undefined;
+  }
+}
+
+/** `auth login` two-step: send the email OTP, then verify + mint a CLI key. */
+async function authLogin(
+  email: string,
+  code: string | undefined,
+  base: string,
+  fetcher: typeof fetch = fetch,
+): Promise<{ step: 'sent' | 'done'; key?: string }> {
+  if (!code) {
+    const res = await fetcher(`${base}/api/auth/email-otp/send-verification-otp`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email, type: 'sign-in' }),
+    });
+    if (!res.ok) throw new Error(`could not send code (${res.status})`);
+    return { step: 'sent' };
+  }
+  const signin = await fetcher(`${base}/api/auth/sign-in/email-otp`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ email, otp: code }),
+  });
+  if (!signin.ok) throw new Error(`code rejected (${signin.status})`);
+  const cookie = signin.headers.get('set-cookie')?.split(';')[0];
+  if (!cookie) throw new Error('sign-in returned no session cookie');
+  const mint = await fetcher(`${base}/api/cli-key`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', cookie },
+    body: JSON.stringify({ name: 'openscreenshot cli' }),
+  });
+  if (!mint.ok) throw new Error(`could not mint key (${mint.status})`);
+  const { key } = (await mint.json()) as { key: string };
+  mkdirSync(join(homedir(), '.config'), { recursive: true });
+  writeFileSync(CONFIG, JSON.stringify({ key, created_at: Date.now() }, null, 2) + '\n', {
+    mode: 0o600,
+  });
+  return { step: 'done', key };
+}
+
 const FORMATS = new Set(['png', 'jpeg', 'webp', 'pdf', 'html', 'markdown']);
-const EXT: Record<string, string> = { png: 'png', jpeg: 'jpg', webp: 'webp', pdf: 'pdf', html: 'html', markdown: 'md' };
+const EXT: Record<string, string> = {
+  png: 'png',
+  jpeg: 'jpg',
+  webp: 'webp',
+  pdf: 'pdf',
+  html: 'html',
+  markdown: 'md',
+};
 
 /** Render via OpenScreenShot Cloud. Returns the artifact bytes. */
 export async function captureCloud(
@@ -19,10 +80,16 @@ export async function captureCloud(
   env: NodeJS.ProcessEnv = process.env,
   fetcher: typeof fetch = fetch,
 ): Promise<Buffer> {
-  const key = args.cloudKey ?? env.OPENSCREENSHOT_API_KEY;
+  const key = args.cloudKey ?? env.OPENSCREENSHOT_API_KEY ?? storedKey();
   if (!key)
-    throw new Error('--cloud needs an API key: pass --key or set OPENSCREENSHOT_API_KEY (dashboard → API keys).');
-  const base = (args.cloudUrl ?? env.OPENSCREENSHOT_CLOUD_URL ?? 'https://cloud.openscreenshot.app').replace(/\/$/, '');
+    throw new Error(
+      '--cloud needs an API key: --key, OPENSCREENSHOT_API_KEY, or `openscreenshot auth login`.',
+    );
+  const base = (
+    args.cloudUrl ??
+    env.OPENSCREENSHOT_CLOUD_URL ??
+    'https://cloud.openscreenshot.app'
+  ).replace(/\/$/, '');
   const format = FORMATS.has(args.format ?? '') ? args.format! : 'png';
   const res = await fetcher(`${base}/v1/screenshot`, {
     method: 'POST',
@@ -41,7 +108,9 @@ export async function captureCloud(
     try {
       const p = (await res.json()) as { error?: { code?: string; message?: string } };
       detail = p.error?.message ?? p.error?.code ?? detail;
-    } catch { /* non-JSON error body */ }
+    } catch {
+      /* non-JSON error body */
+    }
     throw new Error(`cloud render failed: ${detail}`);
   }
   return Buffer.from(await res.arrayBuffer());
@@ -68,6 +137,40 @@ function flags(argv: string[], name: string): string[] {
 
 export async function runCli(argv: string[]): Promise<number> {
   const [cmd, url] = argv;
+  if (cmd === 'auth') {
+    const sub = argv[1];
+    const base = (
+      flag(argv, 'cloud') ??
+      process.env.OPENSCREENSHOT_CLOUD_URL ??
+      'https://cloud.openscreenshot.app'
+    ).replace(/\/$/, '');
+    try {
+      if (sub === 'login') {
+        const email = flag(argv, 'email');
+        if (!email) {
+          process.stderr.write('auth login needs --email\n');
+          return 2;
+        }
+        const r = await authLogin(email, flag(argv, 'code'), base);
+        process.stdout.write(
+          r.step === 'sent'
+            ? `Code sent to ${email} — run again with --code.\n`
+            : 'Signed in — API key stored at ~/.openscreenshot.json\n',
+        );
+        return 0;
+      }
+      if (sub === 'logout') {
+        if (existsSync(CONFIG)) unlinkSync(CONFIG);
+        process.stdout.write('Signed out — stored key removed.\n');
+        return 0;
+      }
+      process.stderr.write(USAGE);
+      return 2;
+    } catch (err) {
+      process.stderr.write('auth failed: ' + String(err) + '\n');
+      return 1;
+    }
+  }
   if (cmd !== 'shot' || !url) {
     process.stderr.write(USAGE);
     return 2;

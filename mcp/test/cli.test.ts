@@ -39,10 +39,21 @@ test('cloud shot posts to /v1/screenshot with the bearer key and writes bytes', 
   const calls: { url: string; init: RequestInit }[] = [];
   const fetcher = async (url: unknown, init: unknown) => {
     calls.push({ url: String(url), init: init as RequestInit });
-    return new Response(new Uint8Array([1, 2, 3]), { status: 200, headers: { 'content-type': 'image/png' } });
+    return new Response(new Uint8Array([1, 2, 3]), {
+      status: 200,
+      headers: { 'content-type': 'image/png' },
+    });
   };
   const bytes = await captureCloud(
-    { url: 'https://example.com', format: 'pdf', width: 600, height: 400, fullPage: true, cloudKey: 'osc_test_x', cloudUrl: 'https://cloud.test' },
+    {
+      url: 'https://example.com',
+      format: 'pdf',
+      width: 600,
+      height: 400,
+      fullPage: true,
+      cloudKey: 'osc_test_x',
+      cloudUrl: 'https://cloud.test',
+    },
     {} as NodeJS.ProcessEnv,
     fetcher as never,
   );
@@ -54,13 +65,21 @@ test('cloud shot posts to /v1/screenshot with the bearer key and writes bytes', 
 });
 
 test('cloud shot without a key fails before fetching', async () => {
-  await expect(captureCloud({ url: 'https://example.com' }, {} as NodeJS.ProcessEnv)).rejects.toThrow('OPENSCREENSHOT_API_KEY');
+  await expect(
+    captureCloud({ url: 'https://example.com' }, {} as NodeJS.ProcessEnv),
+  ).rejects.toThrow('OPENSCREENSHOT_API_KEY');
 });
 
 test('cloud shot surfaces the problem code on failure', async () => {
   const fetcher = async () =>
-    new Response(JSON.stringify({ error: { code: 'quota_exceeded', message: 'over quota' } }), { status: 402 });
+    new Response(JSON.stringify({ error: { code: 'quota_exceeded', message: 'over quota' } }), {
+      status: 402,
+    });
   await expect(
-    captureCloud({ url: 'https://example.com', cloudKey: 'k' }, {} as NodeJS.ProcessEnv, fetcher as never),
+    captureCloud(
+      { url: 'https://example.com', cloudKey: 'k' },
+      {} as NodeJS.ProcessEnv,
+      fetcher as never,
+    ),
   ).rejects.toThrow('over quota');
 });
