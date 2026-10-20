@@ -22,10 +22,11 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // /welcome/ is the tab the browser opens once, at install. It carries a
-      // noindex meta for the same reason: it is a moment in a session, not a
-      // page anyone should arrive at from search.
-      filter: (page) => !/\/welcome\/$/.test(page),
+      // /welcome/ is the tab the browser opens once, at install, and
+      // /uninstall/ the tab it opens once, at removal. Both carry a noindex
+      // meta for the same reason: each is a moment in a session, not a page
+      // anyone should arrive at from search, so neither belongs in the sitemap.
+      filter: (page) => !/\/(welcome|uninstall)\/$/.test(page),
       // lastmod comes from scripts/site-lastmod.mjs after the build, which
       // compares each page with the previous deploy.
       i18n: {
