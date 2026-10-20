@@ -6,7 +6,8 @@
 
 **The whole page. One click. Yours to keep.**
 
-Full-page screenshots for Chrome and Firefox. Free editing. Local processing. No account.
+Open-source full-page screenshot extension for Chrome and Firefox. Capture, annotate, blur,
+export as PNG, JPEG, WebP, or PDF, and record a tab. Everything runs on your device. No account.
 
 [![CI](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/ci.yml/badge.svg)](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/ci.yml) [![Chrome release](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/release.yml/badge.svg)](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/release.yml) [![Firefox release](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/release-firefox.yml/badge.svg)](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/release-firefox.yml) [![MCP publish](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/publish-mcp.yml/badge.svg)](https://github.com/PGHQdev/OpenScreenShot/actions/workflows/publish-mcp.yml)
 
@@ -69,38 +70,48 @@ Full-page screenshots for Chrome and Firefox. Free editing. Local processing. No
 
 </div>
 
-Capture the full web page.
-
-- Crop it as you like.
-- Edit it.
-- Mark it.
-- Blur it.
-  All done locally, no account required. Fully private and privacy-friendly.
+Capture the whole web page, crop it, mark it up, blur what is private, and save it as an
+image or a PDF. Every step runs in your browser: nothing is uploaded, and there is no account.
 
 ## Capture → edit → share
 
 - **One click, whole page** — the toolbar icon captures the entire scrolling page,
   even behind sticky headers and inside nested scrollers (a settings toggle restores
   the mode picker)
-- **Visible area and region capture** from the right-click menu or shortcuts
-- **Annotate** with arrows, text, numbered steps, spotlight, and crop, with full undo
-- **Blur or redact secrets** before you share
+- **Visible area, region, and element capture** from the popup, the right-click menu,
+  or keyboard shortcuts, with an optional 3, 5, or 10 second delay
+- **Annotate** with arrows, shapes, text, numbered steps, spotlight, highlighter, and crop,
+  with full undo
+- **Blur or redact secrets** before you share: soft blur, mosaic, or an opaque fill
 - **Record the tab in Chrome** with auto-zoom at your clicks, mic and webcam, and trim. Pick
   the part of the tab to record and check your camera first; the controls stay out of the video
 - **Export** as PNG, JPEG, WebP, or multi-page PDF, or copy straight to the clipboard
+- **Script it** from a terminal, CI, or an AI agent with the [CLI and MCP server](#cli--mcp)
 
 The full tour, every shortcut, and the settings reference live in the
 [docs](https://openscreenshot.app/docs/).
 
+### Guides
+
+- [How to take a full-page screenshot in Chrome](https://openscreenshot.app/blog/full-page-screenshot-chrome/),
+  and the same for [Edge, Firefox, Safari, Brave, Opera, Vivaldi, and Arc](https://openscreenshot.app/full-page-screenshot/)
+- [Save a screenshot as a PDF](https://openscreenshot.app/blog/save-screenshot-as-pdf/) ·
+  [Redact a screenshot](https://openscreenshot.app/blog/redact-screenshot/)
+- [Screenshots from the command line](https://openscreenshot.app/blog/screenshot-cli/) ·
+  [A local screenshot MCP server](https://openscreenshot.app/blog/screenshot-mcp-server/) ·
+  [Screenshots in CI](https://openscreenshot.app/blog/screenshots-for-ci/)
+- [Full-page screenshot extensions compared](https://openscreenshot.app/blog/full-page-screenshot-extensions/) ·
+  [Alternatives to GoFullPage, FireShot, Awesome Screenshot, and more](https://openscreenshot.app/alternatives/)
+
 ## Install
 
-|                                          | Chrome & Chromium                                                                             | Firefox                                                                     |
-| ---------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Install                                  | [Chrome Web Store](https://chromewebstore.google.com/detail/hdabbojjccojlapnfjpdppcpfcnhgmdp) | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/openscreenshot/) |
-| Full-page, visible-area & region capture | ✓                                                                                             | ✓                                                                           |
-| Annotations, redaction & local history   | ✓                                                                                             | ✓                                                                           |
-| Image, PDF & clipboard export            | ✓                                                                                             | ✓                                                                           |
-| Screen recording                         | Chrome                                                                                        | Not available                                                               |
+|                                              | Chrome & Chromium                                                                             | Firefox                                                                     |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| Install                                      | [Chrome Web Store](https://chromewebstore.google.com/detail/hdabbojjccojlapnfjpdppcpfcnhgmdp) | [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/openscreenshot/) |
+| Full-page, visible, region & element capture | ✓                                                                                             | ✓                                                                           |
+| Annotations, redaction & local history       | ✓                                                                                             | ✓                                                                           |
+| Image, PDF & clipboard export                | ✓                                                                                             | ✓                                                                           |
+| Screen recording                             | Chrome                                                                                        | Not available                                                               |
 
 Firefox requires **desktop version 140 or later**. The Chrome extension also works in
 Edge, Brave, Arc, and other Chromium browsers. Screen-wide color picking and floating
@@ -115,7 +126,7 @@ capture windows appear only when the browser supports them.
 Prefer a capture menu on every click? Turn off **Express mode** in settings.
 For alternatives and a sourced feature comparison, see [How it compares](https://openscreenshot.app/compare/).
 
-### Element capture (source builds)
+### Element capture
 
 Choose **Capture element** from the page or extension right-click menu, or from
 the popup when Express mode is off. Hover over a card, image, chart, or table to
@@ -126,7 +137,6 @@ The capture follows your existing Editor, Clipboard, or Download setting. The
 element must be fully visible: scroll it into view, or use the **Capture full
 page** fallback offered for clipped elements. Content inside an iframe is
 captured as part of the iframe's visible rectangle. No new permissions are needed.
-This feature is available in source builds and has not yet been released to the stores.
 
 ## Private by design
 
@@ -183,7 +193,7 @@ The [Firefox release guide](release/firefox/README.md) covers reviewer source ar
 verification, and automated Mozilla submissions. Tagged releases have separate Chrome
 and Firefox workflows; store review determines when each update becomes available.
 
-For the website, use `pnpm site:dev` or `pnpm site:deploy`. See
+For the website, use `pnpm site:dev`; a push to `main` deploys it. See
 [CONTRIBUTING.md](./CONTRIBUTING.md) for the contribution workflow.
 
 <details>
@@ -218,28 +228,38 @@ openscreenshot/
 [![npm](https://img.shields.io/npm/v/openscreenshot?label=openscreenshot&color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![npm downloads](https://img.shields.io/npm/dt/openscreenshot?label=downloads&color=1B1A17)](https://www.npmjs.com/package/openscreenshot)
 
 `openscreenshot` (npm) is a separate, optional tool that drives the Chrome already on your
-machine — also fully local:
+machine — also fully local. Node.js 22.12 or newer and Chrome, Chromium, or Edge are required.
+The [package README](./mcp/README.md) has every option.
 
 ### CLI
 
 ```bash
-pnpm dlx openscreenshot shot https://example.com --out shot.png --full
+npx openscreenshot shot https://example.com --out shot.png --full
 ```
+
+Cover secrets before the pixels are written: `--redact "<css selector>"`,
+`--redact-pattern email,phone,secret`, and `--redact-rect x,y,w,h` put black boxes over
+their targets, and the capture fails rather than writes an image if a target moves.
 
 ### MCP
 
-Add this server entry to your MCP client’s configuration, then call `capture_screenshot`:
+Add this server entry to your MCP client’s configuration, then call `capture_screenshot`
+with `{ "url": "https://example.com", "fullPage": true }`:
 
 ```json
 {
-  "command": "pnpm",
-  "args": ["dlx", "openscreenshot", "serve"]
+  "mcpServers": {
+    "openscreenshot": { "command": "npx", "args": ["-y", "openscreenshot"] }
+  }
 }
 ```
 
+Claude Code: `claude mcp add openscreenshot -- npx -y openscreenshot`.
+
 The server runs locally over **stdio**. Your client must support launching a local MCP
-process; clients that only accept remote MCP URLs need a compatible bridge. Setup and
-availability depend on the client.
+process; clients that only accept remote MCP URLs need a compatible bridge. The tool returns
+the PNG to the client, which may send it to a hosted model: use the `redact` input for data
+that must not leave the device.
 
 Built for the terminal-heavy parts of the job:
 
