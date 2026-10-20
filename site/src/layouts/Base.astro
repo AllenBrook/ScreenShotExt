@@ -216,7 +216,7 @@ const alternates = availableLocales.map((l) => ({
           <a href={localizePath(locale, '/privacy/')}>{c.footer.privacy}</a>
         </nav>
         <nav class="foot-col" aria-label={c.footer.moreHead}>
-          <p class="foot-head">{c.footer.moreHead}</p>
+          <a class="foot-head" href={localizePath(locale, '/cool-stuff/')}>{c.footer.moreHead}</a>
           {
             [
               { href: 'https://opentechcheck.com', icon: 'opentechcheck', label: 'OpenTechCheck' },
@@ -445,6 +445,7 @@ const alternates = availableLocales.map((l) => ({
   }
 
   .foot-head {
+    display: block;
     margin: 0 0 var(--s-1);
     color: var(--ink-3);
     font-family: var(--font-mono);
@@ -461,6 +462,15 @@ const alternates = availableLocales.map((l) => ({
   }
 
   .foot-col a:hover {
+    color: var(--ink);
+  }
+
+  .foot-col a.foot-head {
+    color: var(--ink-3);
+    text-decoration: none;
+  }
+
+  .foot-col a.foot-head:hover {
     color: var(--ink);
   }
 
