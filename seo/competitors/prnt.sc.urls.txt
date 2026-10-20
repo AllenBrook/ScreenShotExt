@@ -1,0 +1,1 @@
+no XML sitemap found on 2026-10-20 (robots.txt lists none; /sitemap.xml returns HTML)

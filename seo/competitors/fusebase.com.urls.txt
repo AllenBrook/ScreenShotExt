@@ -1,0 +1,4 @@
+https://thefusebase.com/author-sitemap.xml
+https://thefusebase.com/category-sitemap.xml
+https://thefusebase.com/page-sitemap.xml
+https://thefusebase.com/post-sitemap.xml

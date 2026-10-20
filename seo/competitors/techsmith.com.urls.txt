@@ -1,0 +1,14 @@
+https://www.techsmith.com/author-sitemap.xml
+https://www.techsmith.com/category-sitemap.xml
+https://www.techsmith.com/feature-sitemap.xml
+https://www.techsmith.com/features_category-sitemap.xml
+https://www.techsmith.com/page-sitemap.xml
+https://www.techsmith.com/pcategory-sitemap.xml
+https://www.techsmith.com/post_tag-sitemap.xml
+https://www.techsmith.com/post-sitemap.xml
+https://www.techsmith.com/press_release-sitemap.xml
+https://www.techsmith.com/products_category-sitemap.xml
+https://www.techsmith.com/ptag-sitemap.xml
+https://www.techsmith.com/release-note-category-sitemap.xml
+https://www.techsmith.com/sng_feature-sitemap.xml
+https://www.techsmith.com/sng_features_category-sitemap.xml
