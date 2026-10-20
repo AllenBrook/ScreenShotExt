@@ -2,15 +2,17 @@
 
 **Name:** Full Page Screenshot - OpenScreenShot
 
-**Summary:** Capture full pages, visible areas or a selected region. Annotate and export images or PDFs. Open source, with local processing and no account.
+**Summary:** Capture full pages, visible areas, a selected region or one page element. Annotate and export images or PDFs. Open source, with local processing and no account.
 
 **Description:**
 
-Take a screenshot of an entire scrolling page, the visible area, or a selected
-region. Add arrows, text and shapes in the built-in editor, crop your capture, and
-save it as PNG, JPEG, WebP or PDF. Reopen recent captures from local history.
+Take a screenshot of an entire scrolling page, the visible area, a selected
+region, or one element such as a card, chart, table or image. Add arrows, text and
+shapes in the built-in editor, blur or black out private details, crop your capture,
+and save it as PNG, JPEG, WebP or PDF. Reopen recent captures from local history.
 
 - Capture from the toolbar, keyboard shortcuts or the page's right-click menu.
+- Pick an element with the mouse or the arrow keys; clipped elements offer a full-page capture.
 - Repeat your last selected region and choose a capture delay.
 - Open captures in the editor, copy them, or save them directly.
 - No account, uploads or remote image processing. Captures stay in your browser.
