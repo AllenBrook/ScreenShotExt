@@ -3,6 +3,8 @@ title: CI とリリース レビューのためにウェブサイトのスクリ
 description: OpenScreenShot CLI で再現できる PNG の成果物を作り、ビルド パイプラインでスクリーンショットが何を確認できるかを理解します。
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 CI で OpenScreenShot CLI を使うと、実行中のアプリケーションの PNG をレビュー用に保存できます。Chrome 互換ブラウザを用意し、アプリケーションを起動して準備ができるまで待ち、固定の URL とビューポートでキャプチャします。できたファイルは、CI プロバイダーの成果物 (artifact) の仕組みでアップロードします。

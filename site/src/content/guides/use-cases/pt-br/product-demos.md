@@ -2,6 +2,7 @@
 title: Como gravar um vídeo de demonstração de produto no Chrome
 description: Grave uma aba do navegador com webcam e voz, adicione zoom em cada clique, apare a gravação e exporte um MP4, tudo no Chrome, no seu computador.
 order: 6
+published: 2026-10-09
 ---
 
 Para gravar uma demonstração curta de produto a partir de uma aba do navegador, use **Gravar** na extensão do OpenScreenShot para Chrome. Escolha a aba inteira ou parte dela, ative o microfone, o som da aba ou a webcam e grave a demonstração. Depois, o editor adiciona um zoom em cada clique, permite aparar a gravação e exporta um MP4. A versão para Firefox só faz capturas de tela e não tem gravador.

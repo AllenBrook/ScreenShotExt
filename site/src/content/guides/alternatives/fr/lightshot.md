@@ -2,6 +2,7 @@
 title: 'Alternative à Lightshot : capture pleine page sans mise en ligne publique'
 description: Lightshot vs OpenScreenShot. Capture pleine page, flou et export PDF dans le navigateur, avec des fichiers qui restent sur votre appareil et sans liens prnt.sc.
 order: 6
+published: 2026-10-09
 ---
 
 Passez à OpenScreenShot si vous faites des captures de pages web dans Chrome ou Firefox et voulez la capture pleine page, le flou et l’export PDF, avec des fichiers qui restent sur votre appareil. Restez sur Lightshot si vous capturez d’autres applications ou tout votre bureau : Lightshot a des applications de bureau pour Windows et Mac, et OpenScreenShot capture uniquement les pages web dans le navigateur. Restez aussi si vous dépendez de ses liens courts instantanés. OpenScreenShot n’a pas de service de mise en ligne : vous partagez une capture en la collant ou en joignant le fichier.

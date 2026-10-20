@@ -2,6 +2,7 @@
 title: Cómo usar capturas de pantalla para responder tickets de soporte
 description: Copia una captura directamente en la respuesta a un ticket, numera los pasos, oculta los datos del cliente y marca una imagen que te envió un cliente.
 order: 7
+published: 2026-10-09
 ---
 
 Para responder un ticket de soporte con una captura, captura la pantalla que el cliente necesita ver, numera los pasos que debe seguir, oculta los datos del cliente y pega la imagen en tu respuesta. En OpenScreenShot, la acción **Portapapeles** copia una captura sin abrir el editor, y las insignias de **Número de paso** muestran el orden de los clics. Para marcar una captura que te envió un cliente, pégala o suéltala en el **Editor**.

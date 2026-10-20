@@ -2,6 +2,7 @@
 title: So nimmst du in Chrome ein Produktdemo-Video auf
 description: Nimm einen Browser-Tab mit Webcam und Stimme auf, füge bei jedem Klick einen Zoom hinzu, kürze die Aufnahme und exportiere ein MP4, alles lokal in Chrome.
 order: 6
+published: 2026-10-09
 ---
 
 Um eine kurze Produktdemo aus einem Browser-Tab aufzunehmen, nutze **Aufnehmen** in der Chrome-Erweiterung von OpenScreenShot. Wähle den ganzen Tab oder einen Teil davon, schalte Mikrofon, Tab-Audio oder Webcam ein und nimm die Demo auf. Der Editor fügt dann bei jedem Klick einen Zoom hinzu, lässt dich die Aufnahme kürzen und exportiert ein MP4. Die Firefox-Version unterstützt nur Screenshots und hat keinen Rekorder.

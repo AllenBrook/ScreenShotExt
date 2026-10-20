@@ -2,6 +2,7 @@
 title: So nimmst du in Opera einen Ganzseiten-Screenshot auf
 description: Das Snapshot-Tool von Opera speichert eine ganze Seite nur als PDF. Lerne Schritte und Grenzen kennen und nimm mit OpenScreenShot ein Ganzseiten-Bild auf.
 order: 6
+published: 2026-10-09
 ---
 
 Das integrierte Snapshot-Tool von Opera nimmt eine Auswahl oder den sichtbaren Bereich als Bild auf, die ganze Seite aber nur als PDF. Drücke `Shift+Ctrl+5` (`Shift+Cmd+2` auf macOS) und wähle **Save page as PDF** („Seite als PDF speichern“). Für eine Ganzseiten-Bilddatei installiere OpenScreenShot. Opera ist ein Chromium-Browser und installiert die Erweiterung aus dem Chrome Web Store, nachdem du das Opera-Add-on **Install Chrome Extensions** hinzugefügt hast.

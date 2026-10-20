@@ -21,6 +21,8 @@ const { Content } = await render(guide);
   path={`/${section}/${slug}/`}
   locale={locale}
   availableLocales={availableLocales}
+  published={guide.data.published}
+  updated={guide.data.updated}
 >
   <Content />
 </Article>

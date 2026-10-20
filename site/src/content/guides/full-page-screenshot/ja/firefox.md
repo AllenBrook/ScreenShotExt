@@ -2,6 +2,7 @@
 title: Firefox でページ全体のスクリーンショットを撮る方法
 description: 'Firefox 標準のスクリーンショット ツールか :screenshot コマンドでページ全体を撮り、サイズ上限を確認し、OpenScreenShot アドオンを使います。'
 order: 3
+published: 2026-10-09
 ---
 
 Firefox にはスクリーンショット ツールが標準で入っています。`Ctrl+Shift+S`（macOS では `Cmd+Shift+S`）を押して **Save full page**（ページ全体を保存）を選び、**Download**（ダウンロード）で PNG を保存するか、**Copy**（コピー）で画像をクリップボードに入れます。Firefox 用の OpenScreenShot アドオンは、矢印、テキスト、マスク処理のためのエディタを追加し、PNG、JPEG、WebP、PDF で書き出します。

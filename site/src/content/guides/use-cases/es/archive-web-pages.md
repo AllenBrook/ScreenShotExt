@@ -2,6 +2,7 @@
 title: Cómo guardar una copia visual de una página web
 description: Captura una página web entera como PNG o PDF, nombra los archivos por fecha y dominio, y gestiona páginas muy largas que se guardan en varias imágenes.
 order: 5
+published: 2026-10-09
 ---
 
 Para guardar una copia visual de una página web, captúrala con **Página completa** y guárdala como PNG o PDF con la fecha y el sitio en el nombre del archivo. OpenScreenShot desplaza la página, une las partes en una imagen y guarda el archivo en tu ordenador. Una captura registra cómo se veía la página en tu pantalla; no prueba que la página fuera auténtica ni que no se hubiera modificado.

@@ -2,6 +2,7 @@
 title: 'GoFullPage の代替: 無料の注釈機能とオープンソース'
 description: GoFullPage と OpenScreenShot を比較。OpenScreenShot は注釈、ぼかし、切り抜き、PDF のページ分割が無料で、コードも公開しています。
 order: 1
+published: 2026-10-09
 ---
 
 ページ全体をキャプチャした後に、切り抜き、ぼかし、注釈、PDF のページ分割が必要なら、OpenScreenShot に切り替えてください。GoFullPage ではこれらの機能が有料の Premium プランにあり、OpenScreenShot では無料で使えます。OpenScreenShot は MIT ライセンスでもあるため、ページ上で動くコードを読めます。ページ全体をキャプチャして画像や PDF として保存するだけで、編集はしないなら、GoFullPage のままで構いません。GoFullPage の無料版はそれをキャプチャ回数の制限なしで行え、FAQ には Microsoft Edge Add-ons 版へのリンクもあります。OpenScreenShot は Edge Add-ons に掲載されていませんが、Edge では Chrome ウェブストア からインストールできます。OpenScreenShot がキャプチャするのはブラウザ内のウェブページだけです。デスクトップのウィンドウや画面全体はキャプチャしません。

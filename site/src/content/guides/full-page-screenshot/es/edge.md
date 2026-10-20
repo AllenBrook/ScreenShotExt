@@ -2,6 +2,7 @@
 title: Cómo hacer una captura de página completa en Microsoft Edge
 description: Captura una página entera con la herramienta Screenshot de Edge o con su comando de DevTools, conoce los límites y usa OpenScreenShot.
 order: 2
+published: 2026-10-09
 ---
 
 Microsoft Edge tiene una herramienta de captura integrada, Screenshot, que antes se llamaba Web capture. Pulsa `Ctrl+Shift+S`, selecciona **Capture full page** (capturar página completa) y, después, copia la captura o guárdala en tu dispositivo. OpenScreenShot también funciona en Edge: Edge es un navegador Chromium y lo instala desde la Chrome Web Store una vez que permites las extensiones de otras tiendas.

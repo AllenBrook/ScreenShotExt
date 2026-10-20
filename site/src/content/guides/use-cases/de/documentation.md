@@ -2,6 +2,7 @@
 title: So erstellst du Screenshots für Hilfedokumente und Tutorials
 description: Halte Tutorial-Screenshots gleich groß, nummeriere die Schritte, hebe das richtige Bedienelement hervor und speichere jede Datei in einen Docs-Ordner.
 order: 3
+published: 2026-10-09
 ---
 
 Für Hilfedokumente und Tutorials nimmst du jeden Bildschirm auf dieselbe Weise auf, nummerierst die Aktionen und exportierst jedes Bild in derselben Breite. Lege in OpenScreenShot im Dialog **Exportieren** unter **Skalierung** eine exakte Pixelbreite fest, füge für jede Aktion **Schrittnummer**-Badges hinzu und nutze **Spotlight**, um Leser auf das richtige Bedienelement zu lenken. Eine Dateinamen-Vorlage wie `Docs/{title}` speichert jedes Bild in einen Ordner innerhalb von Downloads.

@@ -14,5 +14,7 @@
   "next": {
     "heading": "さらに読む",
     "body": "<a href=\"/docs/\">ドキュメントを読む</a>、<a href=\"/blog/\">すべてのガイドを見る</a>、または<a href=\"/support/\">キャプチャについてサポートを受ける</a>。"
-  }
+  },
+  "published": "公開",
+  "updated": "更新"
 }

@@ -3,6 +3,7 @@ title: Comparativa de extensiones para capturas de página completa (2026)
 description: OpenScreenShot, GoFullPage, FullPage Capture, Awesome Screenshot, FireShot y Nimbus/FuseBase por precio, código, permisos, anotación, PDF y grabación.
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 Si solo necesitas una captura de página completa de vez en cuando, las herramientas integradas en Chrome DevTools, Microsoft Edge y Firefox capturan una página entera sin instalar nada. Si capturas páginas a menudo, las extensiones de abajo se diferencian en lo que es gratis, en el acceso a sitios que piden al instalarse, en si graban vídeo y en si su código fuente es público. Cada sección dice a quién le encaja la herramienta.

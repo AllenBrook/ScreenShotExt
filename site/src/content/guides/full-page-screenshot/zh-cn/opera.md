@@ -2,6 +2,7 @@
 title: 如何在 Opera 中截取整页截图
 description: Opera 的 Snapshot 工具只能把整页保存为 PDF。了解步骤和局限，以及如何用 OpenScreenShot 截取整页图片。
 order: 6
+published: 2026-10-09
 ---
 
 Opera 内置的 Snapshot（快照）工具可以把选区或可见区域截取为图片，但整页只能保存为 PDF。按 `Shift+Ctrl+5`（macOS 上为 `Shift+Cmd+2`），然后选择 **Save page as PDF**（将页面另存为 PDF）。如需整页图片文件，请安装 OpenScreenShot。Opera 是 Chromium 浏览器，在你添加 Opera 的 **Install Chrome Extensions** 附加组件后，即可从 Chrome 应用商店 安装它。

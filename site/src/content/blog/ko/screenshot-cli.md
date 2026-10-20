@@ -3,6 +3,8 @@ title: 명령줄에서 웹사이트 스크린샷 찍기
 description: OpenScreenShot CLI로 고정 뷰포트, 전체 페이지 캡처, stdout 바이너리 출력으로 PNG 스크린샷을 저장하세요.
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot CLI는 로컬에 설치된 Chrome 호환 브라우저를 사용해 웹페이지를 PNG로 캡처합니다. 브라우저 확장 프로그램과는 별개의 패키지입니다. Node.js, pnpm, Chrome이 설치되어 있다면 다음을 실행하세요.

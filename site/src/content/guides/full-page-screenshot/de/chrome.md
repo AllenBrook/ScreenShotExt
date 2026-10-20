@@ -2,6 +2,7 @@
 title: 'So nimmst du in Chrome einen Ganzseiten-Screenshot auf: DevTools oder Erweiterung'
 description: Nutze den Befehl Capture full size screenshot in den Chrome DevTools, kenne seine Grenzen und vergleiche ihn mit einer Ganzseiten-Aufnahme in OpenScreenShot.
 order: 1
+published: 2026-10-09
 ---
 
 Chrome kann ohne Erweiterung einen Ganzseiten-Screenshot aufnehmen, aber nur über die DevTools. Öffne die DevTools, öffne das Befehlsmenü, tippe `screenshot` und führe **Capture full size screenshot** aus. Chrome speichert die ganze Seite als PNG-Datei. Die normalen Chrome-Menüs haben keinen Screenshot-Eintrag: Die Hilfe von Google listet unter **Cast, save, and share** („Streamen, speichern und teilen“) nur Teilen, An deine Geräte senden und QR-Code erstellen auf. Für eine Aufnahme, die du markieren, als PDF exportieren oder auf einer Seite machen kannst, die in einem Bereich scrollt, installiere OpenScreenShot und klicke auf das Symbol.

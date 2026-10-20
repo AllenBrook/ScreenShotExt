@@ -3,6 +3,7 @@ title: 适用于各平台的开源截图工具
 description: 按运行环境介绍 OpenScreenShot、Screenity、ShareX、Flameshot、Playwright 等开源截图工具。
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 请根据你要截取的内容所在的位置来选择开源截图工具。Windows 屏幕上的任何内容，用 ShareX。Linux、macOS 或 Windows 桌面，用 Flameshot。网页，用 OpenScreenShot 等浏览器工具或 Firefox 内置的 Screenshots 工具；通过脚本截图，用 shot-scraper、Playwright 或 Puppeteer。

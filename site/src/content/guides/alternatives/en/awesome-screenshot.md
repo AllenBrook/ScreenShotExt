@@ -2,6 +2,7 @@
 title: 'Awesome Screenshot alternative: free tools that stay on your device'
 description: Awesome Screenshot vs OpenScreenShot. Free annotation, blur, PDF, and tab recording that stay on your device, one free tier, and no all-sites access at install.
 order: 3
+published: 2026-10-09
 ---
 
 Switch to OpenScreenShot if you capture and record inside the browser and want everything to stay on your device, with all editor tools free and no plan limits. Stay with Awesome Screenshot if you need its cloud features: share links, cloud storage, and recording of the desktop and camera, up to 4K on its Professional plan. OpenScreenShot has no share links and no cloud. It records one browser tab, in Chrome only, and it does not capture desktop windows or the whole screen.

@@ -2,6 +2,7 @@
 title: So nimmst du in Microsoft Edge einen Ganzseiten-Screenshot auf
 description: Nimm eine ganze Seite mit dem Screenshot-Tool von Edge oder dem DevTools-Befehl auf, kenne die Grenzen und nutze OpenScreenShot aus dem Chrome Web Store.
 order: 2
+published: 2026-10-09
 ---
 
 Microsoft Edge hat ein integriertes Screenshot-Tool, das früher Web capture hieß. Drücke `Ctrl+Shift+S`, wähle **Capture full page** („Ganze Seite erfassen“) und kopiere dann die Aufnahme oder speichere sie auf deinem Gerät. OpenScreenShot funktioniert auch in Edge: Edge ist ein Chromium-Browser und installiert die Erweiterung aus dem Chrome Web Store, sobald du Erweiterungen aus anderen Stores erlaubst.

@@ -14,5 +14,7 @@
   "next": {
     "heading": "Keep going",
     "body": "<a href=\"/docs/\">Read the documentation</a>, <a href=\"/blog/\">browse all guides</a>, or <a href=\"/support/\">get help with a capture</a>."
-  }
+  },
+  "published": "Published",
+  "updated": "Updated"
 }

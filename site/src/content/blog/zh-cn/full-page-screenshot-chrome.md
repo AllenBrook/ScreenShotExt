@@ -3,6 +3,8 @@ title: 如何在 Chrome 中截取整页截图
 description: 用 OpenScreenShot 截取整个可滚动网页，检查结果，并导出为图片或 PDF。
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 要用 OpenScreenShot 截取整页截图，请打开网页并点击扩展的工具栏图标。在默认设置下，截图会立即开始，完成的图片在编辑器中打开。扩展会滚动页面，并把截取的各部分拼接成一张图片。

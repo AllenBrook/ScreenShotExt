@@ -3,6 +3,8 @@ title: 面向开发者、CI 和 AI 智能体的网站截图工具
 description: 从运行环境、整页、CLI、MCP、视频和许可证对比 openscreenshot CLI 和 MCP 服务器、shot-scraper、Playwright 等工具。
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 如果只是在 shell 脚本或 CI 任务中截取公开页面的 PNG，命令行工具就够了：openscreenshot、shot-scraper、capture-website-cli 或 pageres-cli。如果截图需要登录、点击、断言或视频，请用 Playwright 或 Puppeteer 编写。对于 AI 智能体，本地 MCP 服务器会把截图返回给模型：`openscreenshot serve` 每次调用截取一张截图，而 Playwright MCP 驱动整个浏览器会话。

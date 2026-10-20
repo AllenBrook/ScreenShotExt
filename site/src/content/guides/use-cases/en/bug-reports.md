@@ -2,6 +2,7 @@
 title: How to take screenshots for bug reports
 description: Capture the broken part of a page, mark it with arrows and step numbers, hide tokens and emails, and paste the image into an issue.
 order: 1
+published: 2026-10-09
 ---
 
 For a bug report, capture only the part of the page that shows the problem, mark what is wrong, and hide anything private before you paste the image into the issue. In OpenScreenShot, use **Selected Region** or **Capture element** for the capture, the **Arrow** and **Step number** tools for the marks, and **Blur** with the **Solid** fill for redaction. Put the URL, browser, and reproduction steps in the issue text, because the screenshot shows the page content without the address bar.

@@ -2,6 +2,7 @@
 title: 'Alternativa a FireShot: un editor gratuito en el navegador y de código abierto'
 description: FireShot frente a OpenScreenShot. Ambos capturan páginas completas localmente. OpenScreenShot es de código abierto, con editor y grabación de pestañas gratis.
 order: 4
+published: 2026-10-09
 ---
 
 Cámbiate a OpenScreenShot si quieres anotar y desenfocar capturas de página completa en el navegador de forma gratuita, en cualquier sistema operativo que ejecute Chrome o Firefox, con un código que puedes leer. Quédate con FireShot si necesitas PDF con enlaces que funcionan, capturas por lotes o automatizadas, o los extras de FireShot Pro, como la exportación avanzada a PDF y un historial de capturas. OpenScreenShot guarda un PDF como imagen, así que su texto no se puede buscar y sus enlaces no funcionan. Captura solo páginas web y no captura ventanas del escritorio ni la pantalla entera.

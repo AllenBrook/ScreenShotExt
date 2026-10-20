@@ -2,6 +2,7 @@
 title: 'Screenity alternative: screenshots and tab recording in one extension'
 description: Screenity vs OpenScreenShot. Both are open source. OpenScreenShot adds full-page screenshots and PDF export, and asks for no all-sites access at install.
 order: 7
+published: 2026-10-09
 ---
 
 Switch to OpenScreenShot if you record browser tabs and also take full-page screenshots, and you want one open-source extension that does both with no access to all websites at install. Stay with Screenity if you record more than a tab: it records an area, the desktop, any app window, or the camera, and exports GIF or saves to Google Drive. OpenScreenShot records one browser tab and does not capture desktop windows or the whole screen. Screenity's paid Pro plan also adds link sharing and cloud hosting, which OpenScreenShot does not offer.

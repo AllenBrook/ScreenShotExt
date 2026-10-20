@@ -2,6 +2,7 @@
 title: How to save a visual copy of a web page
 description: Capture a whole web page as PNG or PDF, name files by date and domain, and handle very long pages that save as several images.
 order: 5
+published: 2026-10-09
 ---
 
 To keep a visual copy of a web page, capture it with **Full Page** and save it as a PNG or a PDF with the date and site in the filename. OpenScreenShot scrolls the page, stitches the parts into one image, and saves the file on your computer. A screenshot records how the page looked on your screen; it is not proof that the page was authentic or unchanged.

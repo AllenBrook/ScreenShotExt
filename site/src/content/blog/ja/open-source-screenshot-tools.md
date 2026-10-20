@@ -3,6 +3,7 @@ title: あらゆるプラットフォーム向けのオープンソース スク
 description: OpenScreenShot、Screenity、ShareX、Flameshot、Playwright などのオープンソース ツールを動作環境別に紹介します。
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 オープンソースのスクリーンショット ツールは、キャプチャする対象がどこにあるかで選びます。Windows の画面上のものなら ShareX を使います。Linux、macOS、Windows のデスクトップなら Flameshot を使います。ウェブページなら OpenScreenShot や Firefox に組み込まれた Screenshots ツールなどのブラウザ ツールを使い、スクリプトからのスクリーンショットには shot-scraper、Playwright、Puppeteer を使います。

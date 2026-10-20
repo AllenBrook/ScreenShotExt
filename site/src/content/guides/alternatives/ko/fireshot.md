@@ -2,6 +2,7 @@
 title: 'FireShot 대안: 브라우저 안의 무료 편집기와 오픈 소스'
 description: FireShot vs OpenScreenShot. 둘 다 로컬에서 전체 페이지 캡처. OpenScreenShot은 오픈 소스, 무료 브라우저 편집기와 탭 녹화 제공.
 order: 4
+published: 2026-10-09
 ---
 
 Chrome이나 Firefox가 돌아가는 모든 운영 체제에서, 읽어 볼 수 있는 코드로, 브라우저 안에서 전체 페이지 스크린샷에 무료로 주석을 달고 블러를 넣고 싶다면 OpenScreenShot으로 바꾸세요. 링크가 동작하는 PDF, 일괄 캡처나 자동 캡처, 또는 고급 PDF 내보내기와 캡처 기록 같은 FireShot Pro의 추가 기능이 필요하다면 FireShot을 계속 쓰세요. OpenScreenShot은 PDF를 이미지로 저장하므로 텍스트를 검색할 수 없고 링크가 동작하지 않아요. 웹 페이지만 캡처하고, 데스크톱 창이나 화면 전체는 캡처하지 않아요.

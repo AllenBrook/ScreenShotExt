@@ -2,6 +2,7 @@
 title: Come fare uno screenshot a pagina intera in Opera
 description: Lo strumento Snapshot di Opera salva una pagina intera solo come PDF. Scopri passi e limiti, e come catturare un’immagine a pagina intera con OpenScreenShot.
 order: 6
+published: 2026-10-09
 ---
 
 Lo strumento Snapshot integrato in Opera cattura una selezione o l’area visibile come immagine, e la pagina intera solo come PDF. Premi `Shift+Ctrl+5` (`Shift+Cmd+2` su macOS) e seleziona **Save page as PDF** (salva pagina come PDF). Per un file immagine a pagina intera, installa OpenScreenShot. Opera è un browser Chromium e lo installa dal Chrome Web Store dopo che hai aggiunto il componente **Install Chrome Extensions** di Opera.

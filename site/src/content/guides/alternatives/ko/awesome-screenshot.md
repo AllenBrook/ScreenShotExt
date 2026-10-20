@@ -2,6 +2,7 @@
 title: 'Awesome Screenshot 대안: 기기에 남는 무료 도구'
 description: Awesome Screenshot vs OpenScreenShot. 기기에 남는 무료 주석·블러·PDF·탭 녹화, 무료 요금제 하나, 설치 시 사이트 접근 없음.
 order: 3
+published: 2026-10-09
 ---
 
 브라우저 안에서 캡처하고 녹화하며 모든 것을 기기에 남기고 싶고, 모든 편집기 도구를 요금제 제한 없이 무료로 쓰고 싶다면 OpenScreenShot으로 바꾸세요. 공유 링크, 클라우드 저장소, Professional 요금제에서 최대 4K의 데스크톱·카메라 녹화 같은 클라우드 기능이 필요하다면 Awesome Screenshot을 계속 쓰세요. OpenScreenShot에는 공유 링크도 클라우드도 없어요. Chrome에서만 브라우저 탭 하나를 녹화하고, 데스크톱 창이나 화면 전체는 캡처하지 않아요.

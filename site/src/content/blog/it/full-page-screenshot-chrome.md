@@ -3,6 +3,8 @@ title: Come fare uno screenshot a pagina intera in Chrome
 description: Cattura un’intera pagina web scorrevole con OpenScreenShot, controlla il risultato ed esportalo come immagine o PDF.
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Per fare uno screenshot a pagina intera con OpenScreenShot, apri la pagina web e clicca l’icona dell’estensione nella barra degli strumenti. Con le impostazioni predefinite, la cattura parte subito e l’immagine finita si apre nell’editor. L’estensione fa scorrere la pagina e unisce le sezioni catturate in una sola immagine.

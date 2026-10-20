@@ -2,6 +2,7 @@
 title: 'Awesome-Screenshot-Alternative: kostenlose Werkzeuge, die auf deinem Gerät bleiben'
 description: Awesome Screenshot vs. OpenScreenShot. Kostenlose Anmerkungen, Unschärfe, PDF und Tab-Aufnahme lokal, eine Gratis-Stufe, kein Zugriff auf alle Websites.
 order: 3
+published: 2026-10-09
 ---
 
 Wechsle zu OpenScreenShot, wenn du im Browser aufnimmst und willst, dass alles auf deinem Gerät bleibt, mit allen Editor-Werkzeugen kostenlos und ohne Plan-Grenzen. Bleib bei Awesome Screenshot, wenn du seine Cloud-Funktionen brauchst: Freigabelinks, Cloud-Speicher und Aufnahme von Desktop und Kamera, im Professional-Plan bis 4K. OpenScreenShot hat keine Freigabelinks und keine Cloud. Es nimmt einen Browser-Tab auf, nur in Chrome, und es nimmt keine Desktop-Fenster und nicht den ganzen Bildschirm auf.

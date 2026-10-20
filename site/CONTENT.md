@@ -25,9 +25,14 @@ No Search Console or install attribution data was available for this pass.
 ## Publishing and maintenance
 
 Blog posts live in `src/content/blog/<locale>/<slug>.md` with the frontmatter
-`title`, `description`, `audience` (`everyday` or `developers`), and `order`.
-Guides live in `src/content/guides/<section>/<locale>/<slug>.md` with `title`,
-`description`, and `order`; the sections are `use-cases`, `full-page-screenshot`,
+`title`, `description`, `audience` (`everyday` or `developers`), `order`,
+`published`, and an optional `updated`. Guides live in
+`src/content/guides/<section>/<locale>/<slug>.md` with `title`, `description`,
+`order`, `published`, and `updated`. Dates are `YYYY-MM-DD`. `published` is the
+day the English article went live and stays the same in every translation. Set
+`updated` when the content of that file changes in substance; a typo fix or a link
+change does not move it. The page shows both dates and puts them in BlogPosting.
+Keep descriptions under 160 characters; the sections are `use-cases`, `full-page-screenshot`,
 and `alternatives`, each with a hub page. Write English first, then add the
 translations under the same slug. In a translation, prefix internal page links
 with the locale (`/de/docs/`); JSON dictionaries keep them locale-less.

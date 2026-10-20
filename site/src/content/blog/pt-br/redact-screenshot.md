@@ -3,6 +3,8 @@ title: Como ocultar informações sensíveis em uma captura de tela
 description: Use um preenchimento opaco para cobrir informações privadas, exporte uma captura achatada e confira o arquivo salvo antes de compartilhar.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Para informações que não podem aparecer em uma captura de tela compartilhada, use a ferramenta **Desfoque** do OpenScreenShot no modo de preenchimento opaco. Cubra toda a área sensível, exporte a imagem final e abra o arquivo exportado para conferir o resultado. Um desfoque suave é um efeito visual; o preenchimento opaco é a opção mais clara para ocultar texto.

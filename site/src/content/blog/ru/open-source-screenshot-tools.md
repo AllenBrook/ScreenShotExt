@@ -3,6 +3,7 @@ title: Инструменты для скриншотов с открытым к
 description: 'Инструменты с открытым кодом по платформам: OpenScreenShot и Screenity в браузере, ShareX, Flameshot, Firefox Screenshots, shot-scraper, Playwright, Puppeteer.'
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 Выбирайте инструмент для скриншотов с открытым кодом по тому, где находится то, что вы снимаете. Для всего, что есть на экране Windows, используйте ShareX. Для рабочего стола Linux, macOS или Windows используйте Flameshot. Для веб-страниц используйте браузерный инструмент, например OpenScreenShot или встроенный в Firefox инструмент Screenshots, а для скриншотов из скрипта — shot-scraper, Playwright или Puppeteer.

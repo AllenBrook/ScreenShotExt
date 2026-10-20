@@ -2,6 +2,7 @@
 title: Как сделать скриншот всей страницы в Microsoft Edge
 description: Снимите всю страницу встроенным инструментом Screenshot в Edge или командой DevTools, узнайте ограничения и используйте OpenScreenShot из Chrome Web Store.
 order: 2
+published: 2026-10-09
 ---
 
 В Microsoft Edge есть встроенный инструмент Screenshot, раньше он назывался Web capture. Нажмите `Ctrl+Shift+S`, выберите **Capture full page** (снимок всей страницы), затем скопируйте снимок или сохраните его на устройство. OpenScreenShot тоже работает в Edge: Edge — браузер на Chromium и устанавливает его из Chrome Web Store, если разрешить расширения из других магазинов.

@@ -3,6 +3,7 @@ title: Full-page screenshot extensions compared (2026)
 description: Six full-page screenshot extensions compared on price, source code, install permissions, annotation, PDF export, and recording, plus the browsers' built-in tools.
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 If you need a full-page screenshot only now and then, the tools built into Chrome DevTools, Microsoft Edge, and Firefox capture a whole page with no install. If you capture pages often, the extensions below differ in what is free, what site access they ask for at install, whether they record video, and whether their source is public. Each section says who the tool suits.

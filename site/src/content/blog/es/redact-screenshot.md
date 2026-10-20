@@ -3,6 +3,8 @@ title: Cómo ocultar información sensible en una captura de pantalla
 description: Usa un relleno opaco para tapar información privada, exporta una captura aplanada y revisa el archivo guardado antes de compartirlo.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Para la información que no debe verse en una captura compartida, usa la herramienta **Desenfocar** de OpenScreenShot en su modo de relleno opaco. Tapa toda el área sensible, exporta la imagen terminada y abre ese archivo exportado para comprobar el resultado. Un desenfoque suave es un efecto visual; un relleno opaco es la opción más clara para ocultar texto.

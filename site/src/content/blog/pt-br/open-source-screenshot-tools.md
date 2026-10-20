@@ -3,6 +3,7 @@ title: Ferramentas de captura de tela de código aberto para cada plataforma
 description: 'Ferramentas de captura de código aberto por plataforma: OpenScreenShot, Screenity, ShareX, Flameshot, Firefox Screenshots, shot-scraper, Playwright e Puppeteer.'
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 Escolha uma ferramenta de captura de tela de código aberto de acordo com o lugar onde está o que você quer capturar. Para qualquer coisa na tela do Windows, use o ShareX. Para desktops Linux, macOS ou Windows, use o Flameshot. Para páginas web, use uma ferramenta de navegador como o OpenScreenShot ou a ferramenta Screenshots nativa do Firefox, e para capturas a partir de um script, use shot-scraper, Playwright ou Puppeteer.

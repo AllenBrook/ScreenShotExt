@@ -2,6 +2,7 @@
 title: Как сделать скриншот всей страницы в Firefox
 description: Снимите всю страницу встроенным инструментом Firefox Screenshots или командой :screenshot, проверьте лимиты размера и используйте дополнение OpenScreenShot.
 order: 3
+published: 2026-10-09
 ---
 
 В Firefox есть встроенный инструмент Screenshots. Нажмите `Ctrl+Shift+S` (`Cmd+Shift+S` на macOS), выберите **Save full page** (сохранить всю страницу), затем выберите **Download** (скачать), чтобы сохранить PNG, или **Copy** (копировать), чтобы поместить изображение в буфер обмена. Дополнение OpenScreenShot для Firefox добавляет редактор для стрелок, текста и скрытия данных и экспортирует в PNG, JPEG, WebP или PDF.

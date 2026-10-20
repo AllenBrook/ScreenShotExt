@@ -2,6 +2,7 @@
 title: Safari でページ全体のスクリーンショットを撮る方法
 description: Mac の Safari にはページ全体の画像キャプチャがありません。ページを PDF で保存するか、Web インスペクタで要素を 1 つキャプチャするか、別のブラウザを使います。
 order: 4
+published: 2026-10-09
 ---
 
 Mac の Safari には、ページ全体のスクリーンショットを撮るコマンドがありません。標準機能でいちばん近いのは PDF です。**File**（ファイル）> **Print**（プリント）を選び、ダイアログの下部にある **PDF** をクリックしてファイルを保存します。画像ファイルが必要な場合は、Safari の Web インスペクタでページの要素を 1 つキャプチャできます。OpenScreenShot には Safari 版がありません。Safari は Mac App Store から Safari Web Extensions をインストールする仕組みで、Chrome ウェブストア や Firefox アドオンのパッケージはインストールできません。Mac では、Chrome、Firefox、Edge などのブラウザで OpenScreenShot を使えます。

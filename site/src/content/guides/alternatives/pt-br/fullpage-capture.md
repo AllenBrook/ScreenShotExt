@@ -2,6 +2,7 @@
 title: 'Alternativa ao FullPage Capture: código aberto e sem acesso a todos os sites na instalação'
 description: FullPage Capture vs. OpenScreenShot. Os dois capturam e anotam páginas inteiras de graça. O OpenScreenShot tem código aberto e não pede acesso a todos os sites.
 order: 2
+published: 2026-10-09
 ---
 
 Mude para o OpenScreenShot se você quer uma extensão de captura de página inteira cujo código você pode ler e que não pede acesso a todos os sites na instalação. Fique com o FullPage Capture se você precisa do que a exportação em PDF dele oferece: a página na loja descreve PDFs com links clicáveis e quebras de página inteligentes, e o plano Pro adiciona PDFs pesquisáveis. O OpenScreenShot salva o PDF como imagem, então o texto não pode ser pesquisado nem selecionado e os links não funcionam. O OpenScreenShot captura apenas páginas web no navegador; ele não captura janelas do desktop nem a tela inteira.

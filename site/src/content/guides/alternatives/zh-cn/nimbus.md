@@ -2,6 +2,7 @@
 title: 'Nimbus Screenshot 替代方案：迁移到 FuseBase 之后的本地截图'
 description: Nimbus Screenshot 现已更名为 FuseBase Pro。OpenScreenShot 是免费开源的选择，在你的设备上完成整页截图、标注和标签页录屏。
 order: 5
+published: 2026-10-09
 ---
 
 Nimbus Screenshot 现在以 FuseBase Pro 的名称在 Chrome 中发布，发布者为 Nimbus Web。如果你曾用 Nimbus 截取、标注和录制网页，并希望使用一款把文件留在你设备上的免费工具、无需账号、无需云端工作区，请改用 OpenScreenShot。如果你需要 OpenScreenShot 没有的功能，请继续使用 FuseBase Pro：超出单个标签页的屏幕录制，以及上传到 FuseBase、Google Drive、Dropbox 或 Slack。OpenScreenShot 只录制一个浏览器标签页，仅支持 Chrome。它不能截取桌面窗口或整个屏幕。

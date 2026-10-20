@@ -3,6 +3,8 @@ title: Fai screenshot di siti web dalla riga di comando
 description: Usa la CLI di OpenScreenShot per salvare screenshot PNG con una viewport fissa, la cattura a pagina intera o l’output binario su stdout.
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 La CLI di OpenScreenShot cattura una pagina web in PNG usando un browser compatibile con Chrome installato in locale. È un pacchetto separato dall’estensione per il browser. Con Node.js, pnpm e Chrome installati, esegui:

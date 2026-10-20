@@ -16,8 +16,20 @@ interface Props {
   locale: Locale;
   /** Locales that have a translation of this post, for hreflang. */
   availableLocales: readonly Locale[];
+  /** ISO dates from the content frontmatter. */
+  published: string;
+  updated?: string;
 }
-const { title, description, section, kicker, path, locale, availableLocales } = Astro.props;
+const { title, description, section, kicker, path, locale, availableLocales, published, updated } =
+  Astro.props;
+const modified = updated && updated > published ? updated : undefined;
+const fmt = new Intl.DateTimeFormat(LANG_TAGS[locale], {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const showDate = (iso: string) => fmt.format(new Date(`${iso}T00:00:00Z`));
 const b = t(locale, 'blog');
 const c = t(locale, 'common');
 const url = new URL(localizePath(locale, path), Astro.site).href;
@@ -32,6 +44,8 @@ const structuredData = {
       description,
       inLanguage: LANG_TAGS[locale],
       mainEntityOfPage: url,
+      datePublished: published,
+      dateModified: modified ?? published,
       author: { '@type': 'Organization', name: 'OpenScreenShot', url: Astro.site?.href },
       publisher: { '@type': 'Organization', name: 'OpenScreenShot', url: Astro.site?.href },
     },
@@ -55,7 +69,11 @@ const structuredData = {
       <p class="eyebrow"><a href={sectionPath}>{section.label}</a>{kicker && ` · ${kicker}`}</p>
       <h1>{title}</h1>
       <p class="doc-lead">{description}</p>
-      <p class="doc-fine">{b.byline} <a href="https://github.com/pghqdev/OpenScreenShot">OpenScreenShot</a></p>
+      <p class="doc-fine">
+        {b.byline} <a href="https://github.com/pghqdev/OpenScreenShot">OpenScreenShot</a>
+        · {b.published} <time datetime={published}>{showDate(published)}</time>
+        {modified && <> · {b.updated} <time datetime={modified}>{showDate(modified)}</time></>}
+      </p>
     </header>
     <div class="article-body"><slot /></div>
     <aside class="doc-section" aria-label={b.next.heading}>

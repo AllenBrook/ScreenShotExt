@@ -2,6 +2,7 @@
 title: Opera에서 전체 페이지 스크린샷 찍는 방법
 description: Opera의 Snapshot은 전체 페이지를 PDF로만 저장해요. 단계와 한계, OpenScreenShot으로 전체 페이지 이미지를 캡처하는 방법을 알아보세요.
 order: 6
+published: 2026-10-09
 ---
 
 Opera의 기본 Snapshot 도구는 선택 영역이나 보이는 영역은 이미지로, 전체 페이지는 PDF로만 캡처해요. `Shift+Ctrl+5`(macOS에서는 `Shift+Cmd+2`)를 누르고 **Save page as PDF**(페이지를 PDF로 저장)를 선택하세요. 전체 페이지 이미지 파일이 필요하면 OpenScreenShot을 설치하세요. Opera는 Chromium 브라우저이고, Opera의 **Install Chrome Extensions** 부가 기능을 추가하면 Chrome 웹 스토어에서 OpenScreenShot을 설치해요.

@@ -2,6 +2,7 @@
 title: So nimmst du eine Webseite für das Design-Review auf
 description: Nimm eine ganze Seite oder eine Komponente auf, lenke Reviewer mit Spotlight und Textnotizen auf Details und teile ein mehrseitiges PDF.
 order: 2
+published: 2026-10-09
 ---
 
 Für ein Design-Review nimmst du die ganze Seite mit **Ganze Seite** auf, markierst die Punkte, zu denen du Feedback willst, und teilst ein PDF, das Reviewer Seite für Seite lesen können. In OpenScreenShot dunkelt **Spotlight** alles außerhalb des besprochenen Bereichs ab, und **Text** und **Pfeil** fügen Hinweise hinzu. Nutze **Element erfassen**, wenn es im Review um eine Komponente geht, etwa eine Karte, ein Diagramm oder eine Tabelle.

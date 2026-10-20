@@ -2,6 +2,7 @@
 title: 'GoFullPage 대안: 무료 주석과 오픈 소스'
 description: GoFullPage vs OpenScreenShot. OpenScreenShot은 주석, 블러, 자르기, PDF 페이지 분할이 무료이고 코드가 공개돼 있어요.
 order: 1
+published: 2026-10-09
 ---
 
 전체 페이지를 캡처한 뒤 자르기, 블러, 표시, PDF 페이지 분할이 필요하다면 OpenScreenShot으로 바꾸세요. GoFullPage는 이 기능들을 유료 Premium 요금제에 넣었고, OpenScreenShot은 무료로 제공해요. OpenScreenShot은 MIT 라이선스이기도 해서, 내 페이지에서 실행되는 코드를 읽어 볼 수 있어요. 편집 없이 전체 페이지를 이미지나 PDF로 캡처해 저장하기만 한다면 GoFullPage를 계속 쓰세요. 무료 버전으로도 캡처 횟수 제한 없이 그렇게 할 수 있고, FAQ에는 Microsoft Edge Add-ons 버전 링크가 있어요. OpenScreenShot은 Edge Add-ons에 등록돼 있지 않지만, Edge에서 Chrome 웹 스토어를 통해 설치할 수 있어요. OpenScreenShot은 브라우저 안의 웹 페이지만 캡처해요. 데스크톱 창이나 화면 전체는 캡처하지 않아요.

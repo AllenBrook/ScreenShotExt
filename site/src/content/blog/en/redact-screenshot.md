@@ -3,6 +3,8 @@ title: How to redact sensitive information in a screenshot
 description: Use an opaque fill to cover private information, export a flattened screenshot, and check the saved file before sharing.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 For information that must not be visible in a shared screenshot, use OpenScreenShot’s **Blur** tool with its opaque fill mode. Cover the entire sensitive area, export the finished image, and open that exported file to verify the result. A soft blur is a visual effect; an opaque fill is the clearer choice for hiding text.

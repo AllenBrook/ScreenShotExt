@@ -3,6 +3,8 @@ title: Take website screenshots from the command line
 description: Use the OpenScreenShot CLI to save PNG screenshots with a fixed viewport, full-page capture, or binary output to stdout.
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 The OpenScreenShot CLI captures a webpage as a PNG using a locally installed Chrome-compatible browser. It is a separate package from the browser extension. With Node.js, pnpm, and Chrome installed, run:

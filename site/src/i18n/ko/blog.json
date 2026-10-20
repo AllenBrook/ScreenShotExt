@@ -14,5 +14,7 @@
   "next": {
     "heading": "더 알아보기",
     "body": "<a href=\"/docs/\">문서 읽기</a>, <a href=\"/blog/\">모든 가이드 보기</a>, 또는 <a href=\"/support/\">캡처 관련 도움 받기</a>."
-  }
+  },
+  "published": "게시",
+  "updated": "업데이트"
 }

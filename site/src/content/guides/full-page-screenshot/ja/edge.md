@@ -2,6 +2,7 @@
 title: Microsoft Edge でページ全体のスクリーンショットを撮る方法
 description: Edge 標準のスクリーンショット ツールか DevTools でページ全体を撮り、制限を知り、Chrome ウェブストア の OpenScreenShot を使います。
 order: 2
+published: 2026-10-09
 ---
 
 Microsoft Edge には、以前は Web キャプチャと呼ばれていたスクリーンショット ツールが標準で入っています。`Ctrl+Shift+S` を押して **Capture full page**（ページ全体をキャプチャ）を選び、キャプチャをコピーするかデバイスに保存します。OpenScreenShot も Edge で動作します。Edge は Chromium ベースのブラウザで、ほかのストアからの拡張機能を許可すれば Chrome ウェブストア から OpenScreenShot をインストールできます。

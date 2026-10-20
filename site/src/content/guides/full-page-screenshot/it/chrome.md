@@ -2,6 +2,7 @@
 title: 'Come fare uno screenshot a pagina intera in Chrome: DevTools o un’estensione'
 description: Usa il comando Capture full size screenshot dei DevTools di Chrome, scopri dove non basta e confrontalo con una cattura a pagina intera in OpenScreenShot.
 order: 1
+published: 2026-10-09
 ---
 
 Chrome può fare uno screenshot a pagina intera senza estensioni, ma solo dai DevTools. Apri i DevTools, apri il Command Menu, digita `screenshot` ed esegui **Capture full size screenshot** (cattura screenshot a dimensione intera). Chrome salva l’intera pagina come file PNG. I normali menu di Chrome non hanno una voce per gli screenshot: la guida di Google elenca Share, Send to your devices e Create QR code sotto **Cast, save, and share** (trasmetti, salva e condividi). Per una cattura che puoi annotare, esportare in PDF o fare su una pagina che scorre dentro un pannello, installa OpenScreenShot e clicca la sua icona.

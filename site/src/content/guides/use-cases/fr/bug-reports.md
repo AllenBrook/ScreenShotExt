@@ -2,6 +2,7 @@
 title: Comment faire des captures d’écran pour les rapports de bug
 description: Capturez la partie défaillante d’une page, marquez-la avec des flèches et des numéros d’étape, masquez jetons et e-mails, puis collez l’image dans un ticket.
 order: 1
+published: 2026-10-09
 ---
 
 Pour un rapport de bug, capturez seulement la partie de la page qui montre le problème, marquez ce qui ne va pas, et masquez toute donnée privée avant de coller l’image dans le ticket. Dans OpenScreenShot, utilisez **Zone sélectionnée** ou **Capturer un élément** pour la capture, les outils **Flèche** et **Numéro d’étape** pour les marques, et **Flou** avec le remplissage **Uni** pour le masquage. Indiquez l’URL, le navigateur et les étapes de reproduction dans le texte du ticket : la capture montre le contenu de la page sans la barre d’adresse.

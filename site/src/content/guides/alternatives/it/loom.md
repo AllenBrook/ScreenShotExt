@@ -2,6 +2,7 @@
 title: 'Alternativa a Loom: registrazioni della scheda che restano sul tuo dispositivo'
 description: Loom o OpenScreenShot? Registra una scheda con webcam, microfono e zoom automatico ed esporta un MP4 in locale, senza account né piani a pagamento.
 order: 8
+published: 2026-10-09
 ---
 
 Passa a OpenScreenShot se registri presentazioni guidate di una web app o di una pagina in Chrome e vuoi esportare un file MP4 sul tuo dispositivo, senza account. Resta con Loom se condividi i video tramite link: Loom ospita ogni video, ti dà una libreria e uno spazio di lavoro per il team, ed elenca app desktop e mobili. OpenScreenShot non ha hosting né link di condivisione, quindi carichi o alleghi tu il file esportato. Registra una scheda del browser, solo in Chrome, e non cattura finestre del desktop né l’intero schermo.

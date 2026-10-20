@@ -2,6 +2,7 @@
 title: How to make screenshots for help docs and tutorials
 description: Keep tutorial screenshots the same size, number the steps, highlight the right control, and save each file into a docs folder.
 order: 3
+published: 2026-10-09
 ---
 
 For help docs and tutorials, capture each screen the same way, number the actions, and export every image at the same width. In OpenScreenShot, set an exact pixel width under **Scale** in the **Export** dialog, add **Step number** badges for each action, and use **Spotlight** to point readers at the right control. A filename template such as `Docs/{title}` saves each image into a folder inside Downloads.

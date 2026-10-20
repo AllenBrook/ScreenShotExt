@@ -2,6 +2,7 @@
 title: '如何在 Chrome 中擷取整頁截圖：DevTools 或擴充功能'
 description: 使用 Chrome DevTools 的 Capture full size screenshot 指令，了解它的不足之處，並與 OpenScreenShot 的整頁擷取比較。
 order: 1
+published: 2026-10-09
 ---
 
 Chrome 不用擴充功能也能擷取整頁截圖，但只能從 DevTools 進行。開啟 DevTools，開啟指令選單，輸入 `screenshot`，然後執行 **Capture full size screenshot**（擷取完整尺寸的螢幕截圖）。Chrome 會把整個網頁儲存為 PNG 檔案。Chrome 的一般選單沒有截圖項目：Google 的說明在 **Cast, save, and share**（投放、儲存及分享）下列出的是 Share、Send to your devices 和 Create QR code。如果要擷取可以加註解、匯出成 PDF，或在面板內捲動的網頁，請安裝 OpenScreenShot 並點它的圖示。

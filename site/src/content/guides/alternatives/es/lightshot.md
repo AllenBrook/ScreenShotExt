@@ -2,6 +2,7 @@
 title: 'Alternativa a Lightshot: captura de página completa sin subidas públicas'
 description: Lightshot frente a OpenScreenShot. Página completa, desenfoque y PDF en el navegador, con archivos en tu dispositivo y sin enlaces de prnt.sc.
 order: 6
+published: 2026-10-09
 ---
 
 Cámbiate a OpenScreenShot si haces capturas de páginas web en Chrome o Firefox y quieres captura de página completa, desenfoque y exportación a PDF, con archivos que se quedan en tu dispositivo. Quédate con Lightshot si capturas otras aplicaciones o todo el escritorio: Lightshot tiene aplicaciones de escritorio para Windows y Mac, y OpenScreenShot captura solo páginas web en el navegador. Quédate también si dependes de sus enlaces cortos instantáneos. OpenScreenShot no tiene servicio de subida, así que compartes una captura pegándola o adjuntando el archivo.

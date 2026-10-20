@@ -3,6 +3,8 @@ title: CI와 릴리스 검토를 위한 웹사이트 스크린샷 캡처
 description: OpenScreenShot CLI로 반복 가능한 PNG 결과물을 만들고, 빌드 파이프라인에서 스크린샷 캡처로 무엇을 검증할 수 있는지 알아보세요.
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 CI에서 OpenScreenShot CLI를 사용해 실행 중인 애플리케이션의 PNG를 저장하고 검토하세요. Chrome 호환 브라우저를 준비하고, 애플리케이션을 시작해 준비될 때까지 기다린 뒤, 고정된 URL과 뷰포트로 캡처하세요. 결과 파일은 CI 제공업체의 아티팩트 기능으로 업로드하세요.

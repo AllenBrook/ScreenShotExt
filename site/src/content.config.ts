@@ -6,6 +6,12 @@ import { glob } from 'astro/loaders';
 // shape, translates title, description, and body, and prefixes internal page
 // links with its locale (`/de/docs/`). Files such as `/skills/x.md` keep
 // their plain path.
+// Dates, written YYYY-MM-DD. YAML parses that as a Date, and pages read the
+// ISO day back. `published` is the day the English article went live; a
+// translation keeps it. `updated` is the day this file's content last changed
+// in substance. Both show on the page and in BlogPosting.
+const isoDate = z.date().transform((d) => d.toISOString().slice(0, 10));
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
@@ -13,6 +19,8 @@ const blog = defineCollection({
     description: z.string(),
     audience: z.enum(['everyday', 'developers']),
     order: z.number(),
+    published: isoDate,
+    updated: isoDate.optional(),
   }),
 });
 
@@ -25,6 +33,8 @@ const guides = defineCollection({
     title: z.string(),
     description: z.string(),
     order: z.number(),
+    published: isoDate,
+    updated: isoDate.optional(),
   }),
 });
 

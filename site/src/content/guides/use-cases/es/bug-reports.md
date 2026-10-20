@@ -2,6 +2,7 @@
 title: Cómo hacer capturas de pantalla para informes de errores
 description: Captura la parte de la página que falla, márcala con flechas y números de paso, oculta tokens y correos, y pega la imagen en una incidencia.
 order: 1
+published: 2026-10-09
 ---
 
 Para un informe de errores, captura solo la parte de la página que muestra el problema, marca lo que falla y oculta todo lo privado antes de pegar la imagen en la incidencia. En OpenScreenShot, usa **Región** o **Capturar elemento** para la captura, las herramientas **Flecha** y **Número de paso** para las marcas, y **Desenfocar** con el relleno **Sólido** para ocultar datos. Escribe la URL, el navegador y los pasos para reproducir el error en el texto de la incidencia, porque la captura muestra el contenido de la página sin la barra de direcciones.

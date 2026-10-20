@@ -2,6 +2,7 @@
 title: 'Screenity-Alternative: Screenshots und Tab-Aufnahme in einer Erweiterung'
 description: Screenity vs. OpenScreenShot. Beide sind Open Source. OpenScreenShot ergänzt Ganzseiten-Screenshots und PDF-Export und braucht keinen Zugriff auf alle Websites.
 order: 7
+published: 2026-10-09
 ---
 
 Wechsle zu OpenScreenShot, wenn du Browser-Tabs aufnimmst und außerdem Ganzseiten-Screenshots machst und eine Open-Source-Erweiterung willst, die beides kann, ohne bei der Installation Zugriff auf alle Websites zu verlangen. Bleib bei Screenity, wenn du mehr als einen Tab aufnimmst: Es nimmt einen Bereich, den Desktop, jedes App-Fenster oder die Kamera auf und exportiert GIF oder speichert in Google Drive. OpenScreenShot nimmt einen Browser-Tab auf und nimmt keine Desktop-Fenster und nicht den ganzen Bildschirm auf. Der kostenpflichtige Pro-Plan von Screenity ergänzt außerdem Freigabelinks und Cloud-Hosting, was OpenScreenShot nicht bietet.

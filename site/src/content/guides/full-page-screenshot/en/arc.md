@@ -2,6 +2,7 @@
 title: How to take a full-page screenshot in Arc
 description: Run Arc’s Capture Full Page command on macOS to save a PNG, know what Arc leaves undocumented, and use OpenScreenShot from the Chrome Web Store.
 order: 8
+published: 2026-10-09
 ---
 
 Arc for macOS has a **Capture Full Page** command. Press `Cmd+T` to open the Command Bar, type `Capture Full Page`, and select it. Arc downloads a PNG of the whole page to your default download location. Arc’s help documents this command for macOS only. OpenScreenShot also works in Arc: Arc is a Chromium browser and installs extensions from the Chrome Web Store.

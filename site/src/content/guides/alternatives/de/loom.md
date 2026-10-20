@@ -2,6 +2,7 @@
 title: 'Loom-Alternative: Tab-Aufnahmen, die auf deinem Gerät bleiben'
 description: Loom vs. OpenScreenShot. Nimm einen Browser-Tab mit Webcam, Mikrofon und Auto-Zoom auf und exportiere ein MP4 lokal, ohne Konto und ohne bezahlten Plan.
 order: 8
+published: 2026-10-09
 ---
 
 Wechsle zu OpenScreenShot, wenn du in Chrome Rundgänge durch eine Web-App oder eine Seite aufnimmst und eine MP4-Datei auf deinem eigenen Gerät exportieren willst, ohne Konto. Bleib bei Loom, wenn du Videos per Link teilst: Loom hostet jedes Video, gibt dir eine Bibliothek und einen Team-Arbeitsbereich und nennt Desktop- und Mobil-Apps. OpenScreenShot hat kein Hosting und keine Freigabelinks, du lädst die exportierte Datei also selbst hoch oder hängst sie an. Es nimmt einen Browser-Tab auf, nur in Chrome, und es nimmt keine Desktop-Fenster und nicht den ganzen Bildschirm auf.

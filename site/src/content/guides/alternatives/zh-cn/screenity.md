@@ -2,6 +2,7 @@
 title: 'Screenity 替代方案：截图和标签页录屏集于一个扩展'
 description: Screenity 与 OpenScreenShot 对比。两者都开源。OpenScreenShot 另有整页截图和 PDF 导出，安装时不请求访问所有网站。
 order: 7
+published: 2026-10-09
 ---
 
 如果你既录制浏览器标签页，也截取整页截图，并希望用一个开源扩展完成两者、安装时不访问所有网站，请改用 OpenScreenShot。如果你录制的不止一个标签页，请继续使用 Screenity：它能录制区域、桌面、任意应用窗口或摄像头，并能导出 GIF 或保存到 Google Drive。OpenScreenShot 只录制一个浏览器标签页，不能截取桌面窗口或整个屏幕。Screenity 的付费 Pro 套餐还提供链接分享和云端托管，OpenScreenShot 不提供这些。

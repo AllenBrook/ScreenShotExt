@@ -3,6 +3,8 @@ title: Comment masquer des informations sensibles sur une capture d’écran
 description: Couvrez les informations privées d’un aplat opaque, exportez une capture aplatie et vérifiez le fichier enregistré avant de le partager.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Pour les informations qui ne doivent pas être visibles sur une capture partagée, utilisez l’outil **Flou** d’OpenScreenShot en mode aplat opaque. Couvrez toute la zone sensible, exportez l’image terminée, puis ouvrez le fichier exporté pour vérifier le résultat. Un flou doux est un effet visuel ; l’aplat opaque est le choix le plus clair pour cacher du texte.

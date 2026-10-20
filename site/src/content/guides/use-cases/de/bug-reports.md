@@ -2,6 +2,7 @@
 title: So nimmst du Screenshots für Fehlerberichte auf
 description: Nimm den fehlerhaften Teil einer Seite auf, markiere ihn mit Pfeilen und Schrittnummern, verdecke Tokens und E-Mails und füge das Bild in ein Issue ein.
 order: 1
+published: 2026-10-09
 ---
 
 Für einen Fehlerbericht nimmst du nur den Teil der Seite auf, der das Problem zeigt, markierst, was falsch ist, und verdeckst alles Private, bevor du das Bild in das Issue einfügst. Nutze in OpenScreenShot **Ausschnitt** oder **Element erfassen** für die Aufnahme, die Werkzeuge **Pfeil** und **Schrittnummer** für die Markierungen und **Unschärfe** mit der Füllung **Deckend** für die Schwärzung. Schreibe URL, Browser und Schritte zum Nachstellen in den Text des Issues, denn der Screenshot zeigt den Seiteninhalt ohne Adressleiste.

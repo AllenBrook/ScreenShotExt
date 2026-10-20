@@ -2,6 +2,7 @@
 title: 'Nimbus Screenshot の代替: FuseBase への移行後もローカルでキャプチャ'
 description: Nimbus Screenshot は現在 FuseBase Pro。OpenScreenShot はページ全体のキャプチャ、注釈、タブ録画をデバイス上で行う無料のオープンソース。
 order: 5
+published: 2026-10-09
 ---
 
 Nimbus Screenshot は現在、Nimbus Web による FuseBase Pro として Chrome で提供されています。Nimbus でウェブページのキャプチャ、注釈、録画をしていて、アカウントもクラウドのワークスペースも不要で、ファイルをデバイス上にとどめる無料のツールがよいなら、OpenScreenShot に切り替えてください。1 つのタブを超える画面録画や、FuseBase、Google Drive、Dropbox、Slack へのアップロードなど、OpenScreenShot にない機能が必要なら、FuseBase Pro のままで構いません。OpenScreenShot が録画できるのは 1 つのブラウザ タブだけで、Chrome でのみ使えます。デスクトップのウィンドウや画面全体はキャプチャしません。

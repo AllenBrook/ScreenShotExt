@@ -3,6 +3,7 @@ title: 整页截图扩展对比（2026）
 description: 从价格、源代码、权限、标注、PDF 和录屏对比 OpenScreenShot、GoFullPage 等 6 款扩展，并介绍浏览器内置工具。
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 如果你只是偶尔需要整页截图，Chrome DevTools、Microsoft Edge 和 Firefox 的内置工具无需安装就能截取整个页面。如果你经常截取页面，下面这些扩展在以下方面各不相同：哪些功能免费、安装时请求哪些网站访问权限、能否录制视频，以及源代码是否公开。每一节都说明了该工具适合谁。

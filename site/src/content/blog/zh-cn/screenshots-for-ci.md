@@ -3,6 +3,8 @@ title: 为 CI 和发布审查截取网站截图
 description: 用 OpenScreenShot CLI 生成可重复的 PNG 产物，并了解截图在构建流水线中能验证什么。
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 在 CI 中使用 OpenScreenShot CLI，把运行中应用的 PNG 保存下来供审查。准备一个 Chrome 兼容浏览器，启动应用，等它就绪，然后截取固定的 URL 和视口。用 CI 服务商的产物机制上传生成的文件。

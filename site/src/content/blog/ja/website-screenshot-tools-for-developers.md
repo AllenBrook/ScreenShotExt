@@ -3,6 +3,8 @@ title: 開発者、CI、AI エージェント向けのウェブサイト スク�
 description: openscreenshot の CLI と MCP サーバー、shot-scraper、Playwright などを、実行環境、ページ全体、CLI、MCP、動画、ライセンスで比較
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 シェル スクリプトや CI ジョブで公開ページの PNG を撮るだけなら、コマンド ライン ツールで足ります。openscreenshot、shot-scraper、capture-website-cli、pageres-cli です。キャプチャにログイン、クリック、アサーション、動画が必要な場合は、Playwright か Puppeteer で書いてください。AI エージェント向けには、ローカルの MCP サーバーがスクリーンショットをモデルに返します。`openscreenshot serve` は 1 回の呼び出しで 1 枚のスクリーンショットを撮り、Playwright MCP はブラウザ セッション全体を操作します。

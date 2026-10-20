@@ -2,6 +2,7 @@
 title: Comment enregistrer une copie visuelle d’une page web
 description: Capturez une page web entière en PNG ou en PDF, nommez les fichiers par date et domaine, et gérez les très longues pages enregistrées en plusieurs images.
 order: 5
+published: 2026-10-09
 ---
 
 Pour garder une copie visuelle d’une page web, capturez-la avec **Page entière** et enregistrez-la en PNG ou en PDF, avec la date et le site dans le nom de fichier. OpenScreenShot fait défiler la page, assemble les parties en une seule image et enregistre le fichier sur votre ordinateur. Une capture d’écran montre l’apparence de la page sur votre écran ; elle ne prouve pas que la page était authentique ou non modifiée.

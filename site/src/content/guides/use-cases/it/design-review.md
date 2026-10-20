@@ -2,6 +2,7 @@
 title: Come catturare una pagina web per la revisione del design
 description: Cattura una pagina intera o un singolo componente, guida i revisori ai dettagli con spotlight e note di testo e condividi un PDF di più pagine.
 order: 2
+published: 2026-10-09
 ---
 
 Per una revisione del design, cattura l’intera pagina con **Pagina intera**, segna i punti su cui vuoi un parere e condividi un PDF che i revisori possono leggere pagina per pagina. In OpenScreenShot, **Spotlight** scurisce tutto ciò che è fuori dall’area in discussione, e **Testo** e **Freccia** aggiungono note. Usa **Cattura elemento** quando la revisione riguarda un solo componente, come una scheda, un grafico o una tabella.

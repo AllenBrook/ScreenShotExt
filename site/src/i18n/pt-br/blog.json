@@ -14,5 +14,7 @@
   "next": {
     "heading": "Continue",
     "body": "<a href=\"/docs/\">Leia a documentação</a>, <a href=\"/blog/\">veja todos os guias</a> ou <a href=\"/support/\">obtenha ajuda com uma captura</a>."
-  }
+  },
+  "published": "Publicado",
+  "updated": "Atualizado"
 }

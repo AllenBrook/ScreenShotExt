@@ -2,6 +2,7 @@
 title: 'Alternativa a Loom: grabaciones de pestañas que se quedan en tu dispositivo'
 description: Loom frente a OpenScreenShot. Graba una pestaña del navegador con webcam, micrófono y zoom automático, y exporta un MP4 localmente, sin cuenta ni plan de pago.
 order: 8
+published: 2026-10-09
 ---
 
 Cámbiate a OpenScreenShot si grabas recorridos por una aplicación web o una página en Chrome y quieres exportar un archivo MP4 en tu propio dispositivo, sin cuenta. Quédate con Loom si compartes vídeos mediante enlaces: Loom aloja cada vídeo, te da una biblioteca y un espacio de trabajo de equipo, y ofrece aplicaciones de escritorio y móviles. OpenScreenShot no tiene alojamiento ni enlaces para compartir, así que subes o adjuntas tú mismo el archivo exportado. Graba una pestaña del navegador, solo en Chrome, y no captura ventanas del escritorio ni la pantalla entera.

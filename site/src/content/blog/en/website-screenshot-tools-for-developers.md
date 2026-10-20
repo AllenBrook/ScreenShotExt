@@ -3,6 +3,8 @@ title: Website screenshot tools for developers, CI, and AI agents
 description: The openscreenshot CLI and MCP server vs shot-scraper, capture-website-cli, pageres, Playwright, and Puppeteer, compared on full-page capture, MCP, video, and license.
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 For a PNG of a public page from a shell script or CI job, a command-line tool is enough: openscreenshot, shot-scraper, capture-website-cli, or pageres-cli. When the capture needs a login, clicks, assertions, or video, write it with Playwright or Puppeteer. For an AI agent, a local MCP server returns screenshots to the model: `openscreenshot serve` takes one screenshot per call, and Playwright MCP drives a whole browser session.

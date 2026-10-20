@@ -2,6 +2,7 @@
 title: Comment enregistrer une vidéo de démonstration produit dans Chrome
 description: Enregistrez un onglet avec webcam et voix, ajoutez un zoom à chaque clic, coupez la prise et exportez un MP4, le tout dans Chrome sur votre ordinateur.
 order: 6
+published: 2026-10-09
 ---
 
 Pour enregistrer une courte démonstration produit depuis un onglet du navigateur, utilisez **Enregistrer** dans l’extension Chrome d’OpenScreenShot. Choisissez l’onglet entier ou une partie, activez le micro, l’audio de l’onglet ou la webcam, et enregistrez la démonstration. L’éditeur ajoute ensuite un zoom à chaque clic, vous permet de couper la prise et exporte un MP4. La version Firefox gère seulement les captures d’écran et n’a pas d’enregistreur.

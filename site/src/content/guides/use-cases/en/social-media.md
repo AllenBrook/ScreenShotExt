@@ -2,6 +2,7 @@
 title: How to make a screenshot ready to share on social media
 description: Crop a screenshot, add a frame with padding, corners, shadow, and a background, hide personal details, and export it at a sharp size.
 order: 4
+published: 2026-10-09
 ---
 
 To share a screenshot on social media, crop it to the part that makes your point, hide personal details, add a frame, and export it at a size that stays sharp. In OpenScreenShot, use **Crop** to trim, **Blur** with the **Solid** fill to hide details, and the **Frame** panel for padding, rounded corners, a shadow, and a background. Then export a PNG at 200 % or at an exact pixel width.

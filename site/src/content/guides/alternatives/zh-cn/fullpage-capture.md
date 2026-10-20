@@ -2,6 +2,7 @@
 title: 'FullPage Capture 替代品：开源，安装时不要求访问所有网站'
 description: FullPage Capture 与 OpenScreenShot 对比。两者都能免费截取和标注整页。OpenScreenShot 开源，安装时不要求访问所有网站。
 order: 2
+published: 2026-10-09
 ---
 
 如果你想要一款代码可以阅读、安装时不要求访问所有网站的整页截图扩展，就换用 OpenScreenShot。如果你需要 FullPage Capture 的 PDF 导出所提供的功能，就继续使用它：其商店页面介绍了带可点击链接和智能分页的 PDF，其 Pro 套餐还增加了可搜索的 PDF。OpenScreenShot 把 PDF 保存为图片，因此其中的文字无法搜索或选择，链接也不可用。OpenScreenShot 只在浏览器中截取网页；它不截取桌面窗口或整个屏幕。

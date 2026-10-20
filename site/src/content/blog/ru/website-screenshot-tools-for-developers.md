@@ -3,6 +3,8 @@ title: Инструменты для скриншотов сайтов для р
 description: 'openscreenshot CLI и MCP, shot-scraper, capture-website-cli, pageres-cli, Playwright, Puppeteer, Playwright MCP: среда, вся страница, CLI, MCP, видео, лицензия.'
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 Для PNG публичной страницы из shell-скрипта или задачи CI достаточно инструмента командной строки: openscreenshot, shot-scraper, capture-website-cli или pageres-cli. Если для съёмки нужны вход в аккаунт, клики, проверки или видео, напишите её на Playwright или Puppeteer. Для ИИ-агента локальный MCP-сервер возвращает скриншоты модели: `openscreenshot serve` делает один скриншот за вызов, а Playwright MCP управляет целым сеансом браузера.

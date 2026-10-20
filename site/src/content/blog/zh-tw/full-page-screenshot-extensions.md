@@ -3,6 +3,7 @@ title: 整頁截圖擴充功能比較（2026）
 description: 從價格、原始碼、權限、註解、PDF 和錄影比較 OpenScreenShot、GoFullPage 等 6 款擴充功能，並介紹瀏覽器內建工具。
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 如果你只是偶爾需要整頁截圖，Chrome DevTools、Microsoft Edge 和 Firefox 內建的工具不用安裝任何東西就能擷取整個頁面。如果你經常擷取頁面，下面這些擴充功能的差別在於：哪些功能免費、安裝時要求哪些網站存取權、能不能錄影，以及原始碼是否公開。每一節都會說明該工具適合誰。

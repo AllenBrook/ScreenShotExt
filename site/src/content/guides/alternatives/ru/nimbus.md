@@ -2,6 +2,7 @@
 title: 'Альтернатива Nimbus Screenshot: локальная съёмка после перехода на FuseBase'
 description: 'Nimbus Screenshot теперь называется FuseBase Pro. OpenScreenShot — бесплатный вариант с открытым кодом: снимки страниц, аннотации и запись вкладок локально.'
 order: 5
+published: 2026-10-09
 ---
 
 Nimbus Screenshot теперь выходит в Chrome под именем FuseBase Pro от Nimbus Web. Переходите на OpenScreenShot, если вы снимали, аннотировали и записывали веб-страницы в Nimbus и хотите бесплатный инструмент, который хранит файлы на вашем устройстве, без аккаунта и облачного рабочего пространства. Оставайтесь с FuseBase Pro, если вам нужно то, чего нет в OpenScreenShot: запись экрана за пределами одной вкладки и загрузка в FuseBase, Google Drive, Dropbox или Slack. OpenScreenShot записывает одну вкладку браузера, только в Chrome. Он не снимает окна программ или весь экран.

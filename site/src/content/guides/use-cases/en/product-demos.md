@@ -2,6 +2,7 @@
 title: How to record a product demo video in Chrome
 description: Record a browser tab with webcam and voice, add zoom at each click, trim the take, and export an MP4, all in Chrome on your computer.
 order: 6
+published: 2026-10-09
 ---
 
 To record a short product demo from a browser tab, use **Record** in OpenScreenShot’s Chrome extension. Choose the whole tab or part of it, turn on the mic, tab audio, or webcam, and record the demo. The editor then adds a zoom at each click, lets you trim the take, and exports an MP4. The Firefox build supports screenshots only and has no recorder.

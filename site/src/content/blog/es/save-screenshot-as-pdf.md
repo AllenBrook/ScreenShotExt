@@ -3,6 +3,8 @@ title: Cómo guardar una captura de página completa como PDF
 description: Exporta una captura como una sola página PDF, ajústala a A4 o Carta, o divide una captura larga en varias páginas.
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Para guardar una captura como PDF en OpenScreenShot, abre la captura en el editor, haz clic en **Guardar imagen** para abrir el diálogo **Exportar** y elige **PDF**. El botón **PDF** de la barra superior guarda uno con un solo clic usando tus ajustes de PDF guardados: A4, vertical y varias páginas, hasta que los cambies en el diálogo. Elige una sola página de imagen, un formato A4 o Carta, o una exportación de varias páginas según cómo se vaya a leer el documento.

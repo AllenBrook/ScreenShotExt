@@ -3,6 +3,8 @@ title: 如何把整頁截圖儲存為 PDF
 description: 把截圖匯出成單頁 PDF、符合 A4 或 Letter，或把長擷取分成多頁。
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 要在 OpenScreenShot 中把截圖儲存為 PDF，請在編輯器中開啟擷取，點「**儲存圖片**」開啟「**匯出**」對話框，然後選擇「**PDF**」。頂欄的「**PDF**」按鈕會用你儲存的 PDF 設定一鍵存出 PDF：在你於對話框中更改之前，設定是 A4、直向、多頁。請依文件的閱讀方式，選擇單張圖片頁面、A4 或 Letter 版面，或多頁匯出。

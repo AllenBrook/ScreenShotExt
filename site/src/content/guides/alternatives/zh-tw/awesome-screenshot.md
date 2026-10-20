@@ -2,6 +2,7 @@
 title: 'Awesome Screenshot 替代方案：資料留在你裝置上的免費工具'
 description: Awesome Screenshot 與 OpenScreenShot 比較。免費的註解、模糊、PDF 和分頁錄影都留在你的裝置上，只有一個免費方案，安裝時不要求所有網站的存取權。
 order: 3
+published: 2026-10-09
 ---
 
 如果你在瀏覽器內擷取和錄影，並希望所有內容都留在你的裝置上，所有編輯器工具都免費且沒有方案限制，請改用 OpenScreenShot。如果你需要 Awesome Screenshot 的雲端功能，請繼續使用它：分享連結、雲端儲存空間，以及桌面和攝影機錄影（Professional 方案最高 4K）。OpenScreenShot 沒有分享連結，也沒有雲端。它只錄製一個瀏覽器分頁，只支援 Chrome，也不擷取桌面視窗或整個螢幕。

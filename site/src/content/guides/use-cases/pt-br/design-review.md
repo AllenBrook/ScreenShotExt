@@ -2,6 +2,7 @@
 title: Como capturar uma página web para revisão de design
 description: Capture uma página inteira ou um componente, mostre detalhes aos revisores com spotlight e notas de texto e compartilhe um PDF com várias páginas.
 order: 2
+published: 2026-10-09
 ---
 
 Para uma revisão de design, capture a página inteira com **Página inteira**, marque os pontos sobre os quais você quer feedback e compartilhe um PDF que os revisores possam ler página por página. No OpenScreenShot, **Spotlight** escurece tudo fora da área em discussão, e **Texto** e **Seta** adicionam notas. Use **Capturar elemento** quando a revisão é sobre um componente, como um cartão, um gráfico ou uma tabela.

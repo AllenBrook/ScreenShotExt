@@ -2,6 +2,7 @@
 title: 'Alternativa a Screenity: screenshot e registrazione della scheda in un’unica estensione'
 description: Screenity o OpenScreenShot? Entrambi open source. OpenScreenShot aggiunge pagina intera ed export PDF, e non chiede accesso a tutti i siti all’installazione.
 order: 7
+published: 2026-10-09
 ---
 
 Passa a OpenScreenShot se registri schede del browser e fai anche screenshot a pagina intera, e vuoi un’unica estensione open source che faccia entrambe le cose senza accesso a tutti i siti web all’installazione. Resta con Screenity se registri più di una scheda: registra un’area, il desktop, la finestra di qualsiasi app o la fotocamera, ed esporta in GIF o salva su Google Drive. OpenScreenShot registra una scheda del browser e non cattura finestre del desktop né l’intero schermo. Il piano Pro a pagamento di Screenity aggiunge anche la condivisione tramite link e l’hosting nel cloud, che OpenScreenShot non offre.

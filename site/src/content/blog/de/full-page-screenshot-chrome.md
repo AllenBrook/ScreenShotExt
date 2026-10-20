@@ -3,6 +3,8 @@ title: So nimmst du in Chrome einen Ganzseiten-Screenshot auf
 description: Nimm eine ganze scrollbare Webseite mit OpenScreenShot auf, prüfe das Ergebnis und exportiere es als Bild oder PDF.
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Für einen Ganzseiten-Screenshot mit OpenScreenShot öffnest du die Webseite und klickst auf das Symbol der Erweiterung in der Symbolleiste. Mit den Standardeinstellungen startet die Aufnahme sofort, und das fertige Bild öffnet sich im Editor. Die Erweiterung scrollt die Seite und setzt die aufgenommenen Abschnitte zu einem Bild zusammen.

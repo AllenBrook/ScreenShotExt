@@ -3,6 +3,8 @@ title: 為 AI 代理設定本機截圖 MCP 伺服器
 description: 把 OpenScreenShot 連接到 stdio MCP 用戶端，並以明確的網址、可視區域和整頁選項要求 PNG 截圖。
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_screenshot`。MCP 用戶端可以用網頁網址呼叫它，並收到 PNG 圖片內容。伺服器會在你的機器上啟動一個獨立的無頭 Chrome 相容瀏覽器；不需要瀏覽器擴充功能。

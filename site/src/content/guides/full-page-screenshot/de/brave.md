@@ -2,6 +2,7 @@
 title: So nimmst du in Brave einen Ganzseiten-Screenshot auf
 description: Schalte die Screenshot-Schaltfläche von Brave ein, nimm eine ganze Seite als PNG auf, prüfe die Grenzen und nutze OpenScreenShot aus dem Chrome Web Store.
 order: 5
+published: 2026-10-09
 ---
 
 Brave 1.94 und neuer hat ein integriertes Screenshot-Tool. Schalte die Screenshot-Schaltfläche unter `brave://settings/appearance` ein, klicke darauf und wähle **Full page** („Ganze Seite“). Ab Brave 1.96 öffnet sich eine Vorschau, in der du ein PNG herunterlädst oder das Bild kopierst. OpenScreenShot funktioniert auch in Brave: Brave ist ein Chromium-Browser und installiert Erweiterungen aus dem Chrome Web Store.

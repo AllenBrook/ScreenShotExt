@@ -2,6 +2,7 @@
 title: Comment faire une capture d’écran pleine page dans Brave
 description: Activez le bouton de capture de Brave et capturez une page entière en PNG, vérifiez les limites, et utilisez OpenScreenShot depuis le Chrome Web Store.
 order: 5
+published: 2026-10-09
 ---
 
 Brave 1.94 et les versions ultérieures ont un outil de capture d’écran intégré. Activez le bouton de capture dans `brave://settings/appearance`, cliquez dessus et sélectionnez **Full page** (Page entière). Dans Brave 1.96 et les versions ultérieures, un aperçu s’ouvre, où vous téléchargez un PNG ou copiez l’image. OpenScreenShot fonctionne aussi dans Brave : Brave est un navigateur Chromium et installe les extensions depuis le Chrome Web Store.

@@ -3,6 +3,8 @@ title: コマンド ラインからウェブサイトのスクリーンショッ
 description: OpenScreenShot CLI で、固定ビューポート、ページ全体、stdout へのバイナリ出力で PNG のスクリーンショットを保存します。
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot CLI は、ローカルにインストールされた Chrome 互換ブラウザを使って、ウェブページを PNG としてキャプチャします。ブラウザ拡張機能とは別のパッケージです。Node.js、pnpm、Chrome がインストールされていれば、次を実行します。

@@ -2,6 +2,7 @@
 title: 'FireShot の代替: ブラウザ内の無料エディタとオープンソース'
 description: FireShot と OpenScreenShot を比較。どちらもローカルでキャプチャ。OpenScreenShot はオープンソースで、無料のブラウザ内エディタとタブ録画付き。
 order: 4
+published: 2026-10-09
 ---
 
 Chrome または Firefox が動くどの OS でも、ページ全体のスクリーンショットにブラウザ内で無料で注釈やぼかしを入れたい、しかもコードを読めるものがよいなら、OpenScreenShot に切り替えてください。リンクが機能する PDF、一括キャプチャや自動キャプチャ、高度な PDF 書き出しやキャプチャ履歴などの FireShot Pro の追加機能が必要なら、FireShot のままで構いません。OpenScreenShot は PDF を画像として保存するため、文字は検索できず、リンクも機能しません。キャプチャするのはウェブページだけで、デスクトップのウィンドウや画面全体はキャプチャしません。

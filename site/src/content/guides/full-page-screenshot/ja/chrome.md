@@ -2,6 +2,7 @@
 title: 'Chrome でページ全体のスクリーンショットを撮る方法: DevTools か拡張機能か'
 description: Chrome DevTools の Capture full size screenshot コマンドの使い方と弱点を確認し、OpenScreenShot のキャプチャと比べます。
 order: 1
+published: 2026-10-09
 ---
 
 Chrome では拡張機能なしでページ全体のスクリーンショットを撮れますが、使えるのは DevTools からだけです。DevTools を開き、コマンド メニューを開いて `screenshot` と入力し、**Capture full size screenshot**（フルサイズのスクリーンショットをキャプチャ）を実行します。Chrome はページ全体を PNG ファイルとして保存します。Chrome の通常のメニューにはスクリーンショットの項目がありません。Google のヘルプでは、**Cast, save, and share**（キャスト、保存、共有）の下に Share、Send to your devices、Create QR code が挙げられています。注釈を付けたい、PDF で書き出したい、パネルの中でスクロールするページをキャプチャしたい場合は、OpenScreenShot をインストールしてアイコンをクリックします。

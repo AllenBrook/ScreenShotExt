@@ -3,6 +3,8 @@ title: Como salvar uma captura de página inteira como PDF
 description: Exporte uma captura como uma única página PDF, ajuste-a a A4 ou Letter ou divida uma captura longa em várias páginas.
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Para salvar uma captura de tela como PDF no OpenScreenShot, abra a captura no editor, clique em **Salvar imagem** para abrir o diálogo **Exportar** e selecione **PDF**. O botão **PDF** na barra superior salva um PDF com um clique, usando suas configurações de PDF salvas: A4, retrato e várias páginas, até você alterá-las no diálogo. Escolha uma página de imagem única, um layout A4 ou Letter ou uma exportação em várias páginas, de acordo com a forma como o documento será lido.

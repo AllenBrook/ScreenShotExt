@@ -2,6 +2,7 @@
 title: 'Alternativa ad Awesome Screenshot: strumenti gratuiti che restano sul tuo dispositivo'
 description: Awesome Screenshot o OpenScreenShot? Annotazioni, sfocatura, PDF e registrazione gratis in locale, piano unico, nessun accesso a tutti i siti all’installazione.
 order: 3
+published: 2026-10-09
 ---
 
 Passa a OpenScreenShot se catturi e registri dentro il browser e vuoi che tutto resti sul tuo dispositivo, con tutti gli strumenti dell’editor gratuiti e senza limiti di piano. Resta con Awesome Screenshot se ti servono le sue funzioni cloud: link di condivisione, archiviazione nel cloud e registrazione del desktop e della fotocamera, fino a 4K con il piano Professional. OpenScreenShot non ha link di condivisione né cloud. Registra una scheda del browser, solo in Chrome, e non cattura finestre del desktop né l’intero schermo.

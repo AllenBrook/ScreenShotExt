@@ -2,6 +2,7 @@
 title: 'Awesome Screenshot の代替: デバイス上で完結する無料ツール'
 description: Awesome Screenshot と OpenScreenShot を比較。注釈、ぼかし、PDF、タブ録画が無料でデバイス上に完結。プランは 1 つ、導入時の全サイト権限不要。
 order: 3
+published: 2026-10-09
 ---
 
 ブラウザ内でキャプチャや録画を行い、すべてをデバイス上にとどめたい、しかもすべてのエディタ ツールが無料でプランの制限もないものがよいなら、OpenScreenShot に切り替えてください。共有リンク、クラウド ストレージ、デスクトップとカメラの録画（Professional プランでは最大 4K）といったクラウド機能が必要なら、Awesome Screenshot のままで構いません。OpenScreenShot には共有リンクもクラウドもありません。録画できるのは 1 つのブラウザ タブだけで、Chrome でのみ使えます。デスクトップのウィンドウや画面全体はキャプチャしません。

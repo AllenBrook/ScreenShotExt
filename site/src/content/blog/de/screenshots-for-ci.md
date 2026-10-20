@@ -3,6 +3,8 @@ title: Website-Screenshots für CI und Release-Reviews aufnehmen
 description: Erzeuge wiederholbare PNG-Artefakte mit der OpenScreenShot-CLI und verstehe, was eine Screenshot-Aufnahme in einer Build-Pipeline prüfen kann.
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Nutze die OpenScreenShot-CLI in CI, um ein PNG einer laufenden Anwendung zur Review zu speichern. Stelle einen Chrome-kompatiblen Browser bereit, starte die Anwendung, warte, bis sie bereit ist, und nimm dann eine feste URL mit festem Viewport auf. Lade die entstandene Datei über den Artefakt-Mechanismus deines CI-Anbieters hoch.

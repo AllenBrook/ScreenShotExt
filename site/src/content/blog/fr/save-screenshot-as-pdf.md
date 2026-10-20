@@ -3,6 +3,8 @@ title: Comment enregistrer une capture de page entière en PDF
 description: Exportez une capture sur une seule page PDF, ajustez-la au format A4 ou Letter, ou répartissez une longue capture sur plusieurs pages.
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Pour enregistrer une capture en PDF dans OpenScreenShot, ouvrez-la dans l’éditeur, cliquez sur **Enregistrer l’image** pour ouvrir la boîte **Exporter**, puis sélectionnez **PDF**. Le bouton **PDF** de la barre du haut en enregistre un en un seul clic avec vos réglages PDF enregistrés : A4, portrait et plusieurs pages, tant que vous ne les modifiez pas dans la boîte de dialogue. Choisissez une seule page image, une mise en page A4 ou Letter, ou un export sur plusieurs pages selon la façon dont le document sera lu.

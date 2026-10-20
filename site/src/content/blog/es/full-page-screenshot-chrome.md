@@ -3,6 +3,8 @@ title: Cómo hacer una captura de página completa en Chrome
 description: Captura una página web entera con scroll con OpenScreenShot, revisa el resultado y expórtalo como imagen o PDF.
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Para hacer una captura de página completa con OpenScreenShot, abre la página web y haz clic en el icono de la extensión en la barra de herramientas. Con los ajustes por defecto, la captura empieza al instante y la imagen terminada se abre en el editor. La extensión desplaza la página y une las secciones capturadas en una sola imagen.

@@ -2,6 +2,7 @@
 title: 'Alternativa ao Nimbus Screenshot: captura local depois da mudança para FuseBase'
 description: O Nimbus Screenshot agora é o FuseBase Pro. O OpenScreenShot é uma opção grátis e de código aberto para capturar, anotar e gravar abas no seu dispositivo.
 order: 5
+published: 2026-10-09
 ---
 
 O Nimbus Screenshot agora é distribuído no Chrome como FuseBase Pro, da Nimbus Web. Mude para o OpenScreenShot se você usava o Nimbus para capturar, anotar e gravar páginas web e quer uma ferramenta grátis que mantém os arquivos no seu dispositivo, sem conta e sem espaço de trabalho na nuvem. Fique com o FuseBase Pro se você precisa do que o OpenScreenShot não tem: gravação de tela além de uma aba e uploads para FuseBase, Google Drive, Dropbox ou Slack. O OpenScreenShot grava uma aba do navegador, só no Chrome. Ele não captura janelas do desktop nem a tela inteira.

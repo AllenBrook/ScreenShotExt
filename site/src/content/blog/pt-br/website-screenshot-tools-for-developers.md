@@ -3,6 +3,8 @@ title: Ferramentas de captura de sites para desenvolvedores, CI e agentes de IA
 description: 'openscreenshot, shot-scraper, capture-website-cli, pageres-cli, Playwright, Puppeteer, Playwright MCP: runtime, página inteira, CLI, MCP, vídeo, licença.'
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 Para um PNG de uma página pública a partir de um script de shell ou de um job de CI, uma ferramenta de linha de comando basta: openscreenshot, shot-scraper, capture-website-cli ou pageres-cli. Quando a captura precisa de login, cliques, asserções ou vídeo, escreva-a com Playwright ou Puppeteer. Para um agente de IA, um servidor MCP local retorna capturas de tela ao modelo: `openscreenshot serve` faz uma captura por chamada, e o Playwright MCP controla uma sessão inteira do navegador.

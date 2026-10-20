@@ -2,6 +2,7 @@
 title: Como fazer uma captura de página inteira no Brave
 description: Ative o botão de captura de tela do Brave, capture uma página inteira em PNG, confira os limites e use o OpenScreenShot da Chrome Web Store.
 order: 5
+published: 2026-10-09
 ---
 
 O Brave 1.94 e versões posteriores têm uma ferramenta de captura de tela nativa. Ative o botão de captura em `brave://settings/appearance`, clique nele e selecione **Full page** (página inteira). No Brave 1.96 e posteriores, abre uma prévia em que você baixa um PNG ou copia a imagem. O OpenScreenShot também funciona no Brave: o Brave é um navegador Chromium e instala extensões da Chrome Web Store.

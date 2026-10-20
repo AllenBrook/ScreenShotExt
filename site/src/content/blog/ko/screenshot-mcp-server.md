@@ -3,6 +3,8 @@ title: AI 에이전트를 위한 로컬 스크린샷 MCP 서버 설정하기
 description: OpenScreenShot을 stdio MCP 클라이언트에 연결하고 URL, 뷰포트, 전체 페이지 옵션을 지정해 PNG 스크린샷을 요청하세요.
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot은 `capture_screenshot`이라는 도구 하나를 제공하는 로컬 MCP 서버를 제공합니다. MCP 클라이언트는 웹페이지 URL로 이 도구를 호출해 PNG 이미지 콘텐츠를 받을 수 있습니다. 서버는 사용자의 컴퓨터에서 별도의 헤드리스 Chrome 호환 브라우저를 실행하며, 브라우저 확장 프로그램은 필요하지 않습니다.

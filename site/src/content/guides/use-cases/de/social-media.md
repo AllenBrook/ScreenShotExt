@@ -2,6 +2,7 @@
 title: So machst du einen Screenshot bereit zum Teilen in sozialen Medien
 description: Schneide einen Screenshot zu, füge einen Rahmen mit Abstand, Ecken, Schatten und Hintergrund hinzu, verdecke persönliche Details und exportiere ihn scharf.
 order: 4
+published: 2026-10-09
 ---
 
 Um einen Screenshot in sozialen Medien zu teilen, schneide ihn auf den Teil zu, der deine Aussage trägt, verdecke persönliche Details, füge einen Rahmen hinzu und exportiere ihn in einer Größe, die scharf bleibt. Nutze in OpenScreenShot **Zuschneiden** zum Kürzen, **Unschärfe** mit der Füllung **Deckend** zum Verdecken von Details und den Bereich **Beautify** für Abstand, abgerundete Ecken, einen Schatten und einen Hintergrund. Exportiere dann ein PNG mit 200 % oder in einer exakten Pixelbreite.

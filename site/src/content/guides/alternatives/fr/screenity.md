@@ -2,6 +2,7 @@
 title: 'Alternative à Screenity : captures d’écran et enregistrement d’onglet dans une seule extension'
 description: Screenity vs OpenScreenShot. Les deux sont open source. OpenScreenShot ajoute capture pleine page et export PDF, sans accès à tous les sites à l’installation.
 order: 7
+published: 2026-10-09
 ---
 
 Passez à OpenScreenShot si vous enregistrez des onglets du navigateur et faites aussi des captures pleine page, et que vous voulez une seule extension open source qui fait les deux, sans accès à tous les sites web à l’installation. Restez sur Screenity si vous enregistrez plus qu’un onglet : il enregistre une zone, le bureau, n’importe quelle fenêtre d’application ou la caméra, et exporte en GIF ou enregistre sur Google Drive. OpenScreenShot enregistre un seul onglet du navigateur et ne capture ni les fenêtres du bureau ni l’écran entier. L’offre payante Pro de Screenity ajoute aussi le partage par lien et l’hébergement cloud, qu’OpenScreenShot ne propose pas.

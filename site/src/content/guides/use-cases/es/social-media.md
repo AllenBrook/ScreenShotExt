@@ -2,6 +2,7 @@
 title: Cómo preparar una captura de pantalla para compartirla en redes sociales
 description: Recorta una captura, añade un marco con relleno, esquinas, sombra y fondo, oculta los datos personales y expórtala a un tamaño nítido.
 order: 4
+published: 2026-10-09
 ---
 
 Para compartir una captura en redes sociales, recórtala a la parte que muestra lo que quieres decir, oculta los datos personales, añade un marco y expórtala a un tamaño que se mantenga nítido. En OpenScreenShot, usa **Recortar** para ajustar la imagen, **Desenfocar** con el relleno **Sólido** para ocultar datos, y el panel **Beautify** para el relleno, las esquinas redondeadas, la sombra y el fondo. Después, exporta un PNG al 200 % o con un ancho exacto en píxeles.

@@ -2,6 +2,7 @@
 title: 'GoFullPage alternative: free annotation and open source'
 description: GoFullPage vs OpenScreenShot for full-page screenshots. OpenScreenShot has free annotation, blur, crop, and PDF page splitting, and its code is public.
 order: 1
+published: 2026-10-09
 ---
 
 Switch to OpenScreenShot if you capture full pages and then need to crop, blur, mark up, or split a PDF into pages: GoFullPage puts those features in its paid Premium plan, and OpenScreenShot includes them for free. OpenScreenShot is also MIT-licensed, so you can read the code that runs on your pages. Stay with GoFullPage if you only capture and save full pages as images or PDFs without edits. Its free version already does that with no limit on the number of captures, and its FAQ links a Microsoft Edge Add-ons version. OpenScreenShot has no Edge Add-ons listing, but Edge can install it from the Chrome Web Store. OpenScreenShot captures web pages in the browser only; it does not capture desktop windows or the whole screen.

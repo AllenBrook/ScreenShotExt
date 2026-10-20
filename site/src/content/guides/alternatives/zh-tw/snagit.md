@@ -2,6 +2,7 @@
 title: 'Snagit 替代方案：在瀏覽器中免費擷取網頁'
 description: Snagit 與 OpenScreenShot 比較。如果你只擷取網頁，OpenScreenShot 在 Chrome 中免費提供整頁擷取、註解、模糊、PDF 和分頁錄影。
 order: 9
+published: 2026-10-09
 ---
 
 如果你用 Snagit 擷取的大多是網頁，請改用 OpenScreenShot：它在瀏覽器中提供整頁擷取、註解、遮蔽、PDF 匯出和分頁錄影，免費且不需要登入。如果你要擷取桌面應用程式、程式視窗或整個螢幕，請繼續使用 Snagit。Snagit 是 Windows 和 macOS 的桌面應用程式，而 OpenScreenShot 依設計只擷取瀏覽器中的網頁。Snagit 還能錄製系統音訊和全螢幕、在程式視窗內捲動擷取，並提供 Smart Redact，可以模糊或遮擋電子郵件、電話號碼和信用卡資料。OpenScreenShot 沒有這些功能。

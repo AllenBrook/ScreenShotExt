@@ -3,6 +3,8 @@ title: Configurer un serveur MCP local de capture d’écran pour un agent IA
 description: Connectez OpenScreenShot à un client MCP stdio et demandez des captures PNG avec des options explicites d’URL, de zone d’affichage et de page entière.
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot fournit un serveur MCP local avec un seul outil : `capture_screenshot`. Un client MCP peut l’appeler avec l’URL d’une page web et recevoir un contenu image PNG. Le serveur lance un navigateur headless compatible Chrome séparé sur votre machine ; l’extension de navigateur n’est pas nécessaire.

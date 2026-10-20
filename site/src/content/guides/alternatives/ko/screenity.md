@@ -2,6 +2,7 @@
 title: 'Screenity 대안: 스크린샷과 탭 녹화를 하나의 확장 프로그램으로'
 description: Screenity vs OpenScreenShot. 둘 다 오픈 소스. OpenScreenShot은 전체 페이지 스크린샷·PDF 추가, 설치 시 사이트 접근 없음.
 order: 7
+published: 2026-10-09
 ---
 
 브라우저 탭을 녹화하면서 전체 페이지 스크린샷도 찍고, 설치할 때 모든 웹사이트 접근 없이 둘 다 하는 오픈 소스 확장 프로그램 하나를 원한다면 OpenScreenShot으로 바꾸세요. 탭보다 넓게 녹화한다면 Screenity를 계속 쓰세요. Screenity는 영역, 데스크톱, 모든 앱 창, 카메라를 녹화하고, GIF로 내보내거나 Google Drive에 저장해요. OpenScreenShot은 브라우저 탭 하나를 녹화하고, 데스크톱 창이나 화면 전체는 캡처하지 않아요. Screenity의 유료 Pro 요금제는 링크 공유와 클라우드 호스팅도 더하는데, OpenScreenShot에는 이 기능이 없어요.

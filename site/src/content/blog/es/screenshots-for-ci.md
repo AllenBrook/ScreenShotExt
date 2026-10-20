@@ -3,6 +3,8 @@ title: Captura sitios web para CI y revisiones de versión
 description: Crea artefactos PNG repetibles con la CLI de OpenScreenShot y entiende qué puede verificar una captura en un pipeline de compilación.
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Usa la CLI de OpenScreenShot en CI para guardar un PNG de una aplicación en ejecución y revisarlo. Prepara un navegador compatible con Chrome, inicia la aplicación, espera a que esté lista y luego captura una URL y un viewport fijos. Sube el archivo resultante con el mecanismo de artefactos de tu proveedor de CI.

@@ -14,5 +14,7 @@
   "next": {
     "heading": "Weiterlesen",
     "body": "<a href=\"/docs/\">Lies die Dokumentation</a>, <a href=\"/blog/\">sieh dir alle Anleitungen an</a> oder <a href=\"/support/\">hol dir Hilfe bei einer Aufnahme</a>."
-  }
+  },
+  "published": "Veröffentlicht",
+  "updated": "Aktualisiert"
 }

@@ -2,6 +2,7 @@
 title: Como fazer capturas de tela para relatórios de bugs
 description: Capture a parte quebrada de uma página, marque com setas e números de passo, oculte tokens e e-mails e cole a imagem em uma issue.
 order: 1
+published: 2026-10-09
 ---
 
 Para um relatório de bug, capture só a parte da página que mostra o problema, marque o que está errado e oculte tudo o que for privado antes de colar a imagem na issue. No OpenScreenShot, use **Região selecionada** ou **Capturar elemento** para a captura, as ferramentas **Seta** e **Número do passo** para as marcações, e **Desfoque** com o preenchimento **Sólido** para ocultar dados. Coloque a URL, o navegador e os passos para reproduzir no texto da issue, porque a captura mostra o conteúdo da página sem a barra de endereços.

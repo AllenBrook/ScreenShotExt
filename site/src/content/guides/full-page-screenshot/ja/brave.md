@@ -2,6 +2,7 @@
 title: Brave でページ全体のスクリーンショットを撮る方法
 description: Brave のスクリーンショット ボタンを表示してページ全体を PNG で撮り、制限を確認し、Chrome ウェブストア の OpenScreenShot を使います。
 order: 5
+published: 2026-10-09
 ---
 
 Brave 1.94 以降にはスクリーンショット ツールが標準で入っています。`brave://settings/appearance` でスクリーンショット ボタンをオンにし、ボタンをクリックして **Full page**（ページ全体）を選びます。Brave 1.96 以降では、プレビューが開き、そこで PNG をダウンロードするか画像をコピーします。OpenScreenShot も Brave で動作します。Brave は Chromium ベースのブラウザで、Chrome ウェブストア から拡張機能をインストールできます。

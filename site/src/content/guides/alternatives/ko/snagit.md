@@ -2,6 +2,7 @@
 title: 'Snagit 대안: 브라우저에서 하는 무료 웹 페이지 캡처'
 description: Snagit vs OpenScreenShot. 웹 페이지만 캡처하면 OpenScreenShot이 Chrome에서 전체 페이지·표시·블러·PDF·탭 녹화를 무료로.
 order: 9
+published: 2026-10-09
 ---
 
 Snagit으로 캡처하는 대상이 대부분 웹 페이지라면 OpenScreenShot으로 바꾸세요. 브라우저 안에서 전체 페이지 캡처, 표시, 가리기, PDF 내보내기, 탭 녹화를 무료로, 로그인 없이 해요. 데스크톱 앱, 프로그램 창, 화면 전체를 캡처한다면 Snagit을 계속 쓰세요. Snagit은 Windows와 macOS용 데스크톱 앱이고, OpenScreenShot은 설계상 브라우저 안의 웹 페이지만 캡처해요. Snagit은 시스템 오디오와 전체 화면도 녹화하고, 프로그램 창 안에서 스크롤하며, 이메일, 전화번호, 신용카드 정보를 블러 처리하거나 가릴 수 있는 Smart Redact를 제공해요. OpenScreenShot에는 이 기능들이 없어요.

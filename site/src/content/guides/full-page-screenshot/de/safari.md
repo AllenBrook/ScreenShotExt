@@ -2,6 +2,7 @@
 title: So nimmst du in Safari einen Ganzseiten-Screenshot auf
 description: Safari auf dem Mac hat keine Ganzseiten-Bildaufnahme. Speichere die Seite als PDF, nimm ein Element im Web-Inspektor auf oder nutze einen anderen Browser.
 order: 4
+published: 2026-10-09
 ---
 
 Safari auf dem Mac hat keinen Befehl für Ganzseiten-Screenshots. Die nächstliegende integrierte Option ist ein PDF: Wähle **File** („Ablage“) > **Print** („Drucken“), klicke unten im Dialog auf **PDF** und speichere die Datei. Für eine Bilddatei kann der Web-Inspektor von Safari ein Element der Seite aufnehmen. OpenScreenShot hat keine Safari-Version. Safari installiert Safari-Web-Erweiterungen aus dem Mac App Store und kann keine Pakete aus dem Chrome Web Store oder von Firefox Add-ons installieren. Auf einem Mac können Chrome, Firefox, Edge und andere Browser OpenScreenShot ausführen.

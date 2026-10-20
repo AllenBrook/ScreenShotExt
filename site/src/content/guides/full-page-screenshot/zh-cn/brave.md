@@ -2,6 +2,7 @@
 title: 如何在 Brave 中截取整页截图
 description: 开启 Brave 的工具栏截图按钮，将整页截取为 PNG，了解其局限，并从 Chrome 应用商店 安装 OpenScreenShot。
 order: 5
+published: 2026-10-09
 ---
 
 Brave 1.94 及更高版本内置截图工具。在 `brave://settings/appearance` 中开启截图按钮，点击它，然后选择 **Full page**（整页）。在 Brave 1.96 及更高版本中，会打开一个预览，你可以在其中下载 PNG 或复制图片。OpenScreenShot 同样可在 Brave 中使用：Brave 是 Chromium 浏览器，可以从 Chrome 应用商店 安装扩展。

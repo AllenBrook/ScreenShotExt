@@ -2,6 +2,7 @@
 title: Comment préparer une capture d’écran à partager sur les réseaux sociaux
 description: Recadrez une capture, ajoutez un cadre avec marges, coins, ombre et fond, masquez les informations personnelles et exportez-la dans une taille nette.
 order: 4
+published: 2026-10-09
 ---
 
 Pour partager une capture d’écran sur les réseaux sociaux, recadrez-la sur la partie qui illustre votre propos, masquez les informations personnelles, ajoutez un cadre et exportez-la dans une taille qui reste nette. Dans OpenScreenShot, utilisez **Recadrer** pour couper les bords, **Flou** avec le remplissage **Uni** pour masquer les détails, et le panneau **Beautify** pour les marges, les coins arrondis, l’ombre et le fond. Exportez ensuite un PNG à 200 % ou à une largeur exacte en pixels.

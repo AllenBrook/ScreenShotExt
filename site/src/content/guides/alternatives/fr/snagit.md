@@ -2,6 +2,7 @@
 title: 'Alternative à Snagit : capture gratuite de pages web dans le navigateur'
 description: Snagit vs OpenScreenShot. Pour les pages web, OpenScreenShot offre capture pleine page, annotation, flou, PDF et vidéo d’onglet, gratuits dans Chrome.
 order: 9
+published: 2026-10-09
 ---
 
 Passez à OpenScreenShot si vous capturez surtout des pages web avec Snagit : il fait la capture pleine page, l’annotation, le masquage, l’export PDF et l’enregistrement d’onglet dans le navigateur, gratuitement et sans connexion. Restez sur Snagit si vous capturez des applications de bureau, des fenêtres de programmes ou l’écran entier. Snagit est une application de bureau pour Windows et macOS, et OpenScreenShot capture uniquement les pages web dans le navigateur, par conception. Snagit enregistre aussi l’audio système et l’écran entier, fait défiler l’intérieur des fenêtres de programmes et propose Smart Redact, qui peut flouter ou masquer les e-mails, les numéros de téléphone et les informations de carte bancaire. OpenScreenShot n’a aucune de ces fonctions.

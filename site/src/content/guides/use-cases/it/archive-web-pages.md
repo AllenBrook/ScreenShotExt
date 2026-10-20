@@ -2,6 +2,7 @@
 title: Come salvare una copia visiva di una pagina web
 description: Cattura un’intera pagina web come PNG o PDF, dai ai file un nome con data e dominio e gestisci le pagine molto lunghe salvate in più immagini.
 order: 5
+published: 2026-10-09
 ---
 
 Per conservare una copia visiva di una pagina web, catturala con **Pagina intera** e salvala come PNG o PDF con la data e il sito nel nome del file. OpenScreenShot scorre la pagina, unisce le parti in un’unica immagine e salva il file sul tuo computer. Uno screenshot registra come appariva la pagina sul tuo schermo; non prova che la pagina fosse autentica o non modificata.

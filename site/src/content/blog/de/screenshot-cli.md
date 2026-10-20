@@ -3,6 +3,8 @@ title: Website-Screenshots über die Kommandozeile aufnehmen
 description: Speichere PNG-Screenshots mit der OpenScreenShot-CLI mit festem Viewport, als Ganzseiten-Aufnahme oder als Binärausgabe nach stdout.
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 Die OpenScreenShot-CLI nimmt eine Webseite als PNG auf und nutzt dafür einen lokal installierten Chrome-kompatiblen Browser. Sie ist ein von der Browsererweiterung getrenntes Paket. Wenn Node.js, pnpm und Chrome installiert sind, führe aus:

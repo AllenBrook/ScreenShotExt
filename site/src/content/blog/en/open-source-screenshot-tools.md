@@ -3,6 +3,7 @@ title: Open-source screenshot tools for every platform
 description: 'Open-source screenshot tools by platform: OpenScreenShot and Screenity in the browser, ShareX and Flameshot on the desktop, shot-scraper for scripts.'
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 Pick an open-source screenshot tool by where the thing you capture lives. For anything on a Windows screen, use ShareX. For Linux, macOS, or Windows desktops, use Flameshot. For web pages, use a browser tool such as OpenScreenShot or the Screenshots tool built into Firefox, and for screenshots from a script, use shot-scraper, Playwright, or Puppeteer.

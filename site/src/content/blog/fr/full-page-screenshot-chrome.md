@@ -3,6 +3,8 @@ title: Comment faire une capture de page entière dans Chrome
 description: Capturez une page web défilante entière avec OpenScreenShot, vérifiez le résultat et exportez-le en image ou en PDF.
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Pour faire une capture de page entière avec OpenScreenShot, ouvrez la page web et cliquez sur l’icône de l’extension dans la barre d’outils. Avec les réglages par défaut, la capture démarre immédiatement et l’image terminée s’ouvre dans l’éditeur. L’extension fait défiler la page et assemble les sections capturées en une seule image.

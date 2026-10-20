@@ -2,6 +2,7 @@
 title: Come preparare uno screenshot da condividere sui social media
 description: Ritaglia uno screenshot, aggiungi una cornice con spaziatura, angoli, ombra e sfondo, nascondi i dati personali ed esportalo a una dimensione nitida.
 order: 4
+published: 2026-10-09
 ---
 
 Per condividere uno screenshot sui social media, ritaglialo sulla parte che sostiene il tuo punto, nascondi i dati personali, aggiungi una cornice ed esportalo a una dimensione che resti nitida. In OpenScreenShot, usa **Ritaglia** per tagliare, **Sfocatura** con il riempimento **Pieno** per nascondere i dettagli e il pannello **Beautify** per spaziatura, angoli arrotondati, un’ombra e uno sfondo. Poi esporta un PNG al 200 % o a una larghezza esatta in pixel.

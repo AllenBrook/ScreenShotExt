@@ -2,6 +2,7 @@
 title: So speicherst du eine visuelle Kopie einer Webseite
 description: Nimm eine ganze Webseite als PNG oder PDF auf, benenne Dateien nach Datum und Domain und speichere sehr lange Seiten als mehrere Bilder.
 order: 5
+published: 2026-10-09
 ---
 
 Um eine visuelle Kopie einer Webseite zu behalten, nimm sie mit **Ganze Seite** auf und speichere sie als PNG oder PDF mit Datum und Website im Dateinamen. OpenScreenShot scrollt die Seite, setzt die Teile zu einem Bild zusammen und speichert die Datei auf deinem Computer. Ein Screenshot hält fest, wie die Seite auf deinem Bildschirm aussah; er ist kein Beweis dafür, dass die Seite echt oder unverändert war.

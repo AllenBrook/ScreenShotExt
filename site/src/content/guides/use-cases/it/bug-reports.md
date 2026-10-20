@@ -2,6 +2,7 @@
 title: Come fare screenshot per le segnalazioni di bug
 description: Cattura la parte difettosa di una pagina, segnala il problema con frecce e numeri di passo, nascondi token ed email e incolla l’immagine in una issue.
 order: 1
+published: 2026-10-09
 ---
 
 Per una segnalazione di bug, cattura solo la parte della pagina che mostra il problema, segna cosa non va e nascondi tutto ciò che è privato prima di incollare l’immagine nella issue. In OpenScreenShot, usa **Regione selezionata** o **Cattura elemento** per la cattura, gli strumenti **Freccia** e **Numero passo** per i segni, e **Sfocatura** con il riempimento **Pieno** per l’oscuramento. Inserisci l’URL, il browser e i passi per riprodurre il problema nel testo della issue, perché lo screenshot mostra il contenuto della pagina senza la barra degli indirizzi.

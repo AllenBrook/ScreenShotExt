@@ -2,6 +2,7 @@
 title: Comment capturer une page web pour une revue de design
 description: Capturez une page entière ou un seul composant, guidez les relecteurs avec le spotlight et des notes, et partagez un PDF de plusieurs pages.
 order: 2
+published: 2026-10-09
 ---
 
 Pour une revue de design, capturez toute la page avec **Page entière**, marquez les points sur lesquels vous voulez un retour, et partagez un PDF que les relecteurs lisent page par page. Dans OpenScreenShot, **Spotlight** assombrit tout ce qui est hors de la zone discutée, et **Texte** et **Flèche** ajoutent des notes. Utilisez **Capturer un élément** quand la revue porte sur un seul composant, comme une carte, un graphique ou un tableau.

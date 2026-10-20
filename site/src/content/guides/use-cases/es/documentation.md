@@ -2,6 +2,7 @@
 title: Cómo hacer capturas de pantalla para documentación de ayuda y tutoriales
 description: Mantén las capturas de un tutorial del mismo tamaño, numera los pasos, resalta el control correcto y guarda cada archivo en una carpeta de documentación.
 order: 3
+published: 2026-10-09
 ---
 
 Para documentación de ayuda y tutoriales, captura cada pantalla de la misma forma, numera las acciones y exporta todas las imágenes con el mismo ancho. En OpenScreenShot, fija un ancho exacto en píxeles en **Escala** dentro del diálogo **Exportar**, añade insignias de **Número de paso** para cada acción y usa **Spotlight** para guiar a los lectores hacia el control correcto. Una plantilla de nombre como `Docs/{title}` guarda cada imagen en una carpeta dentro de Descargas.

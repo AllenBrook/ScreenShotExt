@@ -2,6 +2,7 @@
 title: Como fazer capturas de tela para documentação de ajuda e tutoriais
 description: Mantenha as capturas de um tutorial do mesmo tamanho, numere os passos, destaque o controle certo e salve cada arquivo em uma pasta de documentação.
 order: 3
+published: 2026-10-09
 ---
 
 Para documentação de ajuda e tutoriais, capture cada tela da mesma forma, numere as ações e exporte todas as imagens na mesma largura. No OpenScreenShot, defina uma largura exata em pixels em **Escala** no diálogo **Exportar**, adicione selos de **Número do passo** para cada ação e use **Spotlight** para mostrar ao leitor o controle certo. Um modelo de nome de arquivo como `Docs/{title}` salva cada imagem em uma pasta dentro de Downloads.

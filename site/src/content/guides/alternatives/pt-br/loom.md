@@ -2,6 +2,7 @@
 title: 'Alternativa ao Loom: gravações de abas que ficam no seu dispositivo'
 description: Loom vs. OpenScreenShot. Grave uma aba do navegador com webcam, microfone e zoom automático e exporte um MP4 localmente, sem conta e sem plano pago.
 order: 8
+published: 2026-10-09
 ---
 
 Mude para o OpenScreenShot se você grava demonstrações de um aplicativo web ou de uma página no Chrome e quer exportar um arquivo MP4 no seu próprio dispositivo, sem conta. Fique com o Loom se você compartilha vídeos por link: o Loom hospeda cada vídeo, oferece uma biblioteca e um espaço de trabalho para equipes, e lista aplicativos para desktop e celular. O OpenScreenShot não tem hospedagem nem links de compartilhamento, então você mesmo faz o upload ou anexa o arquivo exportado. Ele grava uma aba do navegador, só no Chrome, e não captura janelas do desktop nem a tela inteira.

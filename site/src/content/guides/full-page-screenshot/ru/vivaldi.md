@@ -2,6 +2,7 @@
 title: Как сделать скриншот всей страницы в Vivaldi
 description: Снимите всю страницу инструментом Capture в Vivaldi в PNG или JPEG, узнайте о его лимите в 30 000 пикселей и используйте OpenScreenShot из Chrome Web Store.
 order: 7
+published: 2026-10-09
 ---
 
 В Vivaldi есть встроенный инструмент Capture. Нажмите на значок камеры в строке состояния, выберите **Full Page** (вся страница), выберите PNG, JPEG или буфер обмена и нажмите **Capture** (снять). Снимки Full Page ограничены 30 000 пикселей. OpenScreenShot тоже работает в Vivaldi: Vivaldi — браузер на Chromium и устанавливает расширения из Chrome Web Store.

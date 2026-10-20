@@ -2,6 +2,7 @@
 title: 'GoFullPage 替代方案：免費註解，而且開放原始碼'
 description: GoFullPage 與 OpenScreenShot 的整頁截圖比較。OpenScreenShot 提供免費的註解、模糊、裁切和 PDF 分頁，而且程式碼公開。
 order: 1
+published: 2026-10-09
 ---
 
 如果你擷取整頁後還需要裁切、模糊、加註解或把 PDF 分頁，請改用 OpenScreenShot：GoFullPage 把這些功能放在付費的 Premium 方案中，而 OpenScreenShot 免費提供。OpenScreenShot 也採用 MIT 授權，所以你可以檢視在你網頁上執行的程式碼。如果你只擷取整頁並存成圖片或 PDF、不做任何編輯，請繼續使用 GoFullPage。它的免費版已經能做到這些，擷取次數沒有限制，它的常見問題也連到 Microsoft Edge Add-ons 版本。OpenScreenShot 沒有 Edge Add-ons 頁面，但 Edge 可以從 Chrome 線上應用程式商店安裝它。OpenScreenShot 只擷取瀏覽器中的網頁；它不擷取桌面視窗或整個螢幕。

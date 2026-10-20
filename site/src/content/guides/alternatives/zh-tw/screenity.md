@@ -2,6 +2,7 @@
 title: 'Screenity 替代方案：截圖和分頁錄影整合在一個擴充功能中'
 description: Screenity 與 OpenScreenShot 比較。兩者都開放原始碼。OpenScreenShot 另有整頁截圖和 PDF 匯出，安裝時不要求所有網站的存取權。
 order: 7
+published: 2026-10-09
 ---
 
 如果你錄製瀏覽器分頁，也擷取整頁截圖，並想要一個能同時做到這兩件事、安裝時不要求存取所有網站的開放原始碼擴充功能，請改用 OpenScreenShot。如果你錄製的不只是分頁，請繼續使用 Screenity：它能錄製區域、桌面、任何應用程式視窗或攝影機，並能匯出 GIF 或儲存到 Google Drive。OpenScreenShot 只錄製一個瀏覽器分頁，不擷取桌面視窗或整個螢幕。Screenity 的付費 Pro 方案還加入連結分享和雲端代管，這是 OpenScreenShot 沒有提供的。

@@ -2,6 +2,7 @@
 title: 如何在 Microsoft Edge 中截取整页截图
 description: 用 Edge 内置的 Screenshot 工具或 DevTools 命令截取整个页面，了解其局限，并从 Chrome 应用商店 安装 OpenScreenShot。
 order: 2
+published: 2026-10-09
 ---
 
 Microsoft Edge 内置 Screenshot（屏幕截图）工具，它以前名为 Web capture（网页捕获）。按 `Ctrl+Shift+S`，选择 **Capture full page**（捕获整页），然后复制截图或将其保存到你的设备。OpenScreenShot 同样可在 Edge 中使用：Edge 是 Chromium 浏览器，在你允许来自其他应用商店的扩展后，即可从 Chrome 应用商店 安装它。

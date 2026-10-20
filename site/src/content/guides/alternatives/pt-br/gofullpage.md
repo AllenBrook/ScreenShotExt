@@ -2,6 +2,7 @@
 title: 'Alternativa ao GoFullPage: anotações grátis e código aberto'
 description: GoFullPage vs. OpenScreenShot para capturas de página inteira. O OpenScreenShot tem anotações, desfoque, recorte e PDF em páginas grátis, e código público.
 order: 1
+published: 2026-10-09
 ---
 
 Mude para o OpenScreenShot se você captura páginas inteiras e depois precisa recortar, desfocar, fazer marcações ou dividir um PDF em páginas: o GoFullPage coloca esses recursos no plano pago Premium, e o OpenScreenShot os inclui de graça. O OpenScreenShot também usa a licença MIT, então você pode ler o código que roda nas suas páginas. Fique com o GoFullPage se você só captura e salva páginas inteiras como imagens ou PDFs, sem edições. A versão gratuita dele já faz isso sem limite de capturas, e o FAQ dele indica uma versão no Microsoft Edge Add-ons. O OpenScreenShot não está no Edge Add-ons, mas o Edge pode instalá-lo pela Chrome Web Store. O OpenScreenShot captura apenas páginas web no navegador; ele não captura janelas do desktop nem a tela inteira.

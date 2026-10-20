@@ -2,6 +2,7 @@
 title: 'Snagit の代替: ブラウザで無料のウェブページ キャプチャ'
 description: Snagit と OpenScreenShot。ウェブページだけなら、OpenScreenShot がページ全体、注釈、ぼかし、PDF、タブ録画を Chrome で無料で提供。
 order: 9
+published: 2026-10-09
 ---
 
 Snagit でキャプチャするものの大半がウェブページなら、OpenScreenShot に切り替えてください。ページ全体のキャプチャ、注釈、マスク処理、PDF 書き出し、タブ録画をブラウザ内で、無料かつサインインなしで行えます。デスクトップ アプリ、プログラムのウィンドウ、画面全体をキャプチャするなら、Snagit のままで構いません。Snagit は Windows と macOS 用のデスクトップ アプリで、OpenScreenShot は設計上、ブラウザ内のウェブページだけをキャプチャします。Snagit には、システム音声と画面全体の録画、プログラムのウィンドウ内のスクロール キャプチャ、メールアドレス、電話番号、クレジット カード情報をぼかすか隠せる Smart Redact もあります。OpenScreenShot にはこれらの機能はありません。

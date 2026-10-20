@@ -3,6 +3,8 @@ title: AI エージェント向けにローカルのスクリーンショット 
 description: OpenScreenShot を stdio の MCP クライアントに接続し、URL、ビューポート、ページ全体のオプションを指定して PNG を取得します。
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot には、ツールを 1 つ持つローカル MCP サーバー `capture_screenshot` があります。MCP クライアントはウェブページの URL を指定してこのツールを呼び出し、PNG の画像コンテンツを受け取れます。サーバーは手元のマシンで別のヘッドレス Chrome 互換ブラウザを起動します。ブラウザ拡張機能は不要です。

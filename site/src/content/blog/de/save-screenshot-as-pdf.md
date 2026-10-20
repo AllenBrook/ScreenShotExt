@@ -3,6 +3,8 @@ title: So speicherst du einen Ganzseiten-Screenshot als PDF
 description: Exportiere einen Screenshot als einzelne PDF-Seite, passe ihn auf A4 oder Letter ein oder teile eine lange Aufnahme auf mehrere Seiten auf.
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Um in OpenScreenShot einen Screenshot als PDF zu speichern, öffnest du die Aufnahme im Editor, klickst auf **Bild speichern**, um den Dialog **Exportieren** zu öffnen, und wählst **PDF**. Die Schaltfläche **PDF** in der oberen Leiste speichert mit einem Klick ein PDF mit deinen gespeicherten PDF-Einstellungen: A4, Hochformat und mehrere Seiten, bis du sie im Dialog änderst. Wähle eine einzelne Bildseite, ein A4- oder Letter-Layout oder einen mehrseitigen Export, je nachdem, wie das Dokument gelesen wird.

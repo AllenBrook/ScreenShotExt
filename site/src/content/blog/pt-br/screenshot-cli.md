@@ -3,6 +3,8 @@ title: Faça capturas de sites pela linha de comando
 description: Use a CLI do OpenScreenShot para salvar capturas PNG com área de visualização fixa, captura de página inteira ou saída binária no stdout.
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 A CLI do OpenScreenShot captura uma página web como PNG usando um navegador compatível com Chrome instalado localmente. Ela é um pacote separado da extensão de navegador. Com Node.js, pnpm e Chrome instalados, execute:

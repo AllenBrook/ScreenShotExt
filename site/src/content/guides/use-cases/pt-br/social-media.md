@@ -2,6 +2,7 @@
 title: Como deixar uma captura de tela pronta para as redes sociais
 description: Recorte uma captura, adicione uma moldura com margem, cantos, sombra e fundo, oculte dados pessoais e exporte em um tamanho nítido.
 order: 4
+published: 2026-10-09
 ---
 
 Para compartilhar uma captura de tela nas redes sociais, recorte-a na parte que mostra o seu ponto, oculte dados pessoais, adicione uma moldura e exporte em um tamanho que fique nítido. No OpenScreenShot, use **Recortar** para aparar, **Desfoque** com o preenchimento **Sólido** para ocultar detalhes e o painel **Beautify** para margem, cantos arredondados, uma sombra e um fundo. Depois, exporte um PNG em 200% ou em uma largura exata em pixels.

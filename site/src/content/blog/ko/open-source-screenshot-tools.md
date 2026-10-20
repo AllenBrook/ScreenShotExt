@@ -3,6 +3,7 @@ title: 모든 플랫폼을 위한 오픈 소스 스크린샷 도구
 description: '실행 환경별 오픈 소스 스크린샷 도구: 브라우저용 OpenScreenShot, Screenity와 ShareX, Flameshot, Playwright 등.'
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 캡처할 대상이 어디에 있는지에 따라 오픈 소스 스크린샷 도구를 고르세요. Windows 화면에 있는 것이라면 무엇이든 ShareX를 사용하세요. Linux, macOS, Windows 데스크톱에는 Flameshot을 사용하세요. 웹페이지에는 OpenScreenShot이나 Firefox에 내장된 Screenshots 도구 같은 브라우저 도구를 사용하고, 스크립트에서 스크린샷을 찍으려면 shot-scraper, Playwright, Puppeteer를 사용하세요.

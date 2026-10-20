@@ -2,6 +2,7 @@
 title: 'FireShot 替代品：浏览器内的免费编辑器，并且开源'
 description: FireShot 与 OpenScreenShot 对比。两者都在本地截取整页。OpenScreenShot 开源，并提供免费的浏览器内编辑器和标签页录屏。
 order: 4
+published: 2026-10-09
 ---
 
 如果你想在浏览器中免费标注和模糊整页截图，在任何能运行 Chrome 或 Firefox 的操作系统上使用，并且代码可以阅读，就换用 OpenScreenShot。如果你需要带可用链接的 PDF、批量或自动截图，或 FireShot Pro 中的额外功能，例如高级 PDF 导出和截图历史，就继续使用 FireShot。OpenScreenShot 把 PDF 保存为图片，因此其中的文字不可搜索，链接也不可用。它只截取网页，不截取桌面窗口或整个屏幕。

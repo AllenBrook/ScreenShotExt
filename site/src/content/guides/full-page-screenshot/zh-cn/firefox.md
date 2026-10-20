@@ -2,6 +2,7 @@
 title: 如何在 Firefox 中截取整页截图
 description: 用 Firefox 内置的 Screenshots 工具或 :screenshot 命令截取整个页面，了解尺寸上限，并使用 OpenScreenShot 附加组件。
 order: 3
+published: 2026-10-09
 ---
 
 Firefox 内置 Screenshots（截图）工具。按 `Ctrl+Shift+S`（macOS 上为 `Cmd+Shift+S`），选择 **Save full page**（保存整个页面），然后选择 **Download**（下载）保存 PNG，或选择 **Copy**（复制）把图片放到剪贴板。Firefox 版 OpenScreenShot 附加组件增加了一个编辑器，可添加箭头、文字和遮盖，并可导出为 PNG、JPEG、WebP 或 PDF。

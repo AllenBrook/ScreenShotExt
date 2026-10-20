@@ -2,6 +2,7 @@
 title: Come usare gli screenshot per rispondere ai ticket di assistenza
 description: Copia uno screenshot direttamente nella risposta a un ticket, numera i passi, nascondi i dati dei clienti e annota un’immagine inviata da un cliente.
 order: 7
+published: 2026-10-09
 ---
 
 Per rispondere a un ticket di assistenza con uno screenshot, cattura la schermata che il cliente deve vedere, numera i passi che deve seguire, nascondi i dati dei clienti e incolla l’immagine nella tua risposta. In OpenScreenShot, l’azione **Appunti** copia una cattura senza aprire l’editor, e i badge **Numero passo** mostrano l’ordine dei clic. Per annotare uno screenshot inviato da un cliente, incollalo o trascinalo nell’**Editor**.

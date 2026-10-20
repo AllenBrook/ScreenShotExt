@@ -2,6 +2,7 @@
 title: 'Lightshot 대안: 공개 업로드 없는 전체 페이지 캡처'
 description: Lightshot vs OpenScreenShot. 브라우저에서 전체 페이지 캡처, 블러, PDF 내보내기. 파일은 기기에 남고 prnt.sc 링크가 없어요.
 order: 6
+published: 2026-10-09
 ---
 
 Chrome이나 Firefox에서 웹 페이지 스크린샷을 찍고, 전체 페이지 캡처, 블러, PDF 내보내기를 원하며, 파일이 기기에 남기를 바란다면 OpenScreenShot으로 바꾸세요. 다른 앱이나 데스크톱 전체를 캡처한다면 Lightshot을 계속 쓰세요. Lightshot에는 Windows와 Mac용 데스크톱 앱이 있고, OpenScreenShot은 브라우저 안의 웹 페이지만 캡처해요. 즉석 단축 링크에 의존한다면 역시 Lightshot을 계속 쓰세요. OpenScreenShot에는 업로드 서비스가 없어서, 캡처를 붙여넣거나 파일을 첨부해 공유해요.

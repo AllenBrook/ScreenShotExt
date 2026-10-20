@@ -2,6 +2,7 @@
 title: 'FireShot 替代方案：瀏覽器內的免費編輯器，而且開放原始碼'
 description: FireShot 與 OpenScreenShot 比較。兩者都在本機擷取整頁。OpenScreenShot 開放原始碼，提供免費的瀏覽器內編輯器和分頁錄影。
 order: 4
+published: 2026-10-09
 ---
 
 如果你想在瀏覽器中免費為整頁截圖加註解和模糊，在任何能執行 Chrome 或 Firefox 的作業系統上使用，而且程式碼可供檢視，請改用 OpenScreenShot。如果你需要連結可用的 PDF、批次或自動擷取，或 FireShot Pro 的額外功能（例如進階 PDF 匯出和擷取紀錄），請繼續使用 FireShot。OpenScreenShot 以圖片形式儲存 PDF，所以其中的文字無法搜尋，連結也無法使用。它只擷取網頁，不擷取桌面視窗或整個螢幕。

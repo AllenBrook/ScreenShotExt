@@ -2,6 +2,7 @@
 title: Cómo hacer una captura de página completa en Firefox
 description: Captura una página entera con Screenshots de Firefox o el comando :screenshot, revisa los límites de tamaño y usa el complemento OpenScreenShot.
 order: 3
+published: 2026-10-09
 ---
 
 Firefox tiene una herramienta de captura integrada, Screenshots. Pulsa `Ctrl+Shift+S` (`Cmd+Shift+S` en macOS), selecciona **Save full page** (guardar página completa) y, después, selecciona **Download** (descargar) para guardar un PNG o **Copy** (copiar) para poner la imagen en el portapapeles. El complemento OpenScreenShot para Firefox añade un editor para flechas, texto y ocultación de datos, y exporta a PNG, JPEG, WebP o PDF.

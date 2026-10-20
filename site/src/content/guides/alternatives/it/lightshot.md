@@ -2,6 +2,7 @@
 title: 'Alternativa a Lightshot: cattura a pagina intera senza caricamenti pubblici'
 description: Lightshot o OpenScreenShot? Cattura a pagina intera, sfocatura ed export PDF nel browser, con i file sul tuo dispositivo e nessun link prnt.sc.
 order: 6
+published: 2026-10-09
 ---
 
 Passa a OpenScreenShot se fai screenshot di pagine web in Chrome o Firefox e vuoi cattura a pagina intera, sfocatura ed esportazione PDF, con file che restano sul tuo dispositivo. Resta con Lightshot se catturi altre app o l’intero desktop: Lightshot ha app desktop per Windows e Mac, mentre OpenScreenShot cattura solo pagine web nel browser. Resta anche se dipendi dai suoi link brevi istantanei. OpenScreenShot non ha un servizio di caricamento, quindi condividi una cattura incollandola o allegando il file.

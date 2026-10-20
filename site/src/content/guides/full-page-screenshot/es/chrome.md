@@ -2,6 +2,7 @@
 title: 'Cómo hacer una captura de página completa en Chrome: DevTools o una extensión'
 description: Usa el comando Capture full size screenshot de Chrome DevTools, conoce sus límites y compáralo con una captura de página completa en OpenScreenShot.
 order: 1
+published: 2026-10-09
 ---
 
 Chrome puede hacer una captura de página completa sin extensiones, pero solo desde DevTools. Abre DevTools, abre el menú de comandos, escribe `screenshot` y ejecuta **Capture full size screenshot** (capturar una captura de tamaño completo). Chrome guarda la página entera como archivo PNG. Los menús normales de Chrome no tienen ninguna opción de captura: la ayuda de Google enumera Share, Send to your devices y Create QR code (Compartir, Enviar a tus dispositivos y Crear código QR) en **Cast, save, and share** (enviar, guardar y compartir). Para una captura que puedas marcar, exportar como PDF o hacer en una página que se desplaza dentro de un panel, instala OpenScreenShot y haz clic en su icono.

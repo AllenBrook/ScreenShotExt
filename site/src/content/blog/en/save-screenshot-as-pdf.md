@@ -3,6 +3,8 @@ title: How to save a full-page screenshot as a PDF
 description: Export a screenshot as a single PDF page, fit it to A4 or Letter, or split a long capture into multiple pages.
 audience: everyday
 order: 2
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 To save a screenshot as a PDF in OpenScreenShot, open the capture in the editor, click **Save image** to open the **Export** dialog, and select **PDF**. The **PDF** button in the top bar saves one in a single click with your saved PDF settings: A4, portrait, and multiple pages until you change them in the dialog. Choose a single image page, an A4 or Letter layout, or a multipage export according to how the document will be read.

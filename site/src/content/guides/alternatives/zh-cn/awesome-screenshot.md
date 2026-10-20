@@ -2,6 +2,7 @@
 title: 'Awesome Screenshot 替代品：数据留在你设备上的免费工具'
 description: Awesome Screenshot 与 OpenScreenShot 对比。免费的标注、模糊、PDF 和标签页录屏都留在你的设备上，只有一个免费版本，安装时不要求访问所有网站。
 order: 3
+published: 2026-10-09
 ---
 
 如果你在浏览器内截图和录屏，希望一切都留在你的设备上，并且所有编辑器工具都免费、没有套餐限制，就换用 OpenScreenShot。如果你需要 Awesome Screenshot 的云端功能，就继续使用它：分享链接、云存储，以及桌面和摄像头录制，其 Professional 套餐最高支持 4K。OpenScreenShot 没有分享链接，也没有云端。它只录制一个浏览器标签页，仅限 Chrome，并且不截取桌面窗口或整个屏幕。

@@ -3,6 +3,8 @@ title: Capture website screenshots for CI and release reviews
 description: Create repeatable PNG artifacts with the OpenScreenShot CLI and understand what a screenshot capture can verify in a build pipeline.
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Use the OpenScreenShot CLI in CI to save a PNG of a running application for review. Provision a Chrome-compatible browser, start the application, wait for it to become ready, then capture a fixed URL and viewport. Upload the resulting file using your CI provider’s artifact mechanism.

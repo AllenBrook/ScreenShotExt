@@ -2,6 +2,7 @@
 title: 'FullPage Capture の代替: インストール時にすべてのサイトへのアクセスが不要なオープンソース'
 description: FullPage Capture と OpenScreenShot。どちらも無料でキャプチャと注釈。OpenScreenShot はオープンソースで、導入時の全サイト権限が不要。
 order: 2
+published: 2026-10-09
 ---
 
 コードを読むことができ、インストール時にすべてのウェブサイトへのアクセスを求めない、ページ全体のスクリーンショット拡張機能が必要なら、OpenScreenShot に切り替えてください。FullPage Capture の PDF 書き出しの機能が必要なら、FullPage Capture のままで構いません。掲載ページでは、クリックできるリンクとスマートな改ページ付きの PDF が説明されており、Pro プランでは検索可能な PDF が加わります。OpenScreenShot は PDF を画像として保存するため、文字の検索や選択はできず、リンクも機能しません。OpenScreenShot がキャプチャするのはブラウザ内のウェブページだけです。デスクトップのウィンドウや画面全体はキャプチャしません。

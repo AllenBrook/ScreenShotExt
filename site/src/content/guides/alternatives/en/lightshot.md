@@ -2,6 +2,7 @@
 title: 'Lightshot alternative: full-page capture with no public upload'
 description: Lightshot vs OpenScreenShot. Get full-page capture, blur, and PDF export in the browser, with files that stay on your device and no prnt.sc links.
 order: 6
+published: 2026-10-09
 ---
 
 Switch to OpenScreenShot if you take screenshots of web pages in Chrome or Firefox and want full-page capture, blur, and PDF export, with files that stay on your device. Stay with Lightshot if you capture other apps or your whole desktop: Lightshot has desktop apps for Windows and Mac, and OpenScreenShot captures web pages in the browser only. Also stay if you depend on its instant short links. OpenScreenShot has no upload service, so you share a capture by pasting it or attaching the file.

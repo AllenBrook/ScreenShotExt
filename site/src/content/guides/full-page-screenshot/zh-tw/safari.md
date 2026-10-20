@@ -2,6 +2,7 @@
 title: 如何在 Safari 中擷取整頁截圖
 description: Mac 上的 Safari 沒有整頁圖片擷取功能。你可以把整個網頁存成 PDF、在網頁檢閱器中擷取單一元素，或改用其他瀏覽器。
 order: 4
+published: 2026-10-09
 ---
 
 Mac 上的 Safari 沒有整頁截圖指令。最接近的內建選項是 PDF：選擇 **File** > **Print**（檔案 > 列印），點對話框底部的 **PDF**，然後儲存檔案。如果要圖片檔，Safari 的 Web Inspector（網頁檢閱器）可以擷取網頁中的單一元素。OpenScreenShot 沒有 Safari 版。Safari 從 Mac App Store 安裝 Safari Web Extensions，無法安裝 Chrome 線上應用程式商店或 Firefox 附加元件套件。在 Mac 上，Chrome、Firefox、Edge 和其他瀏覽器都能執行 OpenScreenShot。

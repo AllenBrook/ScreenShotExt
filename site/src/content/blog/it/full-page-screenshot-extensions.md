@@ -3,6 +3,7 @@ title: Estensioni per screenshot a pagina intera a confronto (2026)
 description: OpenScreenShot, GoFullPage, FullPage Capture, Awesome Screenshot, FireShot e Nimbus/FuseBase a confronto per prezzo, codice sorgente, permessi all’installazione, annotazioni, PDF e registrazione, più gli strumenti senza installazione integrati nei browser.
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 Se ti serve uno screenshot a pagina intera solo ogni tanto, gli strumenti integrati in Chrome DevTools, Microsoft Edge e Firefox catturano una pagina intera senza installare nulla. Se catturi pagine spesso, le estensioni qui sotto differiscono per cosa è gratuito, quale accesso ai siti chiedono all’installazione, se registrano video e se il loro sorgente è pubblico. Ogni sezione dice a chi è adatto lo strumento.

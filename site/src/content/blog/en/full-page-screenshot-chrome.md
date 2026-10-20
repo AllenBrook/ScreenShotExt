@@ -3,6 +3,8 @@ title: How to take a full-page screenshot in Chrome
 description: Capture an entire scrolling webpage with OpenScreenShot, check the result, and export it as an image or PDF.
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 To take a full-page screenshot with OpenScreenShot, open the webpage and click the extension’s toolbar icon. With the default settings, capture starts immediately and the finished image opens in the editor. The extension scrolls the page and stitches the captured sections into one image.

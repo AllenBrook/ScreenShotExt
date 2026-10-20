@@ -2,6 +2,7 @@
 title: 'Nimbus Screenshot 대안: FuseBase로 바뀐 뒤의 로컬 캡처'
 description: Nimbus Screenshot은 이제 FuseBase Pro. OpenScreenShot은 기기에서 전체 페이지 캡처·주석·탭 녹화를 하는 무료 오픈 소스예요.
 order: 5
+published: 2026-10-09
 ---
 
 Nimbus Screenshot은 이제 Chrome에서 Nimbus Web이 제공하는 FuseBase Pro로 배포돼요. Nimbus로 웹 페이지를 캡처하고, 주석을 달고, 녹화했고, 계정도 클라우드 워크스페이스도 없이 파일을 기기에 남기는 무료 도구를 원한다면 OpenScreenShot으로 바꾸세요. OpenScreenShot에 없는 기능, 즉 탭 하나를 넘어서는 화면 녹화나 FuseBase, Google Drive, Dropbox, Slack 업로드가 필요하다면 FuseBase Pro를 계속 쓰세요. OpenScreenShot은 Chrome에서만 브라우저 탭 하나를 녹화해요. 데스크톱 창이나 화면 전체는 캡처하지 않아요.

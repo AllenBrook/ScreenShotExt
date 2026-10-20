@@ -2,6 +2,7 @@
 title: 'Alternativa a FullPage Capture: open source e senza accesso a tutti i siti all’installazione'
 description: FullPage Capture e OpenScreenShot catturano e annotano gratis pagine intere. OpenScreenShot è open source e non chiede accesso a tutti i siti all’installazione.
 order: 2
+published: 2026-10-09
 ---
 
 Passa a OpenScreenShot se vuoi un’estensione per screenshot a pagina intera di cui puoi leggere il codice e che all’installazione non chiede accesso a tutti i siti web. Resta con FullPage Capture se ti serve ciò che offre la sua esportazione PDF: la sua scheda descrive PDF con link cliccabili e interruzioni di pagina intelligenti, e il suo piano Pro aggiunge PDF ricercabili. OpenScreenShot salva un PDF come immagine, quindi il suo testo non si può cercare né selezionare e i suoi link non funzionano. OpenScreenShot cattura solo pagine web nel browser; non cattura finestre del desktop né l’intero schermo.

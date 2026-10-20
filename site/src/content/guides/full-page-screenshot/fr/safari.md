@@ -2,6 +2,7 @@
 title: Comment faire une capture d’écran pleine page dans Safari
 description: Safari sur Mac n’a pas de capture d’image pleine page. Enregistrez la page en PDF, capturez un élément dans Web Inspector ou utilisez un autre navigateur.
 order: 4
+published: 2026-10-09
 ---
 
 Safari sur Mac n’a pas de commande de capture d’écran pleine page. L’option intégrée la plus proche est un PDF : choisissez **File** (Fichier) > **Print** (Imprimer), cliquez sur **PDF** en bas de la boîte de dialogue et enregistrez le fichier. Pour un fichier image, le Web Inspector de Safari peut capturer un élément de la page. OpenScreenShot n’a pas de version Safari. Safari installe les Safari Web Extensions depuis le Mac App Store et ne peut pas installer les paquets du Chrome Web Store ni les modules Firefox. Sur un Mac, Chrome, Firefox, Edge et d’autres navigateurs peuvent exécuter OpenScreenShot.

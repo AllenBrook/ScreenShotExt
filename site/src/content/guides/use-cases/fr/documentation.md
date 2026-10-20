@@ -2,6 +2,7 @@
 title: Comment faire des captures d’écran pour la documentation et les tutoriels
 description: Gardez la même taille pour les captures d’un tutoriel, numérotez les étapes, mettez en évidence le bon contrôle et rangez chaque fichier dans un dossier docs.
 order: 3
+published: 2026-10-09
 ---
 
 Pour la documentation d’aide et les tutoriels, capturez chaque écran de la même façon, numérotez les actions et exportez chaque image à la même largeur. Dans OpenScreenShot, indiquez une largeur exacte en pixels sous **Échelle** dans la boîte **Exporter**, ajoutez des badges **Numéro d’étape** pour chaque action, et utilisez **Spotlight** pour guider le lecteur vers le bon contrôle. Un modèle de nom de fichier comme `Docs/{title}` enregistre chaque image dans un dossier à l’intérieur de Téléchargements.

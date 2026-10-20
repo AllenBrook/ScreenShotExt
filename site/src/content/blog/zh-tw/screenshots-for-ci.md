@@ -3,6 +3,8 @@ title: 為 CI 與版本審閱擷取網站截圖
 description: 用 OpenScreenShot CLI 建立可重現的 PNG 產出檔，並了解截圖在建置流程中能驗證什麼。
 audience: developers
 order: 6
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 在 CI 中使用 OpenScreenShot CLI，可以為執行中的應用程式儲存一張 PNG 供審閱。準備好 Chrome 相容瀏覽器，啟動應用程式，等它就緒，然後以固定的網址和可視區域擷取。再用 CI 服務的產出檔機制上傳產生的檔案。

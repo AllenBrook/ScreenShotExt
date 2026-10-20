@@ -3,6 +3,8 @@ title: 为 AI 智能体设置本地截图 MCP 服务器
 description: 将 OpenScreenShot 连接到 stdio MCP 客户端，并用明确的 URL、视口和整页选项请求 PNG 截图。
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`capture_screenshot`。MCP 客户端可以用网页 URL 调用它，并收到 PNG 图像内容。服务器会在你的机器上启动一个独立的 Chrome 兼容无头浏览器；不需要浏览器扩展。

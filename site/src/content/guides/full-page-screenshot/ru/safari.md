@@ -2,6 +2,7 @@
 title: Как сделать скриншот всей страницы в Safari
 description: В Safari на Mac нет снимка всей страницы как изображения. Сохраните страницу в PDF, снимите один элемент в Web Inspector или используйте другой браузер.
 order: 4
+published: 2026-10-09
 ---
 
 В Safari на Mac нет команды для скриншота всей страницы. Ближайший встроенный вариант — PDF: выберите **File** > **Print** (Файл > Напечатать), нажмите **PDF** внизу диалога и сохраните файл. Для файла изображения Web Inspector в Safari может снять один элемент страницы. Версии OpenScreenShot для Safari нет. Safari устанавливает Safari Web Extensions из Mac App Store и не может устанавливать пакеты из Chrome Web Store или дополнения Firefox. На Mac OpenScreenShot работает в Chrome, Firefox, Edge и других браузерах.

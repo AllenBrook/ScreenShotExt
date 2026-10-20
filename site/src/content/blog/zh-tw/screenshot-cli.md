@@ -3,6 +3,8 @@ title: 從命令列擷取網站截圖
 description: 用 OpenScreenShot CLI 儲存 PNG 截圖，可設定固定可視區域、整頁擷取，或把二進位輸出寫到 stdout。
 audience: developers
 order: 4
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot CLI 使用本機安裝的 Chrome 相容瀏覽器，把網頁擷取成 PNG。它和瀏覽器擴充功能是不同的套件。安裝好 Node.js、pnpm 和 Chrome 後，執行：

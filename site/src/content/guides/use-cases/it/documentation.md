@@ -2,6 +2,7 @@
 title: Come creare screenshot per documentazione di aiuto e tutorial
 description: Mantieni le stesse dimensioni negli screenshot dei tutorial, numera i passi, evidenzia il controllo giusto e salva ogni file in una cartella.
 order: 3
+published: 2026-10-09
 ---
 
 Per la documentazione di aiuto e i tutorial, cattura ogni schermata nello stesso modo, numera le azioni ed esporta ogni immagine alla stessa larghezza. In OpenScreenShot, imposta una larghezza esatta in pixel in **Scala** nella finestra **Esporta**, aggiungi i badge **Numero passo** per ogni azione e usa **Spotlight** per guidare chi legge al controllo giusto. Un modello del nome file come `Docs/{title}` salva ogni immagine in una cartella dentro Download.

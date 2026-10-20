@@ -3,6 +3,8 @@ title: 如何在 Chrome 中擷取整頁截圖
 description: 用 OpenScreenShot 擷取整個可捲動的網頁，檢查結果，再匯出成圖片或 PDF。
 audience: everyday
 order: 1
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 要用 OpenScreenShot 擷取整頁截圖，請開啟網頁並點擴充功能的工具列圖示。在預設設定下，擷取會立即開始，完成的圖片會在編輯器中開啟。擴充功能會捲動頁面，並把擷取的各個區段拼接成一張圖片。

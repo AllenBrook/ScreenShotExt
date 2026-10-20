@@ -2,6 +2,7 @@
 title: 'Screenity の代替: スクリーンショットとタブ録画を 1 つの拡張機能で'
 description: Screenity と OpenScreenShot。どちらもオープンソース。OpenScreenShot はページ全体のキャプチャと PDF があり、導入時の全サイト権限が不要。
 order: 7
+published: 2026-10-09
 ---
 
 ブラウザのタブを録画し、ページ全体のスクリーンショットも撮るなら、その両方ができ、インストール時にすべてのウェブサイトへのアクセスを求めない 1 つのオープンソース拡張機能として、OpenScreenShot に切り替えてください。タブ以外も録画するなら、Screenity のままで構いません。Screenity は範囲、デスクトップ、任意のアプリのウィンドウ、カメラを録画でき、GIF での書き出しや Google Drive への保存もできます。OpenScreenShot が録画するのは 1 つのブラウザ タブで、デスクトップのウィンドウや画面全体はキャプチャしません。Screenity の有料の Pro プランでは、リンクでの共有とクラウドのホスティングも加わりますが、OpenScreenShot にはこれらはありません。

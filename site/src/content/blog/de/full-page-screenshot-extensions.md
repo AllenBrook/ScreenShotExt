@@ -3,6 +3,7 @@ title: Erweiterungen für Ganzseiten-Screenshots im Vergleich (2026)
 description: OpenScreenShot, GoFullPage, FullPage Capture, Awesome Screenshot, FireShot und Nimbus/FuseBase im Vergleich nach Preis, Quellcode, Berechtigungen, Anmerkungen, PDF und Aufnahme, dazu die eingebauten Browser-Tools.
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 Brauchst du nur ab und zu einen Ganzseiten-Screenshot, nehmen die eingebauten Tools in Chrome DevTools, Microsoft Edge und Firefox eine ganze Seite ohne Installation auf. Nimmst du oft Seiten auf, unterscheiden sich die Erweiterungen unten darin, was kostenlos ist, welchen Website-Zugriff sie bei der Installation verlangen, ob sie Video aufnehmen und ob ihr Quellcode öffentlich ist. Jeder Abschnitt sagt, für wen das Tool passt.

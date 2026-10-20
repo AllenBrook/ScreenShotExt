@@ -14,5 +14,7 @@
   "next": {
     "heading": "继续阅读",
     "body": "<a href=\"/docs/\">阅读文档</a>、<a href=\"/blog/\">浏览所有指南</a>，或<a href=\"/support/\">获取截图帮助</a>。"
-  }
+  },
+  "published": "发布",
+  "updated": "更新"
 }

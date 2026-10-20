@@ -3,6 +3,7 @@ title: Outils de capture d’écran open source pour chaque plateforme
 description: Des outils de capture open source classés selon leur plateforme, d’OpenScreenShot et Screenity dans le navigateur à ShareX sur Windows, Flameshot sur Linux, macOS et Windows, Firefox Screenshots, et shot-scraper, Playwright et Puppeteer pour les scripts.
 audience: everyday
 order: 8
+published: 2026-10-09
 ---
 
 Choisissez un outil de capture open source selon l’endroit où se trouve ce que vous capturez. Pour tout ce qui s’affiche sur un écran Windows, utilisez ShareX. Pour les bureaux Linux, macOS ou Windows, utilisez Flameshot. Pour les pages web, utilisez un outil de navigateur comme OpenScreenShot ou l’outil Screenshots intégré à Firefox, et pour les captures depuis un script, utilisez shot-scraper, Playwright ou Puppeteer.

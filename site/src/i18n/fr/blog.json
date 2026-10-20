@@ -14,5 +14,7 @@
   "next": {
     "heading": "Pour aller plus loin",
     "body": "<a href=\"/docs/\">Lisez la documentation</a>, <a href=\"/blog/\">parcourez tous les guides</a> ou <a href=\"/support/\">obtenez de l’aide pour une capture</a>."
-  }
+  },
+  "published": "Publié",
+  "updated": "Mis à jour"
 }

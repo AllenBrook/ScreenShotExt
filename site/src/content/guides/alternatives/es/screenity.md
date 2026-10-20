@@ -2,6 +2,7 @@
 title: 'Alternativa a Screenity: capturas de pantalla y grabación de pestañas en una extensión'
 description: Screenity frente a OpenScreenShot. Ambos son de código abierto. OpenScreenShot añade capturas de página completa y PDF, y no pide acceso a todos los sitios.
 order: 7
+published: 2026-10-09
 ---
 
 Cámbiate a OpenScreenShot si grabas pestañas del navegador y también haces capturas de página completa, y quieres una sola extensión de código abierto que haga ambas cosas sin acceso a todos los sitios web al instalarse. Quédate con Screenity si grabas algo más que una pestaña: graba un área, el escritorio, cualquier ventana de aplicación o la cámara, y exporta a GIF o guarda en Google Drive. OpenScreenShot graba una pestaña del navegador y no captura ventanas del escritorio ni la pantalla entera. El plan Pro de pago de Screenity también añade enlaces para compartir y alojamiento en la nube, que OpenScreenShot no ofrece.

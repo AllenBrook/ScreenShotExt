@@ -3,6 +3,7 @@ title: 전체 페이지 스크린샷 확장 프로그램 비교 (2026)
 description: OpenScreenShot, GoFullPage 등 확장 프로그램 6종을 가격, 소스, 권한, 주석, PDF, 녹화로 비교하고 브라우저 내장 도구도 소개합니다.
 audience: everyday
 order: 7
+published: 2026-10-09
 ---
 
 전체 페이지 스크린샷이 가끔만 필요하다면 Chrome DevTools, Microsoft Edge, Firefox에 내장된 도구로 설치 없이 페이지 전체를 캡처할 수 있습니다. 페이지를 자주 캡처한다면 아래 확장 프로그램들은 무료로 제공하는 기능, 설치 시 요청하는 사이트 접근 권한, 동영상 녹화 여부, 소스 공개 여부가 서로 다릅니다. 각 섹션에서 어떤 사람에게 맞는 도구인지 설명합니다.

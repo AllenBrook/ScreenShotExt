@@ -2,6 +2,7 @@
 title: So nimmst du in Firefox einen Ganzseiten-Screenshot auf
 description: Nimm eine ganze Seite mit dem Screenshot-Tool von Firefox oder dem Befehl :screenshot auf, prüfe die Größengrenzen und nutze das Add-on OpenScreenShot.
 order: 3
+published: 2026-10-09
 ---
 
 Firefox hat ein integriertes Screenshot-Tool. Drücke `Ctrl+Shift+S` (`Cmd+Shift+S` auf macOS), wähle **Save full page** („Ganze Seite speichern“) und dann **Download**, um ein PNG zu speichern, oder **Copy** („Kopieren“), um das Bild in die Zwischenablage zu legen. Das Add-on OpenScreenShot für Firefox ergänzt einen Editor für Pfeile, Text und Schwärzung und exportiert als PNG, JPEG, WebP oder PDF.

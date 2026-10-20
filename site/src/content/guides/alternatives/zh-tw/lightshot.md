@@ -2,6 +2,7 @@
 title: 'Lightshot 替代方案：整頁擷取，不公開上傳'
 description: Lightshot 與 OpenScreenShot 比較。在瀏覽器中整頁擷取、模糊和匯出 PDF，檔案留在你的裝置上，沒有 prnt.sc 連結。
 order: 6
+published: 2026-10-09
 ---
 
 如果你在 Chrome 或 Firefox 中擷取網頁截圖，並想要整頁擷取、模糊和 PDF 匯出，而且檔案留在你的裝置上，請改用 OpenScreenShot。如果你要擷取其他應用程式或整個桌面，請繼續使用 Lightshot：Lightshot 有 Windows 和 Mac 桌面應用程式，而 OpenScreenShot 只擷取瀏覽器中的網頁。如果你依賴它的即時短連結，也請繼續使用它。OpenScreenShot 沒有上傳服務，所以你要以貼上或附加檔案的方式分享擷取。

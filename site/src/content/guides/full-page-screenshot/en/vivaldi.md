@@ -2,6 +2,7 @@
 title: How to take a full-page screenshot in Vivaldi
 description: Capture a whole page with Vivaldi’s Capture tool as PNG or JPEG, know its 30,000-pixel limit, and use OpenScreenShot from the Chrome Web Store.
 order: 7
+published: 2026-10-09
 ---
 
 Vivaldi has a built-in Capture tool. Click the camera icon in the Status Bar, select **Full Page**, choose PNG, JPEG, or the clipboard, and click **Capture**. Full Page captures stop at 30,000 pixels. OpenScreenShot also works in Vivaldi: Vivaldi is a Chromium browser and installs extensions from the Chrome Web Store.

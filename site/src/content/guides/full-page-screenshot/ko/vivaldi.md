@@ -2,6 +2,7 @@
 title: Vivaldi에서 전체 페이지 스크린샷 찍는 방법
 description: Vivaldi Capture로 전체 페이지를 PNG·JPEG로 캡처, 30,000픽셀 한도, Chrome 웹 스토어의 OpenScreenShot 사용법.
 order: 7
+published: 2026-10-09
 ---
 
 Vivaldi에는 Capture 도구가 기본으로 있어요. 상태 표시줄의 카메라 아이콘을 클릭하고, **Full Page**(전체 페이지)를 선택하고, PNG, JPEG, 클립보드 중에서 고른 뒤 **Capture**(캡처)를 클릭하세요. Full Page 캡처는 30,000픽셀에서 멈춰요. OpenScreenShot도 Vivaldi에서 동작해요. Vivaldi는 Chromium 브라우저이고 Chrome 웹 스토어에서 확장 프로그램을 설치해요.

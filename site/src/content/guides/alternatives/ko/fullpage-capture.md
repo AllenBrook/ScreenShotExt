@@ -2,6 +2,7 @@
 title: 'FullPage Capture 대안: 설치 시 모든 사이트 접근이 없는 오픈 소스'
 description: FullPage Capture vs OpenScreenShot. 둘 다 전체 페이지 캡처·주석 무료, OpenScreenShot은 오픈 소스에 설치 시 사이트 접근 없음.
 order: 2
+published: 2026-10-09
 ---
 
 코드를 읽어 볼 수 있고 설치할 때 모든 웹사이트 접근을 요청하지 않는 전체 페이지 스크린샷 확장 프로그램을 원한다면 OpenScreenShot으로 바꾸세요. FullPage Capture의 PDF 내보내기가 제공하는 기능이 필요하다면 FullPage Capture를 계속 쓰세요. 페이지 설명에 따르면 클릭할 수 있는 링크와 스마트 페이지 나눔이 있는 PDF를 만들고, Pro 요금제에서는 검색 가능한 PDF가 추가돼요. OpenScreenShot은 PDF를 이미지로 저장하므로 텍스트를 검색하거나 선택할 수 없고 링크가 동작하지 않아요. OpenScreenShot은 브라우저 안의 웹 페이지만 캡처해요. 데스크톱 창이나 화면 전체는 캡처하지 않아요.

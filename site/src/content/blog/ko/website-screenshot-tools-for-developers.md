@@ -3,6 +3,8 @@ title: 개발자, CI, AI 에이전트를 위한 웹사이트 스크린샷 도구
 description: openscreenshot CLI·MCP, shot-scraper, Playwright 등을 런타임, 전체 페이지, CLI, MCP, 동영상, 라이선스로 비교.
 audience: developers
 order: 9
+published: 2026-10-09
+updated: 2026-10-17
 ---
 
 셸 스크립트나 CI 작업에서 공개 페이지의 PNG만 필요하다면 openscreenshot, shot-scraper, capture-website-cli, pageres-cli 같은 명령줄 도구로 충분합니다. 캡처에 로그인, 클릭, 검증, 동영상이 필요하다면 Playwright나 Puppeteer로 작성하세요. AI 에이전트에는 로컬 MCP 서버가 모델에 스크린샷을 반환합니다. `openscreenshot serve`는 호출당 스크린샷 하나를 찍고, Playwright MCP는 브라우저 세션 전체를 제어합니다.

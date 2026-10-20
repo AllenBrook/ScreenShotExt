@@ -3,6 +3,8 @@ title: Come oscurare le informazioni sensibili in uno screenshot
 description: Usa un riempimento opaco per coprire le informazioni private, esporta uno screenshot appiattito e controlla il file salvato prima di condividerlo.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Per le informazioni che non devono essere visibili in uno screenshot condiviso, usa lo strumento **Sfocatura** di OpenScreenShot in modalità riempimento opaco. Copri tutta l’area sensibile, esporta l’immagine finita e apri il file esportato per verificare il risultato. Una sfocatura morbida è un effetto visivo; un riempimento opaco è la scelta più chiara per nascondere il testo.

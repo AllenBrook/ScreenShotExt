@@ -2,6 +2,7 @@
 title: So beantwortest du Support-Tickets mit Screenshots
 description: Kopiere einen Screenshot direkt in eine Ticket-Antwort, nummeriere die Schritte, verdecke Kundendaten und markiere ein Bild, das dir ein Kunde geschickt hat.
 order: 7
+published: 2026-10-09
 ---
 
 Um ein Support-Ticket mit einem Screenshot zu beantworten, nimm den Bildschirm auf, den der Kunde sehen muss, nummeriere die Schritte, die er ausführen muss, verdecke Kundendaten und füge das Bild in deine Antwort ein. In OpenScreenShot kopiert die Aktion **Kopieren** eine Aufnahme, ohne den Editor zu öffnen, und **Schrittnummer**-Badges zeigen die Reihenfolge der Klicks. Um einen Screenshot zu markieren, den dir ein Kunde geschickt hat, füge ihn in den **Editor** ein oder ziehe ihn hinein.

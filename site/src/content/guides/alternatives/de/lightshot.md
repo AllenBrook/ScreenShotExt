@@ -2,6 +2,7 @@
 title: 'Lightshot-Alternative: Ganzseiten-Aufnahme ohne öffentlichen Upload'
 description: Lightshot vs. OpenScreenShot. Ganzseiten-Aufnahme, Unschärfe und PDF-Export im Browser, mit Dateien, die auf deinem Gerät bleiben, und ohne prnt.sc-Links.
 order: 6
+published: 2026-10-09
 ---
 
 Wechsle zu OpenScreenShot, wenn du in Chrome oder Firefox Screenshots von Webseiten aufnimmst und Ganzseiten-Aufnahme, Unschärfe und PDF-Export willst, mit Dateien, die auf deinem Gerät bleiben. Bleib bei Lightshot, wenn du andere Apps oder deinen ganzen Desktop aufnimmst: Lightshot hat Desktop-Apps für Windows und Mac, und OpenScreenShot nimmt nur Webseiten im Browser auf. Bleib auch dabei, wenn du auf die sofortigen Kurzlinks angewiesen bist. OpenScreenShot hat keinen Upload-Dienst, du teilst eine Aufnahme also, indem du sie einfügst oder die Datei anhängst.

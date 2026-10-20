@@ -2,6 +2,7 @@
 title: Come registrare un video dimostrativo di un prodotto in Chrome
 description: Registra una scheda del browser con webcam e voce, aggiungi uno zoom a ogni clic, taglia la ripresa ed esporta un MP4, tutto in Chrome sul tuo computer.
 order: 6
+published: 2026-10-09
 ---
 
 Per registrare una breve demo di un prodotto da una scheda del browser, usa **Registra** nell’estensione Chrome di OpenScreenShot. Scegli l’intera scheda o una sua parte, attiva il microfono, l’audio della scheda o la webcam e registra la demo. L’editor aggiunge poi uno zoom a ogni clic, ti permette di tagliare la ripresa ed esporta un MP4. La versione per Firefox supporta solo gli screenshot e non ha il registratore.

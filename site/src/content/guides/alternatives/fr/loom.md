@@ -2,6 +2,7 @@
 title: 'Alternative à Loom : des enregistrements d’onglet qui restent sur votre appareil'
 description: Loom vs OpenScreenShot. Enregistrez un onglet avec webcam, micro et zoom automatique, et exportez un MP4 en local, sans compte et sans offre payante.
 order: 8
+published: 2026-10-09
 ---
 
 Passez à OpenScreenShot si vous enregistrez des démonstrations d’une application web ou d’une page dans Chrome et voulez exporter un fichier MP4 sur votre propre appareil, sans compte. Restez sur Loom si vous partagez des vidéos par lien : Loom héberge chaque vidéo, vous donne une bibliothèque et un espace de travail d’équipe, et propose des applications de bureau et mobiles. OpenScreenShot n’a ni hébergement ni liens de partage : vous mettez en ligne ou joignez vous-même le fichier exporté. Il enregistre un seul onglet du navigateur, dans Chrome uniquement, et il ne capture ni les fenêtres du bureau ni l’écran entier.

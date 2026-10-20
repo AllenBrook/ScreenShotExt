@@ -2,6 +2,7 @@
 title: 如何在 Arc 中擷取整頁截圖
 description: 在 macOS 上用 Arc 的 Capture Full Page 指令存成 PNG，了解未記載之處，並使用 Chrome 線上應用程式商店的 OpenScreenShot。
 order: 8
+published: 2026-10-09
 ---
 
 macOS 版 Arc 有 **Capture Full Page**（擷取整頁）指令。按 `Cmd+T` 開啟 Command Bar，輸入 `Capture Full Page` 並選取它。Arc 會把整個網頁的 PNG 下載到你的預設下載位置。Arc 的說明只記載了 macOS 版的這個指令。OpenScreenShot 在 Arc 中也能使用：Arc 是 Chromium 瀏覽器，可以從 Chrome 線上應用程式商店安裝擴充功能。

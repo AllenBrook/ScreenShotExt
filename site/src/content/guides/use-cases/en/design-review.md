@@ -2,6 +2,7 @@
 title: How to capture a web page for design review
 description: Capture a full page or one component, point reviewers to details with spotlight and text callouts, and share a multipage PDF.
 order: 2
+published: 2026-10-09
 ---
 
 For a design review, capture the whole page with **Full Page**, mark the points you want feedback on, and share a PDF that reviewers can read page by page. In OpenScreenShot, **Spotlight** dims everything outside the area under discussion, and **Text** and **Arrow** add callouts. Use **Capture element** when the review is about one component, such as a card, chart, or table.

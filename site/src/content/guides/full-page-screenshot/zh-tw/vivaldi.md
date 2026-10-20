@@ -2,6 +2,7 @@
 title: 如何在 Vivaldi 中擷取整頁截圖
 description: 用 Vivaldi 的 Capture 工具把整頁存成 PNG 或 JPEG，了解 30,000 像素上限，並使用 Chrome 線上應用程式商店的 OpenScreenShot。
 order: 7
+published: 2026-10-09
 ---
 
 Vivaldi 有內建的 Capture（擷取）工具。點狀態列中的相機圖示，選取 **Full Page**（整頁），選擇 PNG、JPEG 或剪貼簿，然後點 **Capture**。Full Page 擷取最多到 30,000 像素為止。OpenScreenShot 在 Vivaldi 中也能使用：Vivaldi 是 Chromium 瀏覽器，可以從 Chrome 線上應用程式商店安裝擴充功能。

@@ -3,6 +3,8 @@ title: So schwärzt du sensible Informationen in einem Screenshot
 description: Decke private Informationen mit einer deckenden Füllung ab, exportiere einen flachen Screenshot und prüfe die gespeicherte Datei vor dem Teilen.
 audience: everyday
 order: 3
+published: 2026-09-18
+updated: 2026-10-09
 ---
 
 Für Informationen, die in einem geteilten Screenshot nicht sichtbar sein dürfen, nutzt du in OpenScreenShot das Werkzeug **Unschärfe** im Modus mit deckender Füllung. Decke den ganzen sensiblen Bereich ab, exportiere das fertige Bild und öffne die exportierte Datei, um das Ergebnis zu prüfen. Eine weiche Unschärfe ist ein visueller Effekt; eine deckende Füllung ist die klarere Wahl, um Text zu verbergen.

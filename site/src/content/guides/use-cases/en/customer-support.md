@@ -2,6 +2,7 @@
 title: How to use screenshots to answer support tickets
 description: Copy a screenshot straight into a ticket reply, number the steps, hide customer data, and mark up an image a customer sent you.
 order: 7
+published: 2026-10-09
 ---
 
 To answer a support ticket with a screenshot, capture the screen the customer needs to see, number the steps they must take, hide any customer data, and paste the image into your reply. In OpenScreenShot, the **Clipboard** action copies a capture without opening the editor, and **Step number** badges show the order of the clicks. To mark up a screenshot a customer sent you, paste or drop it into the **Editor**.

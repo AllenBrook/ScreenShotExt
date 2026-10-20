@@ -3,6 +3,8 @@ title: Einen lokalen Screenshot-MCP-Server für einen KI-Agenten einrichten
 description: Verbinde OpenScreenShot mit einem stdio-MCP-Client und fordere PNG-Screenshots mit ausdrücklicher URL, Viewport und Ganzseiten-Option an.
 audience: developers
 order: 5
+published: 2026-09-18
+updated: 2026-10-17
 ---
 
 OpenScreenShot bietet einen lokalen MCP-Server mit einem Tool: `capture_screenshot`. Ein MCP-Client kann es mit der URL einer Webseite aufrufen und bekommt PNG-Bildinhalt zurück. Der Server startet einen separaten Chrome-kompatiblen Headless-Browser auf deinem Gerät; die Browsererweiterung ist nicht nötig.

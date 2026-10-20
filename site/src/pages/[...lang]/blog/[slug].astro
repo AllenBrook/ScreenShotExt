@@ -33,6 +33,8 @@ const b = t(locale, 'blog');
   path={`/blog/${Astro.params.slug}/`}
   locale={locale}
   availableLocales={availableLocales}
+  published={post.data.published}
+  updated={post.data.updated}
 >
   <Content />
 </Article>

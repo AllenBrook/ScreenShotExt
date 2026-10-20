@@ -2,6 +2,7 @@
 title: 'Lightshot の代替: 公開アップロードなしでページ全体をキャプチャ'
 description: Lightshot と OpenScreenShot を比較。ページ全体のキャプチャ、ぼかし、PDF 書き出しをブラウザ内で。ファイルはデバイス上、prnt.sc のリンクなし。
 order: 6
+published: 2026-10-09
 ---
 
 Chrome や Firefox でウェブページのスクリーンショットを撮り、ページ全体のキャプチャ、ぼかし、PDF 書き出しを使いたい、しかもファイルをデバイス上にとどめたいなら、OpenScreenShot に切り替えてください。ほかのアプリやデスクトップ全体をキャプチャするなら、Lightshot のままで構いません。Lightshot には Windows と Mac 用のデスクトップ アプリがあり、OpenScreenShot がキャプチャするのはブラウザ内のウェブページだけです。すぐに発行される短縮リンクに頼っている場合も、Lightshot のままで構いません。OpenScreenShot にはアップロード サービスがないため、キャプチャは貼り付けるかファイルを添付して共有します。

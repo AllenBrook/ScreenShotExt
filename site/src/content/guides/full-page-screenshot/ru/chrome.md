@@ -2,6 +2,7 @@
 title: 'Как сделать скриншот всей страницы в Chrome: DevTools или расширение'
 description: Используйте команду Capture full size screenshot в Chrome DevTools, узнайте её ограничения и сравните её со снимком всей страницы в OpenScreenShot.
 order: 1
+published: 2026-10-09
 ---
 
 Chrome умеет делать скриншот всей страницы без расширения, но только из DevTools. Откройте DevTools, откройте Command Menu, введите `screenshot` и выполните **Capture full size screenshot** (сделать полноразмерный скриншот). Chrome сохраняет всю страницу в файл PNG. В обычных меню Chrome нет пункта для скриншота: справка Google перечисляет в разделе **Cast, save, and share** (трансляция, сохранение и отправка) пункты Share, Send to your devices и Create QR code. Для снимка, который можно разметить, экспортировать в PDF или сделать на странице, где прокручивается панель, установите OpenScreenShot и нажмите на его значок.

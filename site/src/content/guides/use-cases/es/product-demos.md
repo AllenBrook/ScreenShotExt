@@ -2,6 +2,7 @@
 title: Cómo grabar un vídeo de demostración de producto en Chrome
 description: Graba una pestaña del navegador con webcam y voz, añade zoom en cada clic, recorta la toma y exporta un MP4, todo en Chrome en tu ordenador.
 order: 6
+published: 2026-10-09
 ---
 
 Para grabar una demostración breve de un producto desde una pestaña del navegador, usa **Grabar** en la extensión de OpenScreenShot para Chrome. Elige la pestaña entera o una parte, activa el micrófono, el audio de la pestaña o la webcam, y graba la demostración. Después, el editor añade un zoom en cada clic, te permite recortar la toma y exporta un MP4. La versión para Firefox solo admite capturas de pantalla y no tiene grabadora.
