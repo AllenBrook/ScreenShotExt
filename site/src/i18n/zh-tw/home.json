@@ -46,6 +46,7 @@
     "ariaLabel": "數字會說話",
     "users": "Chrome 線上應用程式商店 {n} 位使用者",
     "stars": "GitHub 上 {n} 顆星",
+    "npm": "npm {n} 次下載",
     "mit": "MIT 授權",
     "offline": "可離線使用"
   },

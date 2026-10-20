@@ -9,7 +9,7 @@
 A local CLI and MCP server. It drives the Chrome already on your machine.<br />
 No hosted service. No API key. No account.
 
-[![npm](https://img.shields.io/npm/v/openscreenshot?color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![License](https://img.shields.io/badge/license-MIT-1B1A17)](https://github.com/PGHQdev/OpenScreenShot/blob/main/LICENSE) [![Node](https://img.shields.io/node/v/openscreenshot?color=1B1A17)](https://nodejs.org)
+[![npm](https://img.shields.io/npm/v/openscreenshot?color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![npm downloads](https://img.shields.io/npm/dt/openscreenshot?label=downloads&color=1B1A17)](https://www.npmjs.com/package/openscreenshot) [![License](https://img.shields.io/badge/license-MIT-1B1A17)](https://github.com/PGHQdev/OpenScreenShot/blob/main/LICENSE) [![Node](https://img.shields.io/node/v/openscreenshot?color=1B1A17)](https://nodejs.org)
 
 [Website](https://openscreenshot.app) · [CLI guide](https://openscreenshot.app/blog/screenshot-cli/) · [MCP guide](https://openscreenshot.app/blog/screenshot-mcp-server/) · [Report a bug](https://github.com/PGHQdev/OpenScreenShot/issues)
 

@@ -215,7 +215,7 @@ openscreenshot/
 
 ## CLI & MCP
 
-[![npm](https://img.shields.io/npm/v/openscreenshot?label=openscreenshot&color=E8503A)](https://www.npmjs.com/package/openscreenshot)
+[![npm](https://img.shields.io/npm/v/openscreenshot?label=openscreenshot&color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![npm downloads](https://img.shields.io/npm/dt/openscreenshot?label=downloads&color=1B1A17)](https://www.npmjs.com/package/openscreenshot)
 
 `openscreenshot` (npm) is a separate, optional tool that drives the Chrome already on your
 machine — also fully local:

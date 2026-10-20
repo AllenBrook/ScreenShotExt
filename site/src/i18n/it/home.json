@@ -46,6 +46,7 @@
     "ariaLabel": "In numeri",
     "users": "{n} utenti sul Chrome Web Store",
     "stars": "{n} stelle su GitHub",
+    "npm": "{n} download su npm",
     "mit": "Licenza MIT",
     "offline": "Funziona offline"
   },

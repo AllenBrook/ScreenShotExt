@@ -46,6 +46,7 @@
     "ariaLabel": "숫자로 보기",
     "users": "Chrome 웹 스토어 사용자 {n}명",
     "stars": "GitHub 스타 {n}개",
+    "npm": "npm 다운로드 {n}회",
     "mit": "MIT 라이선스",
     "offline": "오프라인에서도 동작"
   },

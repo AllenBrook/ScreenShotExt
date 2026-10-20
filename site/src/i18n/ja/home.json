@@ -46,6 +46,7 @@
     "ariaLabel": "数字で見る",
     "users": "Chrome ウェブストアで {n} ユーザー",
     "stars": "GitHub で {n} スター",
+    "npm": "npm で {n} ダウンロード",
     "mit": "MIT ライセンス",
     "offline": "オフラインで動作"
   },

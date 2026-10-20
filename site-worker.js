@@ -42,14 +42,21 @@ async function proxyKofiAsset(pathname) {
 // source as the README badges — and cached at the edge, so nothing but this
 // Worker ever talks to a third party. Two consumers share this: the
 // homepage's proof strip (users/stars, injected server-side with
-// HTMLRewriter — the markup's own 1k / 66 numbers are what ships if
-// shields.io doesn't answer in time) and the public /api/stats.json
+// HTMLRewriter — the markup's own 10k / 85 / 3.8k numbers are what ships if
+// a source doesn't answer in time) and the public /api/stats.json
 // endpoint, live since 95a14dd.
 const STAT_SOURCES = {
   users: 'https://img.shields.io/chrome-web-store/users/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
   stars: 'https://img.shields.io/github/stars/pghqdev/OpenScreenShot.json',
   version: 'https://img.shields.io/chrome-web-store/v/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
 };
+// npm downloads come from api.npmjs.org itself: no key, and the shields.io
+// npm badge is the one source that regularly times out. One range call covers
+// 18 months at most, so the all-time total is summed over windows from the
+// package's first day on npm.
+const NPM_PACKAGE = 'openscreenshot';
+const NPM_FIRST_DAY = '2026-08-01';
+const NPM_WINDOW_DAYS = 540;
 const STAT_SHAPE = /^\d[\d,.kKmM+]*$/;
 const VERSION_SHAPE = /^v?\d+(\.\d+)*$/;
 const STATS_TTL = 21600;
@@ -60,6 +67,42 @@ const STATS_TTL = 21600;
  * giving up early costs freshness and nothing else.
  */
 const STATS_TIMEOUT_MS = 500;
+
+function* npmWindows(firstDay) {
+  const day = 86400000;
+  const today = new Date(new Date().toISOString().slice(0, 10));
+  for (let start = new Date(firstDay); start <= today;) {
+    const end = new Date(Math.min(start.getTime() + (NPM_WINDOW_DAYS - 1) * day, today.getTime()));
+    yield [start.toISOString().slice(0, 10), end.toISOString().slice(0, 10)];
+    start = new Date(end.getTime() + day);
+  }
+}
+
+// Same shape as a shield value, so STAT_SHAPE and the rewriter accept it.
+function compact(n) {
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'k';
+  return String(n);
+}
+
+async function npmDownloads() {
+  const timeout = AbortSignal.timeout(STATS_TIMEOUT_MS);
+  try {
+    let total = 0;
+    for (const [start, end] of npmWindows(NPM_FIRST_DAY)) {
+      const upstream = await fetch(
+        `https://api.npmjs.org/downloads/range/${start}:${end}/${NPM_PACKAGE}`,
+        { cf: { cacheEverything: true, cacheTtl: STATS_TTL }, signal: timeout },
+      );
+      if (!upstream.ok) return null;
+      const body = await upstream.json();
+      for (const d of body.downloads ?? []) total += Number(d.downloads) || 0;
+    }
+    return compact(total);
+  } catch {
+    return null;
+  }
+}
 
 async function shieldValue(url, shape) {
   const timeout = AbortSignal.timeout(STATS_TIMEOUT_MS);
@@ -77,15 +120,20 @@ async function shieldValue(url, shape) {
 }
 
 async function siteStats() {
-  const [users, stars, version] = await Promise.all([
+  const [users, stars, version, npm] = await Promise.all([
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
     shieldValue(STAT_SOURCES.version, VERSION_SHAPE),
+    npmDownloads(),
   ]);
-  return new Response(JSON.stringify({ users, stars, version }), {
+  const stats = { users, stars, version, npm };
+  // A null is a timed-out lookup, not a value: cache it for a minute, not six
+  // hours, so the next visitor gets a fresh try.
+  const ttl = Object.values(stats).includes(null) ? 60 : STATS_TTL;
+  return new Response(JSON.stringify(stats), {
     headers: {
       'content-type': 'application/json; charset=utf-8',
-      'cache-control': `public, max-age=${STATS_TTL}`,
+      'cache-control': `public, max-age=${ttl}`,
     },
   });
 }
@@ -107,15 +155,16 @@ class StatRewriter {
  *
  * The degrade contract is unchanged: a lookup that times out or answers
  * badly yields null, null keeps the number the markup already carries, and
- * both being null skips the rewriter entirely.
+ * all three being null skips the rewriter entirely.
  */
 async function withInjectedStats(assetPromise) {
-  const [response, users, stars] = await Promise.all([
+  const [response, users, stars, npm] = await Promise.all([
     assetPromise,
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
+    npmDownloads(),
   ]);
-  if (users === null && stars === null) return response;
+  if (users === null && stars === null && npm === null) return response;
   // Safe by construction, not by a guard here: .transform() returns
   // synchronously and runs StatRewriter.element() later, lazily, as the body
   // streams to the client, so a try/catch around this call can never see
@@ -126,6 +175,7 @@ async function withInjectedStats(assetPromise) {
   return new HTMLRewriter()
     .on('[data-stat="users"]', new StatRewriter(users))
     .on('[data-stat="stars"]', new StatRewriter(stars))
+    .on('[data-stat="npm"]', new StatRewriter(npm))
     .transform(response);
 }
 
