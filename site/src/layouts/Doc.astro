@@ -22,9 +22,20 @@ interface Props {
   label: string;
   heading: string;
   lead: string;
+  /** The wide column, for a page that sets a sidebar beside its sections. */
+  wide?: boolean;
 }
 
-const { title, description, path, locale = DEFAULT_LOCALE, label, heading, lead } = Astro.props;
+const {
+  title,
+  description,
+  path,
+  locale = DEFAULT_LOCALE,
+  label,
+  heading,
+  lead,
+  wide = false,
+} = Astro.props;
 
 const c = t(locale, 'common');
 
@@ -66,7 +77,7 @@ const breadcrumbLd = {
     <slot name="head" />
   </Fragment>
 
-  <div class="doc container">
+  <div class:list={['doc', wide ? 'container-wide' : 'container']}>
     <header class="doc-head">
       <p class="eyebrow">{label}</p>
       <h1>{heading}</h1>

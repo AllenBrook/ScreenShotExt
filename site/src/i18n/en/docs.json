@@ -1,17 +1,17 @@
 {
   "meta": {
-    "title": "Documentation — OpenScreenShot",
-    "description": "OpenScreenShot documentation. How to install the open-source Chrome extension and capture, annotate, and export screenshots."
+    "title": "OpenScreenShot Docs: Install, Capture, Annotate, Export, Record",
+    "description": "Install OpenScreenShot in Chrome or Firefox, capture full-page, region, or element screenshots, annotate, export PNG, JPEG, WebP, or PDF, record a tab, and script the CLI."
   },
   "doc": {
     "label": "Install · Capture · Annotate · Export",
     "heading": "Documentation",
-    "lead": "How to install and use OpenScreenShot, the open-source screenshot and annotation extension for Chrome."
+    "lead": "How to install and use OpenScreenShot, the open-source screenshot, annotation, and tab recording extension for Chrome and Firefox."
   },
   "tocHead": "On this page",
   "install": {
     "heading": "Install",
-    "intro": "OpenScreenShot is available on the Chrome Web Store.",
+    "intro": "OpenScreenShot is on the Chrome Web Store and on Firefox Add-ons. The steps below are for Chrome; in Firefox, install from <a href=\"https://addons.mozilla.org/firefox/addon/openscreenshot/\" target=\"_blank\" rel=\"noopener\">Firefox Add-ons</a> and pin the icon the same way.",
     "steps": [
       "Open the <a href=\"{storeUrl}\" target=\"_blank\" rel=\"noopener\">OpenScreenShot listing</a> in Chrome.",
       "Click <strong>Add to Chrome</strong>.",
