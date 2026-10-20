@@ -12,7 +12,17 @@
       "title": "How to take a full-page screenshot in every browser — OpenScreenShot",
       "description": "Built-in full-page screenshot methods for Chrome, Edge, Firefox, Safari, Brave, Opera, Vivaldi, and Arc, with shortcuts, limits, and an extension option.",
       "heading": "Full-page screenshots, browser by browser.",
-      "lead": "Most browsers can capture a whole page without an extension, but each hides it somewhere different. Find your browser for the built-in steps, the limits, and when an extension helps."
+      "lead": "Each browser keeps its full-page capture in a different place. The answers below give the built-in path for each one, the table compares the limits, and each guide has the full steps and the extension option.",
+      "answersHeading": "The built-in method in each browser",
+      "guideLink": "Steps, limits, and the extension option for {browser}",
+      "tableHeading": "Built-in full-page capture compared",
+      "table": {
+        "browser": "Browser",
+        "builtIn": "Full page built in",
+        "output": "Output",
+        "limit": "Known limit"
+      },
+      "extension": "OpenScreenShot adds a full-page capture to Chrome, Edge, Firefox, Brave, Opera, Vivaldi, and Arc. It scrolls the page, keeps a fixed header once, handles a panel that scrolls inside the page, opens the result in an editor, and exports PNG, JPEG, WebP, or PDF. Everything runs on your device. The <a href=\"/docs/#modes\">capture mode reference</a> lists every option."
     },
     "use-cases": {
       "label": "Use cases",

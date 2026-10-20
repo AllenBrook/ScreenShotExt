@@ -1,6 +1,10 @@
 ---
 title: How to take a full-page screenshot in Firefox
 description: Capture a whole page with Firefox’s built-in Screenshots tool or the :screenshot command, check the size limits, and use the OpenScreenShot add-on.
+answer: 'Press Ctrl+Shift+S (Cmd+Shift+S on macOS), select Save full page, then Download or Copy.'
+builtIn: 'Yes'
+output: 'PNG or clipboard'
+limit: 'Crops a capture above 32,766 device pixels on a side. A panel that scrolls inside the page shows one screen height.'
 order: 3
 published: 2026-10-09
 ---

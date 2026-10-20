@@ -27,6 +27,10 @@ const blog = defineCollection({
 // Task and comparison pages, grouped by site section:
 // src/content/guides/<section>/<locale>/<slug>.md, served at
 // /<section>/<slug>/. Same translation rules as the blog.
+// The browser guides also carry the hub's quick-answer fields: `answer` is
+// the built-in method in one or two plain sentences, and `builtIn`, `output`,
+// `limit` fill one row of the hub's comparison table. The hub shows those
+// sections only when every guide in the locale has them.
 const guides = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
   schema: z.object({
@@ -35,6 +39,10 @@ const guides = defineCollection({
     order: z.number(),
     published: isoDate,
     updated: isoDate.optional(),
+    answer: z.string().optional(),
+    builtIn: z.string().optional(),
+    output: z.string().optional(),
+    limit: z.string().optional(),
   }),
 });
 

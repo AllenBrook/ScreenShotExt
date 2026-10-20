@@ -126,6 +126,127 @@
   font-size: var(--fs-md);
 }
 
+/* ---- Guide hub: quick answers and the built-in comparison table ----
+ * Styled here, under .doc, so the hub markup carries no scoped-style
+ * attributes; scripts/site-lastmod.mjs fingerprints <main>, and a shared
+ * attribute change would mark every hub in every locale as changed. */
+
+.doc .answers {
+  max-width: var(--max-w);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc .answers li {
+  margin: 0;
+  padding-block: var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+
+.doc .answers li:last-child {
+  border-bottom: 0;
+}
+
+.doc .answers h3 {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-lg);
+}
+
+.doc .answers p {
+  margin: 0;
+}
+
+.doc .answer-more {
+  margin-top: var(--s-2);
+  font-size: var(--fs-sm);
+}
+
+.doc .builtin {
+  width: 100%;
+  margin-bottom: var(--s-5);
+  border-collapse: collapse;
+  font-size: var(--fs-md);
+  text-align: left;
+}
+
+.doc .builtin th,
+.doc .builtin td {
+  padding: var(--s-3) var(--s-4) var(--s-3) 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.doc .builtin thead th {
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tr-label);
+  text-transform: uppercase;
+}
+
+.doc .builtin tbody th {
+  width: 9rem;
+  color: var(--ink);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.doc .builtin td {
+  color: var(--ink-2);
+}
+
+/* Narrow screens: one stacked block per browser. Each cell repeats its
+ * column header, and the real header row stays for assistive tech only. */
+@media (max-width: 620px) {
+  .doc .builtin,
+  .doc .builtin tbody,
+  .doc .builtin tr,
+  .doc .builtin th,
+  .doc .builtin td {
+    display: block;
+  }
+
+  .doc .builtin thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .doc .builtin tr {
+    padding-block: var(--s-3);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .doc .builtin th,
+  .doc .builtin td {
+    width: auto;
+    padding: 0 0 var(--s-2);
+    border: 0;
+    white-space: normal;
+  }
+
+  .doc .builtin td::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--ink-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    letter-spacing: var(--tr-label);
+    text-transform: uppercase;
+  }
+
+  .doc .builtin td:last-child {
+    padding-bottom: 0;
+  }
+}
+
 /* ---- Closing call to action ---- */
 
 .doc-cta {

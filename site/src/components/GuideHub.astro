@@ -19,8 +19,24 @@ const path = `/${section}/`;
 const pageUrl = new URL(localizePath(locale, path), Astro.site).href;
 const pages = all
   .filter((g) => guideParts(g).locale === locale)
-  .map((g) => ({ ...g.data, href: localizePath(locale, `${path}${guideParts(g).slug}/`) }))
+  .map((g) => ({ ...g.data, slug: guideParts(g).slug, href: localizePath(locale, `${path}${guideParts(g).slug}/`) }))
   .sort((a, z) => a.order - z.order);
+
+// Browser names are brands and stay the same in every locale.
+const BROWSER_NAMES: Record<string, string> = {
+  chrome: 'Chrome',
+  edge: 'Microsoft Edge',
+  firefox: 'Firefox',
+  safari: 'Safari',
+  brave: 'Brave',
+  opera: 'Opera',
+  vivaldi: 'Vivaldi',
+  arc: 'Arc',
+};
+// The quick answers and the comparison table render only when every guide in
+// this locale carries the fields; a locale that has not translated them yet
+// keeps the plain list.
+const quick = pages.length > 0 && pages.every((p) => p.answer && p.builtIn && p.output && p.limit && BROWSER_NAMES[p.slug]);
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -60,6 +76,46 @@ const structuredData = {
       <h1>{s.heading}</h1>
       <p class="doc-lead">{s.lead}</p>
     </header>
+    {quick ? (
+      <>
+        <section class="doc-section">
+          <h2>{s.answersHeading}</h2>
+          <ol class="answers">
+            {pages.map((p) => (
+              <li>
+                <h3><a href={p.href}>{BROWSER_NAMES[p.slug]}</a></h3>
+                <p>{p.answer}</p>
+                <p class="answer-more"><a href={p.href}>{s.guideLink.replace('{browser}', BROWSER_NAMES[p.slug])}</a></p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section class="doc-section">
+          <h2>{s.tableHeading}</h2>
+          <table class="builtin">
+            <thead>
+              <tr>
+                <th scope="col">{s.table.browser}</th>
+                <th scope="col">{s.table.builtIn}</th>
+                <th scope="col">{s.table.output}</th>
+                <th scope="col">{s.table.limit}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pages.map((p) => (
+                <tr>
+                  <th scope="row"><a href={p.href}>{BROWSER_NAMES[p.slug]}</a></th>
+                  <td data-label={s.table.builtIn}>{p.builtIn}</td>
+                  <td data-label={s.table.output}>{p.output}</td>
+                  <td data-label={s.table.limit}>{p.limit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p set:html={s.extension} />
+        </section>
+      </>
+    ) : (
     <section class="doc-section">
       <ul>
         {pages.map((p) => (
@@ -70,5 +126,7 @@ const structuredData = {
         ))}
       </ul>
     </section>
+    )}
   </div>
 </Base>
+

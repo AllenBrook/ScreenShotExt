@@ -1,6 +1,10 @@
 ---
 title: How to take a full-page screenshot in Brave
 description: Turn on Brave’s screenshot toolbar button and capture a full page as PNG, check the limits, and use OpenScreenShot from the Chrome Web Store.
+answer: 'Turn on the screenshot button in brave://settings/appearance, click it, and select Full page. Needs Brave 1.94 or later.'
+builtIn: 'Yes, 1.94 or later'
+output: 'PNG or clipboard'
+limit: 'Same command as Chrome DevTools: refuses a page of 131,072 CSS pixels or more. A panel that scrolls inside the page shows one screen height.'
 order: 5
 published: 2026-10-09
 ---

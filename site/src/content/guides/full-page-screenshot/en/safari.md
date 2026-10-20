@@ -1,6 +1,10 @@
 ---
 title: How to take a full-page screenshot in Safari
 description: Safari on the Mac has no full-page image capture. Save the whole page as a PDF, capture one element in Web Inspector, or use another browser.
+answer: 'No full-page image. Choose File > Print, click PDF, and save the page as a PDF. OpenScreenShot has no Safari version.'
+builtIn: 'No'
+output: 'PDF, print layout'
+limit: 'The PDF uses print layout, so it can differ from the page on screen.'
 order: 4
 published: 2026-10-09
 ---
