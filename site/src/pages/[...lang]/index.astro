@@ -100,6 +100,19 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   </Fragment>
 
   <!-- Hero -->
+  <!-- Proof. site-worker.js rewrites the three data-stat elements at the edge,
+       and the script below refreshes them from /api/stats.json in the
+       browser; the numbers in the markup are the fallback when both miss. -->
+  <section class="proof-strip" aria-label={d.proof.ariaLabel}>
+    <ul class="container-wide proof">
+      <li>{usersPre}<b data-stat="users">10k</b>{usersPost}</li>
+      <li>{starsPre}<b data-stat="stars">85</b>{starsPost}</li>
+      <li>{npmPre}<b data-stat="npm">3.8k</b>{npmPost}</li>
+      <li>{d.proof.mit}</li>
+      <li>{d.proof.offline}</li>
+    </ul>
+  </section>
+
   <section id="top" class="hero">
     <div class="container-wide hero-copy">
       <p class="hero-note">{d.hero.note}</p>
@@ -220,19 +233,6 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
         <a href="https://opentechcheck.com" target="_blank" rel="noopener">{d.hero.creditCta}</a>
       </p>
     </div>
-  </section>
-
-  <!-- Proof. site-worker.js rewrites the three data-stat elements at the edge,
-       and the script below refreshes them from /api/stats.json in the
-       browser; the numbers in the markup are the fallback when both miss. -->
-  <section class="proof-strip" aria-label={d.proof.ariaLabel}>
-    <ul class="container-wide proof">
-      <li>{usersPre}<b data-stat="users">10k</b>{usersPost}</li>
-      <li>{starsPre}<b data-stat="stars">85</b>{starsPost}</li>
-      <li>{npmPre}<b data-stat="npm">3.8k</b>{npmPost}</li>
-      <li>{d.proof.mit}</li>
-      <li>{d.proof.offline}</li>
-    </ul>
   </section>
 
   <!-- Quartet -->
@@ -818,7 +818,6 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   /* ---- Proof strip ---- */
 
   .proof-strip {
-    margin-top: clamp(32px, 5vw, 56px);
     border-block: 1px solid var(--rule);
     background: var(--paper-dim);
   }
