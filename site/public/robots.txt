@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+# Cloudflare's own script and challenge paths; Google reported /cdn-cgi/zaraz/s.js as a 4xx page.
+Disallow: /cdn-cgi/
 
 Sitemap: https://openscreenshot.app/sitemap-index.xml
