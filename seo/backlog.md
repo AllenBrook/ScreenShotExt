@@ -15,12 +15,15 @@ and the change. Move a shipped item to `log.md`.
    impressions), `/es/full-page-screenshot/` (7.6, 140), `/es/full-page-screenshot/opera/` (7.5),
    `/de/full-page-screenshot/edge/` (7.0), `/fr/full-page-screenshot/opera/` (5.2),
    `/it/full-page-screenshot/edge/` (5.5), `/docs/` (5.6, 247). The generic English "full page
-   screenshot" family sits at 48 to 97. First weekly push: the Opera and Edge browser guides in
-   en, es, de, fr, it (rewrite the first paragraph to answer the query, add the built-in-tool
-   steps with screenshots, link from the hub and the Chrome guide).
-2. **`/full-page-screenshot/` hub: 199 impressions at position 26.2, 0 clicks** (GSC). The hub
-   title answers "every browser"; the queries are per browser. Change: put the eight browser
-   links with one-line answers at the top, and a comparison table of built-in limits.
+   screenshot" family sits at 48 to 97. First weekly push, 2026-10-20: the Opera and Edge first paragraphs in en,
+   es, de, fr, it now answer the query in the first sentence. Still open: screenshots of the
+   built-in tools, and an "other browsers" paragraph in the Chrome guide that links all eight.
+   Recheck clicks on 2026-11-03.
+2. **`/full-page-screenshot/` hub: 199 impressions at position 26.2, 0 clicks** (GSC). Shipped
+   2026-10-20 for English: quick answers and a comparison table at the top, from frontmatter
+   fields in the English guides. Open: translate `answer`, `builtIn`, `output`, `limit` into the
+   ten locale guides so `/es/` (140 impressions, position 7.6) and `/it/` (47, 10.0) get the same
+   layout. Recheck position on 2026-11-03.
 3. **`/docs/`: 247 impressions, 1.6% CTR at position 5.6** (GSC, before the 2026-10-20 title
    change). Recheck the CTR on 2026-11-03 with the new title.
 4. **Translate the titles and descriptions trimmed on 2026-10-20.** Pages: the three comparison
@@ -70,3 +73,8 @@ and the change. Move a shipped item to `log.md`.
 17. **Orphan-light pages.** `/full-page-screenshot/arc/` and `/safari/` have one inbound link
     each from page content. Change: link them from the Chrome and Firefox browser guides'
     "other browsers" paragraph.
+18. **Opera "Capture Full Page" check.** Opera's help (read 2026-10-20) documents Snapshot as
+    Capture, Capture Full Screen (viewport), and Save page as PDF. A 2023 Opera forum thread says a
+    Capture Full Page image option was being re-implemented in Opera Developer. Open current Opera
+    stable and Opera GX, press Shift+Ctrl+5, and record the options. If an image full-page option
+    exists, the five Opera guides and the hub row change.
