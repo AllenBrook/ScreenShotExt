@@ -126,9 +126,10 @@ opencapture. Our `/alternatives/gofullpage/` was not in the first results.
 - Live site, sitemap, and `sitemap-lastmod.json`: yes.
 - GitHub API, AMO API, shields.io, npm registry: yes.
 - Web search: yes (US results, no volumes).
-- Google Search Console: not connected in this environment. It would give queries, positions,
-  impressions, and indexing state per URL; the keyword map's volume and position columns stay
-  empty until it is.
+- Google Search Console: readable through the owner's signed-in Chrome session (Claude in
+  Chrome), property `sc-domain:openscreenshot.app`. No API access. Snapshots go in `seo/gsc/`
+  as dated TSV files; the keyword map's position column cites them. Volume still comes from
+  nowhere.
 - Ahrefs or similar: not connected. It would give monthly volume and difficulty.
 - Analytics: none by design (the site has no analytics). Store install counts are the only
   conversion signal, read from shields.io and the AMO API.
