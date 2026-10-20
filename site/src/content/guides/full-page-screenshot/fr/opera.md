@@ -3,9 +3,10 @@ title: Comment faire une capture d’écran pleine page dans Opera
 description: L’outil Snapshot d’Opera enregistre une page entière en PDF uniquement. Voyez les étapes et les limites, et capturez une image pleine page avec OpenScreenShot.
 order: 6
 published: 2026-10-09
+updated: 2026-10-20
 ---
 
-L’outil Snapshot intégré d’Opera capture une sélection ou la zone visible en image, et la page entière seulement en PDF. Appuyez sur `Shift+Ctrl+5` (`Shift+Cmd+2` sur macOS) et sélectionnez **Save page as PDF** (Enregistrer la page en PDF). Pour un fichier image de la page entière, installez OpenScreenShot. Opera est un navigateur Chromium et l’installe depuis le Chrome Web Store une fois que vous avez ajouté le module **Install Chrome Extensions** d’Opera.
+Pour faire une capture d’écran dans Opera, appuyez sur `Shift+Ctrl+5` (`Shift+Cmd+2` sur macOS) ou cliquez sur l’icône d’appareil photo dans la barre d’outils. Cela ouvre Snapshot, l’outil intégré d’Opera, qui capture une sélection ou la zone visible en image. Pour la page entière, Snapshot n’enregistre qu’un PDF : sélectionnez **Save page as PDF** (Enregistrer la page en PDF). Pour un PNG, JPEG ou WebP de la page entière, installez OpenScreenShot. Opera est un navigateur Chromium et l’installe depuis le Chrome Web Store une fois que vous avez ajouté le module **Install Chrome Extensions** d’Opera. [Opera GX](https://www.opera.com/fr/gx/features/snapshot) a le même outil Snapshot et le même raccourci.
 
 ## Méthode intégrée
 

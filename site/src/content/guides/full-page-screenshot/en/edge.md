@@ -1,11 +1,16 @@
 ---
 title: How to take a full-page screenshot in Microsoft Edge
 description: Capture a whole page with Edge’s built-in Screenshot tool or its DevTools command, know the limits, and use OpenScreenShot from the Chrome Web Store.
+answer: 'Press Ctrl+Shift+S, select Capture full page, then copy the image or save it.'
+builtIn: 'Yes'
+output: 'Image, copy or save'
+limit: 'Behavior undocumented. An administrator can turn the tool off. Users report failures on pages that scroll inside a panel.'
 order: 2
 published: 2026-10-09
+updated: 2026-10-20
 ---
 
-Microsoft Edge has a built-in Screenshot tool, previously named Web capture. Press `Ctrl+Shift+S`, select **Capture full page**, then copy the capture or save it to your device. OpenScreenShot also works in Edge: Edge is a Chromium browser and installs it from the Chrome Web Store once you allow extensions from other stores.
+To take a full-page screenshot in Microsoft Edge, press `Ctrl+Shift+S` and select **Capture full page**. Edge captures the page from top to bottom, so you do not scroll. A preview opens with pen tools, and you copy the image or save it to your device. The tool was previously named Web capture. OpenScreenShot also works in Edge when you need a full-page image to annotate and export as PNG, JPEG, WebP, or PDF: Edge is a Chromium browser and installs it from the Chrome Web Store once you allow extensions from other stores.
 
 ## Built-in method
 
