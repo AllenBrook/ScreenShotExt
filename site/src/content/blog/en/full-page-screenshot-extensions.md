@@ -1,6 +1,6 @@
 ---
 title: Full-page screenshot extensions compared (2026)
-description: OpenScreenShot, GoFullPage, FullPage Capture, Awesome Screenshot, FireShot, and Nimbus/FuseBase compared by price, source code, install permissions, annotation, PDF, and recording, plus the no-install tools built into browsers.
+description: Six full-page screenshot extensions compared on price, source code, install permissions, annotation, PDF export, and recording, plus the browsers' built-in tools.
 audience: everyday
 order: 7
 ---

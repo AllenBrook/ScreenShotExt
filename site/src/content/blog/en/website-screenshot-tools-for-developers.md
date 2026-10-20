@@ -1,6 +1,6 @@
 ---
 title: Website screenshot tools for developers, CI, and AI agents
-description: Compare the openscreenshot CLI and MCP server, shot-scraper, capture-website-cli, pageres-cli, Playwright, Puppeteer, and Playwright MCP by runtime, full-page support, CLI, MCP, video, and license.
+description: The openscreenshot CLI and MCP server vs shot-scraper, capture-website-cli, pageres, Playwright, and Puppeteer, compared on full-page capture, MCP, video, and license.
 audience: developers
 order: 9
 ---
