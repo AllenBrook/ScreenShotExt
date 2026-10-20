@@ -7,8 +7,8 @@ and the change. Move a shipped item to `log.md`.
    report dated 12 Oct).** 63 indexed, 16 crawled-not-indexed. The site is three months old and
    got 450 URLs on 9 Oct, so Google is pacing the crawl. Changes that help: more internal links
    to the deepest pages (the 11 locale hubs link every guide, but the guides barely link each
-   other); the browser guides should cross-link all eight browsers; request indexing by hand for
-   the 20 English money pages in the URL inspection tool (owner, 10 a day). Recheck the count
+   other); the browser guides should cross-link all eight browsers; request indexing in the URL
+   inspection tool, 10 a day (10 done on 2026-10-20, the next 10 are listed in `log.md`). Recheck the count
    weekly; if it does not fall by mid-November, cut the thinnest locale pages from the sitemap.
 1. **Brand is the whole click volume.** "openscreenshot" and its misspellings are 120 of 164
    clicks in 3 months (GSC). Non-brand pages 1 to 10: `/full-page-screenshot/opera/` (7.0, 86
