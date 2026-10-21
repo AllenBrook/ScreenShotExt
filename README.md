@@ -227,6 +227,8 @@ openscreenshot/
 
 [![npm](https://img.shields.io/npm/v/openscreenshot?label=openscreenshot&color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![npm downloads](https://img.shields.io/npm/dt/openscreenshot?label=downloads&color=1B1A17)](https://www.npmjs.com/package/openscreenshot)
 
+[![openscreenshot MCP server – quality and maintenance score on Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot/badges/card.svg)](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot)
+
 `openscreenshot` (npm) is a separate, optional tool that drives the Chrome already on your
 machine — also fully local. Node.js 22.12 or newer and Chrome, Chromium, or Edge are required.
 The [package README](./mcp/README.md) has every option.
