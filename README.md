@@ -60,7 +60,7 @@ export as PNG, JPEG, WebP, or PDF, and record a tab. Everything runs on your dev
 </tr>
 </table>
 
-[Website](https://openscreenshot.app) &nbsp;·&nbsp; [Docs](https://openscreenshot.app/docs/) &nbsp;·&nbsp; [Roadmap](./ROADMAP.md) &nbsp;·&nbsp; [Report a bug](https://github.com/PGHQdev/OpenScreenShot/issues)
+[Website](https://openscreenshot.app) · [Docs](https://openscreenshot.app/docs/) · [Roadmap](./ROADMAP.md) · [Report a bug](https://github.com/PGHQdev/OpenScreenShot/issues)
 
 <br />
 
