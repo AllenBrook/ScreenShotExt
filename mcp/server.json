@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.PGHQdev/openscreenshot",
   "title": "OpenScreenShot",
-  "description": "Capture website screenshots (viewport or full page) with your installed Chrome. Runs locally.",
+  "description": "Capture website screenshots (viewport or full page) with local Chrome, or on OpenScreenShot Cloud.",
   "websiteUrl": "https://openscreenshot.app",
   "repository": {
     "url": "https://github.com/PGHQdev/OpenScreenShot",
@@ -26,6 +26,33 @@
           "description": "Path to a Chrome, Chromium, or Edge executable. Leave unset to auto-detect.",
           "isRequired": false,
           "format": "filepath"
+        },
+        {
+          "name": "OPENSCREENSHOT_API_KEY",
+          "description": "API key for OpenScreenShot Cloud, used with cloud: true. Not needed for local captures.",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "OPENSCREENSHOT_CLOUD_URL",
+          "description": "OpenScreenShot Cloud base URL for cloud: true. Defaults to https://cloud.openscreenshot.app.",
+          "isRequired": false,
+          "format": "string"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://cloud.openscreenshot.app/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer osc_live_… API key from openscreenshot auth login or the Cloud dashboard",
+          "isRequired": true,
+          "isSecret": true
         }
       ]
     }

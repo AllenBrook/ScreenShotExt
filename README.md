@@ -230,8 +230,12 @@ openscreenshot/
 [![openscreenshot MCP server – quality and maintenance score on Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot/badges/card.svg)](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot)
 
 `openscreenshot` (npm) is a separate, optional tool that drives the Chrome already on your
-machine — also fully local. Node.js 22.12 or newer and Chrome, Chromium, or Edge are required.
-The [package README](./mcp/README.md) has every option.
+machine. It is local by default and needs no account. Node.js 22.12 or newer and Chrome,
+Chromium, or Edge are required. The [package README](./mcp/README.md) has every option.
+
+Optional: `openscreenshot auth login`, then `--cloud` on the CLI or `cloud: true` on the MCP
+tool, renders the page on [OpenScreenShot Cloud](https://cloud.openscreenshot.app), a hosted
+screenshot API with a free plan. In Cloud mode, the URL and the options go to Cloud.
 
 ### CLI
 
@@ -259,7 +263,8 @@ with `{ "url": "https://example.com", "fullPage": true }`:
 Claude Code: `claude mcp add openscreenshot -- npx -y openscreenshot`.
 
 The server runs locally over **stdio**. Your client must support launching a local MCP
-process; clients that only accept remote MCP URLs need a compatible bridge. The tool returns
+process. For clients that accept only remote MCP URLs, OpenScreenShot Cloud serves
+`https://cloud.openscreenshot.app/mcp` (Streamable HTTP, `Authorization: Bearer <api-key>`). The tool returns
 the PNG to the client, which may send it to a hosted model: use the `redact` input for data
 that must not leave the device.
 
@@ -268,7 +273,7 @@ Built for the terminal-heavy parts of the job:
 - **DevOps** — snapshot dashboards, status pages, and admin UIs straight into incident
   reports, runbooks, and postmortems, from cron or a chat command
 - **CI/CD** — capture pages in your pipeline for docs, release notes, and visual diffs
-  on every deploy: one command, no hosted service
+  on every deploy: one command, no hosted service needed
 
 ## Contributing
 

@@ -7,7 +7,7 @@
 **Website screenshots from your terminal, your CI, or your AI agent.**
 
 A local CLI and MCP server. It drives the Chrome already on your machine.<br />
-No hosted service. No API key. No account.
+Local by default, with no account and no API key. [OpenScreenShot Cloud](#openscreenshot-cloud-optional) is optional.
 
 [![npm](https://img.shields.io/npm/v/openscreenshot?color=E8503A)](https://www.npmjs.com/package/openscreenshot) [![npm downloads](https://img.shields.io/npm/dt/openscreenshot?label=downloads&color=1B1A17)](https://www.npmjs.com/package/openscreenshot) [![License](https://img.shields.io/badge/license-MIT-1B1A17)](https://github.com/PGHQdev/OpenScreenShot/blob/main/LICENSE) [![Node](https://img.shields.io/node/v/openscreenshot?color=1B1A17)](https://nodejs.org)
 
@@ -44,6 +44,9 @@ project instead (`npm i -D openscreenshot`), so each run uses the version in you
 ```
 openscreenshot shot <url> [--out <file>|-] [--full] [--width <n>] [--height <n>]
                     [--redact <selector>]... [--redact-pattern <name>]... [--redact-rect <x,y,w,h>]...
+                    [--cloud [<base-url>]] [--key <api-key>] [--format <format>]
+openscreenshot auth login [--cloud <base-url>]
+openscreenshot auth logout
 openscreenshot serve
 ```
 
@@ -57,6 +60,9 @@ openscreenshot serve
 | `--redact <selector>`     | none             | Cover the elements that match a CSS selector. Repeat for more.                      |
 | `--redact-pattern <name>` | none             | Cover text that matches `email`, `phone`, or `secret`. Repeat, or use a comma list. |
 | `--redact-rect <x,y,w,h>` | none             | Cover a rectangle, in pixels of the output image. Repeat for more.                  |
+| `--cloud [<base-url>]`    | off              | Render on OpenScreenShot Cloud. See [Cloud](#openscreenshot-cloud-optional).        |
+| `--key <api-key>`         | none             | Cloud API key (`osc_live_…`) for this run.                                          |
+| `--format <format>`       | `png`            | With `--cloud`: `png`, `jpeg`, `webp`, `pdf`, `html`, or `markdown`.                |
 
 ### Examples
 
@@ -79,7 +85,8 @@ openscreenshot shot https://example.com --out safe.png --redact "#account-menu" 
 
 See [Redaction](#redaction) for how it works and what it can miss.
 
-The output is always PNG. A `.jpg` or `.pdf` file name does not convert it.
+Local output is always PNG. A `.jpg` or `.pdf` file name does not convert it. For other
+formats, use `--cloud` with `--format`.
 
 A narrow viewport changes the layout width only. The CLI keeps a desktop user agent, so it
 does not emulate a phone's touch input or pixel ratio.
@@ -88,12 +95,12 @@ does not emulate a phone's touch input or pixel ratio.
 
 | Code | Meaning                                                        |
 | ---- | -------------------------------------------------------------- |
-| `0`  | The PNG was written.                                           |
+| `0`  | The file was written.                                          |
 | `1`  | The capture failed, for example Chrome not found or a timeout. |
 | `2`  | Bad usage or an option out of range.                           |
 
-Exit code `0` means the browser saved an image. It does not prove that the page loaded
-correctly, so look at the PNG for error pages or loading spinners.
+Exit code `0` means the CLI saved the file. It does not prove that the page loaded
+correctly, so look at the image for error pages or loading spinners.
 
 ## MCP server
 
@@ -128,13 +135,14 @@ Restart or reload the client after you save the config. The client must find `np
 
 ### Tool: `capture_screenshot`
 
-| Input      | Type    | Default | Notes                      |
-| ---------- | ------- | ------- | -------------------------- |
-| `url`      | string  | —       | Required. A full page URL. |
-| `fullPage` | boolean | `false` | Capture the whole page.    |
-| `width`    | integer | `1280`  | 200 to 3840.               |
-| `height`   | integer | `800`   | 200 to 2160.               |
-| `redact`   | object  | —       | Optional. See below.       |
+| Input      | Type    | Default | Notes                                                         |
+| ---------- | ------- | ------- | ------------------------------------------------------------- |
+| `url`      | string  | —       | Required. A full page URL.                                    |
+| `fullPage` | boolean | `false` | Capture the whole page.                                       |
+| `width`    | integer | `1280`  | 200 to 3840.                                                  |
+| `height`   | integer | `800`   | 200 to 2160.                                                  |
+| `redact`   | object  | —       | Optional. See below.                                          |
+| `cloud`    | boolean | `false` | Render on Cloud. See [Cloud](#openscreenshot-cloud-optional). |
 
 ```json
 { "url": "https://example.com", "fullPage": true, "width": 1440, "height": 900 }
@@ -200,6 +208,78 @@ Each capture starts a fresh headless browser with an empty profile.
 For signed-in pages, annotations, or PDF export, use the
 [OpenScreenShot browser extension](https://openscreenshot.app) for Chrome and Firefox.
 
+## OpenScreenShot Cloud (optional)
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) is a hosted screenshot API. It renders
+the page on Cloud servers, so you do not need Chrome on the machine. Local mode stays the
+default and needs no account.
+
+The free plan gives 100 captures per month and needs no card. A failed capture is free. Paid
+plans are on the [pricing page](https://cloud.openscreenshot.app/pricing).
+
+### Sign in
+
+```sh
+openscreenshot auth login
+```
+
+The command prints a code, such as `ABCD-EFGH`, and opens https://cloud.openscreenshot.app/device
+in your browser. Sign in with the code that Cloud sends to your email, and approve the code.
+The CLI then stores an API key in `~/.openscreenshot.json`. To use another Cloud base URL, add
+`--cloud <url>`. `openscreenshot auth logout` removes the stored key.
+
+### Cloud from the CLI
+
+```sh
+# Full-page PNG, rendered on Cloud
+openscreenshot shot https://example.com --out page.png --full --cloud
+
+# PDF of the page
+openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+`--format` accepts `png`, `jpeg`, `webp`, `pdf`, `html`, and `markdown`. `--full`, `--width`,
+and `--height` work as in local mode.
+
+The CLI uses the first API key that it finds:
+
+1. `--key osc_live_…`
+2. The `OPENSCREENSHOT_API_KEY` environment variable
+3. The key that `auth login` stored
+
+The base URL is `--cloud <url>`, then `OPENSCREENSHOT_CLOUD_URL`, then
+`https://cloud.openscreenshot.app`.
+
+`--redact`, `--redact-pattern`, and `--redact-rect` work with `--cloud`. The Cloud server draws
+the black boxes before it returns the image. Redaction needs PNG output. As in local mode, a
+selector that matches nothing fails the capture, and you get no image.
+
+### Cloud from MCP
+
+Set `cloud: true` on `capture_screenshot` to render on Cloud:
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+The server needs a key from `openscreenshot auth login`, or `OPENSCREENSHOT_API_KEY` in the
+server's `env` block. `redact` works in both modes.
+
+Cloud also serves a remote MCP endpoint over Streamable HTTP, for clients that accept only a
+remote MCP URL:
+
+- URL: `https://cloud.openscreenshot.app/mcp`
+- Header: `Authorization: Bearer <api-key>`
+- Tool: `capture_screenshot`
+
+### Privacy in Cloud mode
+
+With `--cloud` or `cloud: true`, the URL and the options go to OpenScreenShot Cloud, and the
+page renders on Cloud servers. Read the [Cloud privacy policy](https://cloud.openscreenshot.app/privacy).
+Local mode sends nothing to OpenScreenShot.
+
+The [Cloud API docs](https://cloud.openscreenshot.app/docs) have every option.
+
 ## Use cases
 
 - **CI/CD:** capture pages on every deploy for release notes, docs, or visual review.
@@ -233,8 +313,9 @@ has no extra wait option yet.
 
 ## Privacy and security
 
-- Everything runs on your machine. The package sends no telemetry and calls no
-  OpenScreenShot server.
+- In local mode, everything runs on your machine. The package sends no telemetry and calls no
+  OpenScreenShot server. It calls OpenScreenShot Cloud only for `auth login`, `--cloud`, or
+  `cloud: true`.
 - In MCP mode, your client receives the image. If the client uses a hosted model, it may
   send the image to that model's provider. Use `redact` to cover data before the image
   leaves the tool.
