@@ -5,7 +5,7 @@ description: Capture a PNG screenshot of any public web page locally, via the op
 
 # capture-screenshot
 
-Capture a screenshot of a URL on your own machine. No account, no hosted service.
+Capture a screenshot of a URL on your own machine. Local mode is the default and needs no account.
 
 ## Install
 
@@ -29,5 +29,15 @@ Cover data with black boxes before the screenshot, so the image never contains i
 - MCP: `{ "url": "https://example.com", "redact": { "selectors": ["#account-menu"], "patterns": ["email", "phone", "secret"], "rects": [{ "x": 0, "y": 0, "width": 200, "height": 40 }] } }`
 
 The capture fails with no image if a selector matches nothing or the page moves a target during the capture. Patterns can miss text; check the image.
+
+## OpenScreenShot Cloud (optional)
+
+Render the page on OpenScreenShot Cloud instead of the local Chrome. The URL and the options go to Cloud.
+
+1. Sign in once: `openscreenshot auth login` (approve the code in the browser; the API key is stored in `~/.openscreenshot.json`). Or set `OPENSCREENSHOT_API_KEY`.
+2. CLI: `openscreenshot shot https://example.com --out shot.png --full --cloud`. With `--cloud`, `--format` accepts `png`, `jpeg`, `webp`, `pdf`, `html`, or `markdown`.
+3. MCP: call `capture_screenshot` with `{ "url": "https://example.com", "cloud": true }`.
+
+Redaction works in Cloud mode and needs PNG output. Docs: https://cloud.openscreenshot.app/docs
 
 Source: https://github.com/pghqdev/OpenScreenShot

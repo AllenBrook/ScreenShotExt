@@ -9,7 +9,7 @@ Free, open-source full page screenshot tool for Chrome and Firefox — full-page
 - Support: https://openscreenshot.app/support/
 - Privacy: https://openscreenshot.app/privacy/
 - License: MIT
-- OpenScreenShot Cloud (separate hosted product, renders screenshots on servers): https://cloud.openscreenshot.app/
+- OpenScreenShot Cloud (separate hosted screenshot API, renders pages on Cloud servers; free plan with 100 captures per month): https://cloud.openscreenshot.app/ — API docs: https://cloud.openscreenshot.app/docs
 
 ## Features
 
@@ -28,13 +28,15 @@ Free, open-source full page screenshot tool for Chrome and Firefox — full-page
 
 ## Agents & CLI
 
-`openscreenshot` is a separate, optional, local CLI/MCP server for scripting screenshots. No account, no hosted service — it drives the Chrome already on your machine.
+`openscreenshot` is a separate, optional CLI/MCP server for scripting screenshots. It is local by default: it drives the Chrome already on your machine and needs no account.
 
 ```bash
 npx openscreenshot shot https://example.com --out shot.png --full
 ```
 
 MCP server: `{ "command": "npx", "args": ["openscreenshot"] }`, tool `capture_screenshot`.
+
+Optional OpenScreenShot Cloud: run `openscreenshot auth login`, then add `--cloud` to `shot` or `cloud: true` to the MCP tool to render the page on Cloud. In Cloud mode, the URL and the options go to OpenScreenShot Cloud. Clients that accept only remote MCP URLs can use https://cloud.openscreenshot.app/mcp with `Authorization: Bearer <api-key>`.
 
 Redaction: the CLI flags `--redact`, `--redact-pattern`, and `--redact-rect`, and the MCP `redact` input, cover CSS selectors, email addresses, phone numbers, API keys, and pixel rectangles with black boxes before the screenshot.
 
