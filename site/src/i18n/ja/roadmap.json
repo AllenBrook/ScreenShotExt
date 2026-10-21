@@ -8,7 +8,7 @@
     "heading": "ロードマップ",
     "lead": "提供済みの機能、検討中の機能、そして対象外とするもの。"
   },
-  "callout": "<strong>約束:</strong> このページにあるものはすべて 100% ローカルのままです。サーバーなし、アカウントなし、新たなデータ収集なし — これからもずっと。ロードマップの項目に日付はありません。何を提供するかは、フィードバックとプル リクエストが形作ります。現在のリリース: <strong>v2.5.1</strong>。",
+  "callout": "<strong>約束:</strong> 拡張機能は 100% ローカルのままです。サーバーなし、アカウントなし、新たなデータ収集なし — これからもずっと。CLI と MCP サーバーは既定でローカルで動作し、指示したときだけ OpenScreenShot Cloud を使います。ロードマップの項目に日付はありません。何を提供するかは、フィードバックとプル リクエストが形作ります。現在のリリース: <strong>v2.5.2</strong>。",
   "legend": {
     "srLabel": "ステータスの凡例:",
     "exploring": "検討中",
@@ -139,8 +139,14 @@
     "currentTag": "現在のリリース",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>CLI と MCP で OpenScreenShot Cloud を選択可能に</strong> — <code>openscreenshot auth login</code> は、ブラウザーで承認するコードでサインインします。その後、CLI の <code>--cloud</code> または MCP ツールの <code>cloud: true</code> で、キャプチャを OpenScreenShot Cloud でレンダリングします。墨消しにも対応します。既定は引き続きローカル モードです。"
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> で MCP サーバーが起動</strong> — 引数なしで標準入力 (stdin) がパイプで渡された場合、<code>openscreenshot</code> パッケージは MCP クライアントやカタログが想定するとおりに MCP サーバーを起動します。<code>openscreenshot serve</code> も引き続き使えます。ターミナルでは引き続き CLI の使い方が表示されます。"
         ]

@@ -8,7 +8,7 @@
     "heading": "路线图",
     "lead": "已经发布了什么、正在探索什么、什么不在范围之内。"
   },
-  "callout": "<strong>我们的承诺：</strong>本页的一切都保持 100% 本地。没有服务器、没有账号、没有新的数据收集——永远如此。路线图条目不带日期。反馈和 Pull Request 决定什么会发布。当前版本：<strong>v2.5.1</strong>。",
+  "callout": "<strong>我们的承诺：</strong>扩展保持 100% 本地。没有服务器、没有账号、没有新的数据收集——永远如此。CLI 和 MCP 服务器默认在本地运行，只有在你要求时才使用 OpenScreenShot Cloud。路线图条目不带日期。反馈和 Pull Request 决定什么会发布。当前版本：<strong>v2.5.2</strong>。",
   "legend": {
     "srLabel": "状态图例：",
     "exploring": "探索中",
@@ -139,8 +139,14 @@
     "currentTag": "当前版本",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>CLI 和 MCP 可选用 OpenScreenShot Cloud</strong> — <code>openscreenshot auth login</code> 使用你在浏览器中批准的代码登录。之后，CLI 的 <code>--cloud</code> 或 MCP 工具的 <code>cloud: true</code> 会在 OpenScreenShot Cloud 上渲染截图，并支持遮盖功能。默认仍为本地模式。"
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> 启动 MCP 服务器</strong> — 在不带参数且标准输入（stdin）来自管道时，<code>openscreenshot</code> 包会按 MCP 客户端和服务器目录的预期启动 MCP 服务器。<code>openscreenshot serve</code> 仍然可用，终端也仍然会显示 CLI 用法。"
         ]

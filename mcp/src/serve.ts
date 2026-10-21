@@ -6,7 +6,7 @@ import { captureCloud } from './cli.js';
 import { Redact } from './redact.js';
 
 export function buildServer(): McpServer {
-  const server = new McpServer({ name: 'openscreenshot', version: '2.5.1' });
+  const server = new McpServer({ name: 'openscreenshot', version: '2.5.2' });
   server.registerTool(
     'capture_screenshot',
     {

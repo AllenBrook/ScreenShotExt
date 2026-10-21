@@ -8,7 +8,7 @@
     "heading": "로드맵",
     "lead": "무엇이 출시됐고, 무엇을 검토 중이고, 무엇이 범위 밖에 머무는지 정리했어요."
   },
-  "callout": "<strong>약속:</strong> 이 페이지의 모든 것은 100% 로컬로 남아요. 서버도, 계정도, 새로운 데이터 수집도 — 앞으로도 없어요. 로드맵 항목에는 날짜가 없어요. 피드백과 풀 리퀘스트가 무엇을 출시할지 정해요. 현재 릴리스: <strong>v2.5.1</strong>.",
+  "callout": "<strong>약속:</strong> 확장 프로그램은 100% 로컬로 남아요. 서버도, 계정도, 새로운 데이터 수집도 — 앞으로도 없어요. CLI와 MCP 서버는 기본적으로 로컬에서 실행되고, 요청할 때만 OpenScreenShot Cloud를 사용해요. 로드맵 항목에는 날짜가 없어요. 피드백과 풀 리퀘스트가 무엇을 출시할지 정해요. 현재 릴리스: <strong>v2.5.2</strong>.",
   "legend": {
     "srLabel": "상태 범례:",
     "exploring": "검토 중",
@@ -139,8 +139,14 @@
     "currentTag": "현재 릴리스",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>CLI와 MCP에서 선택해 쓰는 OpenScreenShot Cloud</strong> — <code>openscreenshot auth login</code>은 브라우저에서 승인하는 코드로 로그인합니다. 그다음 CLI의 <code>--cloud</code>나 MCP 도구의 <code>cloud: true</code>로 OpenScreenShot Cloud에서 캡처를 렌더링합니다. 가리기도 지원합니다. 기본값은 여전히 로컬 모드입니다."
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code>이 MCP 서버를 시작</strong> — 인수 없이 stdin이 파이프로 연결되어 있으면, <code>openscreenshot</code> 패키지는 MCP 클라이언트와 카탈로그가 기대하는 대로 MCP 서버를 시작합니다. <code>openscreenshot serve</code>도 그대로 작동하고, 터미널에서는 여전히 CLI 사용법이 표시됩니다."
         ]

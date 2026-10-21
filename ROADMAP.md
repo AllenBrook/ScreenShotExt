@@ -1,7 +1,8 @@
 # Roadmap
 
-Planned features for OpenScreenShot. Everything here stays true to the project's
-core promise: **100% local, no servers, no accounts, no new data collection.**
+Planned features for OpenScreenShot. Everything here stays true to the extension's
+core promise: **100% local, no servers, no accounts, no new data collection.** The CLI
+and MCP server run locally by default and use OpenScreenShot Cloud only when you ask.
 Roadmap items are not commitments or dated promises — votes, feedback, and pull
 requests are all welcome (see [CONTRIBUTING.md](./CONTRIBUTING.md)), and
 [open an issue](https://github.com/pghqdev/OpenScreenShot/issues) to champion an idea.
@@ -114,6 +115,7 @@ remain browser-dependent.
 
 | Feature                                                    | Version |
 | ---------------------------------------------------------- | ------- |
+| Optional OpenScreenShot Cloud mode for the CLI and MCP     | v2.5.2  |
 | `npx -y openscreenshot` starts the MCP server              | v2.5.1  |
 | Redaction for CLI and MCP captures                         | v2.5.0  |
 | Split very long pages into several images                  | v2.4.0  |

@@ -8,7 +8,7 @@
     "heading": "Feuille de route",
     "lead": "Ce qui est livré, ce qui est à l’étude, et ce qui reste hors périmètre."
   },
-  "callout": "<strong>La promesse :</strong> tout ce qui figure sur cette page reste 100 % local. Ni serveurs, ni comptes, ni nouvelle collecte de données — jamais. Les éléments de la feuille de route ne portent pas de date. Les retours et les pull requests décident de ce qui sort. Version actuelle : <strong>v2.5.1</strong>.",
+  "callout": "<strong>La promesse :</strong> l’extension reste 100 % locale. Ni serveurs, ni comptes, ni nouvelle collecte de données — jamais. La CLI et le serveur MCP fonctionnent en local par défaut et n’utilisent OpenScreenShot Cloud que si vous le demandez. Les éléments de la feuille de route ne portent pas de date. Les retours et les pull requests décident de ce qui sort. Version actuelle : <strong>v2.5.2</strong>.",
   "legend": {
     "srLabel": "Légende des statuts :",
     "exploring": "À l’étude",
@@ -139,8 +139,14 @@
     "currentTag": "version actuelle",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>OpenScreenShot Cloud en option pour la CLI et MCP</strong> — <code>openscreenshot auth login</code> se connecte avec un code que vous approuvez dans le navigateur. Ensuite, <code>--cloud</code> dans la CLI, ou <code>cloud: true</code> dans l’outil MCP, effectue le rendu de la capture sur OpenScreenShot Cloud, masquage compris. Le mode local reste le mode par défaut."
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> démarre le serveur MCP</strong> — sans argument et avec un stdin relié à un tube, le paquet <code>openscreenshot</code> démarre le serveur MCP, comme l’attendent les clients et catalogues MCP. <code>openscreenshot serve</code> fonctionne toujours, et un terminal reçoit toujours l’aide d’utilisation de la CLI."
         ]

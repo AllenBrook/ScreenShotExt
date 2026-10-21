@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "What has shipped, what is being explored, and what stays out of scope."
   },
-  "callout": "<strong>The promise:</strong> everything on this page stays 100% local. No servers, no accounts, no new data collection — ever. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.5.1</strong>.",
+  "callout": "<strong>The promise:</strong> the extension stays 100% local. No servers, no accounts, no new data collection — ever. The CLI and MCP server run locally by default and use OpenScreenShot Cloud only when you ask. Roadmap items carry no dates. Feedback and pull requests shape what ships. Current release: <strong>v2.5.2</strong>.",
   "legend": {
     "srLabel": "Status legend:",
     "exploring": "Exploring",
@@ -139,8 +139,14 @@
     "currentTag": "current release",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>Optional OpenScreenShot Cloud for the CLI and MCP</strong> — <code>openscreenshot auth login</code> signs in with a code that you approve in the browser. Then <code>--cloud</code> on the CLI, or <code>cloud: true</code> on the MCP tool, renders the capture on OpenScreenShot Cloud, redaction included. Local mode stays the default."
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> starts the MCP server</strong> — with no arguments on a piped stdin, the <code>openscreenshot</code> package starts the MCP server, as MCP clients and catalogs expect. <code>openscreenshot serve</code> still works, and a terminal still gets the CLI usage."
         ]

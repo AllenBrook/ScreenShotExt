@@ -8,7 +8,7 @@
     "heading": "Roadmap",
     "lead": "O que já foi lançado, o que está em estudo e o que fica fora do escopo."
   },
-  "callout": "<strong>A promessa:</strong> tudo nesta página continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.5.1</strong>.",
+  "callout": "<strong>A promessa:</strong> a extensão continua 100% local. Sem servidores, sem contas, sem nova coleta de dados — nunca. A CLI e o servidor MCP rodam localmente por padrão e só usam o OpenScreenShot Cloud quando você pede. Os itens do roadmap não têm datas. Feedback e pull requests definem o que é lançado. Versão atual: <strong>v2.5.2</strong>.",
   "legend": {
     "srLabel": "Legenda de status:",
     "exploring": "Em estudo",
@@ -139,8 +139,14 @@
     "currentTag": "versão atual",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>OpenScreenShot Cloud opcional para a CLI e o MCP</strong> — <code>openscreenshot auth login</code> entra com um código que você aprova no navegador. Depois, <code>--cloud</code> na CLI, ou <code>cloud: true</code> na ferramenta MCP, renderiza a captura no OpenScreenShot Cloud, com ocultação de dados incluída. O modo local continua sendo o padrão."
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> inicia o servidor MCP</strong> — sem argumentos e com o stdin vindo de um pipe, o pacote <code>openscreenshot</code> inicia o servidor MCP, como clientes e catálogos MCP esperam. <code>openscreenshot serve</code> continua funcionando, e um terminal continua recebendo a ajuda de uso da CLI."
         ]

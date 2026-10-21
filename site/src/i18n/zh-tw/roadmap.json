@@ -8,7 +8,7 @@
     "heading": "路線圖",
     "lead": "已經推出什麼、正在探索什麼，以及什麼不在範圍內。"
   },
-  "callout": "<strong>我們的承諾：</strong>本頁的一切都保持 100% 本機。沒有伺服器、沒有帳號、沒有新的資料收集——永遠如此。路線圖項目不標日期。回饋和 pull request 決定什麼會推出。目前版本：<strong>v2.5.1</strong>。",
+  "callout": "<strong>我們的承諾：</strong>擴充功能保持 100% 本機。沒有伺服器、沒有帳號、沒有新的資料收集——永遠如此。CLI 和 MCP 伺服器預設在本機執行，只有在你要求時才使用 OpenScreenShot Cloud。路線圖項目不標日期。回饋和 pull request 決定什麼會推出。目前版本：<strong>v2.5.2</strong>。",
   "legend": {
     "srLabel": "狀態圖例：",
     "exploring": "探索中",
@@ -139,8 +139,14 @@
     "currentTag": "目前版本",
     "releases": [
       {
-        "version": "v2.5.1",
+        "version": "v2.5.2",
         "current": true,
+        "items": [
+          "<strong>CLI 和 MCP 可選用 OpenScreenShot Cloud</strong> — <code>openscreenshot auth login</code> 使用你在瀏覽器中核准的代碼登入。之後，CLI 的 <code>--cloud</code> 或 MCP 工具的 <code>cloud: true</code> 會在 OpenScreenShot Cloud 上算繪擷取畫面，並支援遮蓋功能。預設仍為本機模式。"
+        ]
+      },
+      {
+        "version": "v2.5.1",
         "items": [
           "<strong><code>npx -y openscreenshot</code> 啟動 MCP 伺服器</strong> — 在不帶參數且標準輸入（stdin）來自管線時，<code>openscreenshot</code> 套件會依 MCP 用戶端和伺服器目錄的預期啟動 MCP 伺服器。<code>openscreenshot serve</code> 仍然可用，終端機也仍然會顯示 CLI 用法。"
         ]
