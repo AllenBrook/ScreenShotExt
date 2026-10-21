@@ -4,7 +4,7 @@ description: 用 OpenScreenShot CLI 建立可重現的 PNG 產出檔，並了解
 audience: developers
 order: 6
 published: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 在 CI 中使用 OpenScreenShot CLI，可以為執行中的應用程式儲存一張 PNG 供審閱。準備好 Chrome 相容瀏覽器，啟動應用程式，等它就緒，然後以固定的網址和可視區域擷取。再用 CI 服務的產出檔機制上傳產生的檔案。
@@ -17,7 +17,7 @@ updated: 2026-10-09
 pnpm add -D -E openscreenshot
 ```
 
-在 CI 中用專案凍結的 lockfile 安裝相依套件。這個套件使用 `puppeteer-core`，不會下載瀏覽器，所以執行器上也需要 Chrome 或 Chromium。如果執行檔不在支援的預設位置，請設定 `CHROME_PATH`。
+在 CI 中用專案凍結的 lockfile 安裝相依套件。這個套件使用 `puppeteer-core`，不會下載瀏覽器，所以執行器上也需要 Chrome 或 Chromium。如果執行檔不在支援的預設位置，請設定 `CHROME_PATH`。在沒有瀏覽器的執行器上，可以用 `--cloud` 在 OpenScreenShot Cloud 上渲染頁面，API 金鑰放在 `OPENSCREENSHOT_API_KEY`。Cloud 伺服器無法連到執行器上的 `127.0.0.1` 位址，所以請用於已部署的網址。
 
 比較擷取結果時，請保持瀏覽器版本、字型、可視區域、應用程式資料和套件版本不變。即使應用程式程式碼沒有改變，字型或瀏覽器算繪引擎變了，圖片也可能不同。
 

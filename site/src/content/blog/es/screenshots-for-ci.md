@@ -4,7 +4,7 @@ description: Crea artefactos PNG repetibles con la CLI de OpenScreenShot y entie
 audience: developers
 order: 6
 published: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 Usa la CLI de OpenScreenShot en CI para guardar un PNG de una aplicación en ejecución y revisarlo. Prepara un navegador compatible con Chrome, inicia la aplicación, espera a que esté lista y luego captura una URL y un viewport fijos. Sube el archivo resultante con el mecanismo de artefactos de tu proveedor de CI.
@@ -17,7 +17,7 @@ En un proyecto que ya usa pnpm, añade la CLI como dependencia de desarrollo y h
 pnpm add -D -E openscreenshot
 ```
 
-Instala las dependencias en CI con el lockfile congelado del proyecto. El paquete usa `puppeteer-core` y no descarga ningún navegador, así que el runner también necesita Chrome o Chromium. Define `CHROME_PATH` si el ejecutable no está en una ubicación por defecto admitida.
+Instala las dependencias en CI con el lockfile congelado del proyecto. El paquete usa `puppeteer-core` y no descarga ningún navegador, así que el runner también necesita Chrome o Chromium. Define `CHROME_PATH` si el ejecutable no está en una ubicación por defecto admitida. En un runner sin navegador, `--cloud` renderiza la página en OpenScreenShot Cloud, con la clave de API en `OPENSCREENSHOT_API_KEY`. Los servidores de Cloud no llegan a una dirección `127.0.0.1` del runner, así que úsalo con una URL desplegada.
 
 Mantén estables la versión del navegador, las fuentes, el viewport, los datos de la aplicación y la versión del paquete cuando compares capturas. Un cambio de fuente o del motor de renderizado del navegador puede alterar una imagen aunque el código de la aplicación no haya cambiado.
 

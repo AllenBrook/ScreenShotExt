@@ -4,7 +4,7 @@ description: Utilisez la CLI OpenScreenShot pour enregistrer des captures PNG av
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 La CLI OpenScreenShot capture une page web en PNG avec un navigateur compatible Chrome installé en local. C’est un paquet séparé de l’extension de navigateur. Avec Node.js, pnpm et Chrome installés, exécutez :
@@ -38,7 +38,7 @@ Sans `--out`, la commande écrit `screenshot.png` dans le dossier courant. Utili
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-Utilisez une redirection compatible avec les données binaires. La CLI produit toujours du PNG ; nommer la sortie `capture.jpg` ou `capture.pdf` ne la convertit pas. Pour des images annotées ou une sortie PDF, utilisez l’[éditeur de l’extension](/fr/docs/#export).
+Utilisez une redirection compatible avec les données binaires. Une capture locale produit toujours du PNG ; nommer la sortie `capture.jpg` ou `capture.pdf` ne la convertit pas. Pour des images annotées ou une sortie PDF, utilisez l’[éditeur de l’extension](/fr/docs/#export). Pour obtenir d’autres formats depuis la CLI, utilisez `--cloud` avec `--format`, comme décrit plus bas.
 
 ## Masquer avant d’enregistrer
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact` couvre chaque élément qui correspond à un sélecteur CSS, avec tous ses enfants. `--redact-pattern` couvre le texte et les valeurs de formulaire qui correspondent à `email`, `phone` (de 9 à 15 chiffres) ou `secret` (formes courantes de clés d’API et de jetons, et longs hachages). `--redact-rect x,y,w,h` couvre un rectangle en pixels de l’image de sortie ; utilisez-le pour les canevas, les images et les iframes d’une autre origine.
 
 La capture échoue avec le code de sortie 1 et n’écrit aucun fichier si un sélecteur ne correspond à rien, si un rectangle sort de l’image ou si la page déplace une cible pendant la capture. Les motifs peuvent manquer du texte réparti sur plusieurs éléments ou dessiné dans une image : examinez donc le PNG avant de le partager.
+
+## Rendre la page sur OpenScreenShot Cloud
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) est une API de capture hébergée et facultative. Avec `--cloud`, la page est rendue sur les serveurs de Cloud : la machine n’a donc pas besoin de Chrome. Le mode local reste le mode par défaut et ne demande aucun compte.
+
+Connectez-vous une fois :
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+La commande affiche un code, par exemple `ABCD-EFGH`, et ouvre `https://cloud.openscreenshot.app/device` dans votre navigateur. Connectez-vous avec le code que Cloud envoie à votre adresse e-mail, puis approuvez le code. La CLI enregistre une clé d’API dans `~/.openscreenshot.json`.
+
+Ajoutez ensuite `--cloud` à une capture :
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+Avec `--cloud`, `--format` accepte `png`, `jpeg`, `webp`, `pdf`, `html` et `markdown`. `--full`, `--width` et `--height` fonctionnent comme en mode local. La CLI prend la clé d’API d’abord dans `--key osc_live_…`, puis dans la variable d’environnement `OPENSCREENSHOT_API_KEY`, puis dans la clé enregistrée par `auth login`. `--cloud <url>` ou `OPENSCREENSHOT_CLOUD_URL` définit une autre URL de base.
+
+Les options de masquage fonctionnent aussi avec `--cloud`. Le serveur de Cloud dessine les rectangles noirs avant de renvoyer l’image. Le masquage exige une sortie PNG, et un sélecteur qui ne correspond à rien fait échouer la capture, sans image.
+
+En mode Cloud, l’URL et les options sont envoyées à OpenScreenShot Cloud, et la page est rendue sur ses serveurs ; consultez la [politique de confidentialité de Cloud](https://cloud.openscreenshot.app/privacy). Le mode local n’envoie rien à OpenScreenShot. L’offre gratuite donne 100 captures par mois sans carte bancaire, et les captures échouées sont gratuites. La [page des tarifs](https://cloud.openscreenshot.app/pricing) présente les autres offres, et la [documentation de l’API](https://cloud.openscreenshot.app/docs) décrit chaque option.
 
 ## Résoudre les échecs courants
 

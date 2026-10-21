@@ -4,24 +4,24 @@ description: 從執行環境、整頁、CLI、MCP、影片和授權比較 opensc
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 如果只是要從 shell 腳本或 CI 工作取得公開頁面的 PNG，命令列工具就夠了：openscreenshot、shot-scraper、capture-website-cli 或 pageres-cli。當擷取需要登入、點擊、斷言或影片時，請用 Playwright 或 Puppeteer 撰寫。對 AI 代理來說，本機 MCP 伺服器可以把截圖回傳給模型：`openscreenshot serve` 每次呼叫擷取一張截圖，而 Playwright MCP 會驅動整個瀏覽器工作階段。
 
-`openscreenshot` 套件是我們的產品，本頁會說明它在哪些情況下是較弱的選擇。本頁比較的是功能，不替這些工具排名。所有資訊截至 2026 年 10 月 17 日，來自各專案的儲存庫、套件登錄庫或官方文件，連結附在下方。
+`openscreenshot` 套件是我們的產品，本頁會說明它在哪些情況下是較弱的選擇。本頁比較的是功能，不替這些工具排名。openscreenshot 的資訊截至 2026 年 10 月 21 日，其他工具的資訊截至 2026 年 10 月 17 日，皆來自各專案的儲存庫、套件登錄庫或官方文件，連結附在下方。
 
 ## 工具一覽
 
-| 工具                | 語言／執行環境                                    | 整頁             | CLI                          | MCP                      | 影片                | 授權       |
-| ------------------- | ------------------------------------------------- | ---------------- | ---------------------------- | ------------------------ | ------------------- | ---------- |
-| openscreenshot      | Node.js 22.12+，已安裝的 Chrome、Chromium 或 Edge | `--full`         | 是                           | 是，stdio                | 否                  | MIT        |
-| shot-scraper        | Python 3.10+，Playwright 瀏覽器                   | 預設             | 是                           | 未列出                   | 是，WebM 或 MP4     | Apache-2.0 |
-| capture-website-cli | Node.js 20+，Puppeteer Chrome                     | `--full-page`    | 是                           | 未列出                   | 否                  | MIT        |
-| pageres-cli         | Node.js 20+，Puppeteer Chrome                     | 預設             | 是                           | 未列出                   | 否                  | MIT        |
-| Playwright          | Node.js、Python、Java、.NET                       | `fullPage: true` | 測試執行器、`playwright-cli` | 透過 Playwright MCP      | 是                  | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                    | `fullPage: true` | 未列出                       | 透過 chrome-devtools-mcp | 是，Chrome 中為 MP4 | Apache-2.0 |
-| Playwright MCP      | 透過 `npx` 的 Node.js，或 Docker                  | `fullPage` 參數  | 僅伺服器                     | 是，stdio 或 HTTP        | 是，需選擇啟用      | Apache-2.0 |
+| 工具                | 語言／執行環境                                    | 整頁             | CLI                          | MCP                        | 影片                | 授權       |
+| ------------------- | ------------------------------------------------- | ---------------- | ---------------------------- | -------------------------- | ------------------- | ---------- |
+| openscreenshot      | Node.js 22.12+，已安裝的 Chrome、Chromium 或 Edge | `--full`         | 是                           | 是，stdio；Cloud 上為 HTTP | 否                  | MIT        |
+| shot-scraper        | Python 3.10+，Playwright 瀏覽器                   | 預設             | 是                           | 未列出                     | 是，WebM 或 MP4     | Apache-2.0 |
+| capture-website-cli | Node.js 20+，Puppeteer Chrome                     | `--full-page`    | 是                           | 未列出                     | 否                  | MIT        |
+| pageres-cli         | Node.js 20+，Puppeteer Chrome                     | 預設             | 是                           | 未列出                     | 否                  | MIT        |
+| Playwright          | Node.js、Python、Java、.NET                       | `fullPage: true` | 測試執行器、`playwright-cli` | 透過 Playwright MCP        | 是                  | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                    | `fullPage: true` | 未列出                       | 透過 chrome-devtools-mcp   | 是，Chrome 中為 MP4 | Apache-2.0 |
+| Playwright MCP      | 透過 `npx` 的 Node.js，或 Docker                  | `fullPage` 參數  | 僅伺服器                     | 是，stdio 或 HTTP          | 是，需選擇啟用      | Apache-2.0 |
 
 「未列出」表示我們查閱的專案自身文件沒有描述該功能。
 
@@ -33,14 +33,14 @@ updated: 2026-10-17
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-旗標有 `--out`（檔案，或用 `-` 表示 stdout）、`--full`、`--width`（200 到 3840，預設 1280）、`--height`（200 到 2160，預設 800），以及三個遮蓋旗標：`--redact`（CSS 選擇器）、`--redact-pattern`（`email`、`phone` 或 `secret`）和 `--redact-rect`（像素矩形）。遮蓋會在擷取前於頁面中畫上黑色方塊。結束代碼 0 表示已寫出 PNG，1 表示擷取失敗，2 表示用法錯誤。`openscreenshot serve` 會透過 stdio 啟動 MCP 伺服器，內含一個工具 `capture_screenshot`，它接受 `url`、`fullPage`、`width`、`height` 和 `redact`，並回傳 PNG 圖片內容。[CLI 指南](/zh-tw/blog/screenshot-cli/)、[MCP 指南](/zh-tw/blog/screenshot-mcp-server/)和 [CI 指南](/zh-tw/blog/screenshots-for-ci/)涵蓋設定方式，[原始碼](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)則是參考依據。
+旗標有 `--out`（檔案，或用 `-` 表示 stdout）、`--full`、`--width`（200 到 3840，預設 1280）、`--height`（200 到 2160，預設 800），以及三個遮蓋旗標：`--redact`（CSS 選擇器）、`--redact-pattern`（`email`、`phone` 或 `secret`）和 `--redact-rect`（像素矩形）。遮蓋會在擷取前於頁面中畫上黑色方塊。結束代碼 0 表示已寫出檔案，1 表示擷取失敗，2 表示用法錯誤。`openscreenshot serve` 會透過 stdio 啟動 MCP 伺服器，內含一個工具 `capture_screenshot`，它接受 `url`、`fullPage`、`width`、`height`、`redact` 和 `cloud`，並回傳 PNG 圖片內容。[CLI 指南](/zh-tw/blog/screenshot-cli/)、[MCP 指南](/zh-tw/blog/screenshot-mcp-server/)和 [CI 指南](/zh-tw/blog/screenshots-for-ci/)涵蓋設定方式，[原始碼](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)則是參考依據。使用 `--cloud` 或 `cloud: true` 時，頁面會在 [OpenScreenShot Cloud](https://cloud.openscreenshot.app)（提供免費方案的託管 API）上渲染，CLI 也能寫出 JPEG、WebP、PDF、HTML 或 Markdown。
 
 它是較弱選擇的情況：
 
 - 每次擷取都會以空白設定檔啟動全新的瀏覽器。它沒有 Cookie、登入、點擊或選擇器等待，所以需要登入的頁面會顯示登入畫面。
 - 導覽會等待 `networkidle2` 最多 30 秒，沒有額外的等待選項。在網路靜止後才算繪的頁面，可能只載入一半就被擷取。
-- 輸出只有 PNG，沒有 PDF 或影片。
-- MCP 伺服器只支援本機 stdio，沒有託管網址或 HTTP 傳輸。工具會回傳圖片，不會寫出檔案。
+- 本機輸出只有 PNG。其他格式需要 `--cloud`，也沒有影片。
+- 套件中的 MCP 伺服器透過本機 stdio 執行。透過 HTTP 使用遠端 MCP 網址需要 OpenScreenShot Cloud 和 API 金鑰。工具會回傳圖片，不會寫出檔案。
 - 瀏覽器以 `--no-sandbox` 執行，以便在容器中運作。請只擷取你信任的網址。
 - 在 Windows 上，偵測不到 Edge 和以個別使用者安裝的 Chrome；請設定 `CHROME_PATH`。
 

@@ -4,7 +4,7 @@ description: 用 OpenScreenShot CLI 以固定视口、整页截图或输出二�
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 OpenScreenShot CLI 使用本地安装的 Chrome 兼容浏览器，把网页截取为 PNG。它是独立于浏览器扩展的另一个软件包。安装 Node.js、pnpm 和 Chrome 后，运行：
@@ -38,7 +38,7 @@ pnpm dlx openscreenshot shot https://example.com --out narrow.png --width 390 --
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-请使用二进制安全的重定向。CLI 始终输出 PNG；把输出命名为 `capture.jpg` 或 `capture.pdf` 并不会转换格式。如需带标注的图片或 PDF 输出，请使用[扩展编辑器](/zh-cn/docs/#export)。
+请使用二进制安全的重定向。本地截图始终输出 PNG；把输出命名为 `capture.jpg` 或 `capture.pdf` 并不会转换格式。如需带标注的图片或 PDF 输出，请使用[扩展编辑器](/zh-cn/docs/#export)。如需从 CLI 获得其他格式，请按下文所述使用 `--cloud` 和 `--format`。
 
 ## 保存前先遮盖数据
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact` 遮盖与 CSS 选择器匹配的每个元素及其所有子元素。`--redact-pattern` 遮盖与 `email`、`phone`（9 到 15 位数字）或 `secret`（常见的 API 密钥和令牌格式，以及长哈希值）匹配的文本和表单值。`--redact-rect x,y,w,h` 按输出图片的像素遮盖一个矩形；可用于 canvas、图片和跨源 iframe。
 
 如果选择器没有匹配任何内容、矩形超出图片范围，或页面在截图过程中移动了目标，截图会失败并返回退出码 1，且不写入任何文件。模式可能漏掉分散在多个元素中或绘制在图片中的文本，因此分享 PNG 之前请先检查它。
+
+## 在 OpenScreenShot Cloud 上渲染
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) 是一个可选的托管截图 API。使用 `--cloud` 时，页面在 Cloud 服务器上渲染，因此本机不需要 Chrome。默认仍是本地模式，不需要账号。
+
+先登录一次：
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+该命令会显示一个代码（例如 `ABCD-EFGH`），并在浏览器中打开 `https://cloud.openscreenshot.app/device`。用 Cloud 发送到你邮箱的验证码登录，然后批准该代码。CLI 会把 API 密钥保存在 `~/.openscreenshot.json` 中。
+
+然后在截图命令中加上 `--cloud`：
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+使用 `--cloud` 时，`--format` 接受 `png`、`jpeg`、`webp`、`pdf`、`html` 和 `markdown`。`--full`、`--width` 和 `--height` 的用法与本地模式相同。CLI 按以下顺序查找 API 密钥：先是 `--key osc_live_…`，然后是环境变量 `OPENSCREENSHOT_API_KEY`，最后是 `auth login` 保存的密钥。`--cloud <url>` 或 `OPENSCREENSHOT_CLOUD_URL` 可指定其他基础 URL。
+
+遮盖参数同样适用于 `--cloud`。Cloud 服务器会在返回图片之前绘制黑色方块。遮盖需要 PNG 输出；如果某个选择器没有匹配任何元素，截图会失败，不会返回图片。
+
+在 Cloud 模式下，URL 和选项会发送到 OpenScreenShot Cloud，页面在其服务器上渲染；请参阅 [Cloud 隐私政策](https://cloud.openscreenshot.app/privacy)。本地模式不会向 OpenScreenShot 发送任何内容。免费套餐每月提供 100 次截图，无需绑卡，失败的截图不计费。其他套餐见[价格页面](https://cloud.openscreenshot.app/pricing)，所有选项见 [API 文档](https://cloud.openscreenshot.app/docs)。
 
 ## 解决常见故障
 

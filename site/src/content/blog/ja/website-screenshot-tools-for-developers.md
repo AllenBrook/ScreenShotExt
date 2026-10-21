@@ -4,24 +4,24 @@ description: openscreenshot の CLI と MCP サーバー、shot-scraper、Playwr
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 シェル スクリプトや CI ジョブで公開ページの PNG を撮るだけなら、コマンド ライン ツールで足ります。openscreenshot、shot-scraper、capture-website-cli、pageres-cli です。キャプチャにログイン、クリック、アサーション、動画が必要な場合は、Playwright か Puppeteer で書いてください。AI エージェント向けには、ローカルの MCP サーバーがスクリーンショットをモデルに返します。`openscreenshot serve` は 1 回の呼び出しで 1 枚のスクリーンショットを撮り、Playwright MCP はブラウザ セッション全体を操作します。
 
-`openscreenshot` パッケージは私たちの製品です。このページでは、それが不利な選択肢になる場面も書いています。機能を比較するもので、ツールの順位付けはしません。すべての情報は 2026年10月17日時点のもので、以下にリンクした各プロジェクトのリポジトリ、パッケージ レジストリ、公式ドキュメントに基づいています。
+`openscreenshot` パッケージは私たちの製品です。このページでは、それが不利な選択肢になる場面も書いています。機能を比較するもので、ツールの順位付けはしません。openscreenshot の情報は 2026年10月21日時点、ほかのツールの情報は 2026年10月17日時点のもので、以下にリンクした各プロジェクトのリポジトリ、パッケージ レジストリ、公式ドキュメントに基づいています。
 
 ## ツールの概要
 
-| ツール              | 言語 / 実行環境                                           | ページ全体              | CLI                               | MCP                      | 動画                  | ライセンス |
-| ------------------- | --------------------------------------------------------- | ----------------------- | --------------------------------- | ------------------------ | --------------------- | ---------- |
-| openscreenshot      | Node.js 22.12+、インストール済みの Chrome、Chromium、Edge | `--full`                | あり                              | あり、stdio              | なし                  | MIT        |
-| shot-scraper        | Python 3.10+、Playwright のブラウザ                       | デフォルト              | あり                              | 記載なし                 | あり、WebM または MP4 | Apache-2.0 |
-| capture-website-cli | Node.js 20+、Puppeteer の Chrome                          | `--full-page`           | あり                              | 記載なし                 | なし                  | MIT        |
-| pageres-cli         | Node.js 20+、Puppeteer の Chrome                          | デフォルト              | あり                              | 記載なし                 | なし                  | MIT        |
-| Playwright          | Node.js、Python、Java、.NET                               | `fullPage: true`        | テスト ランナー、`playwright-cli` | Playwright MCP 経由      | あり                  | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                            | `fullPage: true`        | 記載なし                          | chrome-devtools-mcp 経由 | あり、Chrome で MP4   | Apache-2.0 |
-| Playwright MCP      | `npx` 経由の Node.js、または Docker                       | `fullPage` パラメーター | サーバーのみ                      | あり、stdio または HTTP  | あり、オプトイン      | Apache-2.0 |
+| ツール              | 言語 / 実行環境                                           | ページ全体              | CLI                               | MCP                          | 動画                  | ライセンス |
+| ------------------- | --------------------------------------------------------- | ----------------------- | --------------------------------- | ---------------------------- | --------------------- | ---------- |
+| openscreenshot      | Node.js 22.12+、インストール済みの Chrome、Chromium、Edge | `--full`                | あり                              | あり、stdio、Cloud では HTTP | なし                  | MIT        |
+| shot-scraper        | Python 3.10+、Playwright のブラウザ                       | デフォルト              | あり                              | 記載なし                     | あり、WebM または MP4 | Apache-2.0 |
+| capture-website-cli | Node.js 20+、Puppeteer の Chrome                          | `--full-page`           | あり                              | 記載なし                     | なし                  | MIT        |
+| pageres-cli         | Node.js 20+、Puppeteer の Chrome                          | デフォルト              | あり                              | 記載なし                     | なし                  | MIT        |
+| Playwright          | Node.js、Python、Java、.NET                               | `fullPage: true`        | テスト ランナー、`playwright-cli` | Playwright MCP 経由          | あり                  | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                            | `fullPage: true`        | 記載なし                          | chrome-devtools-mcp 経由     | あり、Chrome で MP4   | Apache-2.0 |
+| Playwright MCP      | `npx` 経由の Node.js、または Docker                       | `fullPage` パラメーター | サーバーのみ                      | あり、stdio または HTTP      | あり、オプトイン      | Apache-2.0 |
 
 「記載なし」は、私たちが確認したプロジェクト自身のドキュメントにその機能の説明がないことを意味します。
 
@@ -33,14 +33,14 @@ updated: 2026-10-17
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-フラグは `--out` (ファイル、または stdout を表す `-`)、`--full`、`--width` (200～3840、デフォルト 1280)、`--height` (200～2160、デフォルト 800) と、3 つの墨消しフラグ `--redact` (CSS セレクター)、`--redact-pattern` (`email`、`phone`、または `secret`)、`--redact-rect` (ピクセル単位の四角形) です。墨消しは、スクリーンショットを撮る前にページ内に黒い四角を描きます。終了コード 0 は PNG が書き込まれたこと、1 はキャプチャの失敗、2 は使い方の誤りを意味します。`openscreenshot serve` は stdio で MCP サーバーを起動します。ツールは `capture_screenshot` の 1 つで、`url`、`fullPage`、`width`、`height`、`redact` を受け取り、PNG の画像コンテンツを返します。セットアップは [CLI ガイド](/ja/blog/screenshot-cli/)、[MCP ガイド](/ja/blog/screenshot-mcp-server/)、[CI ガイド](/ja/blog/screenshots-for-ci/)で説明しており、[ソース](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)がリファレンスです。
+フラグは `--out` (ファイル、または stdout を表す `-`)、`--full`、`--width` (200～3840、デフォルト 1280)、`--height` (200～2160、デフォルト 800) と、3 つの墨消しフラグ `--redact` (CSS セレクター)、`--redact-pattern` (`email`、`phone`、または `secret`)、`--redact-rect` (ピクセル単位の四角形) です。墨消しは、スクリーンショットを撮る前にページ内に黒い四角を描きます。終了コード 0 はファイルが書き込まれたこと、1 はキャプチャの失敗、2 は使い方の誤りを意味します。`openscreenshot serve` は stdio で MCP サーバーを起動します。ツールは `capture_screenshot` の 1 つで、`url`、`fullPage`、`width`、`height`、`redact`、`cloud` を受け取り、PNG の画像コンテンツを返します。セットアップは [CLI ガイド](/ja/blog/screenshot-cli/)、[MCP ガイド](/ja/blog/screenshot-mcp-server/)、[CI ガイド](/ja/blog/screenshots-for-ci/)で説明しており、[ソース](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)がリファレンスです。`--cloud` または `cloud: true` を使うと、ページは無料プランのあるホスト型 API の [OpenScreenShot Cloud](https://cloud.openscreenshot.app) でレンダリングされ、CLI は JPEG、WebP、PDF、HTML、Markdown も書き出せます。
 
 不利な選択肢になる場面:
 
 - キャプチャのたびに、空のプロファイルで新しいブラウザが起動します。Cookie、ログイン、クリック、セレクターの待機はないため、ログインが必要なページではログイン画面が写ります。
 - ページ移動は `networkidle2` を最大 30 秒待ち、追加の待機オプションはありません。ネットワークが落ち着いた後に描画されるページは、読み込みが途中の状態で写ることがあります。
-- 出力は PNG のみで、PDF や動画はありません。
-- MCP サーバーはローカルの stdio のみで、ホスト型の URL や HTTP トランスポートはありません。ツールは画像を返し、ファイルは書き込みません。
+- ローカルの出力は PNG のみです。ほかの形式には `--cloud` が必要で、動画はありません。
+- パッケージの MCP サーバーはローカルの stdio で動きます。HTTP のリモート MCP URL を使うには、OpenScreenShot Cloud と API キーが必要です。ツールは画像を返し、ファイルは書き込みません。
 - コンテナーで動作するよう、ブラウザは `--no-sandbox` で実行されます。信頼できる URL だけをキャプチャしてください。
 - Windows では、Edge とユーザー単位でインストールした Chrome は検出されません。`CHROME_PATH` を設定してください。
 

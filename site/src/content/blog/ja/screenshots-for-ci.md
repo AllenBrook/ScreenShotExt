@@ -4,7 +4,7 @@ description: OpenScreenShot CLI で再現できる PNG の成果物を作り、�
 audience: developers
 order: 6
 published: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 CI で OpenScreenShot CLI を使うと、実行中のアプリケーションの PNG をレビュー用に保存できます。Chrome 互換ブラウザを用意し、アプリケーションを起動して準備ができるまで待ち、固定の URL とビューポートでキャプチャします。できたファイルは、CI プロバイダーの成果物 (artifact) の仕組みでアップロードします。
@@ -17,7 +17,7 @@ CI で OpenScreenShot CLI を使うと、実行中のアプリケーションの
 pnpm add -D -E openscreenshot
 ```
 
-CI では、プロジェクトのロックファイルを固定したまま (frozen lockfile) 依存関係をインストールします。このパッケージは `puppeteer-core` を使い、ブラウザをダウンロードしないため、ランナーには Chrome または Chromium も必要です。実行ファイルが対応するデフォルトの場所にない場合は、`CHROME_PATH` を設定します。
+CI では、プロジェクトのロックファイルを固定したまま (frozen lockfile) 依存関係をインストールします。このパッケージは `puppeteer-core` を使い、ブラウザをダウンロードしないため、ランナーには Chrome または Chromium も必要です。実行ファイルが対応するデフォルトの場所にない場合は、`CHROME_PATH` を設定します。ブラウザのないランナーでは、`--cloud` を付けると OpenScreenShot Cloud でページをレンダリングできます。API キーは `OPENSCREENSHOT_API_KEY` に設定します。Cloud のサーバーはランナー上の `127.0.0.1` のアドレスには接続できないため、デプロイ済みの URL に使ってください。
 
 キャプチャを比較するときは、ブラウザのバージョン、フォント、ビューポート、アプリケーションのデータ、パッケージのバージョンを固定してください。アプリケーションのコードが変わっていなくても、フォントやブラウザのレンダラーが変わると画像が変わることがあります。
 

@@ -4,7 +4,7 @@ description: Usa la CLI de OpenScreenShot para guardar capturas PNG con un viewp
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 La CLI de OpenScreenShot captura una página web como PNG con un navegador compatible con Chrome instalado en tu equipo. Es un paquete aparte de la extensión del navegador. Con Node.js, pnpm y Chrome instalados, ejecuta:
@@ -38,7 +38,7 @@ Sin `--out`, el comando escribe `screenshot.png` en el directorio actual. Usa un
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-Usa una redirección segura para datos binarios. La CLI siempre produce PNG; llamar a la salida `capture.jpg` o `capture.pdf` no la convierte. Para imágenes anotadas o salida PDF, usa el [editor de la extensión](/es/docs/#export).
+Usa una redirección segura para datos binarios. Una captura local siempre produce PNG; llamar a la salida `capture.jpg` o `capture.pdf` no la convierte. Para imágenes anotadas o salida PDF, usa el [editor de la extensión](/es/docs/#export). Para obtener otros formatos desde la CLI, usa `--cloud` con `--format`, como se explica más abajo.
 
 ## Oculta los datos antes de guardar
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact` tapa cada elemento que coincide con un selector CSS, con todos sus hijos. `--redact-pattern` tapa el texto y los valores de formulario que coinciden con `email`, `phone` (de 9 a 15 dígitos) o `secret` (formatos habituales de claves de API y tokens, y hashes largos). `--redact-rect x,y,w,h` tapa un rectángulo en píxeles de la imagen de salida; úsala para canvas, imágenes e iframes de otro origen.
 
 La captura falla con el código de salida 1 y no escribe ningún archivo si un selector no coincide con nada, un rectángulo queda fuera de la imagen o la página mueve un objetivo durante la captura. Los patrones pueden pasar por alto texto dividido entre varios elementos o dibujado en una imagen, así que revisa el PNG antes de compartirlo.
+
+## Renderiza en OpenScreenShot Cloud
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) es una API de capturas alojada y opcional. Con `--cloud`, la página se renderiza en los servidores de Cloud, así que tu equipo no necesita Chrome. El modo local sigue siendo el predeterminado y no necesita cuenta.
+
+Inicia sesión una vez:
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+La orden muestra un código, como `ABCD-EFGH`, y abre `https://cloud.openscreenshot.app/device` en tu navegador. Inicia sesión con el código que Cloud envía a tu correo y luego aprueba el código. La CLI guarda una clave de API en `~/.openscreenshot.json`.
+
+Después, añade `--cloud` a una captura:
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+Con `--cloud`, `--format` acepta `png`, `jpeg`, `webp`, `pdf`, `html` y `markdown`. `--full`, `--width` y `--height` funcionan igual que en modo local. La CLI toma la clave de API primero de `--key osc_live_…`, después de la variable de entorno `OPENSCREENSHOT_API_KEY` y por último de la clave que guardó `auth login`. `--cloud <url>` u `OPENSCREENSHOT_CLOUD_URL` fijan otra URL base.
+
+Las opciones para ocultar datos también funcionan con `--cloud`. El servidor de Cloud dibuja los recuadros negros antes de devolver la imagen. La ocultación necesita salida PNG, y un selector que no coincide con nada hace fallar la captura sin imagen.
+
+En modo Cloud, la URL y las opciones van a OpenScreenShot Cloud, y la página se renderiza en sus servidores; consulta la [política de privacidad de Cloud](https://cloud.openscreenshot.app/privacy). El modo local no envía nada a OpenScreenShot. El plan gratuito incluye 100 capturas al mes sin tarjeta, y las capturas fallidas son gratis. La [página de precios](https://cloud.openscreenshot.app/pricing) muestra los demás planes, y la [documentación de la API](https://cloud.openscreenshot.app/docs) cubre todas las opciones.
 
 ## Resuelve los fallos más comunes
 

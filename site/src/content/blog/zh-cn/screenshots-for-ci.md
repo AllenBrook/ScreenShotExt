@@ -4,7 +4,7 @@ description: 用 OpenScreenShot CLI 生成可重复的 PNG 产物，并了解截
 audience: developers
 order: 6
 published: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 在 CI 中使用 OpenScreenShot CLI，把运行中应用的 PNG 保存下来供审查。准备一个 Chrome 兼容浏览器，启动应用，等它就绪，然后截取固定的 URL 和视口。用 CI 服务商的产物机制上传生成的文件。
@@ -17,7 +17,7 @@ updated: 2026-10-09
 pnpm add -D -E openscreenshot
 ```
 
-在 CI 中使用项目的冻结锁文件安装依赖。该软件包使用 `puppeteer-core`，不会下载浏览器，因此运行器还需要 Chrome 或 Chromium。如果可执行文件不在受支持的默认位置，请设置 `CHROME_PATH`。
+在 CI 中使用项目的冻结锁文件安装依赖。该软件包使用 `puppeteer-core`，不会下载浏览器，因此运行器还需要 Chrome 或 Chromium。如果可执行文件不在受支持的默认位置，请设置 `CHROME_PATH`。在没有浏览器的运行器上，可以用 `--cloud` 在 OpenScreenShot Cloud 上渲染页面，API 密钥放在 `OPENSCREENSHOT_API_KEY` 中。Cloud 服务器无法访问运行器上的 `127.0.0.1` 地址，因此请将它用于已部署的 URL。
 
 比较截图时，请保持浏览器版本、字体、视口、应用数据和软件包版本稳定。即使应用代码没有变化，字体或浏览器渲染器的变化也可能改变图片。
 

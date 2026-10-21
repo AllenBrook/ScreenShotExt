@@ -4,10 +4,10 @@ description: Verbinde OpenScreenShot mit einem stdio-MCP-Client und fordere PNG-
 audience: developers
 order: 5
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
-OpenScreenShot bietet einen lokalen MCP-Server mit einem Tool: `capture_screenshot`. Ein MCP-Client kann es mit der URL einer Webseite aufrufen und bekommt PNG-Bildinhalt zurück. Der Server startet einen separaten Chrome-kompatiblen Headless-Browser auf deinem Gerät; die Browsererweiterung ist nicht nötig.
+OpenScreenShot bietet einen lokalen MCP-Server mit einem Tool: `capture_screenshot`. Ein MCP-Client kann es mit der URL einer Webseite aufrufen und bekommt PNG-Bildinhalt zurück. Standardmäßig startet der Server einen separaten Chrome-kompatiblen Headless-Browser auf deinem Gerät; die Browsererweiterung ist nicht nötig.
 
 ## Den Server zu deinem MCP-Client hinzufügen
 
@@ -24,7 +24,7 @@ Installiere zuerst Node.js, pnpm und einen Chrome-kompatiblen Browser. Füge ein
 }
 ```
 
-Der Client muss `pnpm` in seinem Suchpfad für ausführbare Dateien finden können. Starte seine MCP-Verbindungen nach dem Speichern der Konfiguration neu oder lade sie neu. Der Server nutzt stdio, der Client startet also einen lokalen Prozess; es gibt keine gehostete MCP-URL einzugeben.
+Der Client muss `pnpm` in seinem Suchpfad für ausführbare Dateien finden können. Starte seine MCP-Verbindungen nach dem Speichern der Konfiguration neu oder lade sie neu. Der Server nutzt stdio, der Client startet also einen lokalen Prozess, und es gibt keine URL einzugeben. Für Clients, die nur entfernte MCP-URLs annehmen, hat OpenScreenShot Cloud einen Remote-Endpunkt, der unten beschrieben ist.
 
 Ist Chrome an einem ungewöhnlichen Ort installiert, gib `CHROME_PATH` über die Umgebungskonfiguration des Clients weiter. Nutze den vollständigen Pfad zur ausführbaren Datei und nicht den Ordner, der die Anwendung enthält.
 
@@ -66,6 +66,18 @@ Füge ein `redact`-Objekt hinzu, um Daten vor dem Screenshot mit schwarzen Käst
 
 `selectors` deckt jedes passende Element mit allen seinen Kindelementen ab. `patterns` deckt passenden Text und passende Formularwerte ab: `email`, `phone` (9 bis 15 Ziffern) und `secret` (übliche Formen von API-Schlüsseln und Tokens sowie lange Hashes). `rects` deckt Rechtecke in Pixeln des Ausgabebilds ab, für Canvas, Bilder und Cross-Origin-iframes. Das Tool gibt einen Fehler und kein Bild zurück, wenn ein Selektor nichts trifft, ein Rechteck außerhalb des Bilds liegt oder die Seite während der Aufnahme ein Ziel verschiebt. Muster können Text übersehen, der über mehrere Elemente verteilt oder in einem Bild gezeichnet ist.
 
+## Auf OpenScreenShot Cloud rendern
+
+Setze `cloud: true`, um die Seite statt im lokalen Chrome auf [OpenScreenShot Cloud](https://cloud.openscreenshot.app) zu rendern, einer optionalen gehosteten Screenshot-API:
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+Der Cloud-Modus braucht einen API-Schlüssel. Führe einmal `pnpm dlx openscreenshot auth login` aus, um einen zu speichern, oder setze `OPENSCREENSHOT_API_KEY` in der Umgebungskonfiguration des Servers im Client. `redact` funktioniert in beiden Modi. Im Cloud-Modus zeichnet der Cloud-Server die schwarzen Kästen, bevor er das Bild zurückgibt.
+
+Cloud bietet außerdem einen entfernten MCP-Endpunkt über Streamable HTTP unter `https://cloud.openscreenshot.app/mcp`, mit demselben Tool `capture_screenshot`. Sende den API-Schlüssel im Header `Authorization: Bearer <key>`. Nutze ihn mit Clients, die nur entfernte MCP-URLs annehmen. Der kostenlose Plan bietet 100 Aufnahmen pro Monat ohne Kreditkarte; die [Preisseite](https://cloud.openscreenshot.app/pricing) listet die weiteren Pläne.
+
 ## Was der Agent sehen kann und was nicht
 
 Die Aufnahme startet in einem frischen Headless-Browser. Sie übernimmt weder die Cookies noch die angemeldete Sitzung aus deinem normalen Chrome-Fenster. Eine Seite hinter einer Anmeldung kann daher einen Login-Bildschirm ergeben. Das aktuelle Tool bietet keine Login-Schritte, kein Einschleusen von Cookies, kein Warten auf Selektoren und keine interaktiven Klicks.
@@ -74,6 +86,6 @@ Bitte den Agenten, zu benennen, was im zurückgegebenen Bild tatsächlich sichtb
 
 ## Wohin geht der Screenshot?
 
-Der Screenshot wird lokal erzeugt und an den MCP-Client zurückgegeben. Nutzt dieser Client ein gehostetes Modell, kann er das zurückgegebene Bild gemäß seinen eigenen Einstellungen an den Modellanbieter übertragen. Eine lokale Aufnahme heißt nicht, dass die ganze Unterhaltung mit dem Agenten auf dem Gerät bleibt. Nutze `redact` für Daten, die den Anbieter nicht erreichen dürfen.
+Standardmäßig wird der Screenshot lokal erzeugt und an den MCP-Client zurückgegeben. Nutzt dieser Client ein gehostetes Modell, kann er das zurückgegebene Bild gemäß seinen eigenen Einstellungen an den Modellanbieter übertragen. Eine lokale Aufnahme heißt nicht, dass die ganze Unterhaltung mit dem Agenten auf dem Gerät bleibt. Nutze `redact` für Daten, die den Anbieter nicht erreichen dürfen. Mit `cloud: true` gehen die URL und die Optionen an OpenScreenShot Cloud, und die Seite wird auf dessen Servern gerendert; siehe die [Datenschutzerklärung von Cloud](https://cloud.openscreenshot.app/privacy).
 
-Für automatisierte Aufnahmen mit vorhersehbaren Maßen siehe [Screenshots für CI](/de/blog/screenshots-for-ci/). Der [Agent-Skill zur Aufnahme](/skills/capture-screenshot.md) und der [Server-Quellcode](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) liefern die maschinenorientierten Anweisungen und die Tool-Definition.
+Für automatisierte Aufnahmen mit vorhersehbaren Maßen siehe [Screenshots für CI](/de/blog/screenshots-for-ci/). Der [Agent-Skill zur Aufnahme](/skills/capture-screenshot.md) und der [Server-Quellcode](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts) liefern die maschinenorientierten Anweisungen und die Tool-Definition. Der Server ist auch auf [Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot) gelistet.

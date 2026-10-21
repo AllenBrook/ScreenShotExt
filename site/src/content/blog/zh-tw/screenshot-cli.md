@@ -4,7 +4,7 @@ description: 用 OpenScreenShot CLI 儲存 PNG 截圖，可設定固定可視區
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 OpenScreenShot CLI 使用本機安裝的 Chrome 相容瀏覽器，把網頁擷取成 PNG。它和瀏覽器擴充功能是不同的套件。安裝好 Node.js、pnpm 和 Chrome 後，執行：
@@ -38,7 +38,7 @@ pnpm dlx openscreenshot shot https://example.com --out narrow.png --width 390 --
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-請使用可安全處理二進位資料的重新導向。CLI 一律產生 PNG；把輸出檔命名為 `capture.jpg` 或 `capture.pdf` 並不會轉換格式。如果需要加上註解的圖片或 PDF 輸出，請使用[擴充功能的編輯器](/zh-tw/docs/#export)。
+請使用可安全處理二進位資料的重新導向。本機擷取一律產生 PNG；把輸出檔命名為 `capture.jpg` 或 `capture.pdf` 並不會轉換格式。如果需要加上註解的圖片或 PDF 輸出，請使用[擴充功能的編輯器](/zh-tw/docs/#export)。如需從 CLI 取得其他格式，請依下文說明搭配 `--cloud` 使用 `--format`。
 
 ## 儲存前先遮蓋資料
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact` 會遮蓋符合 CSS 選擇器的每個元素，以及它的所有子元素。`--redact-pattern` 會遮蓋符合 `email`、`phone`（9 到 15 位數字）或 `secret`（常見的 API 金鑰和權杖格式，以及長雜湊值）的文字和表單值。`--redact-rect x,y,w,h` 會以輸出圖片的像素遮蓋一個矩形；可用於 canvas、圖片和跨來源 iframe。
 
 如果選擇器沒有符合任何內容、矩形超出圖片範圍，或頁面在擷取過程中移動了目標，擷取就會失敗並回傳結束代碼 1，而且不會寫出任何檔案。模式可能會漏掉分散在多個元素中或繪製在圖片中的文字，所以分享 PNG 前請先檢查它。
+
+## 在 OpenScreenShot Cloud 上渲染
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) 是選用的託管截圖 API。使用 `--cloud` 時，頁面會在 Cloud 伺服器上渲染，所以本機不需要 Chrome。預設仍是本機模式，不需要帳號。
+
+先登入一次：
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+這個指令會顯示一組代碼（例如 `ABCD-EFGH`），並在瀏覽器中開啟 `https://cloud.openscreenshot.app/device`。用 Cloud 寄到你電子郵件的驗證碼登入，然後核准這組代碼。CLI 會把 API 金鑰存放在 `~/.openscreenshot.json`。
+
+接著在擷取指令加上 `--cloud`：
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+使用 `--cloud` 時，`--format` 接受 `png`、`jpeg`、`webp`、`pdf`、`html` 和 `markdown`。`--full`、`--width` 和 `--height` 的用法與本機模式相同。CLI 依序從 `--key osc_live_…`、環境變數 `OPENSCREENSHOT_API_KEY`、`auth login` 存放的金鑰取得 API 金鑰。`--cloud <url>` 或 `OPENSCREENSHOT_CLOUD_URL` 可指定其他基礎網址。
+
+遮蓋旗標也能搭配 `--cloud` 使用。Cloud 伺服器會在回傳圖片前畫上黑色方塊。遮蓋需要 PNG 輸出；如果有選擇器沒有對應到任何元素，擷取會失敗，也不會產生圖片。
+
+在 Cloud 模式下，網址和選項會傳送到 OpenScreenShot Cloud，頁面在它的伺服器上渲染；請參閱 [Cloud 隱私權政策](https://cloud.openscreenshot.app/privacy)。本機模式不會傳送任何資料給 OpenScreenShot。免費方案每月提供 100 次擷取，不需綁定信用卡，失敗的擷取不計費。其他方案請見[價格頁面](https://cloud.openscreenshot.app/pricing)，所有選項請見 [API 文件](https://cloud.openscreenshot.app/docs)。
 
 ## 解決常見的失敗
 

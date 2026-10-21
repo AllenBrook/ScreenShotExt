@@ -4,10 +4,10 @@ description: 把 OpenScreenShot 連接到 stdio MCP 用戶端，並以明確的�
 audience: developers
 order: 5
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
-OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_screenshot`。MCP 用戶端可以用網頁網址呼叫它，並收到 PNG 圖片內容。伺服器會在你的機器上啟動一個獨立的無頭 Chrome 相容瀏覽器；不需要瀏覽器擴充功能。
+OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_screenshot`。MCP 用戶端可以用網頁網址呼叫它，並收到 PNG 圖片內容。預設情況下，伺服器會在你的機器上啟動一個獨立的無頭 Chrome 相容瀏覽器；不需要瀏覽器擴充功能。
 
 ## 把伺服器加入你的 MCP 用戶端
 
@@ -24,7 +24,7 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
 }
 ```
 
-用戶端必須能在它的執行檔路徑中找到 `pnpm`。儲存設定後，請重新啟動或重新載入它的 MCP 連線。伺服器使用 stdio，所以由用戶端啟動本機程序；沒有需要輸入的託管 MCP 網址。
+用戶端必須能在它的執行檔路徑中找到 `pnpm`。儲存設定後，請重新啟動或重新載入它的 MCP 連線。伺服器使用 stdio，所以由用戶端啟動本機程序；沒有需要輸入的網址。對於只接受遠端 MCP 網址的用戶端，OpenScreenShot Cloud 提供遠端端點，說明見下文。
 
 如果 Chrome 安裝在不尋常的位置，請透過用戶端的環境變數設定傳入 `CHROME_PATH`。請使用執行檔的完整路徑，而不是包含應用程式的資料夾。
 
@@ -66,6 +66,18 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
 
 `selectors` 會遮蓋每個符合的元素，以及它的所有子元素。`patterns` 會遮蓋符合的文字和表單值：`email`、`phone`（9 到 15 位數字）和 `secret`（常見的 API 金鑰和權杖格式，以及長雜湊值）。`rects` 會以輸出圖片的像素遮蓋矩形，適用於 canvas、圖片和跨來源 iframe。如果選擇器沒有符合任何內容、矩形超出圖片範圍，或頁面在擷取過程中移動了目標，工具會回傳錯誤，而且不會回傳圖片。模式可能會漏掉分散在多個元素中或繪製在圖片中的文字。
 
+## 在 OpenScreenShot Cloud 上渲染
+
+加上 `cloud: true`，就會在 [OpenScreenShot Cloud](https://cloud.openscreenshot.app)（選用的託管截圖 API）上渲染頁面，而不是使用本機 Chrome：
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+Cloud 模式需要 API 金鑰。執行一次 `pnpm dlx openscreenshot auth login` 存放金鑰，或在用戶端的伺服器環境設定中設定 `OPENSCREENSHOT_API_KEY`。`redact` 在兩種模式下都能使用。在 Cloud 模式下，Cloud 伺服器會在回傳圖片前畫上黑色方塊。
+
+Cloud 也在 `https://cloud.openscreenshot.app/mcp` 提供透過 Streamable HTTP 的遠端 MCP 端點，工具同樣是 `capture_screenshot`。請在 `Authorization: Bearer <key>` 標頭中傳送 API 金鑰。只接受遠端 MCP 網址的用戶端可以使用它。免費方案每月提供 100 次擷取，不需綁定信用卡；其他方案請見[價格頁面](https://cloud.openscreenshot.app/pricing)。
+
 ## AI 代理看得到與看不到什麼
 
 擷取會在全新的無頭瀏覽器中開始。它不會繼承你平常 Chrome 視窗中的 Cookie 或已登入的工作階段。因此，需要驗證的頁面可能會顯示登入畫面。目前的工具不提供登入步驟、Cookie 注入、選擇器等待或互動式點擊。
@@ -74,6 +86,6 @@ OpenScreenShot 提供一個本機 MCP 伺服器，內含一個工具：`capture_
 
 ## 截圖會送到哪裡？
 
-截圖在本機產生，並回傳給 MCP 用戶端。如果該用戶端使用託管模型，它可能會依自己的設定，把回傳的圖片傳送給模型供應商。在本機擷取不代表整段 AI 代理對話都留在裝置上。不能傳送給模型供應商的資料，請使用 `redact`。
+預設情況下，截圖在本機產生，並回傳給 MCP 用戶端。如果該用戶端使用託管模型，它可能會依自己的設定，把回傳的圖片傳送給模型供應商。在本機擷取不代表整段 AI 代理對話都留在裝置上。不能傳送給模型供應商的資料，請使用 `redact`。使用 `cloud: true` 時，網址和選項會傳送到 OpenScreenShot Cloud，頁面在它的伺服器上渲染；請參閱 [Cloud 隱私權政策](https://cloud.openscreenshot.app/privacy)。
 
-如需尺寸可預測的自動化擷取，請見 [CI 用的截圖](/zh-tw/blog/screenshots-for-ci/)。[代理擷取技能](/skills/capture-screenshot.md)和[伺服器原始碼](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供給機器閱讀的說明和工具定義。
+如需尺寸可預測的自動化擷取，請見 [CI 用的截圖](/zh-tw/blog/screenshots-for-ci/)。[代理擷取技能](/skills/capture-screenshot.md)和[伺服器原始碼](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供給機器閱讀的說明和工具定義。這個伺服器也列在 [Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot) 上。

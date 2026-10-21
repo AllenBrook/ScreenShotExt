@@ -4,10 +4,10 @@ description: 将 OpenScreenShot 连接到 stdio MCP 客户端，并用明确的 
 audience: developers
 order: 5
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
-OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`capture_screenshot`。MCP 客户端可以用网页 URL 调用它，并收到 PNG 图像内容。服务器会在你的机器上启动一个独立的 Chrome 兼容无头浏览器；不需要浏览器扩展。
+OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`capture_screenshot`。MCP 客户端可以用网页 URL 调用它，并收到 PNG 图像内容。默认情况下，服务器会在你的机器上启动一个独立的 Chrome 兼容无头浏览器；不需要浏览器扩展。
 
 ## 把服务器添加到你的 MCP 客户端
 
@@ -24,7 +24,7 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
 }
 ```
 
-客户端必须能在其可执行文件路径中找到 `pnpm`。保存配置后，请重启或重新加载其 MCP 连接。服务器使用 stdio，因此由客户端启动一个本地进程；没有需要填写的托管 MCP URL。
+客户端必须能在其可执行文件路径中找到 `pnpm`。保存配置后，请重启或重新加载其 MCP 连接。服务器使用 stdio，因此由客户端启动一个本地进程；没有需要填写的 URL。对于只接受远程 MCP URL 的客户端，OpenScreenShot Cloud 提供远程端点，见下文。
 
 如果 Chrome 安装在不常见的位置，请通过客户端的环境变量配置传入 `CHROME_PATH`。请使用可执行文件的完整路径，而不是包含该应用的文件夹。
 
@@ -66,6 +66,18 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
 
 `selectors` 遮盖每个匹配的元素及其所有子元素。`patterns` 遮盖匹配的文本和表单值：`email`、`phone`（9 到 15 位数字）和 `secret`（常见的 API 密钥和令牌格式，以及长哈希值）。`rects` 按输出图片的像素遮盖矩形，适用于 canvas、图片和跨源 iframe。如果选择器没有匹配任何内容、矩形超出图片范围，或页面在截图过程中移动了目标，该工具会返回错误，且不返回图片。模式可能漏掉分散在多个元素中或绘制在图片中的文本。
 
+## 在 OpenScreenShot Cloud 上渲染
+
+加上 `cloud: true`，即可在 [OpenScreenShot Cloud](https://cloud.openscreenshot.app)（一个可选的托管截图 API）上渲染页面，而不是使用本地 Chrome：
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+Cloud 模式需要 API 密钥。运行一次 `pnpm dlx openscreenshot auth login` 保存密钥，或在客户端中为该服务器的环境配置设置 `OPENSCREENSHOT_API_KEY`。`redact` 在两种模式下都可用。在 Cloud 模式下，Cloud 服务器会在返回图片之前绘制黑色方块。
+
+Cloud 还在 `https://cloud.openscreenshot.app/mcp` 提供基于 Streamable HTTP 的远程 MCP 端点，工具同样是 `capture_screenshot`。请在 `Authorization: Bearer <key>` 请求头中发送 API 密钥。只接受远程 MCP URL 的客户端可以使用它。免费套餐每月提供 100 次截图，无需绑卡；其他套餐见[价格页面](https://cloud.openscreenshot.app/pricing)。
+
 ## 智能体能看到什么、不能看到什么
 
 截图在一个全新的无头浏览器中开始。它不会继承你平常 Chrome 窗口中的 Cookie 或登录会话。因此，需要身份验证的页面可能只会显示登录界面。当前工具不提供登录步骤、Cookie 注入、选择器等待或交互式点击。
@@ -74,6 +86,6 @@ OpenScreenShot 提供一个本地 MCP 服务器，它只有一个工具：`captu
 
 ## 截图会发送到哪里？
 
-截图在本地生成，并返回给 MCP 客户端。如果该客户端使用托管模型，它可能会按照自身设置把返回的图片发送给模型提供方。本地截图并不意味着整个智能体对话都留在设备上。对于不能发送给模型提供方的数据，请使用 `redact`。
+默认情况下，截图在本地生成，并返回给 MCP 客户端。如果该客户端使用托管模型，它可能会按照自身设置把返回的图片发送给模型提供方。本地截图并不意味着整个智能体对话都留在设备上。对于不能发送给模型提供方的数据，请使用 `redact`。使用 `cloud: true` 时，URL 和选项会发送到 OpenScreenShot Cloud，页面在其服务器上渲染；请参阅 [Cloud 隐私政策](https://cloud.openscreenshot.app/privacy)。
 
-如需尺寸可预测的自动截图，请参阅 [CI 截图](/zh-cn/blog/screenshots-for-ci/)。[智能体截图技能](/skills/capture-screenshot.md)和[服务器源代码](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供面向机器的说明和工具定义。
+如需尺寸可预测的自动截图，请参阅 [CI 截图](/zh-cn/blog/screenshots-for-ci/)。[智能体截图技能](/skills/capture-screenshot.md)和[服务器源代码](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)提供面向机器的说明和工具定义。该服务器也收录在 [Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot) 上。

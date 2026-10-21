@@ -4,10 +4,10 @@ description: OpenScreenShot を stdio の MCP クライアントに接続し、U
 audience: developers
 order: 5
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
-OpenScreenShot には、ツールを 1 つ持つローカル MCP サーバー `capture_screenshot` があります。MCP クライアントはウェブページの URL を指定してこのツールを呼び出し、PNG の画像コンテンツを受け取れます。サーバーは手元のマシンで別のヘッドレス Chrome 互換ブラウザを起動します。ブラウザ拡張機能は不要です。
+OpenScreenShot には、ツールを 1 つ持つローカル MCP サーバー `capture_screenshot` があります。MCP クライアントはウェブページの URL を指定してこのツールを呼び出し、PNG の画像コンテンツを受け取れます。デフォルトでは、サーバーは手元のマシンで別のヘッドレス Chrome 互換ブラウザを起動します。ブラウザ拡張機能は不要です。
 
 ## MCP クライアントにサーバーを追加する
 
@@ -24,7 +24,7 @@ OpenScreenShot には、ツールを 1 つ持つローカル MCP サーバー `c
 }
 ```
 
-クライアントは、実行パス上で `pnpm` を見つけられる必要があります。設定を保存したら、クライアントを再起動するか MCP 接続を再読み込みします。サーバーは stdio を使うため、クライアントがローカルのプロセスを起動します。入力するホスト型の MCP URL はありません。
+クライアントは、実行パス上で `pnpm` を見つけられる必要があります。設定を保存したら、クライアントを再起動するか MCP 接続を再読み込みします。サーバーは stdio を使うため、クライアントがローカルのプロセスを起動します。入力する URL はありません。リモートの MCP URL しか受け付けないクライアント向けに、OpenScreenShot Cloud がリモート エンドポイントを提供しています (後述)。
 
 Chrome が通常とは異なる場所にインストールされている場合は、クライアントの環境変数の設定で `CHROME_PATH` を渡します。アプリケーションを含むフォルダーではなく、実行ファイルのフル パスを指定してください。
 
@@ -66,6 +66,18 @@ Chrome が通常とは異なる場所にインストールされている場合�
 
 `selectors` は、一致する各要素を、そのすべての子要素とともに覆います。`patterns` は、一致するテキストとフォームの値を覆います。対象は `email`、`phone` (9～15 桁の数字)、`secret` (一般的な API キーやトークンの形式、長いハッシュ) です。`rects` は、出力画像のピクセル単位で指定した四角形を覆います。キャンバス、画像、クロスオリジンの iframe に使います。セレクターに一致する要素がない場合、四角形が画像の外にある場合、またはキャプチャ中にページが対象を動かした場合、ツールはエラーを返し、画像は返しません。パターンは、複数の要素に分かれたテキストや、画像として描かれたテキストを見逃すことがあります。
 
+## OpenScreenShot Cloud でレンダリングする
+
+`cloud: true` を付けると、ローカルの Chrome ではなく、オプションのホスト型スクリーンショット API である [OpenScreenShot Cloud](https://cloud.openscreenshot.app) でページをレンダリングします。
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+Cloud モードには API キーが必要です。`pnpm dlx openscreenshot auth login` を一度実行してキーを保存するか、クライアントのサーバー設定で環境変数 `OPENSCREENSHOT_API_KEY` を設定してください。`redact` はどちらのモードでも使えます。Cloud モードでは、Cloud のサーバーが画像を返す前に黒い四角を描きます。
+
+Cloud は、Streamable HTTP のリモート MCP エンドポイントも `https://cloud.openscreenshot.app/mcp` で提供しています。ツールは同じ `capture_screenshot` です。API キーは `Authorization: Bearer <key>` ヘッダーで送ります。リモートの MCP URL しか受け付けないクライアントでは、こちらを使ってください。無料プランでは、カード登録なしで月 100 回までキャプチャできます。そのほかのプランは[料金ページ](https://cloud.openscreenshot.app/pricing)をご覧ください。
+
 ## エージェントに見えるものと見えないもの
 
 キャプチャは新しいヘッドレス ブラウザで始まります。普段使っている Chrome ウィンドウの Cookie やログイン済みのセッションは引き継ぎません。そのため、認証が必要なページではログイン画面が表示されることがあります。現在のツールには、ログイン手順、Cookie の注入、セレクターの待機、操作のためのクリックはありません。
@@ -74,6 +86,6 @@ Chrome が通常とは異なる場所にインストールされている場合�
 
 ## スクリーンショットはどこに送られるか
 
-スクリーンショットはローカルで生成され、MCP クライアントに返されます。そのクライアントがホスト型のモデルを使っている場合、クライアント自身の設定に従って、返された画像をモデルの提供元に送信することがあります。キャプチャがローカルであっても、エージェントとの会話全体がデバイス上に留まるとは限りません。提供元に届いてはならないデータには、`redact` を使ってください。
+デフォルトでは、スクリーンショットはローカルで生成され、MCP クライアントに返されます。そのクライアントがホスト型のモデルを使っている場合、クライアント自身の設定に従って、返された画像をモデルの提供元に送信することがあります。キャプチャがローカルであっても、エージェントとの会話全体がデバイス上に留まるとは限りません。提供元に届いてはならないデータには、`redact` を使ってください。`cloud: true` の場合は、URL とオプションが OpenScreenShot Cloud に送られ、ページは Cloud のサーバーでレンダリングされます。詳しくは [Cloud のプライバシー ポリシー](https://cloud.openscreenshot.app/privacy)をご覧ください。
 
-サイズが予測できる自動キャプチャについては、[CI 向けのスクリーンショット](/ja/blog/screenshots-for-ci/)をご覧ください。[エージェント用のキャプチャ スキル](/skills/capture-screenshot.md)と[サーバーのソース](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)に、機械向けの手順とツールの定義があります。
+サイズが予測できる自動キャプチャについては、[CI 向けのスクリーンショット](/ja/blog/screenshots-for-ci/)をご覧ください。[エージェント用のキャプチャ スキル](/skills/capture-screenshot.md)と[サーバーのソース](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)に、機械向けの手順とツールの定義があります。このサーバーは [Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot) にも掲載されています。

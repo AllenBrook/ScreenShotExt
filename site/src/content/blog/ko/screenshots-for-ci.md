@@ -4,7 +4,7 @@ description: OpenScreenShot CLI로 반복 가능한 PNG 결과물을 만들고, 
 audience: developers
 order: 6
 published: 2026-09-18
-updated: 2026-10-09
+updated: 2026-10-21
 ---
 
 CI에서 OpenScreenShot CLI를 사용해 실행 중인 애플리케이션의 PNG를 저장하고 검토하세요. Chrome 호환 브라우저를 준비하고, 애플리케이션을 시작해 준비될 때까지 기다린 뒤, 고정된 URL과 뷰포트로 캡처하세요. 결과 파일은 CI 제공업체의 아티팩트 기능으로 업로드하세요.
@@ -17,7 +17,7 @@ CI에서 OpenScreenShot CLI를 사용해 실행 중인 애플리케이션의 PNG
 pnpm add -D -E openscreenshot
 ```
 
-CI에서는 프로젝트의 고정된 lockfile로 의존성을 설치하세요. 이 패키지는 `puppeteer-core`를 사용하며 브라우저를 다운로드하지 않으므로, 러너에 Chrome이나 Chromium도 있어야 합니다. 실행 파일이 지원되는 기본 위치에 없다면 `CHROME_PATH`를 설정하세요.
+CI에서는 프로젝트의 고정된 lockfile로 의존성을 설치하세요. 이 패키지는 `puppeteer-core`를 사용하며 브라우저를 다운로드하지 않으므로, 러너에 Chrome이나 Chromium도 있어야 합니다. 실행 파일이 지원되는 기본 위치에 없다면 `CHROME_PATH`를 설정하세요. 브라우저가 없는 러너에서는 `--cloud`로 OpenScreenShot Cloud에서 페이지를 렌더링할 수 있으며, API 키는 `OPENSCREENSHOT_API_KEY`에 넣습니다. Cloud 서버는 러너의 `127.0.0.1` 주소에 접근할 수 없으므로, 배포된 URL에 사용하세요.
 
 캡처를 비교할 때는 브라우저 버전, 글꼴, 뷰포트, 애플리케이션 데이터, 패키지 버전을 일정하게 유지하세요. 애플리케이션 코드가 바뀌지 않았더라도 글꼴이나 브라우저 렌더러가 바뀌면 이미지가 달라질 수 있습니다.
 

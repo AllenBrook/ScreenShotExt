@@ -4,18 +4,18 @@ description: La CLI e il server MCP openscreenshot, shot-scraper, capture-websit
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 Per un PNG di una pagina pubblica da uno script di shell o da un job di CI basta uno strumento a riga di comando: openscreenshot, shot-scraper, capture-website-cli o pageres-cli. Quando la cattura richiede un login, clic, asserzioni o video, scrivila con Playwright o Puppeteer. Per un agente AI, un server MCP locale restituisce gli screenshot al modello: `openscreenshot serve` fa uno screenshot per chiamata, e Playwright MCP guida un’intera sessione del browser.
 
-Il pacchetto `openscreenshot` è un nostro prodotto, e questa pagina dice dove è la scelta più debole. Confronta le funzioni e non stila una classifica degli strumenti. Tutti i fatti sono aggiornati al 17 ottobre 2026 e vengono dal repository, dal registro dei pacchetti o dalla documentazione ufficiale di ogni progetto, con i link qui sotto.
+Il pacchetto `openscreenshot` è un nostro prodotto, e questa pagina dice dove è la scelta più debole. Confronta le funzioni e non stila una classifica degli strumenti. I fatti su openscreenshot sono aggiornati al 21 ottobre 2026, quelli sugli altri strumenti al 17 ottobre 2026. Vengono dal repository, dal registro dei pacchetti o dalla documentazione ufficiale di ogni progetto, con i link qui sotto.
 
 ## Gli strumenti in sintesi
 
 | Strumento           | Linguaggio / runtime                               | Pagina intera        | CLI                           | MCP                         | Video              | Licenza    |
 | ------------------- | -------------------------------------------------- | -------------------- | ----------------------------- | --------------------------- | ------------------ | ---------- |
-| openscreenshot      | Node.js 22.12+, Chrome, Chromium o Edge installato | `--full`             | Sì                            | Sì, stdio                   | No                 | MIT        |
+| openscreenshot      | Node.js 22.12+, Chrome, Chromium o Edge installato | `--full`             | Sì                            | Sì, stdio; HTTP su Cloud    | No                 | MIT        |
 | shot-scraper        | Python 3.10+, browser di Playwright                | Predefinita          | Sì                            | Non indicato                | Sì, WebM o MP4     | Apache-2.0 |
 | capture-website-cli | Node.js 20+, Chrome di Puppeteer                   | `--full-page`        | Sì                            | Non indicato                | No                 | MIT        |
 | pageres-cli         | Node.js 20+, Chrome di Puppeteer                   | Predefinita          | Sì                            | Non indicato                | No                 | MIT        |
@@ -33,14 +33,14 @@ Il pacchetto `openscreenshot` è un nostro prodotto, e questa pagina dice dove �
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-I flag sono `--out` (un file, o `-` per stdout), `--full`, `--width` (da 200 a 3840, predefinito 1280), `--height` (da 200 a 2160, predefinito 800) e tre flag di oscuramento: `--redact` (un selettore CSS), `--redact-pattern` (`email`, `phone` o `secret`) e `--redact-rect` (un rettangolo in pixel). L’oscuramento disegna riquadri neri nella pagina prima dello screenshot. Il codice di uscita 0 significa che è stato scritto un PNG, 1 che la cattura non è riuscita e 2 un uso errato. `openscreenshot serve` avvia un server MCP su stdio con un solo strumento, `capture_screenshot`, che accetta `url`, `fullPage`, `width`, `height` e `redact` e restituisce un’immagine PNG. La [guida alla CLI](/it/blog/screenshot-cli/), la [guida MCP](/it/blog/screenshot-mcp-server/) e la [guida alla CI](/it/blog/screenshots-for-ci/) coprono la configurazione, e il [sorgente](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) è il riferimento.
+I flag sono `--out` (un file, o `-` per stdout), `--full`, `--width` (da 200 a 3840, predefinito 1280), `--height` (da 200 a 2160, predefinito 800) e tre flag di oscuramento: `--redact` (un selettore CSS), `--redact-pattern` (`email`, `phone` o `secret`) e `--redact-rect` (un rettangolo in pixel). L’oscuramento disegna riquadri neri nella pagina prima dello screenshot. Il codice di uscita 0 significa che è stato scritto il file, 1 che la cattura non è riuscita e 2 un uso errato. `openscreenshot serve` avvia un server MCP su stdio con un solo strumento, `capture_screenshot`, che accetta `url`, `fullPage`, `width`, `height`, `redact` e `cloud` e restituisce un’immagine PNG. La [guida alla CLI](/it/blog/screenshot-cli/), la [guida MCP](/it/blog/screenshot-mcp-server/) e la [guida alla CI](/it/blog/screenshots-for-ci/) coprono la configurazione, e il [sorgente](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) è il riferimento. Con `--cloud` o `cloud: true`, la pagina viene renderizzata su [OpenScreenShot Cloud](https://cloud.openscreenshot.app), un’API ospitata con un piano gratuito, e la CLI può anche scrivere JPEG, WebP, PDF, HTML o Markdown.
 
 Dove è la scelta più debole:
 
 - Ogni cattura avvia un browser nuovo con un profilo vuoto. Non ha cookie, login, clic o attese su selettori, quindi una pagina dietro login mostra la schermata di login.
 - La navigazione aspetta `networkidle2` fino a 30 secondi, senza opzioni di attesa aggiuntive. Le pagine che si completano dopo che la rete si è calmata possono risultare caricate a metà.
-- L’output è solo PNG, senza PDF né video.
-- Il server MCP è solo stdio locale, senza URL ospitato né trasporto HTTP. Lo strumento restituisce un’immagine e non scrive un file.
+- L’output locale è solo PNG. Gli altri formati richiedono `--cloud`, e non c’è video.
+- Il server MCP del pacchetto funziona in locale su stdio. Un URL MCP remoto via HTTP richiede OpenScreenShot Cloud e una chiave API. Lo strumento restituisce un’immagine e non scrive un file.
 - Il browser gira con `--no-sandbox` per funzionare nei container. Cattura solo URL di cui ti fidi.
 - Su Windows, Edge e le installazioni di Chrome per singolo utente non vengono rilevati; imposta `CHROME_PATH`.
 

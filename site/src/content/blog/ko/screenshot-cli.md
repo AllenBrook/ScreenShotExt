@@ -4,7 +4,7 @@ description: OpenScreenShot CLI로 고정 뷰포트, 전체 페이지 캡처, st
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 OpenScreenShot CLI는 로컬에 설치된 Chrome 호환 브라우저를 사용해 웹페이지를 PNG로 캡처합니다. 브라우저 확장 프로그램과는 별개의 패키지입니다. Node.js, pnpm, Chrome이 설치되어 있다면 다음을 실행하세요.
@@ -38,7 +38,7 @@ pnpm dlx openscreenshot shot https://example.com --out narrow.png --width 390 --
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-바이너리를 안전하게 다루는 리디렉션을 사용하세요. CLI는 항상 PNG를 만듭니다. 출력 이름을 `capture.jpg`나 `capture.pdf`로 지정해도 형식이 변환되지 않습니다. 주석이 달린 이미지나 PDF 출력이 필요하다면 [확장 프로그램 편집기](/ko/docs/#export)를 사용하세요.
+바이너리를 안전하게 다루는 리디렉션을 사용하세요. 로컬 캡처는 항상 PNG를 만듭니다. 출력 이름을 `capture.jpg`나 `capture.pdf`로 지정해도 형식이 변환되지 않습니다. 주석이 달린 이미지나 PDF 출력이 필요하다면 [확장 프로그램 편집기](/ko/docs/#export)를 사용하세요. CLI에서 다른 형식이 필요하면 아래 설명처럼 `--cloud`와 `--format`을 사용하세요.
 
 ## 저장하기 전에 가리기
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact`는 CSS 선택자와 일치하는 각 요소를 모든 자식 요소와 함께 덮습니다. `--redact-pattern`은 `email`, `phone`(9자리부터 15자리까지의 숫자), `secret`(일반적인 API 키와 토큰 형태, 긴 해시)과 일치하는 텍스트와 양식 값을 덮습니다. `--redact-rect x,y,w,h`는 출력 이미지의 픽셀 단위 사각형을 덮습니다. 캔버스, 이미지, 교차 출처 iframe에는 이 플래그를 사용하세요.
 
 선택자와 일치하는 요소가 없거나, 사각형이 이미지 밖에 있거나, 캡처 중에 페이지가 대상을 움직이면 캡처는 종료 코드 1로 실패하고 파일을 기록하지 않습니다. 패턴은 여러 요소로 나뉜 텍스트나 이미지로 그려진 텍스트를 놓칠 수 있으므로, 공유하기 전에 PNG를 확인하세요.
+
+## OpenScreenShot Cloud에서 렌더링하기
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app)는 선택 사항인 호스팅 스크린샷 API입니다. `--cloud`를 사용하면 페이지가 Cloud 서버에서 렌더링되므로 컴퓨터에 Chrome이 없어도 됩니다. 기본값은 여전히 로컬 모드이며 계정이 필요하지 않습니다.
+
+먼저 한 번 로그인하세요.
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+명령은 `ABCD-EFGH` 같은 코드를 보여 주고 브라우저에서 `https://cloud.openscreenshot.app/device`를 엽니다. Cloud가 이메일로 보낸 코드로 로그인한 다음 코드를 승인하세요. CLI는 API 키를 `~/.openscreenshot.json`에 저장합니다.
+
+그다음 캡처에 `--cloud`를 추가하세요.
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+`--cloud`를 사용하면 `--format`에 `png`, `jpeg`, `webp`, `pdf`, `html`, `markdown`을 지정할 수 있습니다. `--full`, `--width`, `--height`는 로컬 모드와 같이 동작합니다. CLI는 API 키를 `--key osc_live_…`, 환경 변수 `OPENSCREENSHOT_API_KEY`, `auth login`이 저장한 키 순서로 찾습니다. 다른 기본 URL을 쓰려면 `--cloud <url>` 또는 `OPENSCREENSHOT_CLOUD_URL`을 지정하세요.
+
+가리기 플래그도 `--cloud`와 함께 동작합니다. Cloud 서버는 이미지를 반환하기 전에 검은 상자를 그립니다. 가리기에는 PNG 출력이 필요하며, 아무 요소와도 일치하지 않는 선택자가 있으면 캡처가 실패하고 이미지가 나오지 않습니다.
+
+Cloud 모드에서는 URL과 옵션이 OpenScreenShot Cloud로 전송되고, 페이지는 Cloud 서버에서 렌더링됩니다. [Cloud 개인정보 처리방침](https://cloud.openscreenshot.app/privacy)을 참고하세요. 로컬 모드는 OpenScreenShot에 아무것도 보내지 않습니다. 무료 플랜은 카드 없이 월 100회 캡처를 제공하며, 실패한 캡처에는 요금이 붙지 않습니다. 다른 플랜은 [요금 페이지](https://cloud.openscreenshot.app/pricing)에, 모든 옵션은 [API 문서](https://cloud.openscreenshot.app/docs)에 있습니다.
 
 ## 자주 발생하는 실패 해결하기
 

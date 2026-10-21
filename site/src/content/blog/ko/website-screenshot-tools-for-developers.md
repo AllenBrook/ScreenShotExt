@@ -4,18 +4,18 @@ description: openscreenshot CLI·MCP, shot-scraper, Playwright 등을 런타임,
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 셸 스크립트나 CI 작업에서 공개 페이지의 PNG만 필요하다면 openscreenshot, shot-scraper, capture-website-cli, pageres-cli 같은 명령줄 도구로 충분합니다. 캡처에 로그인, 클릭, 검증, 동영상이 필요하다면 Playwright나 Puppeteer로 작성하세요. AI 에이전트에는 로컬 MCP 서버가 모델에 스크린샷을 반환합니다. `openscreenshot serve`는 호출당 스크린샷 하나를 찍고, Playwright MCP는 브라우저 세션 전체를 제어합니다.
 
-`openscreenshot` 패키지는 저희 제품이며, 이 페이지는 이 패키지가 더 약한 선택인 경우를 함께 설명합니다. 기능을 비교할 뿐 도구의 순위를 매기지 않습니다. 모든 사실은 2026년 10월 17일 기준이며, 아래에 링크한 각 프로젝트의 저장소, 패키지 레지스트리, 공식 문서를 근거로 합니다.
+`openscreenshot` 패키지는 저희 제품이며, 이 페이지는 이 패키지가 더 약한 선택인 경우를 함께 설명합니다. 기능을 비교할 뿐 도구의 순위를 매기지 않습니다. openscreenshot에 관한 사실은 2026년 10월 21일 기준, 다른 도구에 관한 사실은 2026년 10월 17일 기준이며, 아래에 링크한 각 프로젝트의 저장소, 패키지 레지스트리, 공식 문서를 근거로 합니다.
 
 ## 도구 한눈에 보기
 
 | 도구                | 언어 / 런타임                                     | 전체 페이지         | CLI                           | MCP                        | 동영상             | 라이선스   |
 | ------------------- | ------------------------------------------------- | ------------------- | ----------------------------- | -------------------------- | ------------------ | ---------- |
-| openscreenshot      | Node.js 22.12+, 설치된 Chrome, Chromium 또는 Edge | `--full`            | 예                            | 예, stdio                  | 아니요             | MIT        |
+| openscreenshot      | Node.js 22.12+, 설치된 Chrome, Chromium 또는 Edge | `--full`            | 예                            | 예, stdio, Cloud에서 HTTP  | 아니요             | MIT        |
 | shot-scraper        | Python 3.10+, Playwright 브라우저                 | 기본값              | 예                            | 명시되지 않음              | 예, WebM 또는 MP4  | Apache-2.0 |
 | capture-website-cli | Node.js 20+, Puppeteer Chrome                     | `--full-page`       | 예                            | 명시되지 않음              | 아니요             | MIT        |
 | pageres-cli         | Node.js 20+, Puppeteer Chrome                     | 기본값              | 예                            | 명시되지 않음              | 아니요             | MIT        |
@@ -33,14 +33,14 @@ updated: 2026-10-17
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-플래그는 `--out`(파일, 또는 stdout은 `-`), `--full`, `--width`(200~~3840, 기본값 1280), `--height`(200~~2160, 기본값 800), 그리고 세 가지 가리기 플래그인 `--redact`(CSS 선택자), `--redact-pattern`(`email`, `phone`, `secret` 중 하나), `--redact-rect`(픽셀 사각형)입니다. 가리기는 스크린샷을 찍기 전에 페이지 안에 검은 상자를 그립니다. 종료 코드 0은 PNG가 기록되었음을, 1은 캡처 실패를, 2는 잘못된 사용법을 뜻합니다. `openscreenshot serve`는 stdio로 MCP 서버를 시작하며, 도구는 `capture_screenshot` 하나입니다. 이 도구는 `url`, `fullPage`, `width`, `height`, `redact`를 받아 PNG 이미지 콘텐츠를 반환합니다. 설정 방법은 [CLI 가이드](/ko/blog/screenshot-cli/), [MCP 가이드](/ko/blog/screenshot-mcp-server/), [CI 가이드](/ko/blog/screenshots-for-ci/)에서 다루며, 기준은 [소스](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)입니다.
+플래그는 `--out`(파일, 또는 stdout은 `-`), `--full`, `--width`(200~~3840, 기본값 1280), `--height`(200~~2160, 기본값 800), 그리고 세 가지 가리기 플래그인 `--redact`(CSS 선택자), `--redact-pattern`(`email`, `phone`, `secret` 중 하나), `--redact-rect`(픽셀 사각형)입니다. 가리기는 스크린샷을 찍기 전에 페이지 안에 검은 상자를 그립니다. 종료 코드 0은 파일이 기록되었음을, 1은 캡처 실패를, 2는 잘못된 사용법을 뜻합니다. `openscreenshot serve`는 stdio로 MCP 서버를 시작하며, 도구는 `capture_screenshot` 하나입니다. 이 도구는 `url`, `fullPage`, `width`, `height`, `redact`, `cloud`를 받아 PNG 이미지 콘텐츠를 반환합니다. 설정 방법은 [CLI 가이드](/ko/blog/screenshot-cli/), [MCP 가이드](/ko/blog/screenshot-mcp-server/), [CI 가이드](/ko/blog/screenshots-for-ci/)에서 다루며, 기준은 [소스](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src)입니다. `--cloud` 또는 `cloud: true`를 사용하면 무료 플랜이 있는 호스팅 API [OpenScreenShot Cloud](https://cloud.openscreenshot.app)에서 페이지를 렌더링하며, CLI는 JPEG, WebP, PDF, HTML, Markdown도 기록할 수 있습니다.
 
 더 약한 선택인 경우:
 
 - 캡처할 때마다 빈 프로필로 새 브라우저를 시작합니다. 쿠키, 로그인, 클릭, 선택자 대기가 없으므로 로그인이 필요한 페이지는 로그인 화면이 나옵니다.
 - 페이지 이동은 최대 30초 동안 `networkidle2`를 기다리며, 추가 대기 옵션은 없습니다. 네트워크가 잠잠해진 뒤에 렌더링되는 페이지는 절반만 로드된 상태로 찍힐 수 있습니다.
-- 출력은 PNG뿐이며 PDF나 동영상은 없습니다.
-- MCP 서버는 로컬 stdio만 지원하며 호스팅 URL이나 HTTP 전송은 없습니다. 도구는 이미지를 반환할 뿐 파일을 기록하지 않습니다.
+- 로컬 출력은 PNG뿐입니다. 다른 형식에는 `--cloud`가 필요하며, 동영상은 없습니다.
+- 패키지의 MCP 서버는 로컬 stdio로 동작합니다. HTTP 원격 MCP URL에는 OpenScreenShot Cloud와 API 키가 필요합니다. 도구는 이미지를 반환할 뿐 파일을 기록하지 않습니다.
 - 컨테이너에서 동작하도록 브라우저를 `--no-sandbox`로 실행합니다. 신뢰하는 URL만 캡처하세요.
 - Windows에서는 Edge와 사용자별 Chrome 설치를 감지하지 못하므로 `CHROME_PATH`를 설정하세요.
 

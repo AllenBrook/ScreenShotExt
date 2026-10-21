@@ -4,24 +4,24 @@ description: 'openscreenshot CLI и MCP, shot-scraper, capture-website-cli, page
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 Для PNG публичной страницы из shell-скрипта или задачи CI достаточно инструмента командной строки: openscreenshot, shot-scraper, capture-website-cli или pageres-cli. Если для съёмки нужны вход в аккаунт, клики, проверки или видео, напишите её на Playwright или Puppeteer. Для ИИ-агента локальный MCP-сервер возвращает скриншоты модели: `openscreenshot serve` делает один скриншот за вызов, а Playwright MCP управляет целым сеансом браузера.
 
-Пакет `openscreenshot` — наш продукт, и на этой странице сказано, где он слабее других. Она сравнивает возможности и не составляет рейтинг инструментов. Все факты приведены по состоянию на 17 октября 2026 г. и взяты из репозитория, реестра пакетов или официальной документации каждого проекта; ссылки ниже.
+Пакет `openscreenshot` — наш продукт, и на этой странице сказано, где он слабее других. Она сравнивает возможности и не составляет рейтинг инструментов. Факты об openscreenshot приведены по состоянию на 21 октября 2026 г., а о других инструментах — на 17 октября 2026 г. Они взяты из репозитория, реестра пакетов или официальной документации каждого проекта; ссылки ниже.
 
 ## Инструменты в кратком обзоре
 
-| Инструмент          | Язык / среда выполнения                                 | Вся страница        | CLI                             | MCP                       | Видео            | Лицензия   |
-| ------------------- | ------------------------------------------------------- | ------------------- | ------------------------------- | ------------------------- | ---------------- | ---------- |
-| openscreenshot      | Node.js 22.12+, установленный Chrome, Chromium или Edge | `--full`            | Да                              | Да, stdio                 | Нет              | MIT        |
-| shot-scraper        | Python 3.10+, браузеры Playwright                       | По умолчанию        | Да                              | Не указано                | Да, WebM или MP4 | Apache-2.0 |
-| capture-website-cli | Node.js 20+, Chrome из Puppeteer                        | `--full-page`       | Да                              | Не указано                | Нет              | MIT        |
-| pageres-cli         | Node.js 20+, Chrome из Puppeteer                        | По умолчанию        | Да                              | Не указано                | Нет              | MIT        |
-| Playwright          | Node.js, Python, Java, .NET                             | `fullPage: true`    | Запуск тестов, `playwright-cli` | Через Playwright MCP      | Да               | Apache-2.0 |
-| Puppeteer           | Node.js 22.12+                                          | `fullPage: true`    | Не указано                      | Через chrome-devtools-mcp | Да, MP4 в Chrome | Apache-2.0 |
-| Playwright MCP      | Node.js через `npx` или Docker                          | Параметр `fullPage` | Только сервер                   | Да, stdio или HTTP        | Да, по включению | Apache-2.0 |
+| Инструмент          | Язык / среда выполнения                                 | Вся страница        | CLI                             | MCP                         | Видео            | Лицензия   |
+| ------------------- | ------------------------------------------------------- | ------------------- | ------------------------------- | --------------------------- | ---------------- | ---------- |
+| openscreenshot      | Node.js 22.12+, установленный Chrome, Chromium или Edge | `--full`            | Да                              | Да, stdio; HTTP через Cloud | Нет              | MIT        |
+| shot-scraper        | Python 3.10+, браузеры Playwright                       | По умолчанию        | Да                              | Не указано                  | Да, WebM или MP4 | Apache-2.0 |
+| capture-website-cli | Node.js 20+, Chrome из Puppeteer                        | `--full-page`       | Да                              | Не указано                  | Нет              | MIT        |
+| pageres-cli         | Node.js 20+, Chrome из Puppeteer                        | По умолчанию        | Да                              | Не указано                  | Нет              | MIT        |
+| Playwright          | Node.js, Python, Java, .NET                             | `fullPage: true`    | Запуск тестов, `playwright-cli` | Через Playwright MCP        | Да               | Apache-2.0 |
+| Puppeteer           | Node.js 22.12+                                          | `fullPage: true`    | Не указано                      | Через chrome-devtools-mcp   | Да, MP4 в Chrome | Apache-2.0 |
+| Playwright MCP      | Node.js через `npx` или Docker                          | Параметр `fullPage` | Только сервер                   | Да, stdio или HTTP          | Да, по включению | Apache-2.0 |
 
 «Не указано» означает, что проверенная нами документация самого проекта не описывает эту возможность.
 
@@ -33,14 +33,14 @@ updated: 2026-10-17
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-Флаги: `--out` (файл или `-` для stdout), `--full`, `--width` (от 200 до 3840, по умолчанию 1280), `--height` (от 200 до 2160, по умолчанию 800) и три флага для скрытия данных: `--redact` (CSS-селектор), `--redact-pattern` (`email`, `phone` или `secret`) и `--redact-rect` (прямоугольник в пикселях). Скрытие рисует чёрные прямоугольники на странице до съёмки. Код выхода 0 означает, что PNG записан, 1 — что съёмка не удалась, 2 — неверное использование. `openscreenshot serve` запускает MCP-сервер через stdio с одним инструментом, `capture_screenshot`, который принимает `url`, `fullPage`, `width`, `height` и `redact` и возвращает изображение PNG. Настройка описана в [руководстве по CLI](/ru/blog/screenshot-cli/), [руководстве по MCP](/ru/blog/screenshot-mcp-server/) и [руководстве по CI](/ru/blog/screenshots-for-ci/), а справочником служит [исходный код](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src).
+Флаги: `--out` (файл или `-` для stdout), `--full`, `--width` (от 200 до 3840, по умолчанию 1280), `--height` (от 200 до 2160, по умолчанию 800) и три флага для скрытия данных: `--redact` (CSS-селектор), `--redact-pattern` (`email`, `phone` или `secret`) и `--redact-rect` (прямоугольник в пикселях). Скрытие рисует чёрные прямоугольники на странице до съёмки. Код выхода 0 означает, что файл записан, 1 — что съёмка не удалась, 2 — неверное использование. `openscreenshot serve` запускает MCP-сервер через stdio с одним инструментом, `capture_screenshot`, который принимает `url`, `fullPage`, `width`, `height`, `redact` и `cloud` и возвращает изображение PNG. Настройка описана в [руководстве по CLI](/ru/blog/screenshot-cli/), [руководстве по MCP](/ru/blog/screenshot-mcp-server/) и [руководстве по CI](/ru/blog/screenshots-for-ci/), а справочником служит [исходный код](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src). С `--cloud` или `cloud: true` страница рендерится в [OpenScreenShot Cloud](https://cloud.openscreenshot.app), размещённом API с бесплатным планом, а CLI также может записывать JPEG, WebP, PDF, HTML или Markdown.
 
 Где он слабее:
 
 - Каждая съёмка запускает новый браузер с пустым профилем. У него нет cookie, входа, кликов или ожидания селекторов, поэтому страница, требующая входа, показывает экран входа.
 - Переход по адресу ждёт `networkidle2` до 30 секунд, без дополнительного параметра ожидания. Страницы, которые отрисовываются после затишья сети, могут получиться загруженными наполовину.
-- Вывод только в PNG, без PDF и видео.
-- MCP-сервер работает только локально через stdio, без размещённого URL и транспорта HTTP. Инструмент возвращает изображение и не записывает файл.
+- Локальный вывод только в PNG. Другим форматам нужен `--cloud`, видео нет.
+- MCP-сервер из пакета работает локально через stdio. Для удалённого MCP URL через HTTP нужны OpenScreenShot Cloud и API-ключ. Инструмент возвращает изображение и не записывает файл.
 - Браузер запускается с `--no-sandbox`, чтобы работать в контейнерах. Снимайте только URL, которым доверяете.
 - В Windows Edge и Chrome, установленный для одного пользователя, не определяются; задайте `CHROME_PATH`.
 

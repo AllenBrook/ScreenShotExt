@@ -4,10 +4,10 @@ description: OpenScreenShot을 stdio MCP 클라이언트에 연결하고 URL, �
 audience: developers
 order: 5
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
-OpenScreenShot은 `capture_screenshot`이라는 도구 하나를 제공하는 로컬 MCP 서버를 제공합니다. MCP 클라이언트는 웹페이지 URL로 이 도구를 호출해 PNG 이미지 콘텐츠를 받을 수 있습니다. 서버는 사용자의 컴퓨터에서 별도의 헤드리스 Chrome 호환 브라우저를 실행하며, 브라우저 확장 프로그램은 필요하지 않습니다.
+OpenScreenShot은 `capture_screenshot`이라는 도구 하나를 제공하는 로컬 MCP 서버를 제공합니다. MCP 클라이언트는 웹페이지 URL로 이 도구를 호출해 PNG 이미지 콘텐츠를 받을 수 있습니다. 기본적으로 서버는 사용자의 컴퓨터에서 별도의 헤드리스 Chrome 호환 브라우저를 실행하며, 브라우저 확장 프로그램은 필요하지 않습니다.
 
 ## MCP 클라이언트에 서버 추가하기
 
@@ -24,7 +24,7 @@ OpenScreenShot은 `capture_screenshot`이라는 도구 하나를 제공하는 �
 }
 ```
 
-클라이언트가 실행 경로에서 `pnpm`을 찾을 수 있어야 합니다. 설정을 저장한 뒤 클라이언트의 MCP 연결을 다시 시작하거나 다시 불러오세요. 서버는 stdio를 사용하므로 클라이언트가 로컬 프로세스를 시작합니다. 입력할 호스팅 MCP URL은 없습니다.
+클라이언트가 실행 경로에서 `pnpm`을 찾을 수 있어야 합니다. 설정을 저장한 뒤 클라이언트의 MCP 연결을 다시 시작하거나 다시 불러오세요. 서버는 stdio를 사용하므로 클라이언트가 로컬 프로세스를 시작합니다. 입력할 URL은 없습니다. 원격 MCP URL만 받는 클라이언트를 위해 OpenScreenShot Cloud가 원격 엔드포인트를 제공하며, 아래에서 설명합니다.
 
 Chrome이 일반적이지 않은 위치에 설치되어 있다면 클라이언트의 환경 변수 설정으로 `CHROME_PATH`를 전달하세요. 애플리케이션이 들어 있는 폴더가 아니라 실행 파일의 전체 경로를 사용하세요.
 
@@ -66,6 +66,18 @@ Chrome이 일반적이지 않은 위치에 설치되어 있다면 클라이언�
 
 `selectors`는 일치하는 각 요소를 모든 자식 요소와 함께 덮습니다. `patterns`는 일치하는 텍스트와 양식 값을 덮으며, 대상은 `email`, `phone`(9자리부터 15자리까지의 숫자), `secret`(일반적인 API 키와 토큰 형태, 긴 해시)입니다. `rects`는 출력 이미지의 픽셀 단위 사각형을 덮으며, 캔버스, 이미지, 교차 출처 iframe에 사용합니다. 선택자와 일치하는 요소가 없거나, 사각형이 이미지 밖에 있거나, 캡처 중에 페이지가 대상을 움직이면 도구는 이미지 없이 오류를 반환합니다. 패턴은 여러 요소로 나뉜 텍스트나 이미지로 그려진 텍스트를 놓칠 수 있습니다.
 
+## OpenScreenShot Cloud에서 렌더링하기
+
+`cloud: true`를 추가하면 로컬 Chrome 대신 선택 사항인 호스팅 스크린샷 API [OpenScreenShot Cloud](https://cloud.openscreenshot.app)에서 페이지를 렌더링합니다.
+
+```json
+{ "url": "https://example.com", "fullPage": true, "cloud": true }
+```
+
+Cloud 모드에는 API 키가 필요합니다. `pnpm dlx openscreenshot auth login`을 한 번 실행해 키를 저장하거나, 클라이언트의 서버 환경 설정에 `OPENSCREENSHOT_API_KEY`를 지정하세요. `redact`는 두 모드에서 모두 동작합니다. Cloud 모드에서는 Cloud 서버가 이미지를 반환하기 전에 검은 상자를 그립니다.
+
+Cloud는 `https://cloud.openscreenshot.app/mcp`에서 Streamable HTTP 원격 MCP 엔드포인트도 제공하며, 도구는 같은 `capture_screenshot`입니다. API 키는 `Authorization: Bearer <key>` 헤더로 보내세요. 원격 MCP URL만 받는 클라이언트에서 이 엔드포인트를 사용하세요. 무료 플랜은 카드 없이 월 100회 캡처를 제공하며, 다른 플랜은 [요금 페이지](https://cloud.openscreenshot.app/pricing)에 있습니다.
+
 ## 에이전트가 볼 수 있는 것과 볼 수 없는 것
 
 캡처는 새 헤드리스 브라우저에서 시작됩니다. 평소 사용하는 Chrome 창의 쿠키나 로그인 세션을 물려받지 않습니다. 따라서 인증이 필요한 페이지는 로그인 화면이 나올 수 있습니다. 현재 도구는 로그인 단계, 쿠키 주입, 선택자 대기, 대화형 클릭을 제공하지 않습니다.
@@ -74,6 +86,6 @@ Chrome이 일반적이지 않은 위치에 설치되어 있다면 클라이언�
 
 ## 스크린샷은 어디로 가나요?
 
-스크린샷은 로컬에서 생성되어 MCP 클라이언트로 반환됩니다. 그 클라이언트가 호스팅된 모델을 사용한다면, 클라이언트 자체 설정에 따라 반환된 이미지를 모델 제공업체로 전송할 수 있습니다. 로컬에서 캡처한다고 해서 에이전트와의 대화 전체가 기기에 머문다는 뜻은 아닙니다. 제공업체에 전달되면 안 되는 데이터에는 `redact`를 사용하세요.
+기본적으로 스크린샷은 로컬에서 생성되어 MCP 클라이언트로 반환됩니다. 그 클라이언트가 호스팅된 모델을 사용한다면, 클라이언트 자체 설정에 따라 반환된 이미지를 모델 제공업체로 전송할 수 있습니다. 로컬에서 캡처한다고 해서 에이전트와의 대화 전체가 기기에 머문다는 뜻은 아닙니다. 제공업체에 전달되면 안 되는 데이터에는 `redact`를 사용하세요. `cloud: true`를 사용하면 URL과 옵션이 OpenScreenShot Cloud로 전송되고, 페이지는 Cloud 서버에서 렌더링됩니다. [Cloud 개인정보 처리방침](https://cloud.openscreenshot.app/privacy)을 참고하세요.
 
-크기가 예측 가능한 자동 캡처는 [CI용 스크린샷](/ko/blog/screenshots-for-ci/)을 참고하세요. [에이전트 캡처 스킬](/skills/capture-screenshot.md)과 [서버 소스](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)에 기계용 지침과 도구 정의가 있습니다.
+크기가 예측 가능한 자동 캡처는 [CI용 스크린샷](/ko/blog/screenshots-for-ci/)을 참고하세요. [에이전트 캡처 스킬](/skills/capture-screenshot.md)과 [서버 소스](https://github.com/pghqdev/OpenScreenShot/blob/main/mcp/src/serve.ts)에 기계용 지침과 도구 정의가 있습니다. 이 서버는 [Glama](https://glama.ai/mcp/servers/PGHQdev/OpenScreenShot)에도 등록되어 있습니다.

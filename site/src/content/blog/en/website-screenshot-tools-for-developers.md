@@ -4,18 +4,18 @@ description: The openscreenshot CLI and MCP server vs shot-scraper, capture-webs
 audience: developers
 order: 9
 published: 2026-10-09
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 For a PNG of a public page from a shell script or CI job, a command-line tool is enough: openscreenshot, shot-scraper, capture-website-cli, or pageres-cli. When the capture needs a login, clicks, assertions, or video, write it with Playwright or Puppeteer. For an AI agent, a local MCP server returns screenshots to the model: `openscreenshot serve` takes one screenshot per call, and Playwright MCP drives a whole browser session.
 
-The `openscreenshot` package is our product, and this page says where it is the weaker choice. It compares features and does not rank the tools. All facts are as of 17 October 2026 and come from each project’s repository, package registry, or official docs, linked below.
+The `openscreenshot` package is our product, and this page says where it is the weaker choice. It compares features and does not rank the tools. Facts about openscreenshot are as of 21 October 2026, and facts about the other tools are as of 17 October 2026. They come from each project’s repository, package registry, or official docs, linked below.
 
 ## The tools at a glance
 
 | Tool                | Language / runtime                                  | Full page            | CLI                           | MCP                         | Video              | License    |
 | ------------------- | --------------------------------------------------- | -------------------- | ----------------------------- | --------------------------- | ------------------ | ---------- |
-| openscreenshot      | Node.js 22.12+, installed Chrome, Chromium, or Edge | `--full`             | Yes                           | Yes, stdio                  | No                 | MIT        |
+| openscreenshot      | Node.js 22.12+, installed Chrome, Chromium, or Edge | `--full`             | Yes                           | Yes, stdio; HTTP on Cloud   | No                 | MIT        |
 | shot-scraper        | Python 3.10+, Playwright browsers                   | Default              | Yes                           | Not listed                  | Yes, WebM or MP4   | Apache-2.0 |
 | capture-website-cli | Node.js 20+, Puppeteer Chrome                       | `--full-page`        | Yes                           | Not listed                  | No                 | MIT        |
 | pageres-cli         | Node.js 20+, Puppeteer Chrome                       | Default              | Yes                           | Not listed                  | No                 | MIT        |
@@ -33,14 +33,14 @@ The `openscreenshot` package is our product, and this page says where it is the 
 npx openscreenshot shot https://example.com --out example.png --full
 ```
 
-The flags are `--out` (a file, or `-` for stdout), `--full`, `--width` (200 to 3840, default 1280), `--height` (200 to 2160, default 800), and three redaction flags: `--redact` (a CSS selector), `--redact-pattern` (`email`, `phone`, or `secret`), and `--redact-rect` (a pixel rectangle). Redaction draws black boxes in the page before the screenshot. Exit code 0 means a PNG was written, 1 means the capture failed, and 2 means bad usage. `openscreenshot serve` starts an MCP server over stdio with one tool, `capture_screenshot`, which takes `url`, `fullPage`, `width`, `height`, and `redact` and returns PNG image content. The [CLI guide](/blog/screenshot-cli/), [MCP guide](/blog/screenshot-mcp-server/), and [CI guide](/blog/screenshots-for-ci/) cover setup, and the [source](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) is the reference.
+The flags are `--out` (a file, or `-` for stdout), `--full`, `--width` (200 to 3840, default 1280), `--height` (200 to 2160, default 800), and three redaction flags: `--redact` (a CSS selector), `--redact-pattern` (`email`, `phone`, or `secret`), and `--redact-rect` (a pixel rectangle). Redaction draws black boxes in the page before the screenshot. Exit code 0 means the file was written, 1 means the capture failed, and 2 means bad usage. `openscreenshot serve` starts an MCP server over stdio with one tool, `capture_screenshot`, which takes `url`, `fullPage`, `width`, `height`, `redact`, and `cloud` and returns PNG image content. The [CLI guide](/blog/screenshot-cli/), [MCP guide](/blog/screenshot-mcp-server/), and [CI guide](/blog/screenshots-for-ci/) cover setup, and the [source](https://github.com/pghqdev/OpenScreenShot/tree/main/mcp/src) is the reference. With `--cloud` or `cloud: true`, the page renders on [OpenScreenShot Cloud](https://cloud.openscreenshot.app), a hosted API with a free plan, and the CLI can also write JPEG, WebP, PDF, HTML, or Markdown.
 
 Where it is the weaker choice:
 
 - Each capture starts a fresh browser with an empty profile. It has no cookies, login, clicks, or selector waits, so a page behind a login shows the login screen.
 - Navigation waits for `networkidle2` for up to 30 seconds, with no extra wait option. Pages that render after the network goes quiet can come out half-loaded.
-- Output is PNG only, with no PDF or video.
-- The MCP server is local stdio only, with no hosted URL or HTTP transport. The tool returns an image and does not write a file.
+- Local output is PNG only. Other formats need `--cloud`, and there is no video.
+- The MCP server in the package runs locally over stdio. A remote MCP URL over HTTP needs OpenScreenShot Cloud and an API key. The tool returns an image and does not write a file.
 - The browser runs with `--no-sandbox` so it works in containers. Capture only URLs you trust.
 - On Windows, Edge and per-user Chrome installs are not detected; set `CHROME_PATH`.
 

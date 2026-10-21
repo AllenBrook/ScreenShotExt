@@ -4,7 +4,7 @@ description: Use the OpenScreenShot CLI to save PNG screenshots with a fixed vie
 audience: developers
 order: 4
 published: 2026-09-18
-updated: 2026-10-17
+updated: 2026-10-21
 ---
 
 The OpenScreenShot CLI captures a webpage as a PNG using a locally installed Chrome-compatible browser. It is a separate package from the browser extension. With Node.js, pnpm, and Chrome installed, run:
@@ -38,7 +38,7 @@ Without `--out`, the command writes `screenshot.png` in the current directory. U
 pnpm dlx openscreenshot shot https://example.com --out - > screenshot.png
 ```
 
-Use binary-safe redirection. The CLI always produces PNG; naming the output `capture.jpg` or `capture.pdf` does not convert it. For annotated images or PDF output, use the [extension editor](/docs/#export).
+Use binary-safe redirection. A local capture always produces PNG; naming the output `capture.jpg` or `capture.pdf` does not convert it. For annotated images or PDF output, use the [extension editor](/docs/#export). To get other formats from the CLI, use `--cloud` with `--format`, as described below.
 
 ## Redact before you save
 
@@ -52,6 +52,31 @@ pnpm dlx openscreenshot shot https://example.com --out safe.png \
 `--redact` covers each element that matches a CSS selector, with all of its children. `--redact-pattern` covers text and form values that match `email`, `phone` (9 to 15 digits), or `secret` (common API key and token shapes, and long hashes). `--redact-rect x,y,w,h` covers a rectangle in pixels of the output image; use it for canvas, images, and cross-origin iframes.
 
 The capture fails with exit code 1 and writes no file if a selector matches nothing, a rectangle is outside the image, or the page moves a target during the capture. Patterns can miss text that is split across elements or drawn in an image, so look at the PNG before you share it.
+
+## Render on OpenScreenShot Cloud
+
+[OpenScreenShot Cloud](https://cloud.openscreenshot.app) is an optional hosted screenshot API. With `--cloud`, the page renders on Cloud servers, so the machine does not need Chrome. Local mode stays the default and needs no account.
+
+Sign in once:
+
+```sh
+pnpm dlx openscreenshot auth login
+```
+
+The command prints a code, such as `ABCD-EFGH`, and opens `https://cloud.openscreenshot.app/device` in your browser. Sign in with the code that Cloud sends to your email, then approve the code. The CLI stores an API key in `~/.openscreenshot.json`.
+
+Then add `--cloud` to a capture:
+
+```sh
+pnpm dlx openscreenshot shot https://example.com --out page.png --full --cloud
+pnpm dlx openscreenshot shot https://example.com --out page.pdf --cloud --format pdf
+```
+
+With `--cloud`, `--format` accepts `png`, `jpeg`, `webp`, `pdf`, `html`, and `markdown`. `--full`, `--width`, and `--height` work as in local mode. The CLI takes the API key from `--key osc_live_…` first, then from the `OPENSCREENSHOT_API_KEY` environment variable, then from the key that `auth login` stored. `--cloud <url>` or `OPENSCREENSHOT_CLOUD_URL` sets another base URL.
+
+The redaction flags also work with `--cloud`. The Cloud server draws the black boxes before it returns the image. Redaction needs PNG output, and a selector that matches nothing fails the capture with no image.
+
+In Cloud mode, the URL and the options go to OpenScreenShot Cloud, and the page renders on its servers; see the [Cloud privacy policy](https://cloud.openscreenshot.app/privacy). Local mode sends nothing to OpenScreenShot. The free plan gives 100 captures per month with no card, and failed captures are free. The [pricing page](https://cloud.openscreenshot.app/pricing) lists the other plans, and the [API docs](https://cloud.openscreenshot.app/docs) cover every option.
 
 ## Resolve common failures
 
