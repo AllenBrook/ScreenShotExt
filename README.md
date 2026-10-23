@@ -62,6 +62,8 @@ export as PNG, JPEG, WebP, or PDF, and record a tab. Everything runs on your dev
 
 [Website](https://openscreenshot.app) · [Docs](https://openscreenshot.app/docs/) · [Roadmap](./ROADMAP.md) · [Report a bug](https://github.com/PGHQdev/OpenScreenShot/issues)
 
+<a href="https://index.dodopayments.com/openscreenshot?utm_source=index&utm_medium=badge&utm_campaign=embed&utm_content=tool-openscreenshot" target="_blank"><img src="media/dodo-index-badge.svg" width="250" height="50" alt="OpenScreenShot badge" loading="lazy" /></a>
+
 <br />
 
 <img src="media/hero.jpg" alt="The OpenScreenShot popup open over a web page in Chrome, with Full Page, Visible Area, Selected Region and Record options" width="860" />
