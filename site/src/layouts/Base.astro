@@ -194,6 +194,20 @@ const alternates = availableLocales.map((l) => ({
             © {year} OpenScreenShot
             <a href="https://x.com/PGHQdev" target="_blank" rel="noopener">@PGHQdev</a>
           </p>
+          <a
+            class="foot-badge"
+            href="https://index.dodopayments.com/openscreenshot?utm_source=index&utm_medium=badge&utm_campaign=embed&utm_content=tool-openscreenshot"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="https://index.dodopayments.com/openscreenshot/badge.svg?theme=dark&width=250&height=50"
+              width="250"
+              height="50"
+              alt="OpenScreenShot badge"
+              loading="lazy"
+            />
+          </a>
         </div>
         <nav class="foot-col" aria-label={c.footer.productHead}>
           <p class="foot-head">{c.footer.productHead}</p>
@@ -425,6 +439,17 @@ const alternates = availableLocales.map((l) => ({
 
   .foot-bottom a:hover {
     color: var(--ink);
+  }
+
+  .foot-badge {
+    display: inline-block;
+    margin-top: var(--s-4);
+  }
+
+  .foot-badge img {
+    display: block;
+    max-width: 100%;
+    height: auto;
   }
 
   .foot-site {
