@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Добавить в Firefox",
     "installForFirefox": "Добавить в Firefox",
-    "installForChrome": "Добавить в Chrome"
+    "installForChrome": "Добавить в Chrome",
+    "sendToComputer": "Отправить на компьютер",
+    "linkCopied": "Ссылка скопирована"
   },
   "footer": {
     "tagline": "Бесплатный инструмент с открытым кодом для скриншотов в Chrome и Firefox.",

@@ -2,6 +2,7 @@
 import ChromeIcon from './ChromeIcon.astro';
 import { t, type Locale } from '../i18n';
 import { CHROME_STORE_URL, FIREFOX_STORE_URL } from '../lib/install';
+import { ICON_PATHS } from '../lib/icons';
 
 interface Props {
   locale: Locale;
@@ -32,7 +33,46 @@ const iconSize = size === 'large' ? 22 : 18;
     <img src="/assets/brands/firefox.svg" width={iconSize} height={iconSize} alt="" />
     {c.nav.addToFirefox}
   </a>
+  <button
+    type="button"
+    class="btn btn-ink install-primary install-send"
+    data-copied={c.nav.linkCopied}
+  >
+    <svg viewBox="0 0 24 24" width={iconSize} height={iconSize} aria-hidden="true" focusable="false">
+      <path d={ICON_PATHS.send} />
+    </svg>
+    <span
+      class:list={['send-label', { 'visually-hidden': size === 'compact' }]}
+      aria-live="polite">{c.nav.sendToComputer}</span
+    >
+  </button>
 </span>
+
+<script>
+  // Neither store installs the extension on a phone, so there the send
+  // button hands this page's link to the share sheet, or copies it when
+  // the browser has no share sheet.
+  for (const button of document.querySelectorAll<HTMLButtonElement>('.install-send')) {
+    const label = button.querySelector('.send-label');
+    const idle = label?.textContent ?? '';
+    button.addEventListener('click', async () => {
+      const url = location.origin + location.pathname;
+      if (navigator.share) {
+        // Closing the sheet rejects with AbortError, which needs no message.
+        await navigator.share({ title: document.title, url }).catch(() => {});
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch {
+        return;
+      }
+      if (!label) return;
+      label.textContent = button.dataset.copied ?? idle;
+      setTimeout(() => (label.textContent = idle), 2000);
+    });
+  }
+</script>
 
 <style>
   .install-options {
@@ -53,13 +93,29 @@ const iconSize = size === 'large' ? 22 : 18;
     text-align: center;
   }
 
+  .install-send,
   :global(html[data-install-browser='chrome']) .install-firefox,
-  :global(html[data-install-browser='firefox']) .install-chrome {
+  :global(html[data-install-browser='firefox']) .install-chrome,
+  :global(html[data-install-browser='mobile']) .install-chrome,
+  :global(html[data-install-browser='mobile']) .install-firefox {
     display: none;
   }
 
+  :global(html[data-install-browser='mobile']) .install-send {
+    display: inline-flex;
+  }
+
+  .install-send svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   :global(html[data-install-browser='chrome']) .install-options,
-  :global(html[data-install-browser='firefox']) .install-options {
+  :global(html[data-install-browser='firefox']) .install-options,
+  :global(html[data-install-browser='mobile']) .install-options {
     padding: 0;
     border: 0;
   }
@@ -73,6 +129,12 @@ const iconSize = size === 'large' ? 22 : 18;
     min-height: 40px;
     padding: 0 var(--s-4) 0 var(--s-3);
     font-size: var(--fs-sm);
+  }
+
+  /* The header has room for the icon alone; the label stays for screen readers. */
+  .install-compact .install-send {
+    width: 40px;
+    padding: 0;
   }
 
   .install-large .install-primary {

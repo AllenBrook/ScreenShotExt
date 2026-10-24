@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Firefox에 추가",
     "installForFirefox": "Firefox에 추가",
-    "installForChrome": "Chrome에 추가"
+    "installForChrome": "Chrome에 추가",
+    "sendToComputer": "컴퓨터로 보내기",
+    "linkCopied": "링크를 복사했습니다"
   },
   "footer": {
     "tagline": "Chrome과 Firefox용 무료 오픈 소스 스크린샷 도구.",

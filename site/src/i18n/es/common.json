@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Añadir a Firefox",
     "installForFirefox": "Añadir a Firefox",
-    "installForChrome": "Añadir a Chrome"
+    "installForChrome": "Añadir a Chrome",
+    "sendToComputer": "Enviar al ordenador",
+    "linkCopied": "Enlace copiado"
   },
   "footer": {
     "tagline": "Capturas gratuitas y de código abierto para Chrome y Firefox.",

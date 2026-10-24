@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Adicionar ao Firefox",
     "installForFirefox": "Adicionar ao Firefox",
-    "installForChrome": "Adicionar ao Chrome"
+    "installForChrome": "Adicionar ao Chrome",
+    "sendToComputer": "Enviar para o computador",
+    "linkCopied": "Link copiado"
   },
   "footer": {
     "tagline": "Capturas de tela grátis e de código aberto para Chrome e Firefox.",

@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Add to Firefox",
     "installForFirefox": "Add to Firefox",
-    "installForChrome": "Add to Chrome"
+    "installForChrome": "Add to Chrome",
+    "sendToComputer": "Send to computer",
+    "linkCopied": "Link copied"
   },
   "footer": {
     "tagline": "Free, open-source screenshots for Chrome and Firefox.",

@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Firefox に追加",
     "installForFirefox": "Firefox に追加",
-    "installForChrome": "Chrome に追加"
+    "installForChrome": "Chrome に追加",
+    "sendToComputer": "パソコンに送る",
+    "linkCopied": "リンクをコピーしました"
   },
   "footer": {
     "tagline": "Chrome・Firefox 向けの無料・オープンソースのスクリーンショットツール。",

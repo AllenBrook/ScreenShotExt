@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "Zu Firefox hinzufügen",
     "installForFirefox": "Zu Firefox hinzufügen",
-    "installForChrome": "Zu Chrome hinzufügen"
+    "installForChrome": "Zu Chrome hinzufügen",
+    "sendToComputer": "An Computer senden",
+    "linkCopied": "Link kopiert"
   },
   "footer": {
     "tagline": "Kostenlose Open-Source-Screenshots für Chrome und Firefox.",

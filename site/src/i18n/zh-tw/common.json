@@ -10,7 +10,9 @@
     "cloud": "Cloud",
     "addToFirefox": "加入 Firefox",
     "installForFirefox": "加入 Firefox",
-    "installForChrome": "加到 Chrome"
+    "installForChrome": "加到 Chrome",
+    "sendToComputer": "傳送到電腦",
+    "linkCopied": "已複製連結"
   },
   "footer": {
     "tagline": "適用於 Chrome 與 Firefox 的免費、開放原始碼截圖工具。",
