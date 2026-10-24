@@ -154,7 +154,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
                 role="tab"
                 aria-selected={i === 0 ? 'true' : 'false'}
                 aria-controls={`hero-panel-${tab.id}`}
-                aria-label={'short' in tab ? tab.label : undefined}
+                aria-label={tab.label}
                 tabindex={i === 0 ? undefined : -1}
               >
                 <svg class="tab-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -163,13 +163,13 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
                 {
                   'short' in tab ? (
                     <>
-                      <span class="tab-long">{tab.label}</span>
-                      <span class="tab-short" aria-hidden="true">
+                      <span class="tab-label tab-long">{tab.label}</span>
+                      <span class="tab-label tab-short" aria-hidden="true">
                         {tab.short}
                       </span>
                     </>
                   ) : (
-                    tab.label
+                    <span class="tab-label">{tab.label}</span>
                   )
                 }
               </button>
@@ -427,10 +427,13 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
       const current = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
       select(tabs[(current + dir + tabs.length) % tabs.length], true);
     });
-    window.addEventListener('resize', () => {
+    // On phones the active tab is as wide as its label, so the web font
+    // load moves it as well as a resize does.
+    const resized = new ResizeObserver(() => {
       const current = tabs.find((t) => t.getAttribute('aria-selected') === 'true');
       if (current) placeThumb(current);
     });
+    for (const tab of tabs) resized.observe(tab);
   }
 
   // Live counts for the proof strip. The edge already injects them
@@ -691,13 +694,18 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
       width var(--dur-mid) var(--ease);
   }
 
-  /* Until the script measures the tabs (or without JS at all), the thumb
-   * spans the first fifth, which is the first of the five equal tabs.
-   * The 6px shift and the 2.4px trim mirror the dock's inner padding. */
+  /* Until the script measures the tabs (or without JS at all), the active
+   * tab paints the white pill itself. Tab widths vary on phones, so a
+   * fixed fallback width for the thumb would miss. */
   .hero-tabs:not([data-ready='true']) .hero-tabs-thumb {
-    width: calc(20% - 2.4px);
-    transform: translateX(6px);
-    transition: none;
+    display: none;
+  }
+
+  .hero-tabs:not([data-ready='true']) .hero-tab[aria-selected='true'] {
+    background: #fff;
+    box-shadow:
+      0 1px 2px rgba(15, 10, 20, 0.1),
+      0 6px 16px -8px rgba(15, 10, 20, 0.28);
   }
 
   .hero-panel {
@@ -800,14 +808,44 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
     display: none;
   }
 
+  /* Five labels do not fit a phone, so only the active tab keeps its label
+   * and the others show their icon. Each tab's aria-label keeps its name. */
   @media (max-width: 620px) {
+    .container-hero {
+      padding-inline: var(--s-4);
+    }
+
+    .hero-frame {
+      padding: 10px 10px 12px;
+      border-radius: 24px;
+    }
+
+    .hero-tabs {
+      margin-bottom: 10px;
+      padding: 4px;
+    }
+
+    .hero-tabs-thumb {
+      inset-block: 4px;
+    }
+
+    /* Icon tabs keep a 44px target where the row has room and give way
+     * below that (screens under 360px) so the active label never clips. */
     .hero-tab {
-      padding-inline: 6px;
+      flex: 1 1 44px;
+      min-height: 44px;
+      padding-inline: 0;
       font-size: var(--fs-sm);
     }
 
+    .hero-tab[aria-selected='true'] {
+      flex: none;
+      padding-inline: 12px;
+    }
+
     .tab-icon {
-      display: none;
+      width: 18px;
+      height: 18px;
     }
 
     .tab-long {
@@ -816,6 +854,14 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
 
     .tab-short {
       display: inline;
+    }
+
+    .hero-tab[aria-selected='false'] .tab-label {
+      display: none;
+    }
+
+    .hero-panel {
+      border-radius: 14px;
     }
   }
 
