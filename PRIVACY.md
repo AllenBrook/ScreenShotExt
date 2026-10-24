@@ -4,7 +4,7 @@ The canonical, always-reachable copy is published at
 **<https://openscreenshot.app/privacy/>**. That URL is the one given to the Chrome
 Web Store, because it does not depend on GitHub being up.
 
-**Last updated:** August 2026
+**Last updated:** October 2026
 
 ## Data collection
 
@@ -61,7 +61,7 @@ we can reply. Your IP address, browser, and referring page are never stored. The
 in a Cloudflare D1 database owned by the project and are read only to find out what broke;
 the schema and this promise are in
 [`site/migrations/0001_feedback.sql`](site/migrations/0001_feedback.sql). If you would
-rather write to us directly, the page shows <support@minimalistprojects.com>.
+rather write to us directly, the page shows <support@openscreenshot.app>.
 
 ## Third-party services
 

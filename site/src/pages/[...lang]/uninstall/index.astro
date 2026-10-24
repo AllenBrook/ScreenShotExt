@@ -7,7 +7,7 @@ export const getStaticPaths = localePaths;
 const locale = localeFromParams(Astro.params.lang);
 const d = t(locale, 'uninstall');
 const REVIEWS_URL = 'https://chromewebstore.google.com/detail/hdabbojjccojlapnfjpdppcpfcnhgmdp/reviews';
-const SUPPORT_EMAIL = 'support@minimalistprojects.com';
+const SUPPORT_EMAIL = 'support@openscreenshot.app';
 ---
 
 <Base title={d.meta.title} description={d.meta.description} path="/uninstall/" locale={locale} minimal>
