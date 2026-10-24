@@ -46,9 +46,10 @@
   "proof": {
     "ariaLabel": "숫자로 보기",
     "users": "Chrome 웹 스토어 사용자 {n}명",
+    "firefoxUsers": "Firefox Add-ons 사용자 {n}명",
     "stars": "GitHub 스타 {n}개",
     "npm": "npm 다운로드 {n}회",
-    "rating": "Chrome 웹 스토어 평점 {rating}/5 (평가 {count}개)",
+    "rating": "Chrome 웹 스토어 별점 {n}점",
     "mit": "MIT 라이선스",
     "offline": "오프라인에서도 동작"
   },

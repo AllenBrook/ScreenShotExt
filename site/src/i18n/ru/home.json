@@ -46,9 +46,10 @@
   "proof": {
     "ariaLabel": "В цифрах",
     "users": "{n} пользователей в Chrome Web Store",
+    "firefoxUsers": "{n} пользователей в Firefox Add-ons",
     "stars": "{n} звёзд на GitHub",
     "npm": "{n} загрузок в npm",
-    "rating": "Оценка {rating}/5 в Chrome Web Store, оценок: {count}",
+    "rating": "Оценка {n} из 5 в Chrome Web Store",
     "mit": "Лицензия MIT",
     "offline": "Работает офлайн"
   },

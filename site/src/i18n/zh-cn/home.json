@@ -46,9 +46,10 @@
   "proof": {
     "ariaLabel": "数据一览",
     "users": "Chrome 应用商店 {n} 位用户",
+    "firefoxUsers": "Firefox Add-ons {n} 位用户",
     "stars": "GitHub {n} 颗星标",
     "npm": "npm {n} 次下载",
-    "rating": "Chrome 应用商店评分 {rating}/5（{count} 个评分）",
+    "rating": "Chrome 应用商店 {n} 星评分",
     "mit": "MIT 许可",
     "offline": "支持离线使用"
   },

@@ -55,10 +55,9 @@ const quartet = quartetMeta.map((meta, i) => ({ ...meta, ...d.quartet[i] }));
 // sentence carries an {n} placeholder the <b data-stat> markup replaces.
 const [usersPre, usersPost] = d.proof.users.split('{n}');
 const [starsPre, starsPost] = d.proof.stars.split('{n}');
+const [firefoxUsersPre, firefoxUsersPost] = d.proof.firefoxUsers.split('{n}');
+const [ratingPre, ratingPost] = d.proof.rating.split('{n}');
 const [npmPre, npmPost] = d.proof.npm.split('{n}');
-// The rating sentence carries two numbers, in whichever order the locale
-// puts them; the odd parts of the split are the placeholders.
-const ratingParts = d.proof.rating.split(/\{(rating|count)\}/);
 
 // One review, quoted under the hero in its original English on every
 // locale. Only the attribution is translated.
@@ -117,14 +116,12 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
        publishing stays hidden, so the page never shows a stale one. -->
   <section class="proof-strip" aria-label={d.proof.ariaLabel}>
     <ul class="container-wide proof">
+      <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
       <li data-stat-item="users" hidden>{usersPre}<b data-stat="users"></b>{usersPost}</li>
-      <li data-stat-item="rating" hidden>
-        {
-          ratingParts.map((part: string, i: number) =>
-            i % 2 ? <b data-stat={part === 'count' ? 'ratings' : 'rating'} /> : part,
-          )
-        }
+      <li data-stat-item="firefoxUsers" hidden>
+        {firefoxUsersPre}<b data-stat="firefoxUsers"></b>{firefoxUsersPost}
       </li>
+      <li data-stat-item="rating" hidden>{ratingPre}<b data-stat="rating"></b>{ratingPost}</li>
       <li>{d.proof.mit}</li>
       <li>{d.proof.offline}</li>
     </ul>
@@ -337,7 +334,6 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
       </p>
       <h2>{d.cli.heading} <span class="muted">{d.cli.headingMuted}</span></h2>
       <ul class="dev-proof">
-        <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
         <li data-stat-item="npm" hidden>{npmPre}<b data-stat="npm"></b>{npmPost}</li>
       </ul>
       <div class="card cli">
@@ -908,7 +904,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
     font-weight: 600;
   }
 
-  /* Stars and npm downloads, the numbers developers check. */
+  /* npm downloads, the number developers check. */
   .dev-proof {
     display: flex;
     flex-wrap: wrap;

@@ -41,16 +41,15 @@ async function proxyKofiAsset(pathname) {
 // Live user, rating, star and version counts. Read from shields.io — the
 // same source as the README badges — and cached at the edge, so nothing but
 // this Worker ever talks to a third party. Two consumers share this: the
-// homepage (users/rating/ratings in the proof strip, stars/npm in the
+// homepage (stars/users/firefoxUsers/rating in the proof strip, npm in the
 // developer section, injected server-side with HTMLRewriter — the markup
-// ships each item hidden and empty, and an item stays hidden when a source
-// it needs doesn't answer) and the public /api/stats.json endpoint, live
+// ships each item hidden and empty, and an item stays hidden when its
+// source doesn't answer) and the public /api/stats.json endpoint, live
 // since 95a14dd.
 const STAT_SOURCES = {
   users: 'https://img.shields.io/chrome-web-store/users/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
   rating: 'https://img.shields.io/chrome-web-store/rating/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
-  ratings:
-    'https://img.shields.io/chrome-web-store/rating-count/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
+  firefoxUsers: 'https://img.shields.io/amo/users/openscreenshot.json',
   stars: 'https://img.shields.io/github/stars/pghqdev/OpenScreenShot.json',
   version: 'https://img.shields.io/chrome-web-store/v/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
 };
@@ -67,11 +66,9 @@ const STAT_SHAPE = /^\d[\d,.kKmM+]*$/;
 // from the page's own /api/stats.json refresh, only later.
 const HOMEPAGE_PATH = /^\/(?:(?:de|es|fr|it|ja|ko|pt-br|ru|zh-cn|zh-tw)\/)?$/;
 const VERSION_SHAPE = /^v?\d+(\.\d+)*$/;
-// The rating badge reads "5/5" or "4.6/5", the count badge "10 total". The
-// page shows "{rating}/5" and "{count}", so each keeps only its number,
-// the named group n.
+// The rating badge reads "5/5" or "4.6/5". The page shows "{n}-star rated",
+// so it keeps only the number, the named group n.
 const RATING_BADGE = /^(?<n>[0-5](?:\.\d)?)\/5$/;
-const RATINGS_BADGE = /^(?<n>\d[\d,]*) total$/;
 const STATS_TTL = 21600;
 /*
  * The homepage's first byte waits on this: the stat lookups run alongside
@@ -134,15 +131,15 @@ async function shieldValue(url, shape) {
 }
 
 async function siteStats() {
-  const [users, rating, ratings, stars, version, npm] = await Promise.all([
+  const [users, firefoxUsers, rating, stars, version, npm] = await Promise.all([
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
+    shieldValue(STAT_SOURCES.firefoxUsers, STAT_SHAPE),
     shieldValue(STAT_SOURCES.rating, RATING_BADGE),
-    shieldValue(STAT_SOURCES.ratings, RATINGS_BADGE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
     shieldValue(STAT_SOURCES.version, VERSION_SHAPE),
     npmDownloads(),
   ]);
-  const stats = { users, rating, ratings, stars, version, npm };
+  const stats = { users, firefoxUsers, rating, stars, version, npm };
   // A null is a timed-out lookup, not a value: cache it for a minute, not six
   // hours, so the next visitor gets a fresh try.
   const ttl = Object.values(stats).includes(null) ? 60 : STATS_TTL;
@@ -180,35 +177,34 @@ class StatItemRewriter {
  *
  * The degrade contract: a lookup that times out or answers badly yields
  * null, null leaves that item hidden for the browser refresh to fill, and
- * every lookup being null skips the rewriter entirely. The rating item
- * needs both of its numbers.
+ * every lookup being null skips the rewriter entirely.
  */
 async function withInjectedStats(assetPromise) {
-  const [response, users, rating, ratings, stars, npm] = await Promise.all([
+  const [response, users, firefoxUsers, rating, stars, npm] = await Promise.all([
     assetPromise,
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
+    shieldValue(STAT_SOURCES.firefoxUsers, STAT_SHAPE),
     shieldValue(STAT_SOURCES.rating, RATING_BADGE),
-    shieldValue(STAT_SOURCES.ratings, RATINGS_BADGE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
     npmDownloads(),
   ]);
-  if ([users, rating, ratings, stars, npm].every((v) => v === null)) return response;
+  if ([users, firefoxUsers, rating, stars, npm].every((v) => v === null)) return response;
   // Safe by construction, not by a guard here: .transform() returns
   // synchronously and runs StatRewriter.element() later, lazily, as the body
   // streams to the client, so a try/catch around this call can never see
   // that later work. The actual invariant is upstream — STAT_SHAPE and the
-  // two rating patterns reject anything that isn't a bare digit-led value,
+  // rating pattern reject anything that isn't a bare digit-led value,
   // so setInnerContent() here never receives a string that could break the
   // surrounding markup. Don't loosen them without re-deriving this guarantee.
-  const bothRatings = rating !== null && ratings !== null ? rating : null;
   return new HTMLRewriter()
     .on('[data-stat="users"]', new StatRewriter(users))
+    .on('[data-stat="firefoxUsers"]', new StatRewriter(firefoxUsers))
     .on('[data-stat="rating"]', new StatRewriter(rating))
-    .on('[data-stat="ratings"]', new StatRewriter(ratings))
     .on('[data-stat="stars"]', new StatRewriter(stars))
     .on('[data-stat="npm"]', new StatRewriter(npm))
     .on('[data-stat-item="users"]', new StatItemRewriter(users))
-    .on('[data-stat-item="rating"]', new StatItemRewriter(bothRatings))
+    .on('[data-stat-item="firefoxUsers"]', new StatItemRewriter(firefoxUsers))
+    .on('[data-stat-item="rating"]', new StatItemRewriter(rating))
     .on('[data-stat-item="stars"]', new StatItemRewriter(stars))
     .on('[data-stat-item="npm"]', new StatItemRewriter(npm))
     .transform(response);

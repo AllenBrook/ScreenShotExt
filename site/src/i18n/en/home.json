@@ -46,9 +46,10 @@
   "proof": {
     "ariaLabel": "In numbers",
     "users": "{n} users on the Chrome Web Store",
+    "firefoxUsers": "{n} users on Firefox Add-ons",
     "stars": "{n} stars on GitHub",
     "npm": "{n} downloads on npm",
-    "rating": "{rating}/5 from {count} Chrome Web Store ratings",
+    "rating": "{n}-star rated on the Chrome Web Store",
     "mit": "MIT licensed",
     "offline": "Works offline"
   },

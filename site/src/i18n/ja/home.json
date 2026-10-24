@@ -46,9 +46,10 @@
   "proof": {
     "ariaLabel": "数字で見る",
     "users": "Chrome ウェブストアで {n} ユーザー",
+    "firefoxUsers": "Firefox Add-ons で {n} ユーザー",
     "stars": "GitHub で {n} スター",
     "npm": "npm で {n} ダウンロード",
-    "rating": "Chrome ウェブストアで評価 {rating}/5（{count} 件）",
+    "rating": "Chrome ウェブストアで星 {n} の評価",
     "mit": "MIT ライセンス",
     "offline": "オフラインで動作"
   },
