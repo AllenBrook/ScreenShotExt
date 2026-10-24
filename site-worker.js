@@ -176,7 +176,8 @@ class StatItemRewriter {
  * byte of HTML on an edge cache miss.
  *
  * The degrade contract: a lookup that times out or answers badly yields
- * null, null leaves that item hidden for the browser refresh to fill, and
+ * null, null leaves that item as the markup ships it (hidden, or the hand-set
+ * Chrome user count) for the browser refresh to fill, and
  * every lookup being null skips the rewriter entirely.
  */
 async function withInjectedStats(assetPromise) {

@@ -58,6 +58,10 @@ const [starsPre, starsPost] = d.proof.stars.split('{n}');
 const [firefoxUsersPre, firefoxUsersPost] = d.proof.firefoxUsers.split('{n}');
 const [ratingPre, ratingPost] = d.proof.rating.split('{n}');
 const [npmPre, npmPost] = d.proof.npm.split('{n}');
+// The Chrome Web Store stopped publishing the user count on 2026-10-24, so
+// the markup carries this count, set by hand on that date, until the live
+// value comes back and replaces it.
+const cwsUsers = new Intl.NumberFormat(locale).format(27967);
 
 // One review, quoted under the hero in its original English on every
 // locale. Only the attribution is translated.
@@ -112,12 +116,13 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   <!-- Proof. site-worker.js fills the data-stat elements here and in the
        developer section at the edge on each homepage and unhides their
        items, and the script below does the same from /api/stats.json in the
-       browser. The markup carries no number: a count its source stops
-       publishing stays hidden, so the page never shows a stale one. -->
+       browser. The markup carries no number except the Chrome user count
+       (cwsUsers): a count its source stops publishing stays hidden, so the
+       page never shows a stale one. -->
   <section class="proof-strip" aria-label={d.proof.ariaLabel}>
     <ul class="container-wide proof">
       <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
-      <li data-stat-item="users" hidden>{usersPre}<b data-stat="users"></b>{usersPost}</li>
+      <li data-stat-item="users">{usersPre}<b data-stat="users">{cwsUsers}</b>{usersPost}</li>
       <li data-stat-item="firefoxUsers" hidden>
         {firefoxUsersPre}<b data-stat="firefoxUsers"></b>{firefoxUsersPost}
       </li>
@@ -458,7 +463,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   // Live counts for the proof strip and the developer section. The edge
   // already injects them server-side; this refresh covers cached HTML and
   // keeps the numbers current. An item shows once every number in it has a
-  // value, so a miss (offline, localhost) leaves it hidden.
+  // value, so a miss (offline, localhost) leaves it as the markup ships it.
   fetch('/api/stats.json')
     .then((r) => (r.ok ? r.json() : null))
     .then((stats: Record<string, string | null> | null) => {
