@@ -169,7 +169,7 @@ const alternates = availableLocales.map((l) => ({
             ))
           }
           <li><a href={CLOUD_URL}>{c.nav.cloud}</a></li>
-          <li>
+          <li class:list={{ 'nav-install': !Astro.slots.has('header-action') }}>
             <slot name="header-action">
               <InstallButtons locale={locale} size="compact" />
             </slot>
@@ -527,9 +527,16 @@ const alternates = availableLocales.map((l) => ({
     }
   }
 
+  /* On phones the install pair wraps the bar to three rows over the page,
+   * and neither store installs the extension there: the Firefox listing is
+   * desktop-only (no gecko_android). */
   @media (max-width: 620px) {
     .nav-links {
       gap: var(--s-4);
+    }
+
+    .nav-install {
+      display: none;
     }
   }
 </style>
