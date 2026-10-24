@@ -100,14 +100,16 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   </Fragment>
 
   <!-- Hero -->
-  <!-- Proof. site-worker.js rewrites the three data-stat elements at the edge,
-       and the script below refreshes them from /api/stats.json in the
-       browser; the numbers in the markup are the fallback when both miss. -->
+  <!-- Proof. site-worker.js fills the three data-stat elements at the edge on
+       each homepage and unhides their items, and the script below does the
+       same from /api/stats.json in the browser. The markup carries no number:
+       a count its source stops publishing stays hidden, so the page never
+       shows a stale one. -->
   <section class="proof-strip" aria-label={d.proof.ariaLabel}>
     <ul class="container-wide proof">
-      <li>{usersPre}<b data-stat="users">10k</b>{usersPost}</li>
-      <li>{starsPre}<b data-stat="stars">85</b>{starsPost}</li>
-      <li>{npmPre}<b data-stat="npm">3.8k</b>{npmPost}</li>
+      <li data-stat-item="users" hidden>{usersPre}<b data-stat="users"></b>{usersPost}</li>
+      <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
+      <li data-stat-item="npm" hidden>{npmPre}<b data-stat="npm"></b>{npmPost}</li>
       <li>{d.proof.mit}</li>
       <li>{d.proof.offline}</li>
     </ul>
@@ -433,14 +435,16 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
 
   // Live counts for the proof strip. The edge already injects them
   // server-side; this refresh covers cached HTML and keeps the numbers
-  // current. A miss (offline, localhost) leaves the fallback markup alone.
+  // current. A miss (offline, localhost) leaves the items hidden.
   fetch('/api/stats.json')
     .then((r) => (r.ok ? r.json() : null))
     .then((stats: Record<string, string | null> | null) => {
       if (!stats) return;
       for (const el of document.querySelectorAll<HTMLElement>('[data-stat]')) {
         const value = stats[el.dataset.stat ?? ''];
-        if (value) el.textContent = value;
+        if (!value) continue;
+        el.textContent = value;
+        el.closest<HTMLElement>('[data-stat-item]')?.removeAttribute('hidden');
       }
     })
     .catch(() => {});

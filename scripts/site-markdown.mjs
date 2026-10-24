@@ -78,6 +78,9 @@ export function toMarkdown(mainHtml, pageUrl) {
   const hold = (md) => `\uE000${blocks.push(md) - 1}\uE000`;
   let html = mainHtml
     .replace(/<(script|style|svg|noscript|template|form|button|select|textarea)\b.*?<\/\1>/gis, '')
+    // A hidden item has no content until the Worker fills it (the homepage
+    // proof strip), so the copy would read "**** stars on GitHub".
+    .replace(/<li\b(?:\s+[^\s=>]+(?:="[^"]*")?)*?\s+hidden(?=[\s>=])[^>]*>.*?<\/li>/gis, '')
     .replace(/<!--.*?-->/gs, '')
     .replace(/<pre\b[^>]*>(.*?)<\/pre>/gis, (_, c) =>
       hold(`\n\n\`\`\`\n${decode(c.replace(/<[^>]+>/g, '')).replace(/\n+$/, '')}\n\`\`\`\n\n`),

@@ -41,9 +41,9 @@ async function proxyKofiAsset(pathname) {
 // Live user, star and version counts. Read from shields.io — the same
 // source as the README badges — and cached at the edge, so nothing but this
 // Worker ever talks to a third party. Two consumers share this: the
-// homepage's proof strip (users/stars, injected server-side with
-// HTMLRewriter — the markup's own 10k / 85 / 3.8k numbers are what ships if
-// a source doesn't answer in time) and the public /api/stats.json
+// homepage's proof strip (users/stars/npm, injected server-side with
+// HTMLRewriter — the markup ships each item hidden and empty, and an item
+// stays hidden when its source doesn't answer) and the public /api/stats.json
 // endpoint, live since 95a14dd.
 const STAT_SOURCES = {
   users: 'https://img.shields.io/chrome-web-store/users/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
@@ -58,6 +58,10 @@ const NPM_PACKAGE = 'openscreenshot';
 const NPM_FIRST_DAY = '2026-08-01';
 const NPM_WINDOW_DAYS = 540;
 const STAT_SHAPE = /^\d[\d,.kKmM+]*$/;
+// The English homepage and the locale homepages (LOCALES in
+// site/src/i18n/index.ts). A locale missing here still gets its numbers
+// from the page's own /api/stats.json refresh, only later.
+const HOMEPAGE_PATH = /^\/(?:(?:de|es|fr|it|ja|ko|pt-br|ru|zh-cn|zh-tw)\/)?$/;
 const VERSION_SHAPE = /^v?\d+(\.\d+)*$/;
 const STATS_TTL = 21600;
 /*
@@ -147,14 +151,23 @@ class StatRewriter {
   }
 }
 
+class StatItemRewriter {
+  constructor(value) {
+    this.value = value;
+  }
+  element(el) {
+    if (this.value !== null) el.removeAttribute('hidden');
+  }
+}
+
 /*
  * Takes the asset fetch as a promise, not an awaited Response, so the two
  * shield lookups run alongside it rather than after it — awaiting the asset
  * first put the whole shield round trip between the request and the first
  * byte of HTML on an edge cache miss.
  *
- * The degrade contract is unchanged: a lookup that times out or answers
- * badly yields null, null keeps the number the markup already carries, and
+ * The degrade contract: a lookup that times out or answers badly yields
+ * null, null leaves that item hidden for the browser refresh to fill, and
  * all three being null skips the rewriter entirely.
  */
 async function withInjectedStats(assetPromise) {
@@ -176,6 +189,9 @@ async function withInjectedStats(assetPromise) {
     .on('[data-stat="users"]', new StatRewriter(users))
     .on('[data-stat="stars"]', new StatRewriter(stars))
     .on('[data-stat="npm"]', new StatRewriter(npm))
+    .on('[data-stat-item="users"]', new StatItemRewriter(users))
+    .on('[data-stat-item="stars"]', new StatItemRewriter(stars))
+    .on('[data-stat-item="npm"]', new StatItemRewriter(npm))
     .transform(response);
 }
 
@@ -373,7 +389,7 @@ async function route(url, request, env) {
     const md = await env.ASSETS.fetch(request);
     return md.ok ? markdownResponse(md, url.pathname.slice(0, -'index.md'.length), url) : md;
   }
-  if (url.pathname === '/') return withInjectedStats(env.ASSETS.fetch(request));
+  if (HOMEPAGE_PATH.test(url.pathname)) return withInjectedStats(env.ASSETS.fetch(request));
 
   return env.ASSETS.fetch(request);
 }
