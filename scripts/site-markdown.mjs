@@ -91,6 +91,10 @@ export function toMarkdown(mainHtml, pageUrl) {
   // Every converted block is held out of the text until the end, so its
   // decoded content (a literal `<all_urls>`, say) is never read as a tag.
   html = html
+    // Before <p>, so a quote's own paragraphs end up inside its "> " line.
+    .replace(/<blockquote\b[^>]*>(.*?)<\/blockquote>/gis, (_, c) =>
+      hold(`\n\n> ${inline(c, pageUrl)}\n\n`),
+    )
     .replace(/<ol\b[^>]*>(.*?)<\/ol>/gis, (_, c) => {
       let n = 0;
       const items = [...c.matchAll(/<li\b[^>]*>(.*?)<\/li>/gis)];
@@ -102,9 +106,6 @@ export function toMarkdown(mainHtml, pageUrl) {
     )
     .replace(/<(p|dt|dd|figcaption|summary)\b[^>]*>(.*?)<\/\1>/gis, (_, _t, c) =>
       hold(`\n\n${inline(c, pageUrl)}\n\n`),
-    )
-    .replace(/<blockquote\b[^>]*>(.*?)<\/blockquote>/gis, (_, c) =>
-      hold(`\n\n> ${inline(c, pageUrl)}\n\n`),
     )
     .replace(
       /<\/?(ul|div|section|article|header|footer|aside|nav|details|dl|figure)\b[^>]*>/gi,
