@@ -11,9 +11,7 @@
     "viewOnGithub": "在 GitHub 上查看",
     "tablistLabel": "扩展的各个界面",
     "credit": "截图展示的是我们的网站技术查询工具 OpenTechCheck。",
-    "creditCta": "访问 OpenTechCheck",
-    "wipTag": "开发中",
-    "wip": "桌面应用和网页应用正在开发中"
+    "creditCta": "访问 OpenTechCheck"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# 启动本地 MCP 服务器",
     "commentConfig": "# 配置支持本地 MCP 服务器的客户端"
   },
+  "review": {
+    "attribution": "{name}，Chrome 应用商店评价"
+  },
   "proof": {
     "ariaLabel": "数据一览",
     "users": "Chrome 应用商店 {n} 位用户",
     "stars": "GitHub {n} 颗星标",
     "npm": "npm {n} 次下载",
+    "rating": "Chrome 应用商店评分 {rating}/5（{count} 个评分）",
     "mit": "MIT 许可",
     "offline": "支持离线使用"
   },

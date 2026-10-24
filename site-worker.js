@@ -38,15 +38,19 @@ async function proxyKofiAsset(pathname) {
   });
 }
 
-// Live user, star and version counts. Read from shields.io — the same
-// source as the README badges — and cached at the edge, so nothing but this
-// Worker ever talks to a third party. Two consumers share this: the
-// homepage's proof strip (users/stars/npm, injected server-side with
-// HTMLRewriter — the markup ships each item hidden and empty, and an item
-// stays hidden when its source doesn't answer) and the public /api/stats.json
-// endpoint, live since 95a14dd.
+// Live user, rating, star and version counts. Read from shields.io — the
+// same source as the README badges — and cached at the edge, so nothing but
+// this Worker ever talks to a third party. Two consumers share this: the
+// homepage (users/rating/ratings in the proof strip, stars/npm in the
+// developer section, injected server-side with HTMLRewriter — the markup
+// ships each item hidden and empty, and an item stays hidden when a source
+// it needs doesn't answer) and the public /api/stats.json endpoint, live
+// since 95a14dd.
 const STAT_SOURCES = {
   users: 'https://img.shields.io/chrome-web-store/users/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
+  rating: 'https://img.shields.io/chrome-web-store/rating/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
+  ratings:
+    'https://img.shields.io/chrome-web-store/rating-count/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
   stars: 'https://img.shields.io/github/stars/pghqdev/OpenScreenShot.json',
   version: 'https://img.shields.io/chrome-web-store/v/hdabbojjccojlapnfjpdppcpfcnhgmdp.json',
 };
@@ -63,12 +67,17 @@ const STAT_SHAPE = /^\d[\d,.kKmM+]*$/;
 // from the page's own /api/stats.json refresh, only later.
 const HOMEPAGE_PATH = /^\/(?:(?:de|es|fr|it|ja|ko|pt-br|ru|zh-cn|zh-tw)\/)?$/;
 const VERSION_SHAPE = /^v?\d+(\.\d+)*$/;
+// The rating badge reads "5/5" or "4.6/5", the count badge "10 total". The
+// page shows "{rating}/5" and "{count}", so each keeps only its number,
+// the named group n.
+const RATING_BADGE = /^(?<n>[0-5](?:\.\d)?)\/5$/;
+const RATINGS_BADGE = /^(?<n>\d[\d,]*) total$/;
 const STATS_TTL = 21600;
 /*
- * The homepage's first byte waits on this: the two shield lookups run
- * alongside the asset fetch, but the HTML cannot start streaming until the
- * rewriter is attached. The markup's own 1k / 66 are current and correct, so
- * giving up early costs freshness and nothing else.
+ * The homepage's first byte waits on this: the stat lookups run alongside
+ * the asset fetch, but the HTML cannot start streaming until the rewriter
+ * is attached. Giving up early leaves an item hidden until the page's own
+ * /api/stats.json refresh fills it, which costs freshness and nothing else.
  */
 const STATS_TIMEOUT_MS = 500;
 
@@ -117,20 +126,23 @@ async function shieldValue(url, shape) {
     });
     if (!upstream.ok) return null;
     const badge = await upstream.json();
-    return shape.test(badge.value ?? '') ? badge.value : null;
+    const match = (badge.value ?? '').match(shape);
+    return match ? (match.groups?.n ?? match[0]) : null;
   } catch {
     return null;
   }
 }
 
 async function siteStats() {
-  const [users, stars, version, npm] = await Promise.all([
+  const [users, rating, ratings, stars, version, npm] = await Promise.all([
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
+    shieldValue(STAT_SOURCES.rating, RATING_BADGE),
+    shieldValue(STAT_SOURCES.ratings, RATINGS_BADGE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
     shieldValue(STAT_SOURCES.version, VERSION_SHAPE),
     npmDownloads(),
   ]);
-  const stats = { users, stars, version, npm };
+  const stats = { users, rating, ratings, stars, version, npm };
   // A null is a timed-out lookup, not a value: cache it for a minute, not six
   // hours, so the next visitor gets a fresh try.
   const ttl = Object.values(stats).includes(null) ? 60 : STATS_TTL;
@@ -168,28 +180,35 @@ class StatItemRewriter {
  *
  * The degrade contract: a lookup that times out or answers badly yields
  * null, null leaves that item hidden for the browser refresh to fill, and
- * all three being null skips the rewriter entirely.
+ * every lookup being null skips the rewriter entirely. The rating item
+ * needs both of its numbers.
  */
 async function withInjectedStats(assetPromise) {
-  const [response, users, stars, npm] = await Promise.all([
+  const [response, users, rating, ratings, stars, npm] = await Promise.all([
     assetPromise,
     shieldValue(STAT_SOURCES.users, STAT_SHAPE),
+    shieldValue(STAT_SOURCES.rating, RATING_BADGE),
+    shieldValue(STAT_SOURCES.ratings, RATINGS_BADGE),
     shieldValue(STAT_SOURCES.stars, STAT_SHAPE),
     npmDownloads(),
   ]);
-  if (users === null && stars === null && npm === null) return response;
+  if ([users, rating, ratings, stars, npm].every((v) => v === null)) return response;
   // Safe by construction, not by a guard here: .transform() returns
   // synchronously and runs StatRewriter.element() later, lazily, as the body
   // streams to the client, so a try/catch around this call can never see
-  // that later work. The actual invariant is upstream — STAT_SHAPE rejects
-  // anything that isn't a bare digit-led badge value, so setInnerContent()
-  // here never receives a string that could break the surrounding markup.
-  // Don't loosen that regex without re-deriving this guarantee.
+  // that later work. The actual invariant is upstream — STAT_SHAPE and the
+  // two rating patterns reject anything that isn't a bare digit-led value,
+  // so setInnerContent() here never receives a string that could break the
+  // surrounding markup. Don't loosen them without re-deriving this guarantee.
+  const bothRatings = rating !== null && ratings !== null ? rating : null;
   return new HTMLRewriter()
     .on('[data-stat="users"]', new StatRewriter(users))
+    .on('[data-stat="rating"]', new StatRewriter(rating))
+    .on('[data-stat="ratings"]', new StatRewriter(ratings))
     .on('[data-stat="stars"]', new StatRewriter(stars))
     .on('[data-stat="npm"]', new StatRewriter(npm))
     .on('[data-stat-item="users"]', new StatItemRewriter(users))
+    .on('[data-stat-item="rating"]', new StatItemRewriter(bothRatings))
     .on('[data-stat-item="stars"]', new StatItemRewriter(stars))
     .on('[data-stat-item="npm"]', new StatItemRewriter(npm))
     .transform(response);

@@ -11,9 +11,7 @@
     "viewOnGithub": "GitHub에서 보기",
     "tablistLabel": "확장 프로그램 화면",
     "credit": "스크린샷에는 웹사이트에 사용된 기술을 조회하는 저희 도구 OpenTechCheck가 등장합니다.",
-    "creditCta": "OpenTechCheck 방문",
-    "wipTag": "개발 중",
-    "wip": "데스크톱 앱과 웹 앱은 개발 중입니다"
+    "creditCta": "OpenTechCheck 방문"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# 로컬 MCP 서버 시작",
     "commentConfig": "# 로컬 MCP 서버를 지원하는 클라이언트 설정"
   },
+  "review": {
+    "attribution": "{name}, Chrome 웹 스토어 리뷰"
+  },
   "proof": {
     "ariaLabel": "숫자로 보기",
     "users": "Chrome 웹 스토어 사용자 {n}명",
     "stars": "GitHub 스타 {n}개",
     "npm": "npm 다운로드 {n}회",
+    "rating": "Chrome 웹 스토어 평점 {rating}/5 (평가 {count}개)",
     "mit": "MIT 라이선스",
     "offline": "오프라인에서도 동작"
   },

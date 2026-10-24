@@ -11,9 +11,7 @@
     "viewOnGithub": "Auf GitHub ansehen",
     "tablistLabel": "Die Ansichten der Erweiterung",
     "credit": "Die Screenshots zeigen OpenTechCheck, unser Tool zum Erkennen der Technologien einer Website.",
-    "creditCta": "OpenTechCheck besuchen",
-    "wipTag": "In Arbeit",
-    "wip": "Desktop- und Web-Apps sind in Entwicklung"
+    "creditCta": "OpenTechCheck besuchen"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# Den lokalen MCP-Server starten",
     "commentConfig": "# Einen Client konfigurieren, der lokale MCP-Server unterstützt"
   },
+  "review": {
+    "attribution": "{name}, Rezension im Chrome Web Store"
+  },
   "proof": {
     "ariaLabel": "In Zahlen",
     "users": "{n} Nutzer im Chrome Web Store",
     "stars": "{n} Sterne auf GitHub",
     "npm": "{n} Downloads auf npm",
+    "rating": "{rating}/5 aus {count} Bewertungen im Chrome Web Store",
     "mit": "MIT-lizenziert",
     "offline": "Funktioniert offline"
   },

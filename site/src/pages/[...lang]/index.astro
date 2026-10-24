@@ -56,6 +56,16 @@ const quartet = quartetMeta.map((meta, i) => ({ ...meta, ...d.quartet[i] }));
 const [usersPre, usersPost] = d.proof.users.split('{n}');
 const [starsPre, starsPost] = d.proof.stars.split('{n}');
 const [npmPre, npmPost] = d.proof.npm.split('{n}');
+// The rating sentence carries two numbers, in whichever order the locale
+// puts them; the odd parts of the split are the placeholders.
+const ratingParts = d.proof.rating.split(/\{(rating|count)\}/);
+
+// One review, quoted under the hero in its original English on every
+// locale. Only the attribution is translated.
+const REVIEW_URL =
+  'https://chromewebstore.google.com/reviews/46c0717b-13c1-49b0-b9fb-766ffd53e55c';
+const REVIEW_QUOTE =
+  'I was getting really tired of manually stitching screenshots together and then opening another tool just to annotate them. … OpenScreenShot does exactly what I need. I can capture the whole table, annotate it, and save it in one workflow.';
 
 const softwareLd = {
   '@context': 'https://schema.org',
@@ -100,16 +110,21 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   </Fragment>
 
   <!-- Hero -->
-  <!-- Proof. site-worker.js fills the three data-stat elements at the edge on
-       each homepage and unhides their items, and the script below does the
-       same from /api/stats.json in the browser. The markup carries no number:
-       a count its source stops publishing stays hidden, so the page never
-       shows a stale one. -->
+  <!-- Proof. site-worker.js fills the data-stat elements here and in the
+       developer section at the edge on each homepage and unhides their
+       items, and the script below does the same from /api/stats.json in the
+       browser. The markup carries no number: a count its source stops
+       publishing stays hidden, so the page never shows a stale one. -->
   <section class="proof-strip" aria-label={d.proof.ariaLabel}>
     <ul class="container-wide proof">
       <li data-stat-item="users" hidden>{usersPre}<b data-stat="users"></b>{usersPost}</li>
-      <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
-      <li data-stat-item="npm" hidden>{npmPre}<b data-stat="npm"></b>{npmPost}</li>
+      <li data-stat-item="rating" hidden>
+        {
+          ratingParts.map((part: string, i: number) =>
+            i % 2 ? <b data-stat={part === 'count' ? 'ratings' : 'rating'} /> : part,
+          )
+        }
+      </li>
       <li>{d.proof.mit}</li>
       <li>{d.proof.offline}</li>
     </ul>
@@ -133,12 +148,6 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
             ></path>
           </svg>
           {d.hero.viewOnGithub}
-        </a>
-      </p>
-      <p class="hero-wip-row">
-        <a class="hero-wip" href={localizePath(locale, '/roadmap/')}>
-          <span class="wip-tag">{d.hero.wipTag}</span>
-          {d.hero.wip}
         </a>
       </p>
     </div>
@@ -234,6 +243,16 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
         {d.hero.credit}
         <a href="https://opentechcheck.com" target="_blank" rel="noopener">{d.hero.creditCta}</a>
       </p>
+      <figure class="hero-quote">
+        <blockquote lang="en" cite={REVIEW_URL}>
+          <p>“{REVIEW_QUOTE}”</p>
+        </blockquote>
+        <figcaption>
+          <a href={REVIEW_URL} target="_blank" rel="noopener"
+            >{d.review.attribution.replace('{name}', 'David M.')}</a
+          >
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -317,6 +336,10 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
         {d.cli.eyebrow}
       </p>
       <h2>{d.cli.heading} <span class="muted">{d.cli.headingMuted}</span></h2>
+      <ul class="dev-proof">
+        <li data-stat-item="stars" hidden>{starsPre}<b data-stat="stars"></b>{starsPost}</li>
+        <li data-stat-item="npm" hidden>{npmPre}<b data-stat="npm"></b>{npmPost}</li>
+      </ul>
       <div class="card cli">
         <div class="cli-about">
           <p class="cli-name" set:html={d.cli.name} />
@@ -436,18 +459,21 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
     for (const tab of tabs) resized.observe(tab);
   }
 
-  // Live counts for the proof strip. The edge already injects them
-  // server-side; this refresh covers cached HTML and keeps the numbers
-  // current. A miss (offline, localhost) leaves the items hidden.
+  // Live counts for the proof strip and the developer section. The edge
+  // already injects them server-side; this refresh covers cached HTML and
+  // keeps the numbers current. An item shows once every number in it has a
+  // value, so a miss (offline, localhost) leaves it hidden.
   fetch('/api/stats.json')
     .then((r) => (r.ok ? r.json() : null))
     .then((stats: Record<string, string | null> | null) => {
       if (!stats) return;
       for (const el of document.querySelectorAll<HTMLElement>('[data-stat]')) {
         const value = stats[el.dataset.stat ?? ''];
-        if (!value) continue;
-        el.textContent = value;
-        el.closest<HTMLElement>('[data-stat-item]')?.removeAttribute('hidden');
+        if (value) el.textContent = value;
+      }
+      for (const item of document.querySelectorAll<HTMLElement>('[data-stat-item]')) {
+        const numbers = [...item.querySelectorAll<HTMLElement>('[data-stat]')];
+        if (numbers.every((el) => el.textContent)) item.removeAttribute('hidden');
       }
     })
     .catch(() => {});
@@ -528,42 +554,6 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   .gh-mark {
     width: 18px;
     height: 18px;
-  }
-
-  /* The coming-soon pill under the hero CTAs: quiet card, one amber tag. */
-  .hero-wip-row {
-    margin: var(--s-4) 0 0;
-  }
-
-  .hero-wip {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--s-2);
-    padding: 7px 14px;
-    border: 1px solid var(--rule);
-    border-radius: var(--r-full);
-    color: var(--ink-2);
-    font-size: var(--fs-sm);
-    font-weight: 500;
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease);
-  }
-
-  .hero-wip:hover {
-    color: var(--ink);
-  }
-
-  .wip-tag {
-    flex-shrink: 0;
-    padding: 2px 8px;
-    border-radius: var(--r-full);
-    background: var(--chrome-yellow);
-    color: var(--ink);
-    font-size: var(--fs-xs);
-    font-weight: 700;
-    letter-spacing: var(--tr-label);
-    text-transform: uppercase;
-    white-space: nowrap;
   }
 
   /* ---- Hero ---- */
@@ -865,6 +855,34 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
     }
   }
 
+  /* One review under the hero frame, in the voice of the person who wrote
+   * it. */
+  .hero-quote {
+    max-width: 640px;
+    margin: var(--s-7) auto 0;
+    text-align: center;
+  }
+
+  .hero-quote blockquote {
+    margin: 0;
+  }
+
+  .hero-quote p {
+    margin: 0;
+    color: var(--ink);
+    font-size: var(--fs-lg);
+    line-height: 1.55;
+  }
+
+  .hero-quote figcaption {
+    margin-top: var(--s-3);
+    font-size: var(--fs-sm);
+  }
+
+  .hero-quote figcaption a {
+    color: var(--ink-3);
+  }
+
   /* ---- Proof strip ---- */
 
   .proof-strip {
@@ -884,9 +902,22 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
     font-size: var(--fs-md);
   }
 
-  .proof b {
+  .proof b,
+  .dev-proof b {
     color: var(--ink);
     font-weight: 600;
+  }
+
+  /* Stars and npm downloads, the numbers developers check. */
+  .dev-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-5);
+    margin: calc(-1 * var(--s-3)) 0 var(--s-6);
+    padding: 0;
+    list-style: none;
+    color: var(--ink-3);
+    font-size: var(--fs-md);
   }
 
   /* ---- Trio ---- */

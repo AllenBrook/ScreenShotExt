@@ -9,8 +9,6 @@
     "title2": "Fully local. Private. Easy to use.",
     "sub": "Capture pages in Chrome or Firefox. Add annotations, then save an image or PDF. No account required.",
     "viewOnGithub": "View on GitHub",
-    "wipTag": "WIP",
-    "wip": "Desktop and web apps are in development",
     "tablistLabel": "The extension's screens",
     "credit": "Screenshots feature OpenTechCheck, our website technology lookup tool.",
     "creditCta": "Visit OpenTechCheck"
@@ -42,11 +40,15 @@
     "commentServe": "# Start the local MCP server",
     "commentConfig": "# Configure a client that supports local MCP servers"
   },
+  "review": {
+    "attribution": "{name}, Chrome Web Store review"
+  },
   "proof": {
     "ariaLabel": "In numbers",
     "users": "{n} users on the Chrome Web Store",
     "stars": "{n} stars on GitHub",
     "npm": "{n} downloads on npm",
+    "rating": "{rating}/5 from {count} Chrome Web Store ratings",
     "mit": "MIT licensed",
     "offline": "Works offline"
   },

@@ -11,9 +11,7 @@
     "viewOnGithub": "在 GitHub 上查看",
     "tablistLabel": "擴充功能的畫面",
     "credit": "截圖展示的是我們的網站技術查詢工具 OpenTechCheck。",
-    "creditCta": "造訪 OpenTechCheck",
-    "wipTag": "開發中",
-    "wip": "桌面應用程式與網頁應用程式正在開發中"
+    "creditCta": "造訪 OpenTechCheck"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# 啟動本機 MCP 伺服器",
     "commentConfig": "# 設定支援本機 MCP 伺服器的用戶端"
   },
+  "review": {
+    "attribution": "{name}，Chrome 線上應用程式商店評論"
+  },
   "proof": {
     "ariaLabel": "數字會說話",
     "users": "Chrome 線上應用程式商店 {n} 位使用者",
     "stars": "GitHub 上 {n} 顆星",
     "npm": "npm {n} 次下載",
+    "rating": "Chrome 線上應用程式商店評分 {rating}/5（{count} 則評分）",
     "mit": "MIT 授權",
     "offline": "可離線使用"
   },

@@ -11,9 +11,7 @@
     "viewOnGithub": "Voir sur GitHub",
     "tablistLabel": "Les écrans de l’extension",
     "credit": "Les captures présentent OpenTechCheck, notre outil d’identification des technologies utilisées par les sites web.",
-    "creditCta": "Visiter OpenTechCheck",
-    "wipTag": "En cours",
-    "wip": "Les applications de bureau et web sont en développement"
+    "creditCta": "Visiter OpenTechCheck"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# Démarrer le serveur MCP local",
     "commentConfig": "# Configurer un client compatible avec les serveurs MCP locaux"
   },
+  "review": {
+    "attribution": "{name}, avis sur le Chrome Web Store"
+  },
   "proof": {
     "ariaLabel": "En chiffres",
     "users": "{n} utilisateurs sur le Chrome Web Store",
     "stars": "{n} étoiles sur GitHub",
     "npm": "{n} téléchargements sur npm",
+    "rating": "{rating}/5 sur {count} notes du Chrome Web Store",
     "mit": "Licence MIT",
     "offline": "Fonctionne hors ligne"
   },

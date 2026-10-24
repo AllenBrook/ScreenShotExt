@@ -11,9 +11,7 @@
     "viewOnGithub": "Открыть на GitHub",
     "tablistLabel": "Экраны расширения",
     "credit": "На скриншотах показан OpenTechCheck — наш инструмент для определения технологий сайтов.",
-    "creditCta": "Перейти на OpenTechCheck",
-    "wipTag": "В работе",
-    "wip": "Приложения для компьютера и веб-приложение находятся в разработке"
+    "creditCta": "Перейти на OpenTechCheck"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# Запустите локальный MCP-сервер",
     "commentConfig": "# Настройте клиент с поддержкой локальных MCP-серверов"
   },
+  "review": {
+    "attribution": "{name}, отзыв в Chrome Web Store"
+  },
   "proof": {
     "ariaLabel": "В цифрах",
     "users": "{n} пользователей в Chrome Web Store",
     "stars": "{n} звёзд на GitHub",
     "npm": "{n} загрузок в npm",
+    "rating": "Оценка {rating}/5 в Chrome Web Store, оценок: {count}",
     "mit": "Лицензия MIT",
     "offline": "Работает офлайн"
   },

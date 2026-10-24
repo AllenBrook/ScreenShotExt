@@ -11,9 +11,7 @@
     "viewOnGithub": "GitHub で見る",
     "tablistLabel": "拡張機能の画面",
     "credit": "スクリーンショットには、ウェブサイトの使用技術を調べる私たちのツール OpenTechCheck を使用しています。",
-    "creditCta": "OpenTechCheck を開く",
-    "wipTag": "開発中",
-    "wip": "デスクトップアプリとウェブアプリは開発中です"
+    "creditCta": "OpenTechCheck を開く"
   },
   "tabs": {
     "capture": {
@@ -42,11 +40,15 @@
     "commentServe": "# ローカル MCP サーバーを起動",
     "commentConfig": "# ローカル MCP サーバーに対応したクライアントを設定"
   },
+  "review": {
+    "attribution": "{name}（Chrome ウェブストアのレビュー）"
+  },
   "proof": {
     "ariaLabel": "数字で見る",
     "users": "Chrome ウェブストアで {n} ユーザー",
     "stars": "GitHub で {n} スター",
     "npm": "npm で {n} ダウンロード",
+    "rating": "Chrome ウェブストアで評価 {rating}/5（{count} 件）",
     "mit": "MIT ライセンス",
     "offline": "オフラインで動作"
   },
