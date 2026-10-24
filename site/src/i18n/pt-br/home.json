@@ -18,7 +18,7 @@
   "tabs": {
     "capture": {
       "label": "Capturar",
-      "alt": "O popup do OpenScreenShot aberto sobre uma página no Chrome, com as opções Página inteira, Área visível, Região selecionada e Gravar."
+      "alt": "O popup do OpenScreenShot aberto sobre uma página no Chrome e, ao lado, o PNG da página inteira, do cabeçalho ao rodapé."
     },
     "annotate": {
       "label": "Anotar",

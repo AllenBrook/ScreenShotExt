@@ -28,7 +28,7 @@
 // Run with: npm run build && npm run shots
 import sharp from 'sharp';
 import { execFile } from 'node:child_process';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -63,6 +63,9 @@ const SLIDES_DIR = join(ROOT, 'store/screenshots');
 // slots of marquee.html and promo-tile.html before they are screenshotted.
 const COPY_DIR = join(SHOTS_DIR, 'copy');
 const STORE_SIZE = { w: 1280, h: 800 };
+// sample-page.html's full length; its body min-height matches, so the
+// capture ends at the page's own footer.
+const SAMPLE_PAGE = { w: 1100, h: 2100 };
 // Every capture is taken at 2x so the posters, which render at 2x themselves,
 // and the store shots, which downscale from it, both get crisp pixels.
 const CAPTURE_DPR = 2;
@@ -408,7 +411,7 @@ const settle = (ms) => new Promise((r) => setTimeout(r, ms));
 const viewport = ({ w, h }) => ({ width: w, height: h });
 
 /**
- * Screenshots the five real surfaces this pipeline needs, into CAPTURES_DIR:
+ * Screenshots the six real surfaces this pipeline needs, into CAPTURES_DIR:
  *  - editor.png: the editor with a rect + arrow annotation and the Poster
  *    beautify look applied.
  *  - editor-export.png: the same editor with its export dialog open.
@@ -417,9 +420,11 @@ const viewport = ({ w, h }) => ({ width: w, height: h });
  *  - popup.png: the popup at its natural size.
  *  - recorder.png: the recorder editor open on a session with two auto-zoom
  *    blocks in its timeline.
- * All five also double as source material for the poster HTML rendered
- * afterwards (every poster but shot-2 embeds one of them), and all are taken
- * at CAPTURE_DPR.
+ *  - page.png: the full-page capture of sample-page.html itself, at 1x. The
+ *    editor opens it, and the hero poster shows it as the capture result.
+ * The five UI captures also double as source material for the poster HTML
+ * rendered afterwards (every poster but shot-2 embeds one of them), and are
+ * taken at CAPTURE_DPR.
  */
 async function renderRealCaptures(browser, base, messages) {
   await rm(CAPTURES_DIR, { recursive: true, force: true });
@@ -441,17 +446,18 @@ async function renderRealCaptures(browser, base, messages) {
       '--disable-extensions',
       `--user-data-dir=${join(sampleWork, 'profile')}`,
       `--screenshot=${samplePng}`,
-      '--window-size=1100,1500',
+      `--window-size=${SAMPLE_PAGE.w},${SAMPLE_PAGE.h}`,
       `file://${resolve(SHOTS_DIR, 'sample-page.html')}`,
     ],
     { timeout: 30_000 },
   );
   const captureDataUrl = `data:image/png;base64,${(await readFile(samplePng)).toString('base64')}`;
+  await copyFile(samplePng, join(CAPTURES_DIR, 'page.png'));
   await rm(sampleWork, { recursive: true, force: true });
   const capture = {
     dataUrl: captureDataUrl,
-    width: 1100,
-    height: 1500,
+    width: SAMPLE_PAGE.w,
+    height: SAMPLE_PAGE.h,
     mode: 'full-page',
     title: 'OpenTechCheck — see what websites are built with',
     url: 'https://opentechcheck.com/',
@@ -488,17 +494,23 @@ async function renderRealCaptures(browser, base, messages) {
     await page.keyboard.press('r');
     await page.waitForSelector('.stylebar');
     await settle(100);
+    // The box frames the page's headline, and the arrow points at the first
+    // detected technology. At fit width the picture's scale and its top edge
+    // follow the stage width only, so both axes are fractions of the width:
+    // a toolbar that wraps in a long locale makes the stage shorter, and
+    // fractions of its height would miss.
     const box = await page.$eval('.stage-canvas', (el) => el.getBoundingClientRect().toJSON());
-    await page.mouse.move(box.x + box.width * 0.08, box.y + box.height * 0.1);
+    const at = (x, y) => [box.x + box.width * x, box.y + box.width * y];
+    await page.mouse.move(...at(0.07, 0.166));
     await page.mouse.down();
-    await page.mouse.move(box.x + box.width * 0.4, box.y + box.height * 0.32, { steps: 10 });
+    await page.mouse.move(...at(0.48, 0.284), { steps: 10 });
     await page.mouse.up();
     await settle(120);
 
     await page.keyboard.press('a');
-    await page.mouse.move(box.x + box.width * 0.6, box.y + box.height * 0.2);
+    await page.mouse.move(...at(0.73, 0.088));
     await page.mouse.down();
-    await page.mouse.move(box.x + box.width * 0.82, box.y + box.height * 0.45, { steps: 10 });
+    await page.mouse.move(...at(0.66, 0.2), { steps: 10 });
     await page.mouse.up();
     await settle(120);
     const drawn = await annotationCount(page);

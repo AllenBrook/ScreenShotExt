@@ -18,7 +18,7 @@
   "tabs": {
     "capture": {
       "label": "캡처",
-      "alt": "Chrome의 웹 페이지 위에 열린 OpenScreenShot 팝업. 전체 페이지, 보이는 영역, 선택 영역, 녹화 옵션이 보여요."
+      "alt": "Chrome의 웹 페이지 위에 열린 OpenScreenShot 팝업과, 그 옆에 놓인 페이지 전체 PNG. 헤더부터 푸터까지 담겨 있어요."
     },
     "annotate": {
       "label": "주석",

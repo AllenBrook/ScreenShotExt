@@ -18,7 +18,7 @@
   "tabs": {
     "capture": {
       "label": "キャプチャ",
-      "alt": "Chrome のウェブページ上に開いた OpenScreenShot のポップアップ。ページ全体、表示領域、選択範囲、録画の選択肢が並んでいる。"
+      "alt": "Chrome のウェブページ上に開いた OpenScreenShot のポップアップと、その横に並ぶページ全体の PNG。ヘッダーからフッターまで写っている。"
     },
     "annotate": {
       "label": "注釈",

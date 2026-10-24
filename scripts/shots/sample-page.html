@@ -20,7 +20,7 @@
       body {
         display: flex;
         flex-direction: column;
-        min-height: 1500px;
+        min-height: 2100px;
         background: #faf7f1;
         color: #14131c;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -258,7 +258,81 @@
         font-weight: 800;
       }
 
-      /* dark closing band; flex-grown so the 1100x1500 capture has no blank tail */
+      /* evidence and privacy: the two long sections that give the full-page
+         capture its length */
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 56px;
+        align-items: center;
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 72px 44px;
+      }
+      .split-band {
+        border-top: 1px solid #e8e4da;
+        background: #fff;
+      }
+      .lede {
+        color: #4b4a55;
+        font-size: 15.5px;
+        line-height: 1.6;
+      }
+      .evidence {
+        border-radius: 14px;
+        background: #14131c;
+        color: #d9d7e8;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 12.5px;
+        overflow: hidden;
+      }
+      .evidence-top {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 18px;
+        border-bottom: 1px solid #2c2a3a;
+        color: #9a97f0;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+      .evidence-row {
+        display: grid;
+        grid-template-columns: 150px 1fr;
+        gap: 16px;
+        padding: 14px 18px;
+        border-bottom: 1px solid #22212e;
+      }
+      .evidence-row:last-child {
+        border-bottom: 0;
+      }
+      .evidence-row span {
+        color: #8b88a0;
+      }
+      .lists {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .list {
+        padding: 20px 22px;
+        border: 1.5px solid #14131c;
+        border-radius: 14px;
+        background: #faf7f1;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+      .list b {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 14.5px;
+      }
+      .list p {
+        padding: 9px 0;
+        border-top: 1px solid #e8e4da;
+        color: #4b4a55;
+      }
+
+      /* dark closing band; flex-grown so the 1100x2100 capture has no blank tail */
       .footerband {
         flex: 1;
         padding: 44px;
@@ -279,6 +353,15 @@
         margin-bottom: 8px;
         color: #fff;
         font-size: 14.5px;
+      }
+      .legal {
+        display: flex;
+        gap: 24px;
+        margin-top: 56px;
+        padding-top: 20px;
+        border-top: 1px solid #2c2a3a;
+        color: #8b88a0;
+        font-size: 12.5px;
       }
     </style>
   </head>
@@ -301,7 +384,8 @@
           detection backed by the evidence that produced it.
         </p>
         <div class="buttons">
-          <span class="primary">Add to Chrome</span><span class="ghost">Read the source ↗</span>
+          <span class="primary">Browse technologies</span
+          ><span class="ghost">Read the source ↗</span>
         </div>
         <p class="fine">NO ACCOUNT · NO TRACKING · NO CLOUD</p>
       </div>
@@ -580,6 +664,51 @@
       </div>
     </div>
 
+    <div class="split-band">
+      <div class="split">
+        <div>
+          <p class="kicker">THE EVIDENCE</p>
+          <h2>See why a technology was detected.</h2>
+          <p class="lede">
+            Inspect the signals behind each result: page tags, headers, cookies and JavaScript
+            properties. Copy the results as text, or export the detection details as JSON.
+          </p>
+        </div>
+        <div class="evidence">
+          <div class="evidence-top"><span>EVIDENCE · RUBY ON RAILS</span><span>LOCAL</span></div>
+          <div class="evidence-row"><span>meta</span>csrf-param = authenticity_token</div>
+          <div class="evidence-row"><span>cookies</span>_session_id present</div>
+          <div class="evidence-row"><span>html</span>name="authenticity_token"</div>
+          <div class="evidence-row"><span>headers</span>x-runtime: 0.018204</div>
+          <div class="evidence-row"><span>confidence</span>96 · grade A</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div>
+        <p class="kicker">PRIVACY</p>
+        <h2>Detection runs locally.</h2>
+        <p class="lede">
+          OpenTechCheck checks the page in your browser. Results stay in temporary storage for each
+          tab and clear when you close the tab.
+        </p>
+      </div>
+      <div class="lists">
+        <div class="list">
+          <b>Stays in your browser</b>
+          <p>The page signals the extension reads: HTML, scripts, headers, cookies, meta tags.</p>
+          <p>Detection results, kept per tab.</p>
+          <p>Copied text and exported JSON.</p>
+        </div>
+        <div class="list">
+          <b>Sent only if you choose</b>
+          <p>A detection report, when you open the form and press Submit.</p>
+          <p>Automatic domain reports, off until you turn them on.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="footerband">
       <p class="kicker" style="color: #9a97f0">HOW IT WORKS</p>
       <div class="steps">
@@ -596,6 +725,9 @@
           evidence as JSON.
         </div>
       </div>
+      <p class="legal">
+        <span>OpenTechCheck</span><span>Apache-2.0</span><span>Privacy</span><span>GitHub</span>
+      </p>
     </div>
   </body>
 </html>

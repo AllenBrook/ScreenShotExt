@@ -18,7 +18,7 @@
   "tabs": {
     "capture": {
       "label": "擷取",
-      "alt": "OpenScreenShot 的彈出式視窗開在 Chrome 的網頁上，顯示整個網頁、可見範圍、選取區域與錄影選項。"
+      "alt": "OpenScreenShot 的彈出式視窗開在 Chrome 的網頁上，旁邊是這個網頁的整頁 PNG，從頁首到頁尾完整呈現。"
     },
     "annotate": {
       "label": "註解",

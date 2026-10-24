@@ -2,32 +2,90 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>hero — the popup over a page</title>
+    <title>hero — the popup and its full-page capture</title>
     <link rel="stylesheet" href="poster-site.css" />
     <style>
       /* The homepage's top shot, 1200x720: the real popup, whole, hanging
-         from the toolbar icon of a full-bleed browser window. */
+         from the toolbar icon of a browser window, and beside the window
+         the full-page capture that its Full Page option produces. */
+      .window {
+        right: auto;
+        width: 800px;
+        border-right: 1px solid #e9e9ec;
+      }
       .window-top {
         height: 48px;
         padding: 0 18px;
       }
       .urlbar {
         height: 31px;
-        max-width: 560px;
+        max-width: 420px;
         font-size: 13px;
       }
       .window-body {
         height: 672px;
       }
+      /* The page at its 1100px capture width, scaled to the window. */
       .window-body iframe {
-        width: 1200px;
-        height: 1100px;
+        width: 1100px;
+        height: 925px;
+        transform: scale(0.7273);
       }
       /* Chrome opens the popup under the toolbar icon it belongs to, flush
          with the window's right edge. */
       .popup {
-        right: 14px;
+        right: 414px;
         top: 56px;
+      }
+
+      .result {
+        position: absolute;
+        inset: 0 0 0 800px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 26px 0 28px;
+      }
+      .result-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .result-label .check {
+        display: grid;
+        place-items: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #1e8e3e;
+        color: #fff;
+      }
+      .result-label .size {
+        color: #6e6e76;
+        font-weight: 400;
+      }
+      /* The whole 1100x2100 page, top to footer, at the height the column
+         leaves. */
+      .result-shot {
+        flex: 1;
+        min-height: 0;
+        aspect-ratio: 1100 / 2100;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow:
+          0 0 0 1px rgba(23, 23, 26, 0.1),
+          0 2px 6px rgba(23, 23, 26, 0.07),
+          0 24px 48px -20px rgba(23, 23, 26, 0.32);
+      }
+      .result-shot img {
+        display: block;
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
@@ -49,19 +107,6 @@
           </svg>
           opentechcheck.com
         </span>
-        <span class="install-link">
-          Add to Chrome
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-          >
-            <path d="M7 17 17 7M9 7h8v8" />
-          </svg>
-        </span>
         <span class="ext-icon"><img src="brand-mark.svg" width="20" height="20" alt="" /></span>
       </div>
       <div class="window-body">
@@ -70,6 +115,25 @@
     </div>
     <div class="popup">
       <img src="captures/popup.png" alt="" />
+    </div>
+    <div class="result">
+      <p class="result-label">
+        <span class="check"
+          ><svg
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m5 12.5 4.5 4.5L19 7.5" /></svg
+        ></span>
+        Full page · PNG <span class="size">1100 × 2100</span>
+      </p>
+      <div class="result-shot"><img src="captures/page.png" alt="" /></div>
     </div>
   </body>
 </html>

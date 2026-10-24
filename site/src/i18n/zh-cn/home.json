@@ -18,7 +18,7 @@
   "tabs": {
     "capture": {
       "label": "截图",
-      "alt": "Chrome 中网页上方打开的 OpenScreenShot 弹出窗口，显示整页、可见区域、选定区域和录屏选项。"
+      "alt": "Chrome 中网页上方打开的 OpenScreenShot 弹出窗口，旁边是这张网页的整页 PNG，从页眉到页脚完整呈现。"
     },
     "annotate": {
       "label": "标注",

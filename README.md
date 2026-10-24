@@ -66,7 +66,7 @@ export as PNG, JPEG, WebP, or PDF, and record a tab. Everything runs on your dev
 
 <br />
 
-<img src="media/hero.jpg" alt="The OpenScreenShot popup open over a web page in Chrome, with Full Page, Visible Area, Selected Region and Record options" width="860" />
+<img src="media/hero.jpg" alt="The OpenScreenShot popup open over a web page in Chrome, and beside it the full-page PNG of that page, from the header to the footer" width="860" />
 
 <sub>Chrome preview. Screenshot capture and editing are also available in Firefox.</sub>
 
