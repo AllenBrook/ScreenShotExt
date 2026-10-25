@@ -9,7 +9,7 @@
     },
     "full-page-screenshot": {
       "label": "Capturas de página completa por navegador",
-      "title": "Cómo hacer una captura de página completa en cada navegador — OpenScreenShot",
+      "title": "Captura de página completa por navegador — OpenScreenShot",
       "description": "Métodos integrados de captura de página completa en Chrome, Edge, Firefox, Safari, Brave, Opera, Vivaldi y Arc, con atajos, límites y una opción con extensión.",
       "heading": "Capturas de página completa, navegador a navegador.",
       "lead": "La mayoría de los navegadores pueden capturar una página entera sin extensiones, pero cada uno lo esconde en un sitio distinto. Busca tu navegador para ver los pasos integrados, los límites y cuándo ayuda una extensión."

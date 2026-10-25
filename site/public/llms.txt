@@ -42,7 +42,7 @@ Every page on this site has a Markdown copy at `<page URL>index.md`, linked from
 
 ## Full-page screenshots by browser
 
-- [How to take a full-page screenshot in Chrome: DevTools or an extension](https://openscreenshot.app/full-page-screenshot/chrome/): Use the Capture full size screenshot command in Chrome DevTools, learn where it falls short, and compare it with a full-page capture in OpenScreenShot.
+- [Chrome full-page screenshot: DevTools or extension](https://openscreenshot.app/full-page-screenshot/chrome/): Use the Capture full size screenshot command in Chrome DevTools, learn where it falls short, and compare it with a full-page capture in OpenScreenShot.
 - [How to take a full-page screenshot in Microsoft Edge](https://openscreenshot.app/full-page-screenshot/edge/): Capture a whole page with Edge’s built-in Screenshot tool or its DevTools command, know the limits, and use OpenScreenShot from the Chrome Web Store.
 - [How to take a full-page screenshot in Firefox](https://openscreenshot.app/full-page-screenshot/firefox/): Capture a whole page with Firefox’s built-in Screenshots tool or the :screenshot command, check the size limits, and use the OpenScreenShot add-on.
 - [How to take a full-page screenshot in Safari](https://openscreenshot.app/full-page-screenshot/safari/): Safari on the Mac has no full-page image capture. Save the whole page as a PDF, capture one element in Web Inspector, or use another browser.

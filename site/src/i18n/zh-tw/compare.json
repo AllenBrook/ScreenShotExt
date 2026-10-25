@@ -4,7 +4,7 @@
     "description": "以事實比較三款整頁截圖擴充功能：商店上架狀態、開放原始碼、常駐網站存取權、一鍵擷取、免費註解、PDF 和分頁錄影。"
   },
   "label": "比較",
-  "heading": "OpenScreenShot vs GoFullPage vs FullPage Capture",
+  "heading": "整頁截圖擴充功能比較",
   "lead": "GoFullPage 在 2026 年 8 月下架後已重回 Chrome 線上應用程式商店，現在也推出了 Firefox 版，但它的程式碼自 2018 年起就不公開。OpenScreenShot 是可以讓你稽核的開放原始碼整頁截圖工具。FullPage Capture 是封閉原始碼的擴充功能，安裝時就要求存取每個網站。",
   "asOf": "資訊截至 2026 年 10 月 9 日，來自各商店頁面、各擴充功能的 manifest 和廠商自己的網站。GoFullPage 自 2018 年起的私有分支，出自它自己的常見問題。",
   "columns": {

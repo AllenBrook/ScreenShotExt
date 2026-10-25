@@ -37,6 +37,8 @@ OpenScreenShot exports the screenshot as image content in a PDF. It does not tur
 
 A screenshot PDF is useful when the visible appearance matters: an interface review, a bug report, or a visual record. The browser’s print-to-PDF workflow can produce a different layout because websites may apply print styles. Choose based on whether you need the rendered screen or the site’s printable document.
 
+For the print-to-PDF steps on a Mac, see the [Safari full-page capture guide](/full-page-screenshot/safari/), which also explains how the printed page can differ from the screen.
+
 ## Check the saved file
 
 Open the actual exported PDF and review the text size, annotations, redactions, and page breaks. Do not judge only from the editor preview. The image-scale control used for PNG, JPEG, and WebP is hidden for PDF because PDF output sizes to its page layout.

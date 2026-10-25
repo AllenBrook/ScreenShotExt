@@ -64,11 +64,18 @@ const [npmPre, npmPost] = d.proof.npm.split('{n}');
 const cwsUsers = new Intl.NumberFormat(locale).format(27967);
 
 // One review, quoted under the hero in its original English on every
-// locale. Only the attribution is translated.
-const REVIEW_URL =
-  'https://chromewebstore.google.com/reviews/46c0717b-13c1-49b0-b9fb-766ffd53e55c';
-const REVIEW_QUOTE =
-  'I was getting really tired of manually stitching screenshots together and then opening another tool just to annotate them. … OpenScreenShot does exactly what I need. I can capture the whole table, annotate it, and save it in one workflow.';
+// locale. Only the attribution is translated. The visible quote and JSON-LD
+// share this source; the author's name and 5/5 rating were checked against
+// the linked review on 2026-10-25.
+const reviewLd = {
+  '@type': 'Review',
+  url: 'https://chromewebstore.google.com/reviews/46c0717b-13c1-49b0-b9fb-766ffd53e55c',
+  author: { '@type': 'Person', name: 'David Mackinnon' },
+  reviewBody:
+    'I was getting really tired of manually stitching screenshots together and then opening another tool just to annotate them. … OpenScreenShot does exactly what I need. I can capture the whole table, annotate it, and save it in one workflow.',
+  inLanguage: 'en',
+  reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5, worstRating: 1 },
+};
 
 const softwareLd = {
   '@context': 'https://schema.org',
@@ -84,6 +91,7 @@ const softwareLd = {
   isAccessibleForFree: true,
   inLanguage: LANG_TAGS[locale],
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  review: reviewLd,
   author: { '@type': 'Organization', name: 'PGHQ.dev', url: 'https://github.com/pghqdev' },
 };
 
@@ -246,13 +254,14 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
         <a href="https://opentechcheck.com" target="_blank" rel="noopener">{d.hero.creditCta}</a>
       </p>
       <figure class="hero-quote">
-        <blockquote lang="en" cite={REVIEW_URL}>
-          <p>“{REVIEW_QUOTE}”</p>
+        <blockquote lang="en" cite={reviewLd.url}>
+          <p>“{reviewLd.reviewBody}”</p>
         </blockquote>
         <figcaption>
-          <a href={REVIEW_URL} target="_blank" rel="noopener"
-            >{d.review.attribution.replace('{name}', 'David M.')}</a
+          <a href={reviewLd.url} target="_blank" rel="noopener"
+            >{d.review.attribution.replace('{name}', reviewLd.author.name)}</a
           >
+          <span> · {reviewLd.reviewRating.ratingValue}/{reviewLd.reviewRating.bestRating}</span>
         </figcaption>
       </figure>
     </div>
@@ -404,7 +413,7 @@ if (faqLd.mainEntity.length !== homeFaq.length) {
   </section>
 
   <Fragment slot="body-end">
-    <script is:inline src="/assets/webmcp.js" defer></script>
+    <script src="../../scripts/webmcp.js"></script>
   </Fragment>
 </Base>
 

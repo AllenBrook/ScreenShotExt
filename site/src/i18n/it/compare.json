@@ -4,7 +4,7 @@
     "description": "Un confronto basato sui fatti tra le tre estensioni per screenshot a pagina intera: presenza negli store, open source, accesso permanente ai siti, cattura con un clic, annotazioni gratuite, PDF e registrazione delle schede."
   },
   "label": "Confronto",
-  "heading": "OpenScreenShot vs GoFullPage vs FullPage Capture",
+  "heading": "Confronta le estensioni per screenshot a pagina intera",
   "lead": "GoFullPage è tornata sul Chrome Web Store dopo una rimozione ad agosto 2026 e ora esiste anche per Firefox, ma il suo codice è privato dal 2018. OpenScreenShot è lo screenshot a pagina intera open source che puoi verificare. FullPage Capture è un'estensione chiusa che chiede l'accesso a tutti i siti web all'installazione.",
   "asOf": "Fatti aggiornati al 9 ott 2026, dalla scheda di ogni store, dal manifest di ogni estensione e dai siti dei produttori. Il fork privato di GoFullPage dal 2018 viene dalle sue stesse FAQ.",
   "columns": {

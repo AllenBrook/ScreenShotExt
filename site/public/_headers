@@ -1,3 +1,7 @@
+# Static assets can bypass site-worker.js. Keep their HSTS policy in sync
+# with the Worker's response header.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 /fonts/*

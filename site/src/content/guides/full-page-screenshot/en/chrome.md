@@ -1,5 +1,5 @@
 ---
-title: 'How to take a full-page screenshot in Chrome: DevTools or an extension'
+title: 'Chrome full-page screenshot: DevTools or extension'
 description: Use the Capture full size screenshot command in Chrome DevTools, learn where it falls short, and compare it with a full-page capture in OpenScreenShot.
 answer: 'No menu item. Open DevTools, open the Command Menu, type screenshot, and run Capture full size screenshot. Chrome saves a PNG.'
 builtIn: 'DevTools only'
@@ -54,5 +54,7 @@ If a menu opens instead of a capture, select **Full Page**. The **One-click Expr
 - Use DevTools for a one-off PNG of an ordinary page on a computer where you cannot add extensions.
 - Use OpenScreenShot for pages that scroll an inner panel, pages with sticky headers, and captures you want to mark up before you share them, as in [bug reports](/use-cases/bug-reports/) or [design review](/use-cases/design-review/).
 - Use either one in Microsoft Edge too; the [Edge guide](/full-page-screenshot/edge/) covers Edge’s own Screenshot tool.
+
+For steps in other Mac browsers, see the [Safari full-page capture guide](/full-page-screenshot/safari/) and the [Arc full-page screenshot guide](/full-page-screenshot/arc/).
 
 If a capture fails on a browser page such as `chrome://settings`, see [support and known limitations](/support/).

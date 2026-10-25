@@ -22,4 +22,4 @@ if (navigator.modelContext && typeof navigator.modelContext.registerTool === 'fu
     },
   });
 }
-// ponytail: registration is the checked behavior; in-page rendering is impossible for cross-origin URLs, so the tool truthfully returns instructions instead of faking a capture
+// Return local capture instructions: this page cannot capture cross-origin URLs.
