@@ -218,6 +218,7 @@ describe('normalizeCaptureAction', () => {
   it('ships with the editor as the default', () => {
     expect(DEFAULT_SETTINGS.captureAction).toBe('editor');
     expect(DEFAULT_SETTINGS.keepCompletionWindowAfterDownload).toBe(true);
+    expect(DEFAULT_SETTINGS.filenameTemplate).toBe('AutoDown_{domain}_{title}_{date}_{time}');
   });
 });
 

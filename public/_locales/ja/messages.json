@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "録画するタブで、ツールバーの OpenScreenShot アイコンからこのページを開いてください。",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "インストールが完了しました",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "このタブを閉じてかまいません。",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

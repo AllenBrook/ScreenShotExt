@@ -229,7 +229,7 @@ export const DEFAULT_SETTINGS: Settings = {
   pdfMultiPage: true,
   pdfMarginMm: 8,
   quality: 0.92,
-  filenameTemplate: 'screenshot_{date}_{time}',
+  filenameTemplate: 'AutoDown_{domain}_{title}_{date}_{time}',
   videoExportFormat: 'mp4',
   annotationColor: tokens.swatchRed,
   annotationStrokeWidth: 6,

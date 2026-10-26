@@ -2501,7 +2501,7 @@ export function useEditor() {
   const dismissStageNotice = useCallback(() => setStageNotice(null), []);
 
   const defaultFilename = useCallback(() => {
-    const tmpl = settings?.filenameTemplate ?? 'screenshot_{date}_{time}';
+    const tmpl = settings?.filenameTemplate ?? 'AutoDown_{domain}_{title}_{date}_{time}';
     return formatFilename(tmpl, {
       width: visibleSize?.w ?? 0,
       height: visibleSize?.h ?? 0,

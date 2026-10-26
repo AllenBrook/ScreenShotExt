@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Abre esta página con el icono de OpenScreenShot de la barra de herramientas, en la pestaña que quieres grabar.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Instalado correctamente",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Puedes cerrar esta pestaña.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

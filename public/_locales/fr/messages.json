@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Ouvrez cette page avec l’icône OpenScreenShot de la barre d’outils, sur l’onglet à enregistrer.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Installation réussie",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Vous pouvez fermer cet onglet.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }
