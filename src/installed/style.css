@@ -31,8 +31,22 @@ h1 {
   font-size: var(--fs-lg);
   font-weight: 500;
 }
-#hint {
+#hint,
+#shortcut,
+#ctrlG {
   margin: 0;
   font-size: var(--fs-sm);
   opacity: 0.8;
+  max-width: 36em;
+}
+#setShortcut {
+  margin-top: 8px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  padding: 8px 14px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
 }

@@ -2802,5 +2802,51 @@
   "installedCloseHint": {
     "message": "可以關閉此頁面。",
     "description": "In-extension post-install page: the user may close it."
+  },
+  "commandCaptureFullPage": {
+    "message": "擷取整個可捲動頁面",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureVisible": {
+    "message": "擷取目前可見區域",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureRegion": {
+    "message": "擷取選定區域",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandStopRecording": {
+    "message": "停止錄製",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandRevealRecordingBar": {
+    "message": "切換到錄製控制項",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "settingsFullPageShortcutHint": {
+    "message": "整頁預設快捷鍵是 Alt+Shift+G。Edge/Chrome 把 Ctrl+G 留給「尋找下一個」，因此無法在安裝時自動綁定。你仍可在快捷鍵設定裡改成 Ctrl+G。",
+    "description": "Settings: why Ctrl+G is not auto-assigned and what the default is."
+  },
+  "installedShortcutAssigned": {
+    "message": "整頁截圖快捷鍵：$SHORTCUT$",
+    "description": "Post-install: the auto-assigned full-page shortcut.",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1",
+        "example": "Alt+Shift+G"
+      }
+    }
+  },
+  "installedShortcutMissing": {
+    "message": "整頁截圖尚未設定快捷鍵。",
+    "description": "Post-install: shown when the browser left capture-full-page unbound."
+  },
+  "installedCtrlGNote": {
+    "message": "Edge/Chrome 把 Ctrl+G 留給「尋找下一個」，無法自動綁定。預設是 Alt+Shift+G。可在快捷鍵設定中改成 Ctrl+G。",
+    "description": "Post-install: explains the Ctrl+G conflict and how to set it."
+  },
+  "installedSetShortcut": {
+    "message": "設定快捷鍵",
+    "description": "Post-install: opens the browser shortcut settings page."
   }
 }
