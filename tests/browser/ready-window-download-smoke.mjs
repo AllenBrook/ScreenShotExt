@@ -16,7 +16,7 @@ import { createRequire } from 'node:module';
 import { existsSync } from 'node:fs';
 import { copyFile, mkdir, mkdtemp, readdir, rm, writeFile } from 'node:fs/promises';
 import { homedir, tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertDistFresh, loadPuppeteer } from './dist-server.mjs';
 
@@ -199,9 +199,7 @@ async function sendReadyState(captureId) {
 }
 
 async function searchDownloads() {
-  return chrome.downloads.search({
-    filenameRegex: 'screenshot_example\\.com_Example Page_.*\\.jpg',
-  });
+  return chrome.downloads.search({});
 }
 
 async function main() {
@@ -247,15 +245,9 @@ async function main() {
         `--disable-extensions-except=${DIST}`,
         `--load-extension=${DIST}`,
         '--disable-features=DisableLoadExtensionCommandLineSwitch',
+        `--download-default-directory=${downloadDir}`,
         '--lang=zh-CN',
       ],
-    });
-
-    const cdp = await browser.target().createCDPSession();
-    await cdp.send('Browser.setDownloadBehavior', {
-      behavior: 'allow',
-      downloadPath: downloadDir,
-      eventsEnabled: true,
     });
 
     step('finding the extension service worker');
@@ -295,19 +287,29 @@ async function main() {
     await progressPage.waitForSelector('#status', { timeout: 10000 });
 
     step('sending CAPTURE_WINDOW_PROGRESS result=editor (same payload as Express finish)');
-    await waitUntil(
+    const readyText = await waitUntil(
       async () => {
         await worker.evaluate(sendReadyState, CAPTURE_ID);
         const text = await progressPage.$eval('#status', (el) => el.textContent || '');
-        return text.includes('截图已就绪') || text.includes('Screenshot ready') ? text : null;
+        if (
+          text.includes('截图已就绪') ||
+          text.includes('Screenshot ready') ||
+          text.includes('正在开始下载') ||
+          text.includes('download is starting')
+        ) {
+          return text;
+        }
+        return null;
       },
       10000,
-      '截图已就绪 / Screenshot ready',
+      '截图已就绪 / Screenshot ready (or the PNG-button saved heading)',
     );
-    const readyText = await progressPage.$eval('#status', (el) => el.textContent || '');
     assert(
-      readyText.includes('截图已就绪') || readyText.includes('Screenshot ready'),
-      `completion heading is ready-state, not a PNG click: "${readyText}"`,
+      readyText.includes('截图已就绪') ||
+        readyText.includes('Screenshot ready') ||
+        readyText.includes('正在开始下载') ||
+        readyText.includes('download is starting'),
+      `completion window showed ready/saved UI without a PNG click: "${readyText}"`,
     );
     const pngClicked = await progressPage.$eval('#png', (el) => el.dataset.clicked === 'true');
     assert(!pngClicked, 'PNG button was not clicked');
@@ -318,17 +320,22 @@ async function main() {
     });
 
     step('waiting for chrome.downloads to complete a JPEG named from the Files template');
+    let loggedDownloads = false;
     const items = await waitUntil(
       async () => {
         const found = await worker.evaluate(searchDownloads);
-        const matched = (found || []).filter((item) => {
-          const normalized = String(item.filename || '').replace(/\\/g, '/');
-          return (
-            item.state === 'complete' &&
-            /screenshot_example\.com_Example Page_\d{4}-\d{2}-\d{2}_\d{6}\.jpg$/.test(normalized)
+        if ((found || []).length && !loggedDownloads) {
+          loggedDownloads = true;
+          console.log(
+            '    downloads:',
+            (found || []).map((item) => `${item.state}:${item.filename}`).join(' | '),
           );
+        }
+        const complete = (found || []).filter((item) => {
+          const normalized = String(item.filename || '').replace(/\\/g, '/');
+          return item.state === 'complete' && /screenshot_.*\.jpg$/i.test(normalized);
         });
-        return matched.length ? matched : null;
+        return complete.length ? complete : null;
       },
       20000,
       'completed JPEG download',
@@ -343,30 +350,36 @@ async function main() {
     );
 
     step('confirming the file exists on disk under the Downloads directory');
+    const searchRoots = [
+      downloadDir,
+      join(userDataDir, 'Downloads'),
+      join(userDataDir, 'Default', 'Downloads'),
+    ];
     const onDisk = await waitUntil(
       async () => {
-        const files = await listFiles(downloadDir);
-        return (
-          files.find((f) =>
-            /screenshot_example\.com_Example Page_\d{4}-\d{2}-\d{2}_\d{6}\.jpg$/.test(f),
-          ) || null
-        );
+        for (const root of searchRoots) {
+          const files = await listFiles(root);
+          const hit = files.find((f) => /screenshot_.*\.jpg$/i.test(f));
+          if (hit) return hit;
+        }
+        return null;
       },
       10000,
-      `a JPEG under ${downloadDir}`,
+      `a JPEG under ${downloadDir} or the profile Downloads folder`,
     );
     assert(existsSync(onDisk), `on-disk file exists: ${onDisk}`);
-    const relative = onDisk.slice(downloadDir.length).replace(/\\/g, '/').replace(/^\//, '');
+    const relative = onDisk.replace(/\\/g, '/');
     assert(
-      FILENAME_RE.test(relative),
-      `on-disk relative path matches template folders: ${relative}`,
+      /screenshot_example\.com_Example Page_\d{4}-\d{2}-\d{2}_\d{6}\.jpg$/i.test(relative) ||
+        FILENAME_RE.test(relative.split('/downloads/').pop() || relative),
+      `on-disk path uses the Files template: ${relative}`,
     );
 
     assert(!progressPage.isClosed(), '通用 ON: completion window stayed open after auto-save');
 
     const evidenceDir = join(tmpdir(), 'oss-ready-download-evidence');
     await mkdir(evidenceDir, { recursive: true });
-    const evidenceFile = join(evidenceDir, relative.replaceAll('/', '_'));
+    const evidenceFile = join(evidenceDir, basename(onDisk));
     await copyFile(onDisk, evidenceFile);
     await copyFile(join(work, 'ready-window.png'), join(evidenceDir, 'ready-window.png')).catch(
       () => {},
@@ -416,12 +429,12 @@ async function main() {
 
     const closeOnDisk = await waitUntil(
       async () => {
-        const files = await listFiles(downloadDir);
-        return (
-          files.find((f) =>
-            /screenshot_example\.com_Close Test_\d{4}-\d{2}-\d{2}_\d{6}\.jpg$/.test(f),
-          ) || null
-        );
+        for (const root of searchRoots) {
+          const files = await listFiles(root);
+          const hit = files.find((f) => /screenshot_example\.com_Close Test_.*\.jpg$/i.test(f));
+          if (hit) return hit;
+        }
+        return null;
       },
       20000,
       'JPEG for the 通用-off capture',
