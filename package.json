@@ -1,6 +1,6 @@
 {
   "name": "openscreenshotExt",
-  "version": "2.5.2.4",
+  "version": "2.5.2.5",
   "description": "Open-source screenshot tool for Chrome and Firefox — full-page, region, and visible-area capture with annotation and PDF export.",
   "license": "MIT",
   "type": "module",
@@ -40,6 +40,7 @@
     "smoke:setup": "node tests/browser/setup-smoke.mjs",
     "smoke:worker": "node tests/browser/worker-thumbnail-smoke.mjs",
     "smoke:ready-download": "node tests/browser/ready-window-download-smoke.mjs",
+    "smoke:commands": "node tests/browser/commands-shortcut-smoke.mjs",
     "smoke:capture": "node tests/browser/capture-overlay-smoke.mjs",
     "build:firefox": "pnpm run tokens && tsc --noEmit && vite build --mode firefox",
     "dev:firefox": "vite --mode firefox",

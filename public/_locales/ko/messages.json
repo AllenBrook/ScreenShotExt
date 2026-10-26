@@ -2802,5 +2802,51 @@
   "installedCloseHint": {
     "message": "이 탭을 닫아도 됩니다.",
     "description": "In-extension post-install page: the user may close it."
+  },
+  "commandCaptureFullPage": {
+    "message": "스크롤되는 전체 페이지 캡처",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureVisible": {
+    "message": "보이는 영역 캡처",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureRegion": {
+    "message": "선택한 영역 캡처",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandStopRecording": {
+    "message": "현재 녹화 중지",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandRevealRecordingBar": {
+    "message": "녹화 컨트롤로 전환",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "settingsFullPageShortcutHint": {
+    "message": "전체 페이지 기본 단축키는 Alt+Shift+G입니다. Chrome과 Edge는 Ctrl+G를 다음 찾기에 쓰므로 자동으로 할당하지 않습니다. 단축키 설정에서 그래도 Ctrl+G로 바꿀 수 있습니다.",
+    "description": "Settings: why Ctrl+G is not auto-assigned and what the default is."
+  },
+  "installedShortcutAssigned": {
+    "message": "전체 페이지 캡처: $SHORTCUT$",
+    "description": "Post-install: the auto-assigned full-page shortcut.",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1",
+        "example": "Alt+Shift+G"
+      }
+    }
+  },
+  "installedShortcutMissing": {
+    "message": "전체 페이지 캡처 단축키가 아직 없습니다.",
+    "description": "Post-install: shown when the browser left capture-full-page unbound."
+  },
+  "installedCtrlGNote": {
+    "message": "Chrome과 Edge는 Ctrl+G를 다음 찾기에 예약하므로 자동으로 할당할 수 없습니다. 기본값은 Alt+Shift+G입니다. 단축키 설정에서 Ctrl+G로 바꿀 수 있습니다.",
+    "description": "Post-install: explains the Ctrl+G conflict and how to set it."
+  },
+  "installedSetShortcut": {
+    "message": "키보드 단축키 설정",
+    "description": "Post-install: opens the browser shortcut settings page."
   }
 }

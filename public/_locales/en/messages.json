@@ -2809,5 +2809,51 @@
   "installedCloseHint": {
     "message": "You can close this tab.",
     "description": "In-extension post-install page: the user may close it."
+  },
+  "commandCaptureFullPage": {
+    "message": "Capture the full scrolling page",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureVisible": {
+    "message": "Capture the visible area",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandCaptureRegion": {
+    "message": "Capture a selected region",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandStopRecording": {
+    "message": "Stop the current recording",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "commandRevealRecordingBar": {
+    "message": "Switch to the recording controls",
+    "description": "Command name on chrome://extensions/shortcuts."
+  },
+  "settingsFullPageShortcutHint": {
+    "message": "Full page defaults to Alt+Shift+G. Chrome and Edge use Ctrl+G for Find next, so they will not assign Ctrl+G automatically. You can still set Ctrl+G in shortcut settings.",
+    "description": "Settings: why Ctrl+G is not auto-assigned and what the default is."
+  },
+  "installedShortcutAssigned": {
+    "message": "Full-page capture: $SHORTCUT$",
+    "description": "Post-install: the auto-assigned full-page shortcut.",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1",
+        "example": "Alt+Shift+G"
+      }
+    }
+  },
+  "installedShortcutMissing": {
+    "message": "Full-page capture has no shortcut yet.",
+    "description": "Post-install: shown when the browser left capture-full-page unbound."
+  },
+  "installedCtrlGNote": {
+    "message": "Chrome and Edge reserve Ctrl+G for Find next, so it cannot be assigned automatically. The default is Alt+Shift+G. You can change it to Ctrl+G in shortcut settings.",
+    "description": "Post-install: explains the Ctrl+G conflict and how to set it."
+  },
+  "installedSetShortcut": {
+    "message": "Set keyboard shortcut",
+    "description": "Post-install: opens the browser shortcut settings page."
   }
 }

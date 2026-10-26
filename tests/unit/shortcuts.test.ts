@@ -1,14 +1,32 @@
 import { readFileSync } from 'node:fs';
 import { describe, it, expect } from 'vitest';
-import { resolveModeKeys } from '../../src/shared/shortcuts';
+import {
+  FULL_PAGE_SUGGESTED_KEY,
+  commandToMode,
+  resolveModeKeys,
+} from '../../src/shared/shortcuts';
 
 describe('manifest capture-full-page shortcut', () => {
-  it('suggests Ctrl+G (Command+G on Mac) for a fresh install', () => {
+  it('suggests Alt+Shift+G so Chromium can assign it (Ctrl+G is Find next)', () => {
     const manifest = JSON.parse(readFileSync('manifest.json', 'utf8'));
+    expect(FULL_PAGE_SUGGESTED_KEY).toBe('Alt+Shift+G');
     expect(manifest.commands['capture-full-page'].suggested_key).toEqual({
-      default: 'Ctrl+G',
-      mac: 'Command+G',
+      default: 'Alt+Shift+G',
+      mac: 'Alt+Shift+G',
     });
+    expect(manifest.commands['capture-full-page'].description).toBe(
+      '__MSG_commandCaptureFullPage__',
+    );
+  });
+});
+
+describe('commandToMode', () => {
+  it('maps capture-full-page to the full-page capture mode', () => {
+    expect(commandToMode('capture-full-page')).toBe('full-page');
+    expect(commandToMode('capture-visible')).toBe('visible');
+    expect(commandToMode('capture-region')).toBe('region');
+    expect(commandToMode('capture-element')).toBe('element');
+    expect(commandToMode('stop-recording')).toBeNull();
   });
 });
 

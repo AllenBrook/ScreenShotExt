@@ -227,3 +227,27 @@ describe('onInstalled', () => {
     expect(openedUrls()).toEqual([]);
   });
 });
+
+describe('commands.onCommand', () => {
+  beforeEach(() => {
+    vi.resetModules();
+    fakeChrome = makeFakeChrome();
+    vi.stubGlobal('chrome', fakeChrome);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('starts a full-page capture when capture-full-page fires', async () => {
+    await import('../../src/background/index.ts');
+    const listeners = fakeChrome.commands.onCommand.addListener.mock.calls.map(
+      ([fn]) => fn as (command: string) => void,
+    );
+    expect(listeners.length).toBeGreaterThan(0);
+    for (const listener of listeners) listener('capture-full-page');
+    await flushMicrotasks();
+    await releaseAllReads();
+    expect(fakeChrome.runtime.sendMessage).toHaveBeenCalledWith({ type: 'CAPTURE_STARTED' });
+  });
+});

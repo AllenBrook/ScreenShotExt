@@ -47,6 +47,7 @@ import {
   normalizeCaptureAction,
   normalizeCaptureDelay,
 } from '../shared/utils';
+import { commandToMode } from '../shared/shortcuts';
 import {
   clampRegionRect,
   computeScrollPositions,
@@ -971,21 +972,6 @@ async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean
     return { ok: true };
   } catch {
     return { ok: false };
-  }
-}
-
-function commandToMode(command: string): CaptureMode | null {
-  switch (command) {
-    case 'capture-full-page':
-      return 'full-page';
-    case 'capture-visible':
-      return 'visible';
-    case 'capture-region':
-      return 'region';
-    case 'capture-element':
-      return 'element';
-    default:
-      return null;
   }
 }
 

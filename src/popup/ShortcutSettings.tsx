@@ -99,6 +99,7 @@ export function ShortcutSettings(panel: {
       <button class="btn-secondary shortcut-manage" onClick={() => void open(openShortcutSettings)}>
         {t('settingsChangeShortcuts')}
       </button>
+      <p class="settings-hint">{t('settingsFullPageShortcutHint')}</p>
       <p class="settings-hint">{t('settingsShortcutConflictHint')}</p>
       {IS_FIREFOX && <p class="settings-hint">{t('settingsFirefoxShortcutsHint')}</p>}
       <h3>{t('settingsEditorShortcuts')}</h3>
