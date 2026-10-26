@@ -76,3 +76,15 @@ it('passes keep-after-download through to the ready window', async () => {
     keepAfterDownload: false,
   });
 });
+
+it('passes keep-after-download on editor ready so auto-save can close the window', async () => {
+  await api.openCaptureProgress(1);
+  await api.finishCaptureProgress('editor', 1, 'cap-ready', { keepAfterDownload: false });
+  expect(api.getCaptureProgress()).toEqual({
+    percent: 100,
+    result: 'editor',
+    sourceWindowId: 1,
+    captureId: 'cap-ready',
+    keepAfterDownload: false,
+  });
+});

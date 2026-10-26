@@ -285,6 +285,7 @@ describe('screenshot capture overlay lifecycle', () => {
       result: 'editor',
       sourceWindowId: 1,
       captureId: 'cap-1',
+      keepAfterDownload: true,
     });
   });
 
@@ -420,6 +421,21 @@ describe('screenshot capture overlay lifecycle', () => {
       type: 'CAPTURE_WINDOW_PROGRESS',
       percent: 100,
       result: 'download',
+      sourceWindowId: 1,
+      captureId: 'cap-1',
+      keepAfterDownload: false,
+    });
+  });
+
+  it('passes keep-after-download on the editor ready window so 通用 can auto-close', async () => {
+    keepCompletionWindowAfterDownload = false;
+    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
+    await capture();
+    expect(fakeChrome.downloads.download).not.toHaveBeenCalled();
+    expect(messages).toContainEqual({
+      type: 'CAPTURE_WINDOW_PROGRESS',
+      percent: 100,
+      result: 'editor',
       sourceWindowId: 1,
       captureId: 'cap-1',
       keepAfterDownload: false,

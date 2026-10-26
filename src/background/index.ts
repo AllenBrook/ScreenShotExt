@@ -857,9 +857,10 @@ async function deliverCapture(
   });
   const settings = await getSettings();
   const action = normalizeCaptureAction(settings.captureAction);
+  const keepAfterDownload = settings.keepCompletionWindowAfterDownload !== false;
 
   if (action === 'editor') {
-    if (!(await finishCaptureProgress('editor', windowId, captureId))) {
+    if (!(await finishCaptureProgress('editor', windowId, captureId, { keepAfterDownload }))) {
       await chrome.tabs.create({ url: EDITOR_URL, windowId });
     }
     // The editor tab is the confirmation, so any progress badge left by a
@@ -883,7 +884,7 @@ async function deliverCapture(
       });
       return false;
     }
-    await finishCaptureProgress('clipboard', windowId, captureId);
+    await finishCaptureProgress('clipboard', windowId, captureId, { keepAfterDownload });
     void recordExportSuccess();
     void flashDoneBadge();
     return true;
@@ -893,7 +894,7 @@ async function deliverCapture(
   // from this worker during capture is what Edge showed as "starting" without
   // writing a file, while the same call after the window's PNG click worked.
   // Visible/region/element never open that window, so they still save here.
-  const keepAfterDownload = settings.keepCompletionWindowAfterDownload !== false;
+  // Editor / clipboard results use the same window auto-save (「截图已就绪」).
   const shown = await finishCaptureProgress('download', windowId, captureId, {
     keepAfterDownload,
   });
@@ -974,6 +975,12 @@ async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean
     const format = action === 'png' ? 'png' : settings.defaultFormat;
     const id = await saveCaptureImage(capture, settings, format);
     await waitForDownloadComplete(id).catch(() => undefined);
+    try {
+      const [item] = await chrome.downloads.search({ id });
+      if (item?.state === 'interrupted') return { ok: false };
+    } catch {
+      // search is best-effort; onChanged already ran in waitForDownloadComplete.
+    }
     void recordExportSuccess();
     return { ok: true };
   } catch {

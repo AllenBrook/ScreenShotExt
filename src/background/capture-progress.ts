@@ -4,7 +4,7 @@ export type CaptureProgress = {
   result?: 'editor' | 'clipboard' | 'download';
   sourceWindowId?: number;
   captureId?: string;
-  /** When result is download, false means the window should close after the save. */
+  /** When false, the completion window should close after the automatic save. */
   keepAfterDownload?: boolean;
 };
 let state: CaptureProgress | null = null;
