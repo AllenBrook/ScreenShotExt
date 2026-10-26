@@ -168,7 +168,7 @@ async function createContextMenusOnce(): Promise<void> {
   await chrome.contextMenus.removeAll();
   chrome.contextMenus.create({
     id: 'oss-parent',
-    title: 'OpenScreenShot',
+    title: 'openscreenshotExt',
     contexts: MENU_CONTEXTS,
   });
   const titles: Record<CaptureMode, string> = {

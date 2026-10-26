@@ -97,7 +97,7 @@ jobs:
       - name: Publish to Chrome Web Store
         uses: mnao305/chrome-extension-upload@v6.0.0
         with:
-          file-path: openscreenshot-v${{ env.VERSION }}.zip
+          file-path: openscreenshotExt-v${{ env.VERSION }}.zip
           extension-id: hdabbojjccojlapnfjpdppcpfcnhgmdp
           client-id: ${{ secrets.CWS_CLIENT_ID }}
           client-secret: ${{ secrets.CWS_CLIENT_SECRET }}
@@ -115,5 +115,5 @@ jobs:
 
             ### Changelog
             See the commit log for details.
-          files: openscreenshot-*.zip
+          files: openscreenshotExt-*.zip
           generate_release_notes: true

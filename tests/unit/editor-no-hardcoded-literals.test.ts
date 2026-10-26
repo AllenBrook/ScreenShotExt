@@ -70,8 +70,8 @@ import ts from 'typescript';
 const EDITOR_DIR = join(process.cwd(), 'src/editor');
 
 // The product name — left untranslated everywhere else in the codebase too
-// (see src/popup/App.tsx's own hard-coded "OpenScreenShot" brand-name span).
-const BRAND_TEXT = new Set(['OpenScreenShot']);
+// (see src/popup/App.tsx's own hard-coded "openscreenshotExt" brand-name span).
+const BRAND_TEXT = new Set(['openscreenshotExt']);
 
 // Letters that survive a unit suffix, once digits/punctuation/substitutions
 // are stripped from a template's literal text — "40px", "8mm", "the $1–$2mm

@@ -96,6 +96,11 @@ function placeholderRefs(message: string): string[] {
 const en = load('en');
 
 describe('locale catalogs', () => {
+  it('uses openscreenshotExt as the extension display name', () => {
+    expect(en.extName.message).toBe('openscreenshotExt');
+    expect(en.extNameFirefox.message).toBe('openscreenshotExt');
+  });
+
   it('ships every planned locale and nothing unplanned', () => {
     const present = readdirSync(ROOT)
       .filter((d) => d !== 'en')

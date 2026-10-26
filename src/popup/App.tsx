@@ -685,7 +685,7 @@ export function App() {
       <main class="app restricted-page">
         <div class="brand">
           <BrandMark size={28} />
-          <span class="brand-name">OpenScreenShot</span>
+          <span class="brand-name">openscreenshotExt</span>
         </div>
         <div class="restricted-copy">
           <h1>{t('restrictedTitle')}</h1>
@@ -754,7 +754,7 @@ export function App() {
               <span class="brand-mark" aria-hidden="true">
                 <BrandMark size={28} />
               </span>
-              <span class="brand-name">OpenScreenShot</span>
+              <span class="brand-name">openscreenshotExt</span>
             </div>
             <div class="header-actions">
               <button

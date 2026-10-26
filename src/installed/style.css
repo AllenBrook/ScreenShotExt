@@ -23,12 +23,12 @@ main {
   text-align: center;
 }
 #check {
-  font-size: 1.5rem;
+  font-size: var(--fs-2xl);
   color: light-dark(#247d40, #70ce89);
 }
 h1 {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: var(--fs-lg);
   font-weight: 500;
 }
 #hint {

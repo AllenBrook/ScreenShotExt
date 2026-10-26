@@ -139,7 +139,7 @@ export function App() {
 
   useEffect(() => {
     const base = t('ctlPageTitle');
-    if (!active) document.title = `${base} — OpenScreenShot`;
+    if (!active) document.title = `${base} — openscreenshotExt`;
     else if (rec?.anchored === false) document.title = `${t('recStarting')} — ${base}`;
     else document.title = `${rec?.paused ? '❚❚' : '●'} ${formatTimer(elapsed)} — ${base}`;
   }, [active, rec?.anchored, rec?.paused, Math.floor(elapsed / 1000)]);

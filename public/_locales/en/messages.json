@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Full Page Screenshot & Screen Recorder - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Chrome Web Store and the browser. Firefox uses extNameFirefox, because its build has no recorder."
   },
   "extNameFirefox": {
-    "message": "Full Page Screenshot - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {

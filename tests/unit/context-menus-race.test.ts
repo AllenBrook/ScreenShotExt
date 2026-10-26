@@ -61,7 +61,7 @@ function makeFakeChrome() {
       setBadgeTextColor: vi.fn(() => Promise.resolve()),
       setBadgeText: vi.fn(() => Promise.resolve()),
       setTitle: vi.fn(() => Promise.resolve()),
-      getTitle: vi.fn(() => Promise.resolve('OpenScreenShot')),
+      getTitle: vi.fn(() => Promise.resolve('openscreenshotExt')),
       openPopup: vi.fn(() => Promise.resolve()),
     },
     contextMenus: {

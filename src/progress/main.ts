@@ -77,8 +77,8 @@ function render(state: CaptureProgress | null): void {
   if (state.percent === null) progress.removeAttribute('value');
   else progress.value = state.percent;
   document.title = state.result
-    ? 'OpenScreenShot'
-    : `${percent.textContent || label} · OpenScreenShot`;
+    ? 'openscreenshotExt'
+    : `${percent.textContent || label} · openscreenshotExt`;
   // Express / After-capture default is `editor` (「截图已就绪」). Auto-save
   // must run for every finished result that has a capture, not only `download`.
   if (state.result && state.captureId) void autoSave(state.captureId);
