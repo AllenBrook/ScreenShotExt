@@ -5,7 +5,13 @@ import {
   getCaptureProgress,
   finishCaptureProgress,
 } from './capture-progress';
-import { downloadDataUrl } from '../shared/download';
+import {
+  bindDownloadFilename,
+  expectDownloadFilename,
+  installDownloadFilenameGuard,
+  waitForDownloadComplete,
+} from '../shared/download';
+import { saveCaptureImage } from '../shared/save-capture';
 import { IS_FIREFOX } from '../shared/browser';
 /**
  * OpenScreenShot background service worker.
@@ -34,7 +40,6 @@ import {
   setPendingCaptureError,
 } from '../shared/storage';
 import {
-  formatFilename,
   isProtectedUrl,
   menuIdToMode,
   MENU_IDS,
@@ -68,15 +73,8 @@ import { restoreRecBadge } from '@/background/recording';
 
 const EDITOR_URL = chrome.runtime.getURL('src/editor/index.html');
 const POPUP_URL = 'src/popup/index.html';
-/**
- * First-run page: a tall article that invites the first capture, hosted on the
- * site rather than bundled. It has to be an ordinary https page — Chrome
- * refuses script injection into a chrome-extension:// tab whatever the
- * manifest asks for, so a bundled welcome page is the one page the capture it
- * invites can never read. Carries the version and UI language only, same as
- * UNINSTALL_URL; the page reads `hl` to send the visitor to their own locale.
- */
-const WELCOME_URL = 'https://openscreenshot.app/welcome';
+/** In-extension confirmation opened once after a fresh install. No external URL. */
+const INSTALLED_URL = chrome.runtime.getURL('src/installed/index.html');
 /**
  * Where an uninstall lands (Surface D of the rating funnel). Query carries
  * the extension version and UI locale only — never a page URL, title, or
@@ -106,20 +104,17 @@ const CAPTURE_THROTTLE_MS = 500;
 /** Time to let the page paint/composite after each scroll before capturing. */
 const PAINT_SETTLE_MS = 60;
 
-// A fresh install opens the welcome page — a tall article built to make the
-// first one-click capture look good. Updates open nothing. The express
-// migration runs before the menus so the checkbox reads the post-migration
-// value.
+// A fresh install opens only the bundled “installed successfully” page.
+// Updates open nothing. The express migration runs before the menus so the
+// checkbox reads the post-migration value.
 chrome.runtime.onInstalled.addListener((details) => {
   void migrateExpressDefault(details.reason).then(() => createContextMenus());
-  if (!IS_FIREFOX && details.reason === 'install') void chrome.tabs.create({ url: welcomeUrl() });
+  if (details.reason === 'install') void chrome.tabs.create({ url: INSTALLED_URL });
 });
 
-/** The welcome URL with the same two values the uninstall URL carries. */
-function welcomeUrl(): string {
-  const manifest = chrome.runtime.getManifest();
-  return `${WELCOME_URL}?v=${manifest.version}&hl=${chrome.i18n.getUILanguage()}`;
-}
+// Re-assert the template name when another extension's onDeterminingFilename
+// listener would otherwise save a data: URL as the localized "download.png".
+installDownloadFilenameGuard();
 
 // Registered on every worker start so it survives service-worker restarts.
 // Version and locale only — see UNINSTALL_URL.
@@ -173,7 +168,7 @@ async function createContextMenusOnce(): Promise<void> {
   await chrome.contextMenus.removeAll();
   chrome.contextMenus.create({
     id: 'oss-parent',
-    title: 'OpenScreenShot',
+    title: 'openscreenshotExt',
     contexts: MENU_CONTEXTS,
   });
   const titles: Record<CaptureMode, string> = {
@@ -340,6 +335,20 @@ chrome.runtime.onMessage.addListener((message: unknown, _sender, sendResponse) =
   if ((message as { type?: string })?.type === 'CAPTURE_QUICK_ACTION') {
     void handleCaptureQuickAction(message).then(sendResponse);
     return true;
+  }
+  if ((message as { type?: string })?.type === 'DOWNLOAD_EXPECT') {
+    const filename = (message as { filename?: unknown }).filename;
+    if (typeof filename === 'string') expectDownloadFilename(filename);
+    sendResponse(true);
+    return false;
+  }
+  if ((message as { type?: string })?.type === 'DOWNLOAD_ID') {
+    const { id, filename } = message as { id?: unknown; filename?: unknown };
+    if (typeof id === 'number' && typeof filename === 'string') {
+      bindDownloadFilename(id, filename);
+    }
+    sendResponse(true);
+    return false;
   }
   if (isCaptureRequest(message)) {
     void handleCapture(message.mode, message.repeat === true).catch(onCaptureError);
@@ -834,9 +843,10 @@ async function deliverCapture(
   });
   const settings = await getSettings();
   const action = normalizeCaptureAction(settings.captureAction);
+  const keepAfterDownload = settings.keepCompletionWindowAfterDownload !== false;
 
   if (action === 'editor') {
-    if (!(await finishCaptureProgress('editor', windowId, captureId))) {
+    if (!(await finishCaptureProgress('editor', windowId, captureId, { keepAfterDownload }))) {
       await chrome.tabs.create({ url: EDITOR_URL, windowId });
     }
     // The editor tab is the confirmation, so any progress badge left by a
@@ -860,26 +870,32 @@ async function deliverCapture(
       });
       return false;
     }
-    await finishCaptureProgress('clipboard', windowId, captureId);
+    await finishCaptureProgress('clipboard', windowId, captureId, { keepAfterDownload });
     void recordExportSuccess();
     void flashDoneBadge();
     return true;
   }
 
-  // Quick save writes PNG: the capture already is one, and the export dialog
-  // owns the format choice.
-  const base = formatFilename(settings.filenameTemplate, { title, url, width, height });
-  try {
-    await downloadDataUrl(dataUrl, `${base}.png`);
-  } catch {
-    broadcast({
-      type: 'CAPTURE_ERROR',
-      code: 'quick-action',
-      message: chrome.i18n.getMessage('errSave'),
-    });
-    return false;
+  // The completion window starts the save itself: a `chrome.downloads.download`
+  // from this worker during capture is what Edge showed as "starting" without
+  // writing a file, while the same call after the window's PNG click worked.
+  // Visible/region/element never open that window, so they still save here.
+  // Editor / clipboard results use the same window auto-save (「截图已就绪」).
+  const shown = await finishCaptureProgress('download', windowId, captureId, {
+    keepAfterDownload,
+  });
+  if (!shown) {
+    try {
+      await saveCaptureImage({ dataUrl, title, url, width, height }, settings);
+    } catch {
+      broadcast({
+        type: 'CAPTURE_ERROR',
+        code: 'quick-action',
+        message: chrome.i18n.getMessage('errSave'),
+      });
+      return false;
+    }
   }
-  await finishCaptureProgress('download', windowId, captureId);
   void recordExportSuccess();
   void flashDoneBadge();
   return true;
@@ -899,8 +915,12 @@ async function deliverCaptureParts(captureIds: string[], windowId: number): Prom
       for (const [i, id] of captureIds.entries()) {
         const capture = await openCapture(id);
         if (!capture) throw new Error('capture part missing');
-        const base = formatFilename(settings.filenameTemplate, capture);
-        await downloadDataUrl(capture.dataUrl, `${base}_part${i + 1}of${captureIds.length}.png`);
+        await saveCaptureImage(
+          capture,
+          settings,
+          settings.defaultFormat === 'pdf' ? 'png' : settings.defaultFormat,
+          `_part${i + 1}of${captureIds.length}`,
+        );
       }
     } catch {
       broadcast({
@@ -923,24 +943,30 @@ async function deliverCaptureParts(captureIds: string[], windowId: number): Prom
 
 /**
  * Quick actions from the capture progress window act on an already-stashed
- * capture, so they work without the editor. Only the PNG download runs here:
- * the clipboard write needs a focused page (the progress window does its
- * own), and PDF export stays in the editor.
+ * capture, so they work without the editor. `png` is the manual PNG button;
+ * `save` is the automatic Files-settings export (PDF still opens the editor).
+ * Clipboard writes stay in the progress window, which has the click's focus.
  */
-async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean }> {
+async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean; pdf?: boolean }> {
   const { action, captureId } = (message ?? {}) as { action?: string; captureId?: string };
-  if (action !== 'png' || !captureId) return { ok: false };
+  if ((action !== 'png' && action !== 'save') || !captureId) return { ok: false };
   try {
     const capture = await openCapture(captureId);
     if (!capture) return { ok: false };
     const settings = await getSettings();
-    const base = formatFilename(settings.filenameTemplate, {
-      title: capture.title,
-      url: capture.url,
-      width: capture.width,
-      height: capture.height,
-    });
-    await downloadDataUrl(capture.dataUrl, `${base}.png`);
+    if (action === 'save' && settings.defaultFormat === 'pdf') {
+      void recordExportSuccess();
+      return { ok: true, pdf: true };
+    }
+    const format = action === 'png' ? 'png' : settings.defaultFormat;
+    const id = await saveCaptureImage(capture, settings, format);
+    await waitForDownloadComplete(id).catch(() => undefined);
+    try {
+      const [item] = await chrome.downloads.search({ id });
+      if (item?.state === 'interrupted') return { ok: false };
+    } catch {
+      // search is best-effort; onChanged already ran in waitForDownloadComplete.
+    }
     void recordExportSuccess();
     return { ok: true };
   } catch {

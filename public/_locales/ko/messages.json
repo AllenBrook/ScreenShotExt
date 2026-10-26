@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "전체 페이지 스크린샷 & 화면 녹화 - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name shown in Chrome UI."
   },
   "extNameFirefox": {
-    "message": "전체 페이지 스크린샷 - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {
@@ -266,8 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "빠른 저장은 PNG로 저장돼요.",
+    "message": "빠른 저장은 파일에서 선택한 형식을 사용합니다.",
     "description": "Hint shown under the after-capture row when Download is selected."
+  },
+  "settingsGeneral": {
+    "message": "일반",
+    "description": "Settings sidebar section for general options."
+  },
+  "settingsKeepCompletionWindow": {
+    "message": "다운로드가 끝난 뒤에도 완료 창 유지",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
+  },
+  "settingsKeepCompletionWindowHint": {
+    "message": "끄면 스크린샷 파일이 저장된 뒤 OpenScreenShot 창이 닫힙니다.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "원클릭 Express 모드",
@@ -2782,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "녹화할 탭에서 툴바의 OpenScreenShot 아이콘으로 이 페이지를 여세요.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "설치되었습니다",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "이 탭을 닫아도 됩니다.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

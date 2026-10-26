@@ -83,6 +83,11 @@ describe('toDownloadPath', () => {
   it('keeps folders inside Downloads', () => {
     expect(toDownloadPath('Screenshots/sub/shot.png')).toBe('Screenshots/sub/shot.png');
   });
+  it('strips a leading slash from a template path so Chromium accepts it', () => {
+    expect(
+      toDownloadPath('/screen1/screenshot_example.com_Example Page_2026-10-26_115703.png'),
+    ).toBe('screen1/screenshot_example.com_Example Page_2026-10-26_115703.png');
+  });
   it('drops the parts Chrome rejects as an invalid filename', () => {
     // Each input below threw "Invalid filename" in Chrome for Testing 131.
     expect(toDownloadPath('../shot.png')).toBe('shot.png');
@@ -212,6 +217,8 @@ describe('normalizeCaptureAction', () => {
 
   it('ships with the editor as the default', () => {
     expect(DEFAULT_SETTINGS.captureAction).toBe('editor');
+    expect(DEFAULT_SETTINGS.keepCompletionWindowAfterDownload).toBe(true);
+    expect(DEFAULT_SETTINGS.filenameTemplate).toBe('AutoDown_{domain}_{title}_{date}_{time}');
   });
 });
 

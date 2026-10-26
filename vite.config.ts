@@ -83,6 +83,7 @@ export default defineConfig(({ mode }) => {
           progress: 'src/progress/index.html',
           popup: 'src/popup/index.html',
           editor: 'src/editor/index.html',
+          installed: 'src/installed/index.html',
           ...(!firefox
             ? {
                 offscreen: 'src/offscreen/index.html',

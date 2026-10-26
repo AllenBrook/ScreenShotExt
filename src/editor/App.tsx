@@ -415,7 +415,7 @@ export function App() {
           <span class="brand-mark" aria-hidden="true">
             <BrandMark size={22} />
           </span>
-          <span class="brand-name">OpenScreenShot</span>
+          <span class="brand-name">openscreenshotExt</span>
           {ed.capture ? <span class="brand-mode">{labelForSource(ed.capture.mode)}</span> : null}
         </div>
         {

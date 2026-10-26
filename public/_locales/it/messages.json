@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Screenshot pagina intera e registratore dello schermo - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name shown in Chrome UI."
   },
   "extNameFirefox": {
-    "message": "Screenshot pagina intera - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {
@@ -266,8 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "Salvataggio rapido in PNG.",
+    "message": "Il salvataggio rapido usa il formato scelto in File.",
     "description": "Hint shown under the after-capture row when Download is selected."
+  },
+  "settingsGeneral": {
+    "message": "Generale",
+    "description": "Settings sidebar section for general options."
+  },
+  "settingsKeepCompletionWindow": {
+    "message": "Continua a mostrare la finestra di completamento dopo il download",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
+  },
+  "settingsKeepCompletionWindowHint": {
+    "message": "Se disattivata, la finestra di OpenScreenShot si chiude quando il file è stato salvato.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "Modalità Express con un clic",
@@ -2782,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Apri questa pagina con l’icona di OpenScreenShot nella barra degli strumenti, sulla scheda da registrare.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Installazione riuscita",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Puoi chiudere questa scheda.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

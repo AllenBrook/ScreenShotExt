@@ -1,0 +1,38 @@
+@import '../shared/tokens.css';
+
+:root {
+  color-scheme: light dark;
+  font:
+    var(--fs-base) system-ui,
+    sans-serif;
+  color: CanvasText;
+  background: Canvas;
+}
+body {
+  margin: 0;
+}
+main {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+#check {
+  font-size: var(--fs-2xl);
+  color: light-dark(#247d40, #70ce89);
+}
+h1 {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 500;
+}
+#hint {
+  margin: 0;
+  font-size: var(--fs-sm);
+  opacity: 0.8;
+}

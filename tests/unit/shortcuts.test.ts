@@ -1,5 +1,16 @@
+import { readFileSync } from 'node:fs';
 import { describe, it, expect } from 'vitest';
 import { resolveModeKeys } from '../../src/shared/shortcuts';
+
+describe('manifest capture-full-page shortcut', () => {
+  it('suggests Ctrl+G (Command+G on Mac) for a fresh install', () => {
+    const manifest = JSON.parse(readFileSync('manifest.json', 'utf8'));
+    expect(manifest.commands['capture-full-page'].suggested_key).toEqual({
+      default: 'Ctrl+G',
+      mac: 'Command+G',
+    });
+  });
+});
 
 describe('resolveModeKeys', () => {
   it('always returns the list-position digit', () => {

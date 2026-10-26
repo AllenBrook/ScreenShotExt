@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Capture pleine page et enregistreur d’écran - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name shown in Chrome UI."
   },
   "extNameFirefox": {
-    "message": "Capture pleine page - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {
@@ -266,8 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "Sauvegarde rapide en PNG.",
+    "message": "L’enregistrement rapide utilise le format choisi dans Fichiers.",
     "description": "Hint shown under the after-capture row when Download is selected."
+  },
+  "settingsGeneral": {
+    "message": "Général",
+    "description": "Settings sidebar section for general options."
+  },
+  "settingsKeepCompletionWindow": {
+    "message": "Garder la fenêtre de fin ouverte après le téléchargement",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
+  },
+  "settingsKeepCompletionWindowHint": {
+    "message": "Désactivez pour fermer la fenêtre OpenScreenShot une fois le fichier enregistré.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "Mode Express en un clic",
@@ -2782,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Ouvrez cette page avec l’icône OpenScreenShot de la barre d’outils, sur l’onglet à enregistrer.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Installation réussie",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Vous pouvez fermer cet onglet.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

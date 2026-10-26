@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "フルページ スクリーンショット & 画面録画 - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name shown in Chrome UI."
   },
   "extNameFirefox": {
-    "message": "フルページ スクリーンショット - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {
@@ -266,8 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "クイック保存は PNG で保存します。",
+    "message": "クイック保存は「ファイル」で選んだ形式を使います。",
     "description": "Hint shown under the after-capture row when Download is selected."
+  },
+  "settingsGeneral": {
+    "message": "一般",
+    "description": "Settings sidebar section for general options."
+  },
+  "settingsKeepCompletionWindow": {
+    "message": "ダウンロード後も完了ウィンドウを表示したままにする",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
+  },
+  "settingsKeepCompletionWindowHint": {
+    "message": "オフにすると、スクリーンショットの保存が完了した時点でウィンドウを閉じます。",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "ワンクリック Express モード",
@@ -2782,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "録画するタブで、ツールバーの OpenScreenShot アイコンからこのページを開いてください。",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "インストールが完了しました",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "このタブを閉じてかまいません。",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

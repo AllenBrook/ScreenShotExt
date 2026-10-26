@@ -203,6 +203,12 @@ export interface Settings {
   captureDelay: number;
   /** What a finished capture does: open the editor, copy, or save. See CAPTURE_ACTIONS. */
   captureAction: CaptureAction;
+  /**
+   * After an automatic save from the completion window, leave that window open
+   * (editor / copy / PNG / PDF). When false, the window closes once the file
+   * has finished saving. Default on: the window stays until the user closes it.
+   */
+  keepCompletionWindowAfterDownload: boolean;
   /** When true, a toolbar-icon click captures the full page instead of opening the popup. */
   expressMode: boolean;
   /** Beautify frame (editor). Sliders are 0..100; see src/editor/frame.ts. */
@@ -223,7 +229,7 @@ export const DEFAULT_SETTINGS: Settings = {
   pdfMultiPage: true,
   pdfMarginMm: 8,
   quality: 0.92,
-  filenameTemplate: 'screenshot_{date}_{time}',
+  filenameTemplate: 'AutoDown_{domain}_{title}_{date}_{time}',
   videoExportFormat: 'mp4',
   annotationColor: tokens.swatchRed,
   annotationStrokeWidth: 6,
@@ -235,6 +241,7 @@ export const DEFAULT_SETTINGS: Settings = {
   recentColors: [],
   captureDelay: 0,
   captureAction: 'editor',
+  keepCompletionWindowAfterDownload: true,
   // On by default: the toolbar icon is the one-click full-page capture.
   // Existing installs are flipped once by migrateExpressDefault (storage.ts).
   expressMode: true,

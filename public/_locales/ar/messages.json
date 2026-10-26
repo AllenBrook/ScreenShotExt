@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "لقطة شاشة للصفحة الكاملة ومسجّل الشاشة - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name shown in Chrome UI."
   },
   "extNameFirefox": {
-    "message": "لقطة شاشة للصفحة الكاملة - OpenScreenShot",
+    "message": "openscreenshotExt",
     "description": "Extension name in the Firefox build, which takes screenshots only and has no recorder."
   },
   "extDesc": {

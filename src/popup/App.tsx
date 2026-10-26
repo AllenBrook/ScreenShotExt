@@ -685,7 +685,7 @@ export function App() {
       <main class="app restricted-page">
         <div class="brand">
           <BrandMark size={28} />
-          <span class="brand-name">OpenScreenShot</span>
+          <span class="brand-name">openscreenshotExt</span>
         </div>
         <div class="restricted-copy">
           <h1>{t('restrictedTitle')}</h1>
@@ -754,7 +754,7 @@ export function App() {
               <span class="brand-mark" aria-hidden="true">
                 <BrandMark size={28} />
               </span>
-              <span class="brand-name">OpenScreenShot</span>
+              <span class="brand-name">openscreenshotExt</span>
             </div>
             <div class="header-actions">
               <button
@@ -1173,6 +1173,7 @@ function SettingsView({
 
   const sections = [
     { id: 'set-express', label: t('expressLabel'), icon: <IconBolt size={18} /> },
+    { id: 'set-general', label: t('settingsGeneral'), icon: <IconGear size={18} /> },
     { id: 'set-capture', label: t('settingsCapture'), icon: <IconCamera size={18} /> },
     { id: 'set-files', label: t('settingsFiles'), icon: <IconImage size={18} /> },
     ...(RECORDING_SUPPORTED
@@ -1275,6 +1276,37 @@ function SettingsView({
               onChange({ expressMode: (e.currentTarget as HTMLInputElement).checked })
             }
           />
+        </section>
+
+        <section {...panel('set-general')} class="settings-group">
+          <div class="card-head">
+            <span class="card-icon" aria-hidden="true">
+              <IconGear size={20} />
+            </span>
+            <h2 id="settings-general">{t('settingsGeneral')}</h2>
+          </div>
+          <div class="settings-row settings-row-switch">
+            <div class="settings-copy">
+              <label class="settings-label" for="keep-completion-window">
+                {t('settingsKeepCompletionWindow')}
+              </label>
+              <p class="settings-hint" id="keep-completion-window-hint">
+                {t('settingsKeepCompletionWindowHint')}
+              </p>
+            </div>
+            <input
+              id="keep-completion-window"
+              type="checkbox"
+              class="switch"
+              aria-describedby="keep-completion-window-hint"
+              checked={settings.keepCompletionWindowAfterDownload}
+              onChange={(e) =>
+                onChange({
+                  keepCompletionWindowAfterDownload: (e.currentTarget as HTMLInputElement).checked,
+                })
+              }
+            />
+          </div>
         </section>
 
         <section {...panel('set-capture')} class="settings-group">

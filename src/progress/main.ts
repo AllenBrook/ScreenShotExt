@@ -1,7 +1,7 @@
 import './style.css';
 import type { CaptureProgress } from '../background/capture-progress';
 import { copyImageToClipboard } from '../content/clipboard';
-import { openCapture } from '../shared/storage';
+import { getSettings, openCapture } from '../shared/storage';
 
 const status = document.querySelector<HTMLElement>('#status')!;
 const percent = document.querySelector<HTMLElement>('#percent')!;
@@ -31,6 +31,8 @@ let currentState: CaptureProgress | null = null;
 const progress = document.querySelector<HTMLProgressElement>('#progress')!;
 document.documentElement.lang = chrome.i18n.getUILanguage();
 let receivedUpdate = false;
+/** One automatic Files-settings save per capture, even if render runs twice. */
+let autoSavedCaptureId: string | null = null;
 function showResult(result: CaptureProgress['result']): void {
   check.hidden = !result;
   check.textContent = result === 'editor' ? '✓' : '🎉';
@@ -75,8 +77,11 @@ function render(state: CaptureProgress | null): void {
   if (state.percent === null) progress.removeAttribute('value');
   else progress.value = state.percent;
   document.title = state.result
-    ? 'OpenScreenShot'
-    : `${percent.textContent || label} · OpenScreenShot`;
+    ? 'openscreenshotExt'
+    : `${percent.textContent || label} · openscreenshotExt`;
+  // Express / After-capture default is `editor` (「截图已就绪」). Auto-save
+  // must run for every finished result that has a capture, not only `download`.
+  if (state.result && state.captureId) void autoSave(state.captureId);
 }
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type === 'CAPTURE_DIALOG_CONTEXT' || message?.type === 'CAPTURE_DIALOG_OPEN') {
@@ -174,35 +179,90 @@ copy.addEventListener('click', async () => {
   }
 });
 
-async function downloadPng(): Promise<void> {
+/** PNG / retry buttons: CAPTURE_QUICK_ACTION from this window, not the in-capture worker. */
+async function downloadCapture(action: 'png' | 'save'): Promise<boolean> {
   const captureId = currentState?.captureId;
-  if (!captureId || png.disabled) return;
+  if (!captureId || png.disabled) return false;
   setQuickBusy(true);
   try {
     const response = await chrome.runtime.sendMessage({
       type: 'CAPTURE_QUICK_ACTION',
-      action: 'png',
+      action,
       captureId,
     });
+    if (response?.pdf) {
+      if (await openEditor(true)) window.close();
+      return true;
+    }
     if (response?.ok) {
       status.textContent = chrome.i18n.getMessage('captureSaved');
       showResult('download');
-    } else showError('errSave');
+      return true;
+    }
+    showError('errSave');
+    return false;
   } catch {
     showError('errSave');
+    return false;
   } finally {
     setQuickBusy(false);
   }
 }
-png.addEventListener('click', downloadPng);
-retry.addEventListener('click', downloadPng);
 
-pdf.addEventListener('click', async () => {
-  if (!currentState?.captureId || pdf.disabled) return;
+/** PDF button: open the editor with `?pdf=1` from this window. */
+async function exportPdfFromWindow(): Promise<boolean> {
+  if (!currentState?.captureId || pdf.disabled) return false;
   setQuickBusy(true);
-  if (await openEditor(true)) window.close();
-  else setQuickBusy(false);
-});
+  if (await openEditor(true)) {
+    window.close();
+    return true;
+  }
+  setQuickBusy(false);
+  return false;
+}
+
+async function waitForStashedCapture(captureId: string): Promise<boolean> {
+  for (let i = 0; i < 25; i++) {
+    if (await openCapture(captureId)) return true;
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  return false;
+}
+
+/**
+ * When this window reaches a finished result (including 「截图已就绪」), run
+ * the same handlers the PNG / PDF buttons use. Image formats go through
+ * `downloadCapture('save')` (identical to the PNG click, Files format
+ * instead of hardcoded PNG). PDF goes through `exportPdfFromWindow`.
+ * 通用 → 下载完成后继续显示完成窗口 is read from storage here — not only
+ * from the progress payload — and the window closes after the PNG button's
+ * success callback (`response.ok`, which waits for downloads.onChanged).
+ */
+async function autoSave(captureId: string): Promise<void> {
+  if (autoSavedCaptureId === captureId) return;
+  autoSavedCaptureId = captureId;
+  try {
+    if (!(await waitForStashedCapture(captureId))) {
+      autoSavedCaptureId = null;
+      return;
+    }
+    const settings = await getSettings();
+    if (settings.defaultFormat === 'pdf') {
+      await exportPdfFromWindow();
+      return;
+    }
+    const ok = await downloadCapture('save');
+    if (!ok) return;
+    const latest = await getSettings();
+    if (latest.keepCompletionWindowAfterDownload === false) window.close();
+  } catch {
+    autoSavedCaptureId = null;
+  }
+}
+
+png.addEventListener('click', () => void downloadCapture('png'));
+retry.addEventListener('click', () => void downloadCapture('save'));
+pdf.addEventListener('click', () => void exportPdfFromWindow());
 
 settings.addEventListener('click', async () => {
   if (settings.disabled) return;

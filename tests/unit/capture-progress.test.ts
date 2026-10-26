@@ -64,3 +64,27 @@ it('binds ready actions to the specific stored screenshot', async () => {
   await api.finishCaptureProgress('editor', 1, 'capture-original');
   expect(api.getCaptureProgress()?.captureId).toBe('capture-original');
 });
+
+it('passes keep-after-download through to the ready window', async () => {
+  await api.openCaptureProgress(1);
+  await api.finishCaptureProgress('download', 1, 'cap-1', { keepAfterDownload: false });
+  expect(api.getCaptureProgress()).toEqual({
+    percent: 100,
+    result: 'download',
+    sourceWindowId: 1,
+    captureId: 'cap-1',
+    keepAfterDownload: false,
+  });
+});
+
+it('passes keep-after-download on editor ready so auto-save can close the window', async () => {
+  await api.openCaptureProgress(1);
+  await api.finishCaptureProgress('editor', 1, 'cap-ready', { keepAfterDownload: false });
+  expect(api.getCaptureProgress()).toEqual({
+    percent: 100,
+    result: 'editor',
+    sourceWindowId: 1,
+    captureId: 'cap-ready',
+    keepAfterDownload: false,
+  });
+});
