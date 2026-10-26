@@ -73,15 +73,8 @@ import { restoreRecBadge } from '@/background/recording';
 
 const EDITOR_URL = chrome.runtime.getURL('src/editor/index.html');
 const POPUP_URL = 'src/popup/index.html';
-/**
- * First-run page: a tall article that invites the first capture, hosted on the
- * site rather than bundled. It has to be an ordinary https page — Chrome
- * refuses script injection into a chrome-extension:// tab whatever the
- * manifest asks for, so a bundled welcome page is the one page the capture it
- * invites can never read. Carries the version and UI language only, same as
- * UNINSTALL_URL; the page reads `hl` to send the visitor to their own locale.
- */
-const WELCOME_URL = 'https://openscreenshot.app/welcome';
+/** In-extension confirmation opened once after a fresh install. No external URL. */
+const INSTALLED_URL = chrome.runtime.getURL('src/installed/index.html');
 /**
  * Where an uninstall lands (Surface D of the rating funnel). Query carries
  * the extension version and UI locale only — never a page URL, title, or
@@ -111,20 +104,13 @@ const CAPTURE_THROTTLE_MS = 500;
 /** Time to let the page paint/composite after each scroll before capturing. */
 const PAINT_SETTLE_MS = 60;
 
-// A fresh install opens the welcome page — a tall article built to make the
-// first one-click capture look good. Updates open nothing. The express
-// migration runs before the menus so the checkbox reads the post-migration
-// value.
+// A fresh install opens only the bundled “installed successfully” page.
+// Updates open nothing. The express migration runs before the menus so the
+// checkbox reads the post-migration value.
 chrome.runtime.onInstalled.addListener((details) => {
   void migrateExpressDefault(details.reason).then(() => createContextMenus());
-  if (!IS_FIREFOX && details.reason === 'install') void chrome.tabs.create({ url: welcomeUrl() });
+  if (details.reason === 'install') void chrome.tabs.create({ url: INSTALLED_URL });
 });
-
-/** The welcome URL with the same two values the uninstall URL carries. */
-function welcomeUrl(): string {
-  const manifest = chrome.runtime.getManifest();
-  return `${WELCOME_URL}?v=${manifest.version}&hl=${chrome.i18n.getUILanguage()}`;
-}
 
 // Re-assert the template name when another extension's onDeterminingFilename
 // listener would otherwise save a data: URL as the localized "download.png".

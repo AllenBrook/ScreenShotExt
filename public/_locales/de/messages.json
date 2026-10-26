@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Öffne diese Seite über das OpenScreenShot-Symbol in der Symbolleiste, auf dem Tab, den du aufnehmen willst.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Erfolgreich installiert",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Du kannst diesen Tab schließen.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

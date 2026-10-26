@@ -61,7 +61,7 @@ Add-ons Manager → gear menu → Manage Extension Shortcuts; the popup links to
    recording promotional images). The fixed add-on ID is `openscreenshot@pghq.dev`;
    retain it for all updates.
 4. The manifest declares no data collection. Screenshots/history stay local;
-   Firefox does not automatically open the hosted welcome or uninstall pages.
+   On install Firefox opens only the in-extension “installed successfully” page, not a hosted site.
    Support/donation links open only on user clicks. Rating buttons and post-export reminders open the Mozilla listing’s reviews page.
 5. The approved listing is [OpenScreenShot on Firefox Add-ons](https://addons.mozilla.org/firefox/addon/openscreenshot/).
    Website install buttons and Firefox rating actions point to this listing.

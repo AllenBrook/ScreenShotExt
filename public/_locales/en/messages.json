@@ -2801,5 +2801,13 @@
   "ctlNoTarget": {
     "message": "Open this page with the OpenScreenShot toolbar icon, on the tab you want to record.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Installed successfully",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "You can close this tab.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

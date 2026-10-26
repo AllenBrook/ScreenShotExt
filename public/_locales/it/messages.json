@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Apri questa pagina con l’icona di OpenScreenShot nella barra degli strumenti, sulla scheda da registrare.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Installazione riuscita",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Puoi chiudere questa scheda.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

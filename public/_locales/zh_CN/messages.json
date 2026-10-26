@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "请在要录制的标签页上，通过工具栏中的 OpenScreenShot 图标打开此页面。",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "安装成功",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "可以关闭此页面。",
+    "description": "In-extension post-install page: the user may close it."
   }
 }

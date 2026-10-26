@@ -2794,5 +2794,13 @@
   "ctlNoTarget": {
     "message": "Откройте эту страницу значком OpenScreenShot на панели инструментов, находясь на вкладке, которую нужно записать.",
     "description": "Recording control tab: shown when the page was opened without a tab to record."
+  },
+  "installedSuccess": {
+    "message": "Установка выполнена",
+    "description": "In-extension page shown once after a fresh install."
+  },
+  "installedCloseHint": {
+    "message": "Эту вкладку можно закрыть.",
+    "description": "In-extension post-install page: the user may close it."
   }
 }
