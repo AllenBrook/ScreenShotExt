@@ -269,6 +269,22 @@
     "message": "Быстрое сохранение — в PNG.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
+  "settingsShowCaptureWindow": {
+    "message": "Показывать окно завершения",
+    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  },
+  "settingsShowCaptureWindowHint": {
+    "message": "После снимка всей страницы остаётся маленькое окно OpenScreenShot, чтобы открыть редактор, скопировать или сохранить снова.",
+    "description": "Hint under the completion-window toggle."
+  },
+  "settingsAutoCloseCaptureWindow": {
+    "message": "Закрывать после загрузки",
+    "description": "Settings toggle: close the completion window once a screenshot download finishes."
+  },
+  "settingsAutoCloseCaptureWindowHint": {
+    "message": "Закрывает окно завершения, когда файл скриншота сохранён.",
+    "description": "Hint under the auto-close-after-download toggle."
+  },
   "expressLabel": {
     "message": "Режим Express в один клик",
     "description": "Name of the one-click express setting: the Settings card, the editor status bar switch, and the icon context-menu checkbox."

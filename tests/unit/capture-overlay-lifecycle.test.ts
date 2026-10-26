@@ -9,6 +9,8 @@ vi.mock('../../src/shared/storage', () => ({
     captureAction,
     expressMode: true,
     filenameTemplate: 'shot',
+    showCaptureResultWindow,
+    autoCloseCaptureResultWindow,
   }),
   getLastRegion: async () => ({ x: 20, y: 20, width: 100, height: 100 }),
   setLastRegion: vi.fn(),
@@ -31,6 +33,8 @@ let pixelRatio: number;
 let innerScroller: boolean;
 let cropArgs: unknown[];
 let captureAction: 'editor' | 'clipboard' | 'download';
+let showCaptureResultWindow: boolean;
+let autoCloseCaptureResultWindow: boolean;
 let sourceTabActive: boolean;
 let switchTabAfterSelection: boolean;
 let switchTabBeforeSnapshot: boolean;
@@ -96,7 +100,11 @@ function makeChrome() {
         return 'data:image/png;base64,tile';
       },
     },
-    downloads: { download: vi.fn(async () => 1) },
+    downloads: {
+      download: vi.fn(async () => 1),
+      onDeterminingFilename: { addListener: vi.fn() },
+      onChanged: { addListener: vi.fn(), removeListener: vi.fn() },
+    },
     scripting: {
       executeScript: async ({
         func,
@@ -162,6 +170,8 @@ beforeEach(async () => {
   });
   cropArgs = [];
   captureAction = 'editor';
+  showCaptureResultWindow = true;
+  autoCloseCaptureResultWindow = false;
   sourceTabActive = true;
   switchTabAfterSelection = false;
   switchTabBeforeSnapshot = false;
@@ -372,6 +382,51 @@ describe('screenshot capture overlay lifecycle', () => {
     });
     expect(events).not.toContain('deliver');
     expect(messages.some((m) => m.type === 'CAPTURE_COMPLETE')).toBe(true);
+  });
+
+  it('keeps the completion window after a full-page download when the setting is on', async () => {
+    captureAction = 'download';
+    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
+    await capture();
+    expect(fakeChrome.downloads.download).toHaveBeenCalledWith({
+      url: 'data:image/png;base64,finished',
+      filename: 'shot.png',
+      saveAs: false,
+    });
+    expect(fakeChrome.windows.remove).not.toHaveBeenCalled();
+    expect(messages).toContainEqual({
+      type: 'CAPTURE_WINDOW_PROGRESS',
+      percent: 100,
+      result: 'download',
+      sourceWindowId: 1,
+    });
+  });
+
+  it('closes the completion window after a full-page download when the setting is off', async () => {
+    captureAction = 'download';
+    showCaptureResultWindow = false;
+    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
+    await capture();
+    expect(fakeChrome.downloads.download).toHaveBeenCalled();
+    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
+    expect(messages.some((m) => m.type === 'CAPTURE_COMPLETE')).toBe(true);
+  });
+
+  it('auto-closes the completion window once the download finishes', async () => {
+    captureAction = 'download';
+    autoCloseCaptureResultWindow = true;
+    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
+    await capture();
+    expect(fakeChrome.downloads.download).toHaveBeenCalled();
+    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
+  });
+
+  it('opens the editor tab directly when the completion window is hidden', async () => {
+    showCaptureResultWindow = false;
+    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
+    await capture();
+    expect(events).toContain('deliver');
+    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
   });
 
   it('uses full-page capture only when the user selects that fallback', async () => {

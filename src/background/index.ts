@@ -5,7 +5,13 @@ import {
   getCaptureProgress,
   finishCaptureProgress,
 } from './capture-progress';
-import { downloadDataUrl } from '../shared/download';
+import {
+  bindDownloadFilename,
+  downloadDataUrl,
+  expectDownloadFilename,
+  installDownloadFilenameGuard,
+  waitForDownloadComplete,
+} from '../shared/download';
 import { IS_FIREFOX } from '../shared/browser';
 /**
  * OpenScreenShot background service worker.
@@ -21,7 +27,13 @@ import { IS_FIREFOX } from '../shared/browser';
  * the user's capture action: opened in the editor, copied to the clipboard, or
  * downloaded directly.
  */
-import type { CaptureMode, CaptureRequest, PopupMessage, TileSpec } from '../shared/types';
+import type {
+  CaptureMode,
+  CaptureRequest,
+  PopupMessage,
+  Settings,
+  TileSpec,
+} from '../shared/types';
 import {
   getLastRegion,
   getSettings,
@@ -120,6 +132,10 @@ function welcomeUrl(): string {
   const manifest = chrome.runtime.getManifest();
   return `${WELCOME_URL}?v=${manifest.version}&hl=${chrome.i18n.getUILanguage()}`;
 }
+
+// Re-assert the template name when another extension's onDeterminingFilename
+// listener would otherwise save a data: URL as the localized "download.png".
+installDownloadFilenameGuard();
 
 // Registered on every worker start so it survives service-worker restarts.
 // Version and locale only — see UNINSTALL_URL.
@@ -340,6 +356,20 @@ chrome.runtime.onMessage.addListener((message: unknown, _sender, sendResponse) =
   if ((message as { type?: string })?.type === 'CAPTURE_QUICK_ACTION') {
     void handleCaptureQuickAction(message).then(sendResponse);
     return true;
+  }
+  if ((message as { type?: string })?.type === 'DOWNLOAD_EXPECT') {
+    const filename = (message as { filename?: unknown }).filename;
+    if (typeof filename === 'string') expectDownloadFilename(filename);
+    sendResponse(true);
+    return false;
+  }
+  if ((message as { type?: string })?.type === 'DOWNLOAD_ID') {
+    const { id, filename } = message as { id?: unknown; filename?: unknown };
+    if (typeof id === 'number' && typeof filename === 'string') {
+      bindDownloadFilename(id, filename);
+    }
+    sendResponse(true);
+    return false;
   }
   if (isCaptureRequest(message)) {
     void handleCapture(message.mode, message.repeat === true).catch(onCaptureError);
@@ -836,7 +866,11 @@ async function deliverCapture(
   const action = normalizeCaptureAction(settings.captureAction);
 
   if (action === 'editor') {
-    if (!(await finishCaptureProgress('editor', windowId, captureId))) {
+    const keptWindow =
+      showCaptureResultWindow(settings) &&
+      (await finishCaptureProgress('editor', windowId, captureId));
+    if (!keptWindow) {
+      if (!showCaptureResultWindow(settings)) await closeCaptureProgress();
       await chrome.tabs.create({ url: EDITOR_URL, windowId });
     }
     // The editor tab is the confirmation, so any progress badge left by a
@@ -860,7 +894,7 @@ async function deliverCapture(
       });
       return false;
     }
-    await finishCaptureProgress('clipboard', windowId, captureId);
+    await settleCaptureResultWindow('clipboard', windowId, captureId, settings);
     void recordExportSuccess();
     void flashDoneBadge();
     return true;
@@ -869,8 +903,9 @@ async function deliverCapture(
   // Quick save writes PNG: the capture already is one, and the export dialog
   // owns the format choice.
   const base = formatFilename(settings.filenameTemplate, { title, url, width, height });
+  let downloadId: number | undefined;
   try {
-    await downloadDataUrl(dataUrl, `${base}.png`);
+    downloadId = await downloadDataUrl(dataUrl, `${base}.png`);
   } catch {
     broadcast({
       type: 'CAPTURE_ERROR',
@@ -879,10 +914,37 @@ async function deliverCapture(
     });
     return false;
   }
-  await finishCaptureProgress('download', windowId, captureId);
+  await settleCaptureResultWindow('download', windowId, captureId, settings, downloadId);
   void recordExportSuccess();
   void flashDoneBadge();
   return true;
+}
+
+function showCaptureResultWindow(settings: Settings): boolean {
+  return settings.showCaptureResultWindow !== false;
+}
+
+/**
+ * Keep, auto-close, or dismiss the full-page progress window once delivery
+ * has finished. Visible/region/element captures never opened one, so these
+ * calls are no-ops there.
+ */
+async function settleCaptureResultWindow(
+  result: 'clipboard' | 'download',
+  windowId: number,
+  captureId: string,
+  settings: Settings,
+  downloadId?: number,
+): Promise<void> {
+  if (!showCaptureResultWindow(settings)) {
+    await closeCaptureProgress();
+    return;
+  }
+  await finishCaptureProgress(result, windowId, captureId);
+  if (result === 'download' && settings.autoCloseCaptureResultWindow) {
+    if (downloadId !== undefined) await waitForDownloadComplete(downloadId).catch(() => undefined);
+    await closeCaptureProgress();
+  }
 }
 
 /**

@@ -269,6 +269,22 @@
     "message": "Quick save writes a PNG.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
+  "settingsShowCaptureWindow": {
+    "message": "Show the completion window",
+    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  },
+  "settingsShowCaptureWindowHint": {
+    "message": "After a full-page capture, keep a small OpenScreenShot window open so you can open the editor, copy, or save again.",
+    "description": "Hint under the completion-window toggle."
+  },
+  "settingsAutoCloseCaptureWindow": {
+    "message": "Auto-close after download",
+    "description": "Settings toggle: close the completion window once a screenshot download finishes."
+  },
+  "settingsAutoCloseCaptureWindowHint": {
+    "message": "Close the completion window once the screenshot file has finished saving.",
+    "description": "Hint under the auto-close-after-download toggle."
+  },
   "expressLabel": {
     "message": "One-click Express mode",
     "description": "Name of the one-click express setting: the Settings card, the editor status bar switch, and the icon context-menu checkbox."

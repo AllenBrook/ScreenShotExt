@@ -203,6 +203,15 @@ export interface Settings {
   captureDelay: number;
   /** What a finished capture does: open the editor, copy, or save. See CAPTURE_ACTIONS. */
   captureAction: CaptureAction;
+  /**
+   * Keep the small OpenScreenShot window after a full-page capture so the user
+   * can open the editor, copy, or save again. When false, that result UI is
+   * dismissed as soon as delivery finishes (the in-capture progress window
+   * still appears while a long stitch runs).
+   */
+  showCaptureResultWindow: boolean;
+  /** Close the completion window once a quick-save download reaches a terminal state. */
+  autoCloseCaptureResultWindow: boolean;
   /** When true, a toolbar-icon click captures the full page instead of opening the popup. */
   expressMode: boolean;
   /** Beautify frame (editor). Sliders are 0..100; see src/editor/frame.ts. */
@@ -235,6 +244,8 @@ export const DEFAULT_SETTINGS: Settings = {
   recentColors: [],
   captureDelay: 0,
   captureAction: 'editor',
+  showCaptureResultWindow: true,
+  autoCloseCaptureResultWindow: false,
   // On by default: the toolbar icon is the one-click full-page capture.
   // Existing installs are flipped once by migrateExpressDefault (storage.ts).
   expressMode: true,

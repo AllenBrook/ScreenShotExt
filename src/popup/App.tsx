@@ -1307,6 +1307,51 @@ function SettingsView({
               <p class="settings-hint">{t('actionHintPng')}</p>
             )}
           </div>
+          <div class="settings-row settings-row-switch">
+            <div class="settings-copy">
+              <label class="settings-label" for="show-capture-window">
+                {t('settingsShowCaptureWindow')}
+              </label>
+              <p class="settings-hint" id="show-capture-window-hint">
+                {t('settingsShowCaptureWindowHint')}
+              </p>
+            </div>
+            <input
+              id="show-capture-window"
+              type="checkbox"
+              class="switch"
+              aria-describedby="show-capture-window-hint"
+              checked={settings.showCaptureResultWindow}
+              onChange={(e) =>
+                onChange({
+                  showCaptureResultWindow: (e.currentTarget as HTMLInputElement).checked,
+                })
+              }
+            />
+          </div>
+          <div class="settings-row settings-row-switch">
+            <div class="settings-copy">
+              <label class="settings-label" for="auto-close-capture-window">
+                {t('settingsAutoCloseCaptureWindow')}
+              </label>
+              <p class="settings-hint" id="auto-close-capture-window-hint">
+                {t('settingsAutoCloseCaptureWindowHint')}
+              </p>
+            </div>
+            <input
+              id="auto-close-capture-window"
+              type="checkbox"
+              class="switch"
+              aria-describedby="auto-close-capture-window-hint"
+              checked={settings.autoCloseCaptureResultWindow}
+              disabled={!settings.showCaptureResultWindow}
+              onChange={(e) =>
+                onChange({
+                  autoCloseCaptureResultWindow: (e.currentTarget as HTMLInputElement).checked,
+                })
+              }
+            />
+          </div>
           <div class="settings-row">
             <div class="row-head">
               <span class="row-icon" aria-hidden="true">

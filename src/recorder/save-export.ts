@@ -15,7 +15,7 @@
  * reached — never racing `a.click()` the way the old anchor-based save did.
  */
 
-import { toDownloadPath } from '../shared/utils';
+import { downloadUrl } from '../shared/download';
 
 export type SaveOutcome =
   | { state: 'complete' }
@@ -49,11 +49,7 @@ export async function saveExport(
   try {
     let id: number;
     try {
-      id = await chrome.downloads.download({
-        url,
-        filename: toDownloadPath(filename),
-        saveAs: true,
-      });
+      id = await downloadUrl(url, filename, { saveAs: true });
     } catch (err) {
       return { state: 'interrupted', error: err instanceof Error ? err.message : String(err) };
     }

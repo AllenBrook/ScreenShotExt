@@ -269,6 +269,22 @@
     "message": "Sauvegarde rapide en PNG.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
+  "settingsShowCaptureWindow": {
+    "message": "Afficher la fenêtre de fin",
+    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  },
+  "settingsShowCaptureWindowHint": {
+    "message": "Après une capture de page entière, une petite fenêtre OpenScreenShot reste ouverte pour ouvrir l’éditeur, copier ou enregistrer à nouveau.",
+    "description": "Hint under the completion-window toggle."
+  },
+  "settingsAutoCloseCaptureWindow": {
+    "message": "Fermer automatiquement après le téléchargement",
+    "description": "Settings toggle: close the completion window once a screenshot download finishes."
+  },
+  "settingsAutoCloseCaptureWindowHint": {
+    "message": "Ferme la fenêtre de fin une fois le fichier de capture enregistré.",
+    "description": "Hint under the auto-close-after-download toggle."
+  },
   "expressLabel": {
     "message": "Mode Express en un clic",
     "description": "Name of the one-click express setting: the Settings card, the editor status bar switch, and the icon context-menu checkbox."
