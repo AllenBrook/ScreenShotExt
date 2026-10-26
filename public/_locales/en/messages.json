@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "Quick save writes a PNG.",
+    "message": "Quick save uses the format chosen under Files.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "Show the completion window",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "General",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "After a full-page capture, keep a small OpenScreenShot window open so you can open the editor, copy, or save again.",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "Keep showing the completion window after download finishes",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "Auto-close after download",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "Close the completion window once the screenshot file has finished saving.",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "Turn off to close the OpenScreenShot window once the screenshot file has been saved.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "One-click Express mode",

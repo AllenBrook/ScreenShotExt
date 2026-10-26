@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "빠른 저장은 PNG로 저장돼요.",
+    "message": "빠른 저장은 파일에서 선택한 형식을 사용합니다.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "완료 창 표시",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "일반",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "전체 페이지 캡처 후 편집기를 열거나 복사하거나 다시 저장할 수 있도록 작은 OpenScreenShot 창을 열어 둡니다.",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "다운로드가 끝난 뒤에도 완료 창 유지",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "다운로드 후 자동 닫기",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "스크린샷 파일이 저장되면 완료 창을 닫습니다.",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "끄면 스크린샷 파일이 저장된 뒤 OpenScreenShot 창이 닫힙니다.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "원클릭 Express 모드",

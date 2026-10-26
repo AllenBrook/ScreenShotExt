@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "クイック保存は PNG で保存します。",
+    "message": "クイック保存は「ファイル」で選んだ形式を使います。",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "完了ウィンドウを表示",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "一般",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "ページ全体の撮影後、エディターを開く・コピー・再保存ができる小さな OpenScreenShot ウィンドウを開いたままにします。",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "ダウンロード後も完了ウィンドウを表示したままにする",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "ダウンロード後に自動で閉じる",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "スクリーンショットの保存が完了したら完了ウィンドウを閉じます。",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "オフにすると、スクリーンショットの保存が完了した時点でウィンドウを閉じます。",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "ワンクリック Express モード",

@@ -7,11 +7,11 @@ import {
 } from './capture-progress';
 import {
   bindDownloadFilename,
-  downloadDataUrl,
   expectDownloadFilename,
   installDownloadFilenameGuard,
   waitForDownloadComplete,
 } from '../shared/download';
+import { saveCaptureImage } from '../shared/save-capture';
 import { IS_FIREFOX } from '../shared/browser';
 /**
  * OpenScreenShot background service worker.
@@ -27,13 +27,7 @@ import { IS_FIREFOX } from '../shared/browser';
  * the user's capture action: opened in the editor, copied to the clipboard, or
  * downloaded directly.
  */
-import type {
-  CaptureMode,
-  CaptureRequest,
-  PopupMessage,
-  Settings,
-  TileSpec,
-} from '../shared/types';
+import type { CaptureMode, CaptureRequest, PopupMessage, TileSpec } from '../shared/types';
 import {
   getLastRegion,
   getSettings,
@@ -46,7 +40,6 @@ import {
   setPendingCaptureError,
 } from '../shared/storage';
 import {
-  formatFilename,
   isProtectedUrl,
   menuIdToMode,
   MENU_IDS,
@@ -866,11 +859,7 @@ async function deliverCapture(
   const action = normalizeCaptureAction(settings.captureAction);
 
   if (action === 'editor') {
-    const keptWindow =
-      showCaptureResultWindow(settings) &&
-      (await finishCaptureProgress('editor', windowId, captureId));
-    if (!keptWindow) {
-      if (!showCaptureResultWindow(settings)) await closeCaptureProgress();
+    if (!(await finishCaptureProgress('editor', windowId, captureId))) {
       await chrome.tabs.create({ url: EDITOR_URL, windowId });
     }
     // The editor tab is the confirmation, so any progress badge left by a
@@ -894,57 +883,35 @@ async function deliverCapture(
       });
       return false;
     }
-    await settleCaptureResultWindow('clipboard', windowId, captureId, settings);
+    await finishCaptureProgress('clipboard', windowId, captureId);
     void recordExportSuccess();
     void flashDoneBadge();
     return true;
   }
 
-  // Quick save writes PNG: the capture already is one, and the export dialog
-  // owns the format choice.
-  const base = formatFilename(settings.filenameTemplate, { title, url, width, height });
-  let downloadId: number | undefined;
-  try {
-    downloadId = await downloadDataUrl(dataUrl, `${base}.png`);
-  } catch {
-    broadcast({
-      type: 'CAPTURE_ERROR',
-      code: 'quick-action',
-      message: chrome.i18n.getMessage('errSave'),
-    });
-    return false;
+  // The completion window starts the save itself: a `chrome.downloads.download`
+  // from this worker during capture is what Edge showed as "starting" without
+  // writing a file, while the same call after the window's PNG click worked.
+  // Visible/region/element never open that window, so they still save here.
+  const keepAfterDownload = settings.keepCompletionWindowAfterDownload !== false;
+  const shown = await finishCaptureProgress('download', windowId, captureId, {
+    keepAfterDownload,
+  });
+  if (!shown) {
+    try {
+      await saveCaptureImage({ dataUrl, title, url, width, height }, settings);
+    } catch {
+      broadcast({
+        type: 'CAPTURE_ERROR',
+        code: 'quick-action',
+        message: chrome.i18n.getMessage('errSave'),
+      });
+      return false;
+    }
   }
-  await settleCaptureResultWindow('download', windowId, captureId, settings, downloadId);
   void recordExportSuccess();
   void flashDoneBadge();
   return true;
-}
-
-function showCaptureResultWindow(settings: Settings): boolean {
-  return settings.showCaptureResultWindow !== false;
-}
-
-/**
- * Keep, auto-close, or dismiss the full-page progress window once delivery
- * has finished. Visible/region/element captures never opened one, so these
- * calls are no-ops there.
- */
-async function settleCaptureResultWindow(
-  result: 'clipboard' | 'download',
-  windowId: number,
-  captureId: string,
-  settings: Settings,
-  downloadId?: number,
-): Promise<void> {
-  if (!showCaptureResultWindow(settings)) {
-    await closeCaptureProgress();
-    return;
-  }
-  await finishCaptureProgress(result, windowId, captureId);
-  if (result === 'download' && settings.autoCloseCaptureResultWindow) {
-    if (downloadId !== undefined) await waitForDownloadComplete(downloadId).catch(() => undefined);
-    await closeCaptureProgress();
-  }
 }
 
 /**
@@ -961,8 +928,12 @@ async function deliverCaptureParts(captureIds: string[], windowId: number): Prom
       for (const [i, id] of captureIds.entries()) {
         const capture = await openCapture(id);
         if (!capture) throw new Error('capture part missing');
-        const base = formatFilename(settings.filenameTemplate, capture);
-        await downloadDataUrl(capture.dataUrl, `${base}_part${i + 1}of${captureIds.length}.png`);
+        await saveCaptureImage(
+          capture,
+          settings,
+          settings.defaultFormat === 'pdf' ? 'png' : settings.defaultFormat,
+          `_part${i + 1}of${captureIds.length}`,
+        );
       }
     } catch {
       broadcast({
@@ -985,24 +956,24 @@ async function deliverCaptureParts(captureIds: string[], windowId: number): Prom
 
 /**
  * Quick actions from the capture progress window act on an already-stashed
- * capture, so they work without the editor. Only the PNG download runs here:
- * the clipboard write needs a focused page (the progress window does its
- * own), and PDF export stays in the editor.
+ * capture, so they work without the editor. `png` is the manual PNG button;
+ * `save` is the automatic Files-settings export (PDF still opens the editor).
+ * Clipboard writes stay in the progress window, which has the click's focus.
  */
-async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean }> {
+async function handleCaptureQuickAction(message: unknown): Promise<{ ok: boolean; pdf?: boolean }> {
   const { action, captureId } = (message ?? {}) as { action?: string; captureId?: string };
-  if (action !== 'png' || !captureId) return { ok: false };
+  if ((action !== 'png' && action !== 'save') || !captureId) return { ok: false };
   try {
     const capture = await openCapture(captureId);
     if (!capture) return { ok: false };
     const settings = await getSettings();
-    const base = formatFilename(settings.filenameTemplate, {
-      title: capture.title,
-      url: capture.url,
-      width: capture.width,
-      height: capture.height,
-    });
-    await downloadDataUrl(capture.dataUrl, `${base}.png`);
+    if (action === 'save' && settings.defaultFormat === 'pdf') {
+      void recordExportSuccess();
+      return { ok: true, pdf: true };
+    }
+    const format = action === 'png' ? 'png' : settings.defaultFormat;
+    const id = await saveCaptureImage(capture, settings, format);
+    await waitForDownloadComplete(id).catch(() => undefined);
     void recordExportSuccess();
     return { ok: true };
   } catch {

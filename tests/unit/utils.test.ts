@@ -217,8 +217,7 @@ describe('normalizeCaptureAction', () => {
 
   it('ships with the editor as the default', () => {
     expect(DEFAULT_SETTINGS.captureAction).toBe('editor');
-    expect(DEFAULT_SETTINGS.showCaptureResultWindow).toBe(true);
-    expect(DEFAULT_SETTINGS.autoCloseCaptureResultWindow).toBe(false);
+    expect(DEFAULT_SETTINGS.keepCompletionWindowAfterDownload).toBe(true);
   });
 });
 

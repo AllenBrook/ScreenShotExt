@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "Быстрое сохранение — в PNG.",
+    "message": "Быстрое сохранение использует формат из раздела «Файлы».",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "Показывать окно завершения",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "Общие",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "После снимка всей страницы остаётся маленькое окно OpenScreenShot, чтобы открыть редактор, скопировать или сохранить снова.",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "Оставлять окно завершения после загрузки",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "Закрывать после загрузки",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "Закрывает окно завершения, когда файл скриншота сохранён.",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "Если выключить, окно OpenScreenShot закроется, когда файл будет сохранён.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "Режим Express в один клик",

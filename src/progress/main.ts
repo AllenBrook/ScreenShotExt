@@ -31,6 +31,8 @@ let currentState: CaptureProgress | null = null;
 const progress = document.querySelector<HTMLProgressElement>('#progress')!;
 document.documentElement.lang = chrome.i18n.getUILanguage();
 let receivedUpdate = false;
+/** One automatic Files-settings save per capture, even if render runs twice. */
+let autoSavedCaptureId: string | null = null;
 function showResult(result: CaptureProgress['result']): void {
   check.hidden = !result;
   check.textContent = result === 'editor' ? '✓' : '🎉';
@@ -77,6 +79,7 @@ function render(state: CaptureProgress | null): void {
   document.title = state.result
     ? 'OpenScreenShot'
     : `${percent.textContent || label} · OpenScreenShot`;
+  if (state.result === 'download' && state.captureId) void autoSave(state.captureId);
 }
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type === 'CAPTURE_DIALOG_CONTEXT' || message?.type === 'CAPTURE_DIALOG_OPEN') {
@@ -174,28 +177,45 @@ copy.addEventListener('click', async () => {
   }
 });
 
-async function downloadPng(): Promise<void> {
+async function downloadCapture(action: 'png' | 'save'): Promise<boolean> {
   const captureId = currentState?.captureId;
-  if (!captureId || png.disabled) return;
+  if (!captureId || png.disabled) return false;
   setQuickBusy(true);
   try {
     const response = await chrome.runtime.sendMessage({
       type: 'CAPTURE_QUICK_ACTION',
-      action: 'png',
+      action,
       captureId,
     });
+    if (response?.pdf) {
+      if (await openEditor(true)) window.close();
+      return true;
+    }
     if (response?.ok) {
       status.textContent = chrome.i18n.getMessage('captureSaved');
       showResult('download');
-    } else showError('errSave');
+      return true;
+    }
+    showError('errSave');
+    return false;
   } catch {
     showError('errSave');
+    return false;
   } finally {
     setQuickBusy(false);
   }
 }
-png.addEventListener('click', downloadPng);
-retry.addEventListener('click', downloadPng);
+
+/** Edge ignored the worker's in-capture download; this is the path the PNG button already used. */
+async function autoSave(captureId: string): Promise<void> {
+  if (autoSavedCaptureId === captureId) return;
+  autoSavedCaptureId = captureId;
+  const ok = await downloadCapture('save');
+  if (ok && currentState?.keepAfterDownload === false) window.close();
+}
+
+png.addEventListener('click', () => void downloadCapture('png'));
+retry.addEventListener('click', () => void downloadCapture('save'));
 
 pdf.addEventListener('click', async () => {
   if (!currentState?.captureId || pdf.disabled) return;

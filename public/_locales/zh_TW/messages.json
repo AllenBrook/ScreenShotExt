@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "快速儲存會存成 PNG。",
+    "message": "快速儲存使用「檔案」中選擇的格式。",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "顯示完成後的視窗",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "一般",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "整頁截圖完成後保留 OpenScreenShot 小視窗，方便開啟編輯器、複製或再次儲存。",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "下載完成後繼續顯示完成視窗",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "下載完成後自動關閉",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "截圖檔案儲存完成後自動關閉此視窗。",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "關閉後，截圖儲存完成即自動關閉此視窗。",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "一鍵 Express 模式",

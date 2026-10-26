@@ -9,12 +9,13 @@ vi.mock('../../src/shared/storage', () => ({
     captureAction,
     expressMode: true,
     filenameTemplate: 'shot',
-    showCaptureResultWindow,
-    autoCloseCaptureResultWindow,
+    defaultFormat: 'png',
+    quality: 0.92,
+    keepCompletionWindowAfterDownload,
   }),
   getLastRegion: async () => ({ x: 20, y: 20, width: 100, height: 100 }),
   setLastRegion: vi.fn(),
-  setLastCapture: vi.fn(),
+  setLastCapture: vi.fn(async () => 'cap-1'),
   setSettings: vi.fn(),
   migrateExpressDefault: vi.fn(),
   onSettingsChanged: vi.fn(),
@@ -33,8 +34,7 @@ let pixelRatio: number;
 let innerScroller: boolean;
 let cropArgs: unknown[];
 let captureAction: 'editor' | 'clipboard' | 'download';
-let showCaptureResultWindow: boolean;
-let autoCloseCaptureResultWindow: boolean;
+let keepCompletionWindowAfterDownload: boolean;
 let sourceTabActive: boolean;
 let switchTabAfterSelection: boolean;
 let switchTabBeforeSnapshot: boolean;
@@ -170,8 +170,7 @@ beforeEach(async () => {
   });
   cropArgs = [];
   captureAction = 'editor';
-  showCaptureResultWindow = true;
-  autoCloseCaptureResultWindow = false;
+  keepCompletionWindowAfterDownload = true;
   sourceTabActive = true;
   switchTabAfterSelection = false;
   switchTabBeforeSnapshot = false;
@@ -285,6 +284,7 @@ describe('screenshot capture overlay lifecycle', () => {
       percent: 100,
       result: 'editor',
       sourceWindowId: 1,
+      captureId: 'cap-1',
     });
   });
 
@@ -384,49 +384,46 @@ describe('screenshot capture overlay lifecycle', () => {
     expect(messages.some((m) => m.type === 'CAPTURE_COMPLETE')).toBe(true);
   });
 
-  it('keeps the completion window after a full-page download when the setting is on', async () => {
+  it('defers a full-page download to the completion window so Edge actually saves', async () => {
     captureAction = 'download';
     fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
     await capture();
-    expect(fakeChrome.downloads.download).toHaveBeenCalledWith({
-      url: 'data:image/png;base64,finished',
-      filename: 'shot.png',
-      saveAs: false,
-    });
+    expect(fakeChrome.downloads.download).not.toHaveBeenCalled();
     expect(fakeChrome.windows.remove).not.toHaveBeenCalled();
     expect(messages).toContainEqual({
       type: 'CAPTURE_WINDOW_PROGRESS',
       percent: 100,
       result: 'download',
       sourceWindowId: 1,
+      captureId: 'cap-1',
+      keepAfterDownload: true,
     });
   });
 
-  it('closes the completion window after a full-page download when the setting is off', async () => {
+  it('still saves from the worker when the completion window is gone', async () => {
     captureAction = 'download';
-    showCaptureResultWindow = false;
-    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
     await capture();
-    expect(fakeChrome.downloads.download).toHaveBeenCalled();
-    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
-    expect(messages.some((m) => m.type === 'CAPTURE_COMPLETE')).toBe(true);
+    expect(fakeChrome.downloads.download).toHaveBeenCalledWith({
+      url: 'data:image/png;base64,finished',
+      filename: 'shot.png',
+      saveAs: false,
+    });
   });
 
-  it('auto-closes the completion window once the download finishes', async () => {
+  it('tells the completion window it may close itself after the save', async () => {
     captureAction = 'download';
-    autoCloseCaptureResultWindow = true;
+    keepCompletionWindowAfterDownload = false;
     fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
     await capture();
-    expect(fakeChrome.downloads.download).toHaveBeenCalled();
-    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
-  });
-
-  it('opens the editor tab directly when the completion window is hidden', async () => {
-    showCaptureResultWindow = false;
-    fakeChrome.windows.get.mockImplementation(async () => ({}) as never);
-    await capture();
-    expect(events).toContain('deliver');
-    expect(fakeChrome.windows.remove).toHaveBeenCalledWith(9);
+    expect(fakeChrome.downloads.download).not.toHaveBeenCalled();
+    expect(messages).toContainEqual({
+      type: 'CAPTURE_WINDOW_PROGRESS',
+      percent: 100,
+      result: 'download',
+      sourceWindowId: 1,
+      captureId: 'cap-1',
+      keepAfterDownload: false,
+    });
   });
 
   it('uses full-page capture only when the user selects that fallback', async () => {

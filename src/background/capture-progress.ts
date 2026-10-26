@@ -4,6 +4,8 @@ export type CaptureProgress = {
   result?: 'editor' | 'clipboard' | 'download';
   sourceWindowId?: number;
   captureId?: string;
+  /** When result is download, false means the window should close after the save. */
+  keepAfterDownload?: boolean;
 };
 let state: CaptureProgress | null = null;
 let windowId: number | undefined;
@@ -49,11 +51,20 @@ export async function finishCaptureProgress(
   result: NonNullable<CaptureProgress['result']>,
   sourceWindowId: number,
   captureId?: string,
+  extras?: Pick<CaptureProgress, 'keepAfterDownload'>,
 ): Promise<boolean> {
   if (windowId === undefined) return false;
   try {
     await chrome.windows.get(windowId);
-    state = { percent: 100, result, sourceWindowId, ...(captureId ? { captureId } : {}) };
+    state = {
+      percent: 100,
+      result,
+      sourceWindowId,
+      ...(captureId ? { captureId } : {}),
+      ...(extras?.keepAfterDownload !== undefined
+        ? { keepAfterDownload: extras.keepAfterDownload }
+        : {}),
+    };
     // A newly opened page may still be loading; its initial query reads this state.
     await chrome.runtime.sendMessage({ type: 'CAPTURE_WINDOW_PROGRESS', ...state }).catch(() => {});
     if (result === 'clipboard') {

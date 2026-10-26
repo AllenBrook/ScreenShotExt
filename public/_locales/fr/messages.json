@@ -266,24 +266,20 @@
     "description": "Post-capture action that saves the screenshot and skips the editor."
   },
   "actionHintPng": {
-    "message": "Sauvegarde rapide en PNG.",
+    "message": "L’enregistrement rapide utilise le format choisi dans Fichiers.",
     "description": "Hint shown under the after-capture row when Download is selected."
   },
-  "settingsShowCaptureWindow": {
-    "message": "Afficher la fenêtre de fin",
-    "description": "Settings toggle: keep the OpenScreenShot completion window after a full-page capture."
+  "settingsGeneral": {
+    "message": "Général",
+    "description": "Settings sidebar section for general options."
   },
-  "settingsShowCaptureWindowHint": {
-    "message": "Après une capture de page entière, une petite fenêtre OpenScreenShot reste ouverte pour ouvrir l’éditeur, copier ou enregistrer à nouveau.",
-    "description": "Hint under the completion-window toggle."
+  "settingsKeepCompletionWindow": {
+    "message": "Garder la fenêtre de fin ouverte après le téléchargement",
+    "description": "Settings toggle: keep the OpenScreenShot completion window open after a download finishes."
   },
-  "settingsAutoCloseCaptureWindow": {
-    "message": "Fermer automatiquement après le téléchargement",
-    "description": "Settings toggle: close the completion window once a screenshot download finishes."
-  },
-  "settingsAutoCloseCaptureWindowHint": {
-    "message": "Ferme la fenêtre de fin une fois le fichier de capture enregistré.",
-    "description": "Hint under the auto-close-after-download toggle."
+  "settingsKeepCompletionWindowHint": {
+    "message": "Désactivez pour fermer la fenêtre OpenScreenShot une fois le fichier enregistré.",
+    "description": "Hint under the keep-completion-window toggle."
   },
   "expressLabel": {
     "message": "Mode Express en un clic",
